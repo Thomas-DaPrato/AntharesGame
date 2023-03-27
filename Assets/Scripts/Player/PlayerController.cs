@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
     [SerializeField]
-    private GameObject mesh;
+    private Animator animator;
 
 
 
@@ -28,6 +29,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context) {
         direction = context.ReadValue<float>();
+    }
+
+    public void OnPunch(InputAction.CallbackContext context) {
+        StartCoroutine(PunchAnimation());
     }
 
     public void OnJump(InputAction.CallbackContext context) {
@@ -43,10 +48,12 @@ public class PlayerController : MonoBehaviour
 
         Vector2 move = new Vector2(direction, 0);
         if (move.x > 0)
-            mesh.transform.localRotation = Quaternion.Euler(0f,90f,0f);
+            gameObject.transform.localRotation = Quaternion.Euler(0f,0f,0f);
         if (move.x < 0)
-            mesh.transform.localRotation = Quaternion.Euler(0f,-90f,0f);
+            gameObject.transform.localRotation = Quaternion.Euler(0f,180f,0f);
         controller.Move(move * Time.deltaTime * playerSpeed);
+
+            
 
         // Changes the height position of the player..
         if (jump && groundedPlayer)
@@ -54,5 +61,11 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public IEnumerator PunchAnimation() {
+        animator.SetBool("Punch", true);
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("Punch", false);
     }
 }
