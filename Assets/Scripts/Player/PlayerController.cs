@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector2 move = new Vector2(direction, 0);
+        Vector3 move = new Vector3(direction, 0,0);
         if (move.x > 0)
             gameObject.transform.localRotation = Quaternion.Euler(0f,0f,0f);
         if (move.x < 0)

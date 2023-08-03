@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     public Transform player2;
 
 
-    void Update() {
+    void FixedUpdate() {
         gameObject.transform.position = CameraMovement();
     }
 
