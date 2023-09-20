@@ -2,30 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 public class AddAnimatorOverride : MonoBehaviour
 {
-    [SerializeField]
-    private FighterData fighterData;
 
     [SerializeField]
     private Animator animatorBase;
 
     private AnimatorOverrideController animatorOverride;
 
-    private void Start() {
+    private void Awake() {
         animatorOverride = new AnimatorOverrideController(animatorBase.runtimeAnimatorController);
         animatorBase.runtimeAnimatorController = animatorOverride;
+        animatorOverride.ApplyOverrides(gameObject.GetComponent<PlayerController>().GetFighterData().GetClipOverride(animatorOverride));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            Debug.Log("override");
-
-
-            animatorOverride.ApplyOverrides(fighterData.GetClipOverride(animatorOverride));
-
-        }
-    }
 }

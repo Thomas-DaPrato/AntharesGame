@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+
+
+    [SerializeField]
+    private FighterData fighterData;
+    public FighterData GetFighterData() { return fighterData; }
+
     [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
@@ -23,16 +29,37 @@ public class PlayerController : MonoBehaviour
     private float direction = 0;
     private bool jump = false;
 
+    private int hp = 10;
+
     private void Start() {
         controller = gameObject.GetComponent<CharacterController>();
+        
     }
 
     public void OnMove(InputAction.CallbackContext context) {
         direction = context.ReadValue<float>();
     }
 
-    public void OnPunch(InputAction.CallbackContext context) {
-        StartCoroutine(PunchAnimation());
+    public void OnHeavyAttack(InputAction.CallbackContext context) {
+        if (context.performed) {
+            Debug.Log("heavy");
+            animator.SetTrigger("HeavyAttack");
+        }
+    }
+   
+    public void OnMiddleAttack(InputAction.CallbackContext context) {
+        if (context.performed){
+            Debug.Log("Middle");
+            animator.SetTrigger("MiddleAttack");
+        }
+    }
+    public void OnLightAttack(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            Debug.Log("Light");
+            animator.SetTrigger("LightAttack");
+        }
+        
     }
 
     public void OnJump(InputAction.CallbackContext context) {
@@ -61,11 +88,15 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+        
     }
 
-    public IEnumerator PunchAnimation() {
-        animator.SetBool("Punch", true);
-        yield return new WaitForSeconds(2f);
-        animator.SetBool("Punch", false);
+    public void TakeDamage(int damage) {
+        if ((hp -= damage) <= 0)
+            Debug.Log("T MORT !!!!!");
+        else
+            Debug.Log("hp : " + hp);
     }
+
+    
 }
