@@ -12,6 +12,7 @@ public class FighterData : ScriptableObject
     public AnimationClip lightAttack;
     public int lightAttackDamage;
     public AnimationClip jump;
+    public AnimationClip parry;
 
     public List<KeyValuePair<AnimationClip,AnimationClip>> GetClipOverride(AnimatorOverrideController animatorOverride) {
 
@@ -21,6 +22,7 @@ public class FighterData : ScriptableObject
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["MiddleAttackBase"], middleAttack));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["LightAttackBase"], lightAttack));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["JumpBase"], jump));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["ParryBase"], parry));
 
         
 

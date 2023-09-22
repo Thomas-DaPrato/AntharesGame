@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     public bool isAttacking = false;
+    public bool isParrying = false;
 
 
 
@@ -65,6 +66,14 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    public void OnParry(InputAction.CallbackContext context) {
+        if (context.performed && !isAttacking){
+            Debug.Log("Parry");
+            isParrying = true;
+            animator.SetTrigger("Parry");
+        }
+        
+    }
 
     public void OnJump(InputAction.CallbackContext context) {
         jump = context.action.triggered;
@@ -103,6 +112,9 @@ public class PlayerController : MonoBehaviour
 
     public void SetIsAttackingFalse() {
         isAttacking = false;
+    }
+    public void SetIsParryingFalse() {
+        isParrying = false;
     }
     
 }

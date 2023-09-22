@@ -12,6 +12,8 @@ public class Manequin : MonoBehaviour
     private bool isMiddleAttacking;
     [SerializeField]
     private bool isLightAttacking;
+    [SerializeField]
+    private bool isParrying;
 
     [SerializeField]
     private PlayerController playerController;
@@ -41,6 +43,12 @@ public class Manequin : MonoBehaviour
             Debug.Log("Light Mannequin");
             playerController.isAttacking = true;
             animator.SetTrigger("LightAttack");         
+        }
+        
+        if (!playerController.isParrying && isParrying) {
+            Debug.Log("Parry Mannequin");
+            playerController.isParrying = true;
+            animator.SetTrigger("Parry");         
         }
             
     }

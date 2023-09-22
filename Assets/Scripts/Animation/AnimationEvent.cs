@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBoxAnimationEvent : MonoBehaviour
+public class AnimationEvent : MonoBehaviour
 {
     public GameObject HitBoxHeavyAttack;
     public GameObject HitBoxMiddleAttack;
     public GameObject HitBoxLightAttack;
+    public MeshRenderer HeartBoxParry;
 
     public void DisplayHitBoxHeavyAttack() {
         HitBoxHeavyAttack.SetActive(true);
@@ -27,5 +28,12 @@ public class HitBoxAnimationEvent : MonoBehaviour
     }
     public void HideHitBoxLightAttack() {
         HitBoxLightAttack.SetActive(false);
+    }
+
+    public void DisplayHeartBoxParry() {
+        HeartBoxParry.enabled = true;
+    }
+    public void HideHeartBoxParry() {
+        HeartBoxParry.enabled = false;
     }
 }

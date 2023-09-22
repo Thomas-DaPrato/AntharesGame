@@ -18,9 +18,9 @@ public class HitBox : MonoBehaviour
 
     
     private void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals("HeartBox")) {
+        if (other.tag.Equals("HeartBox") && !other.GetComponentInParent<PlayerController>().isParrying) {
             switch (type) {
-                case HitBoxType.Heavy :
+                case HitBoxType.Heavy:
                     other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().heavyAttackDamage);
                     break;
                 case HitBoxType.Middle:
@@ -34,5 +34,7 @@ public class HitBox : MonoBehaviour
                     break;
             }
         }
+        else if (other.tag.Equals("HeartBox") && other.GetComponentInParent<PlayerController>().isParrying)
+            Debug.Log("My ennemy...y...y is parrying");
     }
 }
