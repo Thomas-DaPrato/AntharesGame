@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+    public bool isAttacking = false;
+
 
 
     [SerializeField]
@@ -41,22 +43,24 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnHeavyAttack(InputAction.CallbackContext context) {
-        if (context.performed) {
-            Debug.Log("heavy");
+        if (context.performed && !isAttacking) {
+            Debug.Log("Heavy");
+            isAttacking = true;
             animator.SetTrigger("HeavyAttack");
         }
     }
    
     public void OnMiddleAttack(InputAction.CallbackContext context) {
-        if (context.performed){
+        if (context.performed && !isAttacking){
             Debug.Log("Middle");
+            isAttacking = true;
             animator.SetTrigger("MiddleAttack");
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {
-        if (context.performed)
-        {
+        if (context.performed && !isAttacking){
             Debug.Log("Light");
+            isAttacking = true;
             animator.SetTrigger("LightAttack");
         }
         
@@ -68,19 +72,18 @@ public class PlayerController : MonoBehaviour
 
     void Update() {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
+        if (groundedPlayer && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(direction, 0,0);
+        Vector3 move = new Vector3(direction, 0, 0);
         if (move.x > 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f,0f,0f);
+            gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         if (move.x < 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f,180f,0f);
+            gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-            
+
 
         // Changes the height position of the player..
         if (jump && groundedPlayer)
@@ -88,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        
+
     }
 
     public void TakeDamage(int damage) {
@@ -98,5 +101,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("hp : " + hp);
     }
 
+    public void SetIsAttackingFalse() {
+        isAttacking = false;
+    }
     
 }

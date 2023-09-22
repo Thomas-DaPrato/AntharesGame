@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 2185448468689682885}
   - component: {fileID: 8915372994473458721}
   - component: {fileID: 6931681426418932427}
+  - component: {fileID: 5802270076092469764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -346,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd9ff28f4630ed4288b66568b48734e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   fighterData: {fileID: 0}
   playerSpeed: 4
   jumpHeight: 2.5
@@ -510,6 +512,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorBase: {fileID: 4122495477622942463}
+--- !u!114 &5802270076092469764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788677706325981627}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe48ca4db08a8b84b8495cd93281cda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHeavyAttacking: 0
+  isMiddleAttacking: 0
+  isLightAttacking: 0
+  playerController: {fileID: 5648420388229960902}
+  animator: {fileID: 4122495477622942463}
 --- !u!1 &4289050501973159503
 GameObject:
   m_ObjectHideFlags: 0

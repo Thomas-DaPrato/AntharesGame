@@ -15,7 +15,7 @@ public class HitBoxAnimationEvent : MonoBehaviour
         HitBoxHeavyAttack.SetActive(false);
     }
 
-    public void DisplayHitBoxMidlleAttack() {
+    public void DisplayHitBoxMiddleAttack() {
         HitBoxMiddleAttack.SetActive(true);
     }
     public void HideHitBoxMiddleAttack() {
