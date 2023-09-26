@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isAttacking = false;
     public bool isParrying = false;
+    public bool isStunt = false;
 
 
 
@@ -40,35 +41,36 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext context) {
-        direction = context.ReadValue<float>();
+        if(!isStunt)
+            direction = context.ReadValue<float>();
     }
 
     public void OnHeavyAttack(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking) {
-            Debug.Log("Heavy");
+        if (context.performed && !isAttacking && !isStunt) {
+            Debug.Log(gameObject.name + " Heavy");
             isAttacking = true;
             animator.SetTrigger("HeavyAttack");
         }
     }
    
     public void OnMiddleAttack(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking){
-            Debug.Log("Middle");
+        if (context.performed && !isAttacking && !isStunt){
+            Debug.Log(gameObject.name + " Middle");
             isAttacking = true;
             animator.SetTrigger("MiddleAttack");
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking){
-            Debug.Log("Light");
+        if (context.performed && !isAttacking && !isStunt){
+            Debug.Log(gameObject.name + " Light");
             isAttacking = true;
             animator.SetTrigger("LightAttack");
         }
         
     }
     public void OnParry(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking){
-            Debug.Log("Parry");
+        if (context.performed && !isAttacking && !isStunt){
+            Debug.Log(gameObject.name + " Parry");
             isParrying = true;
             animator.SetTrigger("Parry");
         }
@@ -76,7 +78,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        jump = context.action.triggered;
+        if(!isStunt)
+            jump = context.action.triggered;
     }
 
     void Update() {
@@ -110,11 +113,26 @@ public class PlayerController : MonoBehaviour
             Debug.Log("hp : " + hp);
     }
 
+    public void SetTriggerInterrupt() {
+        Debug.Log(gameObject.name + " Interrupt");
+        animator.SetTrigger("Interrupt");
+    }
+
     public void SetIsAttackingFalse() {
         isAttacking = false;
     }
     public void SetIsParryingFalse() {
         isParrying = false;
+    }
+
+    public void SetIsStuntTrue() {
+        isStunt = true;
+    }
+
+    public void SetIsStuntFalse() {
+        isStunt = false;
+        isAttacking = false;
+        Debug.Log("Player is not anymore stunt");
     }
     
 }

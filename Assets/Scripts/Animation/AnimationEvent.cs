@@ -4,36 +4,42 @@ using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {
-    public GameObject HitBoxHeavyAttack;
-    public GameObject HitBoxMiddleAttack;
-    public GameObject HitBoxLightAttack;
-    public MeshRenderer HeartBoxParry;
+    public GameObject hitBoxHeavyAttack;
+    public GameObject hitBoxMiddleAttack;
+    public GameObject hitBoxLightAttack;
+    public MeshRenderer heartBoxParry;
 
     public void DisplayHitBoxHeavyAttack() {
-        HitBoxHeavyAttack.SetActive(true);
+        hitBoxHeavyAttack.SetActive(true);
     }
     public void HideHitBoxHeavyAttack() {
-        HitBoxHeavyAttack.SetActive(false);
+        hitBoxHeavyAttack.SetActive(false);
     }
 
     public void DisplayHitBoxMiddleAttack() {
-        HitBoxMiddleAttack.SetActive(true);
+        hitBoxMiddleAttack.SetActive(true);
     }
     public void HideHitBoxMiddleAttack() {
-        HitBoxMiddleAttack.SetActive(false);
+        hitBoxMiddleAttack.SetActive(false);
     }
 
     public void DisplayHitBoxLightAttack() {
-        HitBoxLightAttack.SetActive(true);
+        hitBoxLightAttack.SetActive(true);
     }
     public void HideHitBoxLightAttack() {
-        HitBoxLightAttack.SetActive(false);
+        hitBoxLightAttack.SetActive(false);
     }
 
     public void DisplayHeartBoxParry() {
-        HeartBoxParry.enabled = true;
+        heartBoxParry.enabled = true;
     }
     public void HideHeartBoxParry() {
-        HeartBoxParry.enabled = false;
+        heartBoxParry.enabled = false;
+    }
+
+    public void DisableAllHitBox() {
+        hitBoxHeavyAttack.SetActive(false);
+        hitBoxMiddleAttack.SetActive(false);
+        hitBoxLightAttack.SetActive(false);
     }
 }

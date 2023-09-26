@@ -34,7 +34,9 @@ public class HitBox : MonoBehaviour
                     break;
             }
         }
-        else if (other.tag.Equals("HeartBox") && other.GetComponentInParent<PlayerController>().isParrying)
-            Debug.Log("My ennemy...y...y is parrying");
+        else if (other.tag.Equals("HeartBox") && other.GetComponentInParent<PlayerController>().isParrying) { 
+            Debug.Log(gameObject.transform.parent.parent.name + " My ennemy...y...y is parrying");
+            playerController.SetTriggerInterrupt();
+        }
     }
 }

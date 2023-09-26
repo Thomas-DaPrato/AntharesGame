@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isParrying: 0
+  isStunt: 0
   fighterData: {fileID: 0}
   playerSpeed: 4
   jumpHeight: 2.5
@@ -387,10 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f9cbb31f6e912449b27800e6a3749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitBoxHeavyAttack: {fileID: 8953706067706078159}
-  HitBoxMiddleAttack: {fileID: 6557046357557009731}
-  HitBoxLightAttack: {fileID: 84631519721441574}
-  HeartBoxParry: {fileID: 4247490879261176963}
+  hitBoxHeavyAttack: {fileID: 8953706067706078159}
+  hitBoxMiddleAttack: {fileID: 6557046357557009731}
+  hitBoxLightAttack: {fileID: 84631519721441574}
+  heartBoxParry: {fileID: 4247490879261176963}
 --- !u!114 &8915372994473458721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,7 +799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9128551056500074242}
   m_Layer: 0
-  m_Name: HItBox
+  m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
