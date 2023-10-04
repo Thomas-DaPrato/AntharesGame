@@ -4,25 +4,22 @@ using UnityEngine.InputSystem;
 using System;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+    #region Intern Variable
+    private float direction = 0;
+    private float lastDirection;
 
-    private float lastDirection; 
+    private int hp = 10;
 
     public bool isAttacking = false;
     public bool isParrying = false;
     public bool isStunt = false;
-
-
-    [SerializeField]
-    private int maxNbJump;
-    private int nbJump;
-
-
+    public bool canDash = true;
+    #endregion
 
 
     [SerializeField]
@@ -30,27 +27,33 @@ public class PlayerController : MonoBehaviour
     public FighterData GetFighterData() { return fighterData; }
 
     [SerializeField]
-    private float playerSpeed = 6.0f;
-    [SerializeField]
-    private float playerMaxSpeed = 7.0f;
-    [SerializeField]
-    private float jumpHeight = 1.0f;
-    [SerializeField]
-    private float gravityValue = -9.81f;
-    [SerializeField]
     private Animator animator;
 
+    #region Movement Variable
+    [SerializeField]
+    private float playerSpeed;
+    [SerializeField]
+    private float playerMaxSpeed;
+    [SerializeField]
+    private float jumpHeight;
+    [SerializeField]
+    private float gravityValue;
+    [SerializeField]
+    private float dashDistance;
+    [SerializeField]
+    private int maxNbJump;
+    private int nbJump;
+    
+    #endregion
 
 
-    private float direction = 0;
 
-    private int hp = 10;
 
     private void Awake() {
         controller = gameObject.GetComponent<CharacterController>();
         nbJump = maxNbJump;
     }
-   
+
     void FixedUpdate() {
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
@@ -58,14 +61,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(direction, 0, 0);
-        if (move.x > 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        if (move.x < 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-
+        Move();
 
         playerVelocity.y += gravityValue * Time.deltaTime;
 
@@ -79,19 +75,21 @@ public class PlayerController : MonoBehaviour
 
             else
                 if (playerVelocity.x > -playerMaxSpeed)
-                    playerVelocity.x += controller.velocity.x * Time.deltaTime * playerSpeed;
-                else
-                    playerVelocity.x = -playerMaxSpeed;
+                playerVelocity.x += controller.velocity.x * Time.deltaTime * playerSpeed;
+            else
+                playerVelocity.x = -playerMaxSpeed;
         else
             playerVelocity.x = 0;
 
-        
+
 
         controller.Move(playerVelocity * Time.deltaTime);
 
     }
 
 
+
+    #region Event Input System
     public void OnMove(InputAction.CallbackContext context) {
         if (!isStunt) {
             direction = context.ReadValue<float>();
@@ -134,10 +132,18 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (context.performed)
+        if (!isStunt && context.performed)
             Jump();
     }
 
+    public void OnDash(InputAction.CallbackContext context) {
+        if (!isStunt && canDash && context.performed) {
+            Dash();
+        }
+    }
+    #endregion
+
+    #region Player Movement
     public void TakeDamage(int damage) {
         if ((hp -= damage) <= 0)
             Debug.Log("T MORT !!!!!");
@@ -145,6 +151,37 @@ public class PlayerController : MonoBehaviour
             Debug.Log("hp : " + hp);
     }
 
+    public void Jump() {
+        if (nbJump > 0) {
+            playerVelocity.y += jumpHeight * 3;
+            nbJump -= 1;
+        }
+    }
+
+    public void Move() {
+        Vector3 move = new Vector3(direction, 0, 0);
+        if (move.x > 0)
+            gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        if (move.x < 0)
+            gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        controller.Move(move * Time.deltaTime * playerSpeed);
+    }
+
+    public void Dash() {
+        Vector3 move = new Vector3(lastDirection, 0, 0);
+        controller.Move(move * Time.deltaTime * playerSpeed * dashDistance);
+        canDash = false;
+        StartCoroutine(DashCoolDown());
+    }
+
+    public IEnumerator DashCoolDown() {
+        yield return new WaitForSeconds(1);
+        canDash = true;
+    }
+    #endregion
+
+
+    #region Set Variable With Animation
     public void SetTriggerInterrupt() {
         Debug.Log(gameObject.name + " Interrupt");
         animator.SetTrigger("Interrupt");
@@ -166,12 +203,6 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
         Debug.Log("Player is not anymore stunt");
     }
-
-    public void Jump() {
-        if (nbJump > 0) { 
-            playerVelocity.y += jumpHeight * 3;
-            nbJump -= 1;
-        }
-    }
+    #endregion
 
 }

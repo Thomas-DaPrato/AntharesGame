@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Movement",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "ce0c9f18-7864-4b71-9d74-09b9367b0f18",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Hold",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -54,6 +54,15 @@
                     "name": "Parry",
                     "type": "Button",
                     "id": "09021909-117b-4290-a269-52b8b1ef4ff6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "ac419bd1-b72b-49aa-b5e7-76798843874f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43186b50-bfed-4c6d-9034-743fd0ef612d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
