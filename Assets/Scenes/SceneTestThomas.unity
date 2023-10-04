@@ -1171,6 +1171,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5648420388229960902, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
+      propertyPath: nbJumpMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648420388229960902, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
+      propertyPath: jumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648420388229960902, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
       propertyPath: fighterData
       value: 
       objectReference: {fileID: 11400000, guid: 96946a2be377d0241bff423d7f13de91, type: 2}
@@ -1180,7 +1188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5648420388229960902, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
       propertyPath: gravityValue
-      value: -9.81
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5648420388229960902, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
       propertyPath: playerMaxSpeed

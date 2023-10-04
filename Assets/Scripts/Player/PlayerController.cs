@@ -8,14 +8,20 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private Vector3 playerControllerVelocity;
     private bool groundedPlayer;
+
 
     private float lastDirection; 
 
     public bool isAttacking = false;
     public bool isParrying = false;
     public bool isStunt = false;
+
+
+    [SerializeField]
+    private int maxNbJump;
+    private int nbJump;
+
 
 
 
@@ -37,17 +43,18 @@ public class PlayerController : MonoBehaviour
 
 
     private float direction = 0;
-    private bool jump = false;
 
     private int hp = 10;
 
     private void Awake() {
         controller = gameObject.GetComponent<CharacterController>();
+        nbJump = maxNbJump;
     }
    
     void FixedUpdate() {
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
+            nbJump = maxNbJump;
             playerVelocity.y = 0f;
         }
 
@@ -59,9 +66,6 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
 
-        // Changes the height position of the player..
-        if (jump && groundedPlayer)
-            playerVelocity.y += jumpHeight * 3;
 
         playerVelocity.y += gravityValue * Time.deltaTime;
 
@@ -130,8 +134,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (!isStunt)
-            jump = context.action.triggered;
+        if (context.performed)
+            Jump();
     }
 
     public void TakeDamage(int damage) {
@@ -162,5 +166,12 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
         Debug.Log("Player is not anymore stunt");
     }
-    
+
+    public void Jump() {
+        if (nbJump > 0) { 
+            playerVelocity.y += jumpHeight * 3;
+            nbJump -= 1;
+        }
+    }
+
 }
