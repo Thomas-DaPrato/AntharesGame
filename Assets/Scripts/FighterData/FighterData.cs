@@ -5,23 +5,28 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Fighter", menuName = "Fighter")]
 public class FighterData : ScriptableObject
 {
-    public AnimationClip heavyAttack;
-    public int heavyAttackDamage;
-    public AnimationClip middleAttack;
-    public int middleAttackDamage;
-    public AnimationClip lightAttack;
-    public int lightAttackDamage;
+    [Header("Attack Animation")]
+    public Attack lightAttack;
+    public Attack middleAttack;
+    public Attack heavyAttack;
+
+    [Header("Mouvement Animation")]
     public AnimationClip jump;
+
+    [Header("Defense Animation")]
     public AnimationClip parry;
     public AnimationClip interrupt;
+
+    [Header("Player Variable")]
+    public float playerHeight;
 
     public List<KeyValuePair<AnimationClip,AnimationClip>> GetClipOverride(AnimatorOverrideController animatorOverride) {
 
         List<KeyValuePair<AnimationClip, AnimationClip>> clipOverride = new List<KeyValuePair<AnimationClip, AnimationClip>>();
 
-        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["HeavyAttackBase"], heavyAttack));
-        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["MiddleAttackBase"], middleAttack));
-        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["LightAttackBase"], lightAttack));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["HeavyAttackBase"], heavyAttack.clip));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["MiddleAttackBase"], middleAttack.clip));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["LightAttackBase"], lightAttack.clip));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["JumpBase"], jump));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["ParryBase"], parry));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["InterruptBase"], interrupt));

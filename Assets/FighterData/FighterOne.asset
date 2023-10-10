@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005b46d02c7338a4a81fb7e27b2f54df, type: 3}
   m_Name: FighterOne
   m_EditorClassIdentifier: 
-  heavyAttack: {fileID: 7400000, guid: b4a2a94e9cef505419816693c5b71439, type: 2}
-  heavyAttackDamage: 5
-  middleAttack: {fileID: 7400000, guid: d142f033997cc6942a9d13f8b3b7683f, type: 2}
-  middleAttackDamage: 3
-  lightAttack: {fileID: 7400000, guid: a027ce9107e821840b0af6e6badacae5, type: 2}
-  lightAttackDamage: 1
+  lightAttack:
+    clip: {fileID: 7400000, guid: a027ce9107e821840b0af6e6badacae5, type: 2}
+    damage: 2
+    knockback: 8
+  middleAttack:
+    clip: {fileID: 7400000, guid: d142f033997cc6942a9d13f8b3b7683f, type: 2}
+    damage: 3
+    knockback: 24
+  heavyAttack:
+    clip: {fileID: 7400000, guid: b4a2a94e9cef505419816693c5b71439, type: 2}
+    damage: 5
+    knockback: 36
   jump: {fileID: 7400000, guid: 092238cf4ff388a42909c337cfdfa773, type: 2}
   parry: {fileID: 7400000, guid: c9c6b4d9da565004c82a136d6e545604, type: 2}
   interrupt: {fileID: 7400000, guid: 7e868bee861aaec43a7ff74c18c7e3b7, type: 2}
+  playerHeight: 2

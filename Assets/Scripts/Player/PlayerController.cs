@@ -1,25 +1,34 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
-[RequireComponent(typeof(CharacterController))]
+
+
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    private Rigidbody rb;
 
     #region Intern Variable
+    private bool isGrounded;
     private float direction = 0;
-    private float lastDirection;
+
+    [HideInInspector]
+    public float lastDirection = 0;
+
 
     private int hp = 10;
 
+    [HideInInspector]
     public bool isAttacking = false;
+    [HideInInspector]
     public bool isParrying = false;
+    [HideInInspector]
     public bool isStunt = false;
+    [HideInInspector]
     public bool canDash = true;
     #endregion
+
+    [Space(20)]
 
 
     [SerializeField]
@@ -32,59 +41,56 @@ public class PlayerController : MonoBehaviour {
     #region Movement Variable
     [SerializeField]
     private float playerSpeed;
-    [SerializeField]
-    private float playerMaxSpeed;
+
+    [Space(20)]
+
     [SerializeField]
     private float jumpHeight;
     [SerializeField]
-    private float gravityValue;
+    private float airControl;
+
+    [Space(20)]
+
     [SerializeField]
     private float dashDistance;
+
+    [Space(20)]
+
     [SerializeField]
-    private int maxNbJump;
+    private int maxNbJumpInAir;
     private int nbJump;
     
+    [Space(20)]
+
+    [SerializeField]
+    private LayerMask groundLayer;
+    [SerializeField]
+    private float groundDrag;
     #endregion
 
 
 
 
     private void Awake() {
-        controller = gameObject.GetComponent<CharacterController>();
-        nbJump = maxNbJump;
+        rb = gameObject.GetComponent<Rigidbody>();
+        nbJump = maxNbJumpInAir;
+    }
+
+    private void Update() {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, fighterData.playerHeight * 0.5f + 0.2f, groundLayer);
+
+        SpeedController();
     }
 
     void FixedUpdate() {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0) {
-            nbJump = maxNbJump;
-            playerVelocity.y = 0f;
+        if (isGrounded) {
+            rb.drag = groundDrag;
+            nbJump = maxNbJumpInAir;
         }
+        else
+            rb.drag = 0;
 
         Move();
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-
-
-        if (!groundedPlayer)
-            if (lastDirection > 0)
-                if (playerVelocity.x < playerMaxSpeed)
-                    playerVelocity.x += controller.velocity.x * Time.deltaTime * playerSpeed;
-                else
-                    playerVelocity.x = playerMaxSpeed;
-
-            else
-                if (playerVelocity.x > -playerMaxSpeed)
-                playerVelocity.x += controller.velocity.x * Time.deltaTime * playerSpeed;
-            else
-                playerVelocity.x = -playerMaxSpeed;
-        else
-            playerVelocity.x = 0;
-
-
-
-        controller.Move(playerVelocity * Time.deltaTime);
-
     }
 
 
@@ -93,8 +99,9 @@ public class PlayerController : MonoBehaviour {
     public void OnMove(InputAction.CallbackContext context) {
         if (!isStunt) {
             direction = context.ReadValue<float>();
-            if (direction != 0)
+            if (direction != 0) {
                 lastDirection = direction;
+            }
         }
 
     }
@@ -138,22 +145,17 @@ public class PlayerController : MonoBehaviour {
 
     public void OnDash(InputAction.CallbackContext context) {
         if (!isStunt && canDash && context.performed) {
+            Debug.Log("Dash");
             Dash();
         }
     }
     #endregion
 
     #region Player Movement
-    public void TakeDamage(int damage) {
-        if ((hp -= damage) <= 0)
-            Debug.Log("T MORT !!!!!");
-        else
-            Debug.Log("hp : " + hp);
-    }
-
     public void Jump() {
         if (nbJump > 0) {
-            playerVelocity.y += jumpHeight * 3;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             nbJump -= 1;
         }
     }
@@ -164,12 +166,27 @@ public class PlayerController : MonoBehaviour {
             gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         if (move.x < 0)
             gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if(isGrounded)
+            rb.AddForce(move * playerSpeed * 10f, ForceMode.Force);
+
+        else if(!isGrounded)
+            rb.AddForce(move * playerSpeed * 10f * airControl, ForceMode.Force);
+
+    }
+
+    public void SpeedController() {
+        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, 0f);
+
+        if(flatVelocity.magnitude > playerSpeed) {
+            Vector3 limitedSpeed = flatVelocity.normalized * playerSpeed;
+            rb.velocity = new Vector3(limitedSpeed.x, rb.velocity.y, 0f);
+        }
     }
 
     public void Dash() {
         Vector3 move = new Vector3(lastDirection, 0, 0);
-        controller.Move(move * Time.deltaTime * playerSpeed * dashDistance);
+        rb.AddForce(move * dashDistance, ForceMode.Impulse);
         canDash = false;
         StartCoroutine(DashCoolDown());
     }
@@ -177,6 +194,21 @@ public class PlayerController : MonoBehaviour {
     public IEnumerator DashCoolDown() {
         yield return new WaitForSeconds(1);
         canDash = true;
+    }
+    #endregion
+
+    #region Player Fonctions
+    public void TakeDamage(int damage) {
+        if ((hp -= damage) <= 0)
+            Debug.Log("T MORT !!!!!");
+        else
+            Debug.Log("hp : " + hp);
+    }
+
+    public void ApplyKnockback(float knockback, float oponenentDirection) {
+        Vector3 knockbackDirection = new Vector3(oponenentDirection, 1, 0);
+        Debug.Log(knockbackDirection);
+        rb.AddForce(knockbackDirection * knockback * Time.deltaTime, ForceMode.Impulse);
     }
     #endregion
 
@@ -204,5 +236,11 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Player is not anymore stunt");
     }
     #endregion
+
+    public void SetIsGrounded(bool val) {
+        isGrounded = val;
+    }
+
+
 
 }
