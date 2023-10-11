@@ -9,6 +9,7 @@ public class FighterData : ScriptableObject
     public Attack lightAttack;
     public Attack middleAttack;
     public Attack heavyAttack;
+    public AttackMutipleClip aerialsAttack;
 
     [Header("Mouvement Animation")]
     public AnimationClip jump;
@@ -27,6 +28,9 @@ public class FighterData : ScriptableObject
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["HeavyAttackBase"], heavyAttack.clip));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["MiddleAttackBase"], middleAttack.clip));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["LightAttackBase"], lightAttack.clip));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["AerialUpBase"], aerialsAttack.clipUp));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["AerialMiddleBase"], aerialsAttack.clipMiddle));
+        clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["AerialDownBase"], aerialsAttack.clipDown));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["JumpBase"], jump));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["ParryBase"], parry));
         clipOverride.Add(new KeyValuePair<AnimationClip, AnimationClip>(animatorOverride["InterruptBase"], interrupt));

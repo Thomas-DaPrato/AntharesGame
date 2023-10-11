@@ -7,7 +7,8 @@ public class HitBox : MonoBehaviour
     public enum HitBoxType {
         Heavy,
         Middle,
-        Light
+        Light,
+        Aerial
     }
 
     [SerializeField]
@@ -31,6 +32,10 @@ public class HitBox : MonoBehaviour
                 case HitBoxType.Light:
                     other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().lightAttack.damage);
                     other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().lightAttack.knockback, playerController.lastDirection);
+                    break;
+                case HitBoxType.Aerial:
+                    other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().aerialsAttack.damage);
+                    other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().aerialsAttack.knockback, playerController.lastDirection);
                     break;
                 default:
                     Debug.Log("ERRORR : type " + type + " is not recognized");

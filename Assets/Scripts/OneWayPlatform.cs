@@ -8,7 +8,7 @@ public class OneWayPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.position.y < this.transform.position.y && other.name == "Player")
+        if (other.transform.position.y < this.transform.position.y && other.tag.Equals("Player"))
         {
             other.gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
 
@@ -17,7 +17,7 @@ public class OneWayPlatform : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.name == "Player")
+        if (other.tag.Equals("Player"))
         {
             other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
         }

@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour {
 
     #region Intern Variable
     private bool isGrounded;
-    private float direction = 0;
+    private float x = 0;
+    private float y = 0;
+
 
     [HideInInspector]
     public float lastDirection = 0;
@@ -18,13 +20,13 @@ public class PlayerController : MonoBehaviour {
 
     private int hp = 10;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isAttacking = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isParrying = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isStunt = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool canDash = true;
     #endregion
 
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, fighterData.playerHeight * 0.5f + 0.2f, groundLayer);
 
+
         SpeedController();
     }
 
@@ -96,36 +99,53 @@ public class PlayerController : MonoBehaviour {
 
 
     #region Event Input System
-    public void OnMove(InputAction.CallbackContext context) {
+    public void OnMoveX(InputAction.CallbackContext context) {
         if (!isStunt) {
-            direction = context.ReadValue<float>();
-            if (direction != 0) {
-                lastDirection = direction;
+            x = context.ReadValue<float>();
+            if (x != 0) {
+                lastDirection = x;
             }
         }
-
+    }
+    public void OnMoveY(InputAction.CallbackContext context) {
+        if (!isStunt) {
+            y = context.ReadValue<float>();
+        }
     }
 
     public void OnHeavyAttack(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStunt) {
-            Debug.Log(gameObject.name + " Heavy");
             isAttacking = true;
-            animator.SetTrigger("HeavyAttack");
+            if (isGrounded) {
+                Debug.Log(gameObject.name + " Heavy");
+                animator.SetTrigger("HeavyAttack");
+            }
+            else if (!isGrounded)
+                LaunchAerialAttack(x, y);
         }
     }
 
     public void OnMiddleAttack(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStunt) {
-            Debug.Log(gameObject.name + " Middle");
             isAttacking = true;
-            animator.SetTrigger("MiddleAttack");
+            if (isGrounded) {
+                Debug.Log(gameObject.name + " Middle");
+                animator.SetTrigger("MiddleAttack");
+            }
+            else if (!isGrounded)
+                LaunchAerialAttack(x, y);
         }
     }
-    public void OnLightAttack(InputAction.CallbackContext context) {
+    public void OnLightAttack(InputAction.CallbackContext context) {  
+        Debug.Log("isAttacking " + isAttacking);
         if (context.performed && !isAttacking && !isStunt) {
-            Debug.Log(gameObject.name + " Light");
             isAttacking = true;
-            animator.SetTrigger("LightAttack");
+            if (isGrounded) {
+                Debug.Log(gameObject.name + " Light");
+                animator.SetTrigger("LightAttack");
+            }
+            else if (!isGrounded)
+                LaunchAerialAttack(x, y);
         }
 
     }
@@ -161,7 +181,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Move() {
-        Vector3 move = new Vector3(direction, 0, 0);
+        Vector3 move = new Vector3(x, 0, 0);
         if (move.x > 0)
             gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         if (move.x < 0)
@@ -207,8 +227,28 @@ public class PlayerController : MonoBehaviour {
 
     public void ApplyKnockback(float knockback, float oponenentDirection) {
         Vector3 knockbackDirection = new Vector3(oponenentDirection, 1, 0);
-        Debug.Log(knockbackDirection);
-        rb.AddForce(knockbackDirection * knockback * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(knockbackDirection * knockback, ForceMode.Impulse);
+    }
+
+    public void LaunchAerialAttack(float x, float y) {
+
+        Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
+        coordinate = coordinate.normalized;
+
+        if (coordinate.x <= 0.66f && coordinate.y > 0) {
+            Debug.Log(gameObject.name + " Aerial Up");
+            animator.SetTrigger("Aerial Up");
+        }
+
+        if (coordinate.x > 0.66f) {
+            Debug.Log(gameObject.name + " Aerial Middle");
+            animator.SetTrigger("Aerial Middle");
+        }
+        
+        if (coordinate.x <= 0.66f && coordinate.y < 0) {
+            Debug.Log(gameObject.name + " Aerial Down");
+            animator.SetTrigger("Aerial Down");
+        }
     }
     #endregion
 

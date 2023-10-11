@@ -11,3 +11,15 @@ public class Attack
     public int damage;
     public float knockback;
 }
+
+[Serializable]
+public class AttackMutipleClip 
+{
+    public AnimationClip clipUp;
+    public AnimationClip clipMiddle;
+    public AnimationClip clipDown;
+    public int damage;
+    public float knockback;
+}
+
+

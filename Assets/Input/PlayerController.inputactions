@@ -6,9 +6,18 @@
             "id": "1660f569-25fc-4290-8272-7f3a8626e2fb",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "MovementX",
                     "type": "Value",
                     "id": "ce0c9f18-7864-4b71-9d74-09b9367b0f18",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MovementY",
+                    "type": "Value",
+                    "id": "3812877e-8131-40eb-b001-d28bf6a4c4e3",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -77,7 +86,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "MovementX",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -88,7 +97,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
-                    "action": "Movement",
+                    "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -99,7 +108,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
-                    "action": "Movement",
+                    "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -110,7 +119,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Movement",
+                    "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -139,7 +148,7 @@
                 {
                     "name": "",
                     "id": "85e751a3-9974-4637-b941-d702d7a084d3",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -150,7 +159,7 @@
                 {
                     "name": "",
                     "id": "b7c4563e-06b8-4420-83a4-01a8a972242a",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -161,7 +170,7 @@
                 {
                     "name": "",
                     "id": "39ab9d0d-0b12-470a-a7cb-222268cac11a",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -171,11 +180,33 @@
                 },
                 {
                     "name": "",
+                    "id": "416a58be-515c-45cd-aac6-52fde1850894",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "MiddleAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "47c09409-3bd2-4117-b923-3154271f0c94",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c278b110-57f4-4ec4-8461-ee2a5e49b610",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "LightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -193,12 +224,100 @@
                 },
                 {
                     "name": "",
+                    "id": "5cac9583-608d-4c70-a0b4-e7bb3ffb9110",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e527f1b-cca8-41ff-a467-3d56d94d0237",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "43186b50-bfed-4c6d-9034-743fd0ef612d",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43cabc47-6e05-440d-815b-fcf6ecbc87ce",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "30554403-9d4e-4d3b-b734-7440752780b4",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "SW",
+                    "id": "021c896f-a125-4f4e-a951-5ba8a1eda268",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementY",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5da85973-4bd2-4513-bb00-c2712fe8af9c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b3b04c74-c355-43c8-9af6-ae06654ed59f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1aff291b-c8db-433c-9ffd-8d440651c0ec",
+                    "path": "<Gamepad>/leftStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "MovementY",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
