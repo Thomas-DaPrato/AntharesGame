@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OneWayPlatform : MonoBehaviour
 {
 
+    float x = 0;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,4 +27,23 @@ public class OneWayPlatform : MonoBehaviour
 
         
     }
+   
+
+    private void OnTriggerStay(Collider other)
+    {
+        x = 1;
+        if (other.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("done");
+                other.gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
+            }
+        }
+        
+    }
+
+    
+
+
 }
