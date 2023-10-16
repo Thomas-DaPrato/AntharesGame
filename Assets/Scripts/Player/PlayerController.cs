@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     #region Intern Variable
     private bool isGrounded;
     private float x = 0;
-    private float y = 0;
+    public float y = 0;
 
 
     [HideInInspector]

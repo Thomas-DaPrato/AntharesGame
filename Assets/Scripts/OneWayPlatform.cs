@@ -34,7 +34,7 @@ public class OneWayPlatform : MonoBehaviour
         x = 1;
         if (other.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (other.GetComponent<PlayerController>().y < 0)
             {
                 Debug.Log("done");
                 other.gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
