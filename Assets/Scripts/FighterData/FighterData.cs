@@ -16,6 +16,8 @@ public class FighterData : ScriptableObject
 
     [Header("Defense Animation")]
     public AnimationClip parry;
+    public float time;
+
     public AnimationClip interrupt;
 
     [Header("Player Variable")]

@@ -20,13 +20,13 @@ public class PlayerController : MonoBehaviour {
 
     private int hp = 10;
 
-    //[HideInInspector]
+    
     public bool isAttacking = false;
-    //[HideInInspector]
+    
     public bool isParrying = false;
-    //[HideInInspector]
-    public bool isStunt = false;
-    //[HideInInspector]
+    
+    public bool isStun = false;
+    
     public bool canDash = true;
     #endregion
 
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
 
     #region Event Input System
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (!isStunt) {
+        if (!isStun) {
             x = context.ReadValue<float>();
             if (x != 0) {
                 lastDirection = x;
@@ -108,13 +108,13 @@ public class PlayerController : MonoBehaviour {
         }
     }
     public void OnMoveY(InputAction.CallbackContext context) {
-        if (!isStunt) {
+        if (!isStun) {
             y = context.ReadValue<float>();
         }
     }
 
     public void OnHeavyAttack(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking && !isStunt) {
+        if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
                 Debug.Log(gameObject.name + " Heavy");
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnMiddleAttack(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking && !isStunt) {
+        if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
                 Debug.Log(gameObject.name + " Middle");
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour {
     }
     public void OnLightAttack(InputAction.CallbackContext context) {  
         Debug.Log("isAttacking " + isAttacking);
-        if (context.performed && !isAttacking && !isStunt) {
+        if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
                 Debug.Log(gameObject.name + " Light");
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
 
     }
     public void OnParry(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking && !isStunt) {
+        if (context.performed && !isAttacking && !isStun) {
             Debug.Log(gameObject.name + " Parry");
             isParrying = true;
             animator.SetTrigger("Parry");
@@ -159,12 +159,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (!isStunt && context.performed)
+        if (!isStun && context.performed)
             Jump();
     }
 
     public void OnDash(InputAction.CallbackContext context) {
-        if (!isStunt && canDash && context.performed) {
+        if (!isStun && canDash && context.performed) {
             Debug.Log("Dash");
             Dash();
         }
@@ -182,10 +182,12 @@ public class PlayerController : MonoBehaviour {
 
     public void Move() {
         Vector3 move = new Vector3(x, 0, 0);
-        if (move.x > 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        if (move.x < 0)
-            gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        if (!isAttacking) {
+            if (move.x > 0)
+                gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            if (move.x < 0)
+                gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        }
 
         if(isGrounded)
             rb.AddForce(move * playerSpeed * 10f, ForceMode.Force);
@@ -214,6 +216,15 @@ public class PlayerController : MonoBehaviour {
     public IEnumerator DashCoolDown() {
         yield return new WaitForSeconds(1);
         canDash = true;
+    }
+
+    public IEnumerator StunCoolDown(float time) {
+        isStun = true;
+        yield return new WaitForSeconds(time);
+        animator.SetTrigger("ReturnIdle");
+        isStun = false;
+        isAttacking = false;
+        Debug.Log("Player is not anymore stunt");
     }
     #endregion
 
@@ -254,9 +265,10 @@ public class PlayerController : MonoBehaviour {
 
 
     #region Set Variable With Animation
-    public void SetTriggerInterrupt() {
-        Debug.Log(gameObject.name + " Interrupt");
-        animator.SetTrigger("Interrupt");
+    public void SetTriggerStun(float time) {
+        Debug.Log(gameObject.name + " Stun");
+        StartCoroutine(StunCoolDown(time));
+        animator.SetTrigger("Stun");
     }
 
     public void SetIsAttackingFalse() {
@@ -266,14 +278,10 @@ public class PlayerController : MonoBehaviour {
         isParrying = false;
     }
 
-    public void SetIsStuntTrue() {
-        isStunt = true;
-    }
 
-    public void SetIsStuntFalse() {
-        isStunt = false;
-        isAttacking = false;
-        Debug.Log("Player is not anymore stunt");
+    public void SetIsStunFalse() {
+        isStun = false;
+        
     }
     #endregion
 

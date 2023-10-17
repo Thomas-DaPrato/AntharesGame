@@ -20,22 +20,19 @@ public class HitBox : MonoBehaviour
     
     private void OnTriggerEnter(Collider other) {
         if (other.tag.Equals("HeartBox") && !other.GetComponentInParent<PlayerController>().isParrying) {
+            FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:
-                    other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().heavyAttack.damage);
-                    other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().heavyAttack.knockback, playerController.lastDirection);
+                    AttackManager(fighterData.heavyAttack.damage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
                     break;
                 case HitBoxType.Middle:
-                    other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().middleAttack.damage);
-                    other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().middleAttack.knockback, playerController.lastDirection);
+                    AttackManager(fighterData.middleAttack.damage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
                     break;
                 case HitBoxType.Light:
-                    other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().lightAttack.damage);
-                    other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().lightAttack.knockback, playerController.lastDirection);
+                    AttackManager(fighterData.lightAttack.damage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
                     break;
                 case HitBoxType.Aerial:
-                    other.GetComponent<HeartBox>().TakeDamage(playerController.GetFighterData().aerialsAttack.damage);
-                    other.GetComponentInParent<PlayerController>().ApplyKnockback(playerController.GetFighterData().aerialsAttack.knockback, playerController.lastDirection);
+                    AttackManager(fighterData.aerialsAttack.damage, fighterData.aerialsAttack.knockback, fighterData.aerialsAttack.stunTime, other);
                     break;
                 default:
                     Debug.Log("ERRORR : type " + type + " is not recognized");
@@ -44,7 +41,20 @@ public class HitBox : MonoBehaviour
         }
         else if (other.tag.Equals("HeartBox") && other.GetComponentInParent<PlayerController>().isParrying) { 
             Debug.Log(gameObject.transform.parent.parent.name + " My ennemy...y...y is parrying");
-            playerController.SetTriggerInterrupt();
+            if (type == HitBoxType.Heavy) {
+                playerController.ApplyKnockback(5, playerController.lastDirection * -1);
+                playerController.SetTriggerStun(2);
+                other.GetComponentInParent<PlayerController>().ApplyKnockback(5, other.GetComponentInParent<PlayerController>().lastDirection * -1);
+                other.GetComponentInParent<PlayerController>().SetTriggerStun(2);
+            }
+            else
+                playerController.SetTriggerStun(1);
         }
+    }
+
+    private void AttackManager(int damage, float knockbackForce, float timeStun, Collider collider) {
+        collider.GetComponentInParent<PlayerController>().SetTriggerStun(timeStun);
+        collider.GetComponent<HeartBox>().TakeDamage(damage);
+        collider.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce,playerController.lastDirection);
     }
 }
