@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class OneWayPlatform : MonoBehaviour
 {
 
-    float x = 0;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,7 +31,6 @@ public class OneWayPlatform : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        x = 1;
         if (other.CompareTag("Player"))
         {
             if (other.GetComponent<PlayerController>().y < 0)
