@@ -52,6 +52,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.083333336
+    functionName: SetIsParryingTrue
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.083333336
     functionName: DisplayHeartBoxParry
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -59,14 +66,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: SetIsParryingFalse
+    functionName: HideHeartBoxParry
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: HideHeartBoxParry
+    functionName: SetIsParryingFalse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
