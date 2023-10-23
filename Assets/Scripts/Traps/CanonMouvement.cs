@@ -16,6 +16,10 @@ public class CanonMouvement : MonoBehaviour
     private void Start()
     {
         attenteEnCours = false;
+        if (this.transform.position.x < 0)
+        {
+            vitesse = -vitesse;
+        }
     }
     void Update()
     {

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     [HideInInspector]
     public float lastDirection = 0;
+    
 
 
     private int hp = 10;
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour {
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
             y = context.ReadValue<float>();
+            
         }
     }
 
@@ -168,6 +170,14 @@ public class PlayerController : MonoBehaviour {
             Dash();
         }
     }
+    public void OnDashDown(InputAction.CallbackContext context)
+    {
+        if (!isStun && canDash && context.performed)
+        {
+            Debug.Log("DashDown");
+            DashDown();
+        }
+    }
     #endregion
 
     #region Player Movement
@@ -211,6 +221,13 @@ public class PlayerController : MonoBehaviour {
         canDash = false;
         StartCoroutine(DashCoolDown());
     }
+    public void DashDown()
+    {
+        Vector3 move = new Vector3(0, -1, 0);
+        rb.AddForce(move * dashDistance, ForceMode.Impulse);
+        
+        
+    }
 
     public IEnumerator DashCoolDown() {
         yield return new WaitForSeconds(1);
@@ -239,6 +256,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 knockbackDirection = new Vector3(oponenentDirection, 1, 0);
         rb.AddForce(knockbackDirection * knockback, ForceMode.Impulse);
     }
+    
 
     public void LaunchAerialAttack(float x, float y) {
 
