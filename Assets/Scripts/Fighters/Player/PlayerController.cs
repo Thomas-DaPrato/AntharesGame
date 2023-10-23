@@ -17,11 +17,6 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public float lastDirection = 0;
     
-
-
-    private int hp = 10;
-
-    
     public bool isAttacking = false;
     
     public bool isParrying = false;
@@ -33,6 +28,10 @@ public class PlayerController : MonoBehaviour {
 
     [Space(20)]
 
+
+    [SerializeField]
+    private float maxHp;
+    private float hp;
 
     [SerializeField]
     private FighterData fighterData;
@@ -77,6 +76,7 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
+        hp = maxHp;
     }
 
     private void Update() {
@@ -139,7 +139,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {  
-        Debug.Log("isAttacking " + isAttacking);
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
@@ -245,16 +244,34 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region Player Fonctions
-    public void TakeDamage(int damage) {
-        if ((hp -= damage) <= 0)
-            Debug.Log("T MORT !!!!!");
-        else
-            Debug.Log("hp : " + hp);
+    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type) {
+        switch (type) {
+            case HitBox.HitBoxType.Heavy:
+                if (hp <= 20.0f * maxHp / 100.0f)
+                    Debug.Log("T MORT !!!!!");
+                else
+                    hp -= percentageDamage * maxHp / 100.0f; 
+                break;
+            case HitBox.HitBoxType.Middle:
+                if (hp <= 10.0f * maxHp / 100.0f)
+                    Debug.Log("T MORT !!!!!");
+                else {
+                    hp -= percentageDamage * maxHp / 100.0f;
+                    if (hp <= 0)
+                        hp = 1;
+                }
+                break;
+            default :
+                hp -= percentageDamage * maxHp / 100.0f;
+                if (hp <= 0)
+                    hp = 1;
+                break;
+        }
+        Debug.Log(gameObject.name + " hp " + hp);
     }
 
-    public void ApplyKnockback(float knockback, float oponenentDirection) {
-        Vector3 knockbackDirection = new Vector3(oponenentDirection, 1, 0);
-        rb.AddForce(knockbackDirection * knockback, ForceMode.Impulse);
+    public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
+        rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
     
 

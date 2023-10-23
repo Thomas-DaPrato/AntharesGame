@@ -8,7 +8,6 @@ using System;
 public class Attack 
 {
     public AnimationClip clip;
-    public int damage;
     public float knockback;
     public float stunTime;
 }
@@ -19,7 +18,6 @@ public class AttackMutipleClip
     public AnimationClip clipUp;
     public AnimationClip clipMiddle;
     public AnimationClip clipDown;
-    public int damage;
     public float knockback;
     public float stunTime;
 }
