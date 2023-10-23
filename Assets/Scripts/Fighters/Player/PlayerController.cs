@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
@@ -11,18 +10,19 @@ public class PlayerController : MonoBehaviour {
     #region Intern Variable
     private bool isGrounded;
     private float x = 0;
+    [HideInInspector]
     public float y = 0;
 
 
     [HideInInspector]
     public float lastDirection = 0;
-    
+    [HideInInspector]
     public bool isAttacking = false;
-    
+    [HideInInspector]
     public bool isParrying = false;
-    
+    [HideInInspector]
     public bool isStun = false;
-    
+    [HideInInspector]
     public bool canDash = true;
     #endregion
 
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private Animator animator;
+
+    private Image hpBarre; 
 
     #region Movement Variable
     [SerializeField]
@@ -267,7 +269,11 @@ public class PlayerController : MonoBehaviour {
                     hp = 1;
                 break;
         }
+
+        Debug.Log("percentageHp " + (hp / maxHp));
+        hpBarre.fillAmount = hp / maxHp ;
         Debug.Log(gameObject.name + " hp " + hp);
+        Debug.Log("fill " + hpBarre.fillAmount);
     }
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
@@ -328,6 +334,9 @@ public class PlayerController : MonoBehaviour {
         isGrounded = val;
     }
 
+    public void SetHpBarre(Image hpBarreInGame) {
+        hpBarre = hpBarreInGame;
+    }
 
 
 }
