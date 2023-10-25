@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;   
 
 [CreateAssetMenu(fileName = "New Fighter", menuName = "Fighter")]
 public class FighterData : ScriptableObject
 {
+    public GameObject prefab;
+
     [Header("Info Menu")]
     public Sprite sprite;
-    public int speed;
-    public int strength;
-    public int range;
+    public Stat[] stats = new Stat[3];
     
     [Header("Attack Animation")]
     public Attack lightAttack;
@@ -48,5 +49,12 @@ public class FighterData : ScriptableObject
         return clipOverride;
     }
 
+}
+
+[Serializable]
+public class Stat
+{
+    public string nameStat;
+    public int value;
 }
 

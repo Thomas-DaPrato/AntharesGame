@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject UI;
 
-    [SerializeField]
-    private List<GameObject> fighters = new List<GameObject>();
     
     private void Awake() {
         SetPlayerPrefTo1();
@@ -21,12 +19,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayers() {
-        var fighter1 = PlayerInput.Instantiate(fighters[PlayerPrefs.GetInt("ChooseFighterP1")], controlScheme: "controller", pairWithDevice: Gamepad.all[0]);
+        var fighter1 = PlayerInput.Instantiate(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, controlScheme: "controller", pairWithDevice: Gamepad.all[0]);
         fighter1.transform.position = spawnP1.position;
         fighter1.GetComponent<PlayerController>().SetHpBarre(GameObject.Find("Player1Hp").GetComponent<Image>());
 
-        var fighter2 = PlayerInput.Instantiate(fighters[PlayerPrefs.GetInt("ChooseFighterP2")], controlScheme: "controller", pairWithDevice: Keyboard.current);
+        var fighter2 = PlayerInput.Instantiate(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, controlScheme: "controller", pairWithDevice: Keyboard.current);
         fighter2.transform.position = spawnP2.position;
+        fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         fighter2.GetComponent<PlayerController>().SetHpBarre(GameObject.Find("Player2Hp").GetComponent<Image>());
     }
 

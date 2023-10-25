@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSelecter : MonoBehaviour
 {
 
-    [SerializeField]
-    private List<FighterData> fighters = new List<FighterData>();
     private int currentFighter;
     private bool haveChooseFighter = false;
 
@@ -18,44 +17,71 @@ public class CharacterSelecter : MonoBehaviour
     private Image support;
 
     [SerializeField]
-    private GameObject info;
+    private GameObject infos;
 
     [SerializeField]
     private GameObject ready;
 
+    [SerializeField]
+    private GameObject visualHold;
+    private bool isHolding = false;
+    private float startTime;
+    private float duration = 1;
+
+
     private void Awake() {
         PlayerPrefs.SetInt("ChooseFighterP1", -1);
         PlayerPrefs.SetInt("ChooseFighterP2", -1);
-        support.sprite = fighters[0].sprite;
+        support.sprite = Characters.GetFighters()[0].sprite;
         currentFighter = 0;
+    }
+
+    private void Update() {
+        if (isHolding) {
+            visualHold.GetComponent<Image>().fillAmount = (Time.time - startTime) / (duration);
+        }
+        else
+            visualHold.GetComponent<Image>().fillAmount = 0;
     }
 
     public void OnCharacterSwap(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
+            infos.SetActive(false);
             if (context.ReadValue<float>() > 0) {
                 currentFighter += 1;
-                if (currentFighter >= fighters.Count)
+                if (currentFighter >= Characters.GetFighters().Count)
                     currentFighter = 0;
             }
             if (context.ReadValue<float>() < 0) {
                 currentFighter -= 1;
                 if (currentFighter < 0)
-                    currentFighter = fighters.Count - 1;
+                    currentFighter = Characters.GetFighters().Count - 1;
             }
             Debug.Log("currentFighter " + currentFighter);
-            support.sprite = fighters[currentFighter].sprite;
+            support.sprite = Characters.GetFighters()[currentFighter].sprite;
         }
     }
 
     public void OnOpenInformation(InputAction.CallbackContext context) {
-        if(context.performed)
-            info.SetActive(true);
+        if (context.started) {
+            isHolding = true;
+            startTime = Time.time;
+            visualHold.SetActive(true);
+        }
+        if (context.performed) {
+            infos.SetActive(true);
+            FillInfos();
+        }
+        if (context.canceled) {
+            isHolding = false;
+            visualHold.SetActive(false);
+        }
     }
 
     public void OnReturn(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (info.activeSelf)
-                info.SetActive(false);
+            if (infos.activeSelf)
+                infos.SetActive(false);
             else if (haveChooseFighter) {
                 haveChooseFighter = false;
                 ready.SetActive(false);
@@ -81,41 +107,18 @@ public class CharacterSelecter : MonoBehaviour
     }
 
 
-    public void SceneMenuPrincipal()
-    {
+    public void FillInfos() {
+        Transform stats = infos.transform.Find("Stats");
+        for(int i = 0; i < Characters.GetFighters()[currentFighter].stats.Length; i+=1) {
+            stats.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
+            
+            //Reset color stat
+            for (int j = 0; j < 3; j += 1)
+                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
 
-        SceneManager.LoadScene("MenuPrincipal");
-
-    }
-    public void SceneChoixMap()
-    {
-        if (PlayerPrefs.GetInt("Joueur1") == 0 || PlayerPrefs.GetInt("Joueur2") == 0) {
-
-            Debug.Log("choisissez votre personnage");
-        } else
-        {
-            SceneManager.LoadScene("ChoixMap");
+            //Set color stat
+            for (int j = 0; j < Characters.GetFighters()[currentFighter].stats[i].value; j += 1)
+                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
-        
-
     }
-
-
-    public void ChoixJoueur1(int Perso)
-    {
-
-        PlayerPrefs.SetInt("Player1", Perso);
-
-
-
-    }
-    public void ChoixJoueur2(int Perso)
-    {
-
-        PlayerPrefs.SetInt("Player2", Perso);
-
-
-
-    }
-
 }
