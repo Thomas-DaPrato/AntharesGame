@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour {
     }
     public void OnDashDown(InputAction.CallbackContext context)
     {
-        if (!isStun && canDash && context.performed)
+        if (!isStun && isGrounded && context.performed)
         {
             Debug.Log("DashDown");
             DashDown();
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour {
     public void DashDown()
     {
         Vector3 move = new Vector3(0, -1, 0);
-        rb.AddForce(move * dashDistance, ForceMode.Impulse);
+        rb.AddForce(move*10 , ForceMode.Impulse);
         
         
     }
