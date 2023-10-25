@@ -7,7 +7,7 @@ public class HeartBox : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
-    public void TakeDamage(int damage) {
-        playerController.TakeDamage(damage);
+    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type) {
+        playerController.TakeDamage(percentageDamage, type);
     }
 }

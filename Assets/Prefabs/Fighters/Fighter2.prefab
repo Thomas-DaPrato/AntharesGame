@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 1
+  percentageDamage: 40
 --- !u!1 &2681454889541894266
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 0
+  percentageDamage: 80
 --- !u!1 &3752417416891106080
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  percentageDamage: 40
 --- !u!1 &4490087205225506239
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  percentageDamage: 40
 --- !u!1 &5275802793162952138
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 2
+  percentageDamage: 20
 --- !u!1 &7032269596047504537
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  percentageDamage: 40
 --- !u!1 &7726144927418361741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   y: 0
   lastDirection: 0
+  maxHp: 0
   isAttacking: 0
   isParrying: 0
   isStun: 0
@@ -1322,6 +1329,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a0ee41e6-09b3-436f-8929-d2e99765e875
     m_ActionName: CharacterSelection/Back
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0dc7e1eb-b0ef-4406-a07c-8a474c30b402
+    m_ActionName: Player/DashDown[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb76b618-f494-48a0-9c4e-d535457a3f31
+    m_ActionName: CharacterSelection/StartFight
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

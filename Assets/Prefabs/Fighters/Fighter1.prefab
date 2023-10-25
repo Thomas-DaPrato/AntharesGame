@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 0
+  percentageDamage: 80
 --- !u!1 &1478481551990848993
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 3
+  percentageDamage: 40
 --- !u!1 &2222564241923595134
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 3
+  percentageDamage: 40
 --- !u!1 &3086532959163525696
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 1
+  percentageDamage: 40
 --- !u!1 &4683883325244934744
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 3
+  percentageDamage: 40
 --- !u!1 &5453607366595205452
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   y: 0
   lastDirection: 0
+  maxHp: 10
   isAttacking: 0
   isParrying: 0
   isStun: 0
@@ -1071,6 +1077,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3812877e-8131-40eb-b001-d28bf6a4c4e3
     m_ActionName: Player/MovementY[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0dc7e1eb-b0ef-4406-a07c-8a474c30b402
+    m_ActionName: Player/DashDown[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f191da39-47b5-4f2d-9a5c-6e34c2fc2e31
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 59cebe3b-c249-4777-a343-c06363cfa95e
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b85d604a-f5a1-4d95-81e9-36cc20204877
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b27ae6ca-16b8-427e-82bb-64ece2254ee9
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12731e0b-1ddd-4684-b64e-e380c792e95c
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 076c94f7-9756-46ff-9cd5-bec457463c08
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee588937-f017-41a4-b32e-37300192d8c9
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c8e2c72-dce0-4366-b110-0a0dd6367b7c
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 968b2594-2ca8-479a-afce-380352912f81
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87e997e5-dfc0-4c0b-a121-73fb98449d88
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d126881-5574-416a-9c8f-2c7e9bbefe12
+    m_ActionName: CharacterSelection/CharacterSwap[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 408c2db4-19a8-4d7a-b978-ae4dc4c35c2e
+    m_ActionName: CharacterSelection/OpenInformation[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46f53558-c54a-4f4b-9d53-58c764c677ae
+    m_ActionName: CharacterSelection/Validate[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a0ee41e6-09b3-436f-8929-d2e99765e875
+    m_ActionName: CharacterSelection/Back
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb76b618-f494-48a0-9c4e-d535457a3f31
+    m_ActionName: CharacterSelection/StartFight
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1302,3 +1372,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 4488373448364204997}
   type: 2
+  percentageDamage: 20

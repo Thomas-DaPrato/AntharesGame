@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
@@ -11,23 +10,19 @@ public class PlayerController : MonoBehaviour {
     #region Intern Variable
     private bool isGrounded;
     private float x = 0;
+    [HideInInspector]
     public float y = 0;
 
 
     [HideInInspector]
     public float lastDirection = 0;
-    
-
-
-    private int hp = 10;
-
-    
+    [HideInInspector]
     public bool isAttacking = false;
-    
+    [HideInInspector]
     public bool isParrying = false;
-    
+    [HideInInspector]
     public bool isStun = false;
-    
+    [HideInInspector]
     public bool canDash = true;
     #endregion
 
@@ -35,11 +30,17 @@ public class PlayerController : MonoBehaviour {
 
 
     [SerializeField]
+    private float maxHp;
+    private float hp;
+
+    [SerializeField]
     private FighterData fighterData;
     public FighterData GetFighterData() { return fighterData; }
 
     [SerializeField]
     private Animator animator;
+
+    private Image hpBarre; 
 
     #region Movement Variable
     [SerializeField]
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
+        hp = maxHp;
     }
 
     private void Update() {
@@ -139,7 +141,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {  
-        Debug.Log("isAttacking " + isAttacking);
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
@@ -245,16 +246,38 @@ public class PlayerController : MonoBehaviour {
     #endregion
 
     #region Player Fonctions
-    public void TakeDamage(int damage) {
-        if ((hp -= damage) <= 0)
-            Debug.Log("T MORT !!!!!");
-        else
-            Debug.Log("hp : " + hp);
+    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type) {
+        switch (type) {
+            case HitBox.HitBoxType.Heavy:
+                if (hp <= 20.0f * maxHp / 100.0f)
+                    Debug.Log("T MORT !!!!!");
+                else
+                    hp -= percentageDamage * maxHp / 100.0f; 
+                break;
+            case HitBox.HitBoxType.Middle:
+                if (hp <= 10.0f * maxHp / 100.0f)
+                    Debug.Log("T MORT !!!!!");
+                else {
+                    hp -= percentageDamage * maxHp / 100.0f;
+                    if (hp <= 0)
+                        hp = 1;
+                }
+                break;
+            default :
+                hp -= percentageDamage * maxHp / 100.0f;
+                if (hp <= 0)
+                    hp = 1;
+                break;
+        }
+
+        Debug.Log("percentageHp " + (hp / maxHp));
+        hpBarre.fillAmount = hp / maxHp ;
+        Debug.Log(gameObject.name + " hp " + hp);
+        Debug.Log("fill " + hpBarre.fillAmount);
     }
 
-    public void ApplyKnockback(float knockback, float oponenentDirection) {
-        Vector3 knockbackDirection = new Vector3(oponenentDirection, 1, 0);
-        rb.AddForce(knockbackDirection * knockback, ForceMode.Impulse);
+    public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
+        rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
     
 
@@ -311,6 +334,9 @@ public class PlayerController : MonoBehaviour {
         isGrounded = val;
     }
 
+    public void SetHpBarre(Image hpBarreInGame) {
+        hpBarre = hpBarreInGame;
+    }
 
 
 }
