@@ -58,7 +58,7 @@ public class CanonMouvement : MonoBehaviour
             declancheur++;
             if (declancheur > 3600)
             {
-                Debug.Log("actif");
+                declancheur = 0;
                 tir = true;
             }
 
