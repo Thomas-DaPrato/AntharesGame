@@ -27,6 +27,7 @@ public class HitBox : MonoBehaviour
             FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:
+
                     AttackManager(percentageDamage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
                     break;
                 case HitBoxType.Middle:
