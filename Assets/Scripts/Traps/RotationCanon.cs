@@ -6,7 +6,7 @@ public class RotationCanon : MonoBehaviour
 {
 
     [SerializeField] private Vector3 rotationDuCanon;
-    [SerializeField] private int vitesse;
+    [SerializeField] private int vitesse,tempsCharge;
     [SerializeField] private bool tir = false;
     public GameObject laser;
     private int declancheur = 0;
@@ -33,7 +33,7 @@ public class RotationCanon : MonoBehaviour
                 transform.Rotate(rotationDuCanon * vitesse * Time.deltaTime);
 
                 declancheur++;
-                if (declancheur > 1200)
+                if (declancheur > tempsCharge)
                 {
                     Debug.Log("actif");
                     tir = true;

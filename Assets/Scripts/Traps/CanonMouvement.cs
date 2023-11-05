@@ -5,7 +5,7 @@ using UnityEngine;
 public class CanonMouvement : MonoBehaviour
 {
     
-    [SerializeField] private int vitesse;
+    [SerializeField] private int vitesse, tempsCharge;
     [SerializeField] private float limiteHaute,limiteBasse;
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
@@ -56,7 +56,7 @@ public class CanonMouvement : MonoBehaviour
             
 
             declancheur++;
-            if (declancheur > 3600)
+            if (declancheur > tempsCharge)
             {
                 declancheur = 0;
                 tir = true;

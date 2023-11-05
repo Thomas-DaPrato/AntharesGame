@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseFlammesMovement : MonoBehaviour
 {
 
-    [SerializeField] private int vitesse;
+    [SerializeField] private int vitesse, tempsCharge;
     [SerializeField] private float limiteHaute, limiteBasse;
     public GameObject flammes;
     private bool canMove = true;
@@ -43,7 +43,7 @@ public class BaseFlammesMovement : MonoBehaviour
         }
 
         declancheur++;
-        if (declancheur > 3000)
+        if (declancheur > tempsCharge)
         {
             declancheur = 0;
             Debug.Log("actif");
