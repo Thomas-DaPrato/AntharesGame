@@ -55,6 +55,7 @@ public class FighterData : ScriptableObject
 public class Stat
 {
     public string nameStat;
+    [Range(1,3)]
     public int value;
 }
 

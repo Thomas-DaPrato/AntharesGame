@@ -7,14 +7,11 @@ using UnityEngine.UI;
 
 public class CharactersPanel : MonoBehaviour
 {
-    
-
     [SerializeField]
     private Image support;
 
     [SerializeField]
     private GameObject infos;
-
     
     private int currentFighter;
 

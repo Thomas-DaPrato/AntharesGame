@@ -12,6 +12,10 @@ public class CharacterSelecter : MonoBehaviour
     private int currentFighter;
     private bool haveChooseFighter = false;
 
+    [SerializeField]
+    private GameObject menu;
+    [SerializeField]
+    private GameObject characterSelecter;
 
     [SerializeField]
     private Image support;
@@ -87,6 +91,10 @@ public class CharacterSelecter : MonoBehaviour
                 ready.SetActive(false);
                 PlayerPrefs.SetInt(gameObject.name, -1);
             }
+            else {
+                characterSelecter.SetActive(false);
+                menu.SetActive(true);
+            }
 
         }
     }
@@ -101,6 +109,7 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnStartFight(InputAction.CallbackContext context) {
         if (context.performed) {
+            Debug.Log(PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1);
             if (PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1)
                 SceneManager.LoadScene("Game");
         }
