@@ -271,9 +271,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         Debug.Log("percentageHp " + (hp / maxHp));
-        hpBarre.fillAmount = hp / maxHp ;
+        //hpBarre.fillAmount = hp / maxHp ;
         Debug.Log(gameObject.name + " hp " + hp);
-        Debug.Log("fill " + hpBarre.fillAmount);
+        //Debug.Log("fill " + hpBarre.fillAmount);
     }
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {

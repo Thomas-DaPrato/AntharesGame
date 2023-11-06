@@ -5,10 +5,11 @@ using UnityEngine;
 public class CanonMouvement : MonoBehaviour
 {
     
-    [SerializeField] private int vitesse;
+    [SerializeField] private int vitesse, tempsCharge;
     [SerializeField] private float limiteHaute,limiteBasse;
     [SerializeField] private bool tir = false;
-    public GameObject laser;
+    [SerializeField] private bool canMove = true;
+    public GameObject laser,charge;
     private int declancheur = 0;
     private bool attenteEnCours;
 
@@ -27,9 +28,14 @@ public class CanonMouvement : MonoBehaviour
 
         if (tir)
         {
-
-            laser.SetActive(true);
-            StartCoroutine(AttenteDeCinqSecondesCoroutine());
+            if (canMove)
+            {
+                canMove = false;
+                charge.SetActive(true);
+                StartCoroutine(AttenteCoroutine(2f));
+            }
+            
+            
 
 
         }
@@ -50,9 +56,9 @@ public class CanonMouvement : MonoBehaviour
             
 
             declancheur++;
-            if (declancheur > 1200)
+            if (declancheur > tempsCharge)
             {
-                Debug.Log("actif");
+                declancheur = 0;
                 tir = true;
             }
 
@@ -60,19 +66,31 @@ public class CanonMouvement : MonoBehaviour
 
     }
 
-    IEnumerator AttenteDeCinqSecondesCoroutine()
+    IEnumerator AttenteCoroutine(float sec)
     {
         attenteEnCours = true;
 
-        // Attendez pendant 5 secondes
-        yield return new WaitForSeconds(3f);
+        // Attendez pendant x secondes
+        yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        declancheur = 0;
-        tir = false;
-        laser.SetActive(false);
+        if (sec == 2f)
+        {
+            charge.SetActive(false);
+            laser.SetActive(true);
+            StartCoroutine(AttenteCoroutine(3f));
+        }
+        else
+        {
+            laser.SetActive(false);
+            declancheur = 0;
+            tir = false;
+            canMove = true;
+            
+            attenteEnCours = false;
+        }
 
-        attenteEnCours = false;
+       
     }
 
 }
