@@ -13,25 +13,33 @@ public class GameManager : MonoBehaviour
 
     
     private void Awake() {
-        SetPlayerPrefTo1();
+        //SetPlayerPrefTo1();
         Instantiate(UI);
         SpawnPlayers();
     }
 
     public void SpawnPlayers() {
-        var fighter1 = PlayerInput.Instantiate(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, controlScheme: "controller", pairWithDevice: Gamepad.all[0]);
-        fighter1.transform.position = spawnP1.position;
-        fighter1.GetComponent<PlayerController>().SetHpBarre(GameObject.Find("Player1Hp").GetComponent<Image>());
+        InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), Gamepad.all[0]);
 
-        var fighter2 = PlayerInput.Instantiate(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, controlScheme: "controller", pairWithDevice: Keyboard.current);
-        fighter2.transform.position = spawnP2.position;
+        PlayerInput fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), Keyboard.current);
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        fighter2.GetComponent<PlayerController>().SetHpBarre(GameObject.Find("Player2Hp").GetComponent<Image>());
+
+        GameObject.Find("MenuPause").SetActive(false);
     }
 
     public void SetPlayerPrefTo1() {
         PlayerPrefs.SetInt("ChooseFighterP1", 0);
         PlayerPrefs.SetInt("ChooseFighterP2", 0);
+    }
+
+    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre, InputDevice controller) {
+        PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
+        fighter.transform.position = position.position;
+        fighter.GetComponent<PlayerController>().SetHpBarre(hpBarre);
+        fighter.GetComponent<PlayerController>().SetMenuPause(GameObject.Find("MenuPause"));
+
+        return fighter;
+
     }
 
 }

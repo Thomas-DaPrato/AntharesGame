@@ -1078,7 +1078,19 @@ MonoBehaviour:
     m_ActionId: 3812877e-8131-40eb-b001-d28bf6a4c4e3
     m_ActionName: Player/MovementY[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4488373448364204997}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDashDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0dc7e1eb-b0ef-4406-a07c-8a474c30b402
     m_ActionName: Player/DashDown[/Keyboard/s]
   - m_PersistentCalls:
@@ -1141,6 +1153,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bb76b618-f494-48a0-9c4e-d535457a3f31
     m_ActionName: CharacterSelection/StartFight
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4488373448364204997}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4263f575-c144-4709-829a-fc6e2e705bd5
+    m_ActionName: Player/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e774b48d-9986-4818-b5c9-52af75b1b609
+    m_ActionName: CharactersSwaper/CharacterSwap[/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37444d2a-c594-4be9-afc2-8ccb1f7a2993
+    m_ActionName: CharactersSwaper/Back[/XInputControllerWindows/buttonEast,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

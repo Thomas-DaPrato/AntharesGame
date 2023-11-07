@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Animator animator;
 
-    private Image hpBarre; 
+    private Image hpBarre;
+    private GameObject menuPause;
 
     #region Movement Variable
     [SerializeField]
@@ -179,6 +180,19 @@ public class PlayerController : MonoBehaviour {
             DashDown();
         }
     }
+
+    public void OnPause(InputAction.CallbackContext context) {
+        if (context.performed) {
+            if (menuPause.activeSelf) {
+                menuPause.SetActive(false);
+                Time.timeScale = 1;               
+            }
+            else {
+                menuPause.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
+    }
     #endregion
 
     #region Player Movement
@@ -271,9 +285,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         Debug.Log("percentageHp " + (hp / maxHp));
-        //hpBarre.fillAmount = hp / maxHp ;
+        hpBarre.fillAmount = hp / maxHp ;
         Debug.Log(gameObject.name + " hp " + hp);
-        //Debug.Log("fill " + hpBarre.fillAmount);
+        Debug.Log("fill " + hpBarre.fillAmount);
     }
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
@@ -336,6 +350,10 @@ public class PlayerController : MonoBehaviour {
 
     public void SetHpBarre(Image hpBarreInGame) {
         hpBarre = hpBarreInGame;
+    }
+
+    public void SetMenuPause(GameObject menuPauseInGame) {
+        menuPause = menuPauseInGame;
     }
 
 

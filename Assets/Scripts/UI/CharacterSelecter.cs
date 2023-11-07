@@ -38,14 +38,15 @@ public class CharacterSelecter : MonoBehaviour
         PlayerPrefs.SetInt("ChooseFighterP2", -1);
         support.sprite = Characters.GetFighters()[0].sprite;
         currentFighter = 0;
+
     }
 
     private void Update() {
-        if (isHolding) {
+        /*if (isHolding) {
             visualHold.GetComponent<Image>().fillAmount = (Time.time - startTime) / (duration);
         }
         else
-            visualHold.GetComponent<Image>().fillAmount = 0;
+            visualHold.GetComponent<Image>().fillAmount = 0;*/
     }
 
     public void OnCharacterSwap(InputAction.CallbackContext context) {
@@ -67,18 +68,13 @@ public class CharacterSelecter : MonoBehaviour
     }
 
     public void OnOpenInformation(InputAction.CallbackContext context) {
-        if (context.started) {
-            isHolding = true;
-            startTime = Time.time;
-            visualHold.SetActive(true);
-        }
         if (context.performed) {
-            infos.SetActive(true);
-            FillInfos();
-        }
-        if (context.canceled) {
-            isHolding = false;
-            visualHold.SetActive(false);
+            if (!infos.activeSelf) {
+                infos.SetActive(true);
+                FillInfos();
+            }
+            else
+                infos.SetActive(false);
         }
     }
 
@@ -102,6 +98,8 @@ public class CharacterSelecter : MonoBehaviour
     public void OnValidateCharacter(InputAction.CallbackContext context) {
         if (context.performed) {
             PlayerPrefs.SetInt(gameObject.name, currentFighter);
+
+
             ready.SetActive(true);
             haveChooseFighter = true;
         }
@@ -110,6 +108,8 @@ public class CharacterSelecter : MonoBehaviour
     public void OnStartFight(InputAction.CallbackContext context) {
         if (context.performed) {
             Debug.Log(PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1);
+            Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt("ChooseFighterP1"));
+            Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt("ChooseFighterP2"));
             if (PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1)
                 SceneManager.LoadScene("Game");
         }
