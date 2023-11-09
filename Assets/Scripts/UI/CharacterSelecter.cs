@@ -28,9 +28,6 @@ public class CharacterSelecter : MonoBehaviour
 
     [SerializeField]
     private GameObject visualHold;
-    private bool isHolding = false;
-    private float startTime;
-    private float duration = 1;
 
 
     private void Awake() {
@@ -41,14 +38,7 @@ public class CharacterSelecter : MonoBehaviour
 
     }
 
-    private void Update() {
-        /*if (isHolding) {
-            visualHold.GetComponent<Image>().fillAmount = (Time.time - startTime) / (duration);
-        }
-        else
-            visualHold.GetComponent<Image>().fillAmount = 0;*/
-    }
-
+    
     public void OnCharacterSwap(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
             infos.SetActive(false);

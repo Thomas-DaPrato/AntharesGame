@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -8,8 +9,15 @@ public class GameManager : MonoBehaviour
 {
     public Transform spawnP1;
     public Transform spawnP2;
+    private static PlayerInput fighter1;
+    private static PlayerInput fighter2;
 
     public GameObject UI;
+    private GameObject menuPause;
+    private GameObject menuEndFight;
+
+    private static int nbRoundP1;
+    private static int nbRoundP2;
 
     
     private void Awake() {
@@ -19,12 +27,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayers() {
-        InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), Gamepad.all[0]);
+        menuPause = GameObject.Find("MenuPause");
+        menuPause.SetActive(false);
+        menuEndFight = GameObject.Find("MenuEndFight");
+        menuEndFight.SetActive(false);
 
-        PlayerInput fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), Keyboard.current);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
+        nbRoundP1 = 0;
+
+        fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current); ;
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-
-        GameObject.Find("MenuPause").SetActive(false);
+        nbRoundP2 = 0;
     }
 
     public void SetPlayerPrefTo1() {
@@ -32,14 +45,49 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("ChooseFighterP2", 0);
     }
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre, InputDevice controller) {
+    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre,string playerName, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetHpBarre(hpBarre);
-        fighter.GetComponent<PlayerController>().SetMenuPause(GameObject.Find("MenuPause"));
+        fighter.GetComponent<PlayerController>().SetMenuPause(menuPause);
+        fighter.GetComponent<PlayerController>().playerName = playerName;
+        fighter.GetComponent<PlayerController>().gameManager = this;
+
 
         return fighter;
+    }
 
+    public void EndRound(string looser) {
+        Debug.Log("End Round");
+        if (looser.Equals("P1"))
+            nbRoundP2 += 1;
+        if (looser.Equals("P2"))
+            nbRoundP1 += 1;
+
+        Debug.Log("P1 Round " + nbRoundP1);
+        Debug.Log("P2 Round " + nbRoundP2);
+
+        ResetFight();
+
+        if(nbRoundP1 == 3 || nbRoundP2 == 3) {
+            Debug.Log("P1 win " + nbRoundP1 + " rounds, P2 win " + nbRoundP2 + " rounds");
+            GameObject.Find("HpBarre").SetActive(false);
+            menuEndFight.SetActive(true);
+            fighter1.GetComponent<PlayerInput>().enabled = false;
+            fighter2.GetComponent<PlayerInput>().enabled = false;
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("RematchButton"));
+        }
+
+    }
+
+    public void ResetFight() {
+        fighter1.GetComponent<PlayerController>().ResetFighter();
+        fighter1.transform.position = spawnP1.position;
+        
+        fighter2.GetComponent<PlayerController>().ResetFighter();
+        fighter2.transform.position = spawnP2.position;
+        fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        
     }
 
 }

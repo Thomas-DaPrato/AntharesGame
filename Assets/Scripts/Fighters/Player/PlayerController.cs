@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour {
     public bool isStun = false;
     [HideInInspector]
     public bool canDash = true;
+    [HideInInspector]
+    public string playerName;
+    [HideInInspector]
+    public GameManager gameManager;
+
+
     #endregion
 
     [Space(20)]
@@ -264,13 +270,13 @@ public class PlayerController : MonoBehaviour {
         switch (type) {
             case HitBox.HitBoxType.Heavy:
                 if (hp <= 20.0f * maxHp / 100.0f)
-                    Debug.Log("T MORT !!!!!");
+                    PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f; 
                 break;
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
-                    Debug.Log("T MORT !!!!!");
+                    PlayerDie();
                 else {
                     hp -= percentageDamage * maxHp / 100.0f;
                     if (hp <= 0)
@@ -288,6 +294,22 @@ public class PlayerController : MonoBehaviour {
         hpBarre.fillAmount = hp / maxHp ;
         Debug.Log(gameObject.name + " hp " + hp);
         Debug.Log("fill " + hpBarre.fillAmount);
+    }
+
+    public void PlayerDie() {
+        Debug.Log("T MORT !!!!!");
+        gameManager.EndRound(playerName);
+    }
+
+    public void ResetFighter() {
+        lastDirection = 0;
+        isAttacking = false;
+        isParrying = false;
+        isStun = false;
+        canDash = true;
+
+        hp = maxHp;
+        nbJump = maxNbJumpInAir;
     }
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
@@ -354,6 +376,7 @@ public class PlayerController : MonoBehaviour {
 
     public void SetMenuPause(GameObject menuPauseInGame) {
         menuPause = menuPauseInGame;
+        Debug.Log("SetMenuPause " + menuPause);
     }
 
 
