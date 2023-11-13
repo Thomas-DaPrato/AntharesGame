@@ -7,7 +7,10 @@ public class BaseFlammesMovement : MonoBehaviour
 
     [SerializeField] private int vitesse, tempsCharge;
     [SerializeField] private float limiteHaute, limiteBasse;
+    [SerializeField]
+    AudioSource son;
     public GameObject flammes;
+    public AudioClip charge;
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
@@ -33,8 +36,8 @@ public class BaseFlammesMovement : MonoBehaviour
             if (attente == false)
             {
                 // vibration de la plateform
-                
-                StartCoroutine(AttenteCoroutine(3f));
+                son.PlayOneShot(charge);
+                StartCoroutine(AttenteCoroutine(2f));
                 attente = true;
             }
             
@@ -59,10 +62,11 @@ public class BaseFlammesMovement : MonoBehaviour
         yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        if (sec==3)
+        if (sec==2)
         {
             //arret de la vibration
             flammes.SetActive(true);
+            
             StartCoroutine(AttenteCoroutine(5f));
         }
         else

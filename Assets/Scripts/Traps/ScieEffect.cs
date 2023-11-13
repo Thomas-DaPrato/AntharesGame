@@ -6,10 +6,14 @@ public class ScieEffect : MonoBehaviour
 {
     [SerializeField]
     private Vector3 rotationScie;
+    [SerializeField]
+    AudioSource son;
     public int vitesse;
     public SphereCollider col;
+    public AudioClip enMarche, touche;
 
 
+    
     void Update()
     {
         transform.Rotate(rotationScie * vitesse * Time.deltaTime);
@@ -18,6 +22,9 @@ public class ScieEffect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            son.Pause();
+            son.PlayOneShot(touche);
+            
             other.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
             other.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.GetComponent<PlayerController>().lastDirection * -1, 1));
             vitesse = -50;
@@ -49,6 +56,7 @@ public class ScieEffect : MonoBehaviour
         }
         else
         {
+            son.UnPause();
             vitesse = 300;
             col.isTrigger = true;
         }

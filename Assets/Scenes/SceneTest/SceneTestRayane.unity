@@ -715,6 +715,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
   m_PrefabInstance: {fileID: 3076696430409494823}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1089279445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076696429556365509, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+  m_PrefabInstance: {fileID: 3076696430409494823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1089279451
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089279445}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1091513321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2327481855071640085, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
@@ -965,12 +1066,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 936028559}
-  - {fileID: 645213553}
   - {fileID: 1839368987}
   - {fileID: 2104715488}
   - {fileID: 1026443751}
   - {fileID: 1196534969}
+  - {fileID: 936028559}
+  - {fileID: 645213553}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1378,9 +1479,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: piege_scie (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8185317613982745314, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8850637234420897880, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8850637234420897880, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_LocalScale.x
@@ -1458,7 +1563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1509,8 +1614,16 @@ PrefabInstance:
       value: BaseFlammes
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: son
+      value: 
+      objectReference: {fileID: 1089279451}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: charge
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c7b013baad2c414eb7111a23fa174e1, type: 3}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: tempsCharge
-      value: 2000
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
@@ -1580,7 +1693,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6003140589162608262, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6003140589162608262, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1626,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Geyser
       objectReference: {fileID: 0}
+    - target: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
 --- !u!1001 &7107375553409572924
@@ -1637,7 +1754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7107375554142563341, guid: 78a63ae7790f2974f9cb58434a577f6f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7107375554142563341, guid: 78a63ae7790f2974f9cb58434a577f6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1683,6 +1800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanonLaserDroite
       objectReference: {fileID: 0}
+    - target: {fileID: 7107375554142563344, guid: 78a63ae7790f2974f9cb58434a577f6f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78a63ae7790f2974f9cb58434a577f6f, type: 3}
 --- !u!1001 &9025100036021234576
@@ -1694,7 +1815,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9025100036121768321, guid: 5dc40108e360df74ab222fa9aaf17110, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9025100036121768321, guid: 5dc40108e360df74ab222fa9aaf17110, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1740,6 +1861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanonLaserGauche
       objectReference: {fileID: 0}
+    - target: {fileID: 9025100036121768348, guid: 5dc40108e360df74ab222fa9aaf17110, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc40108e360df74ab222fa9aaf17110, type: 3}
 --- !u!1001 &9032389964007888188
@@ -1753,9 +1878,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: piege_scie
       objectReference: {fileID: 0}
+    - target: {fileID: 8185317613982745314, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8850637234420897880, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8850637234420897880, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_LocalScale.x
