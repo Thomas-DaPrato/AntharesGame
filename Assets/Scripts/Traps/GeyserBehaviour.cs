@@ -6,6 +6,9 @@ public class GeyserBehaviour : MonoBehaviour
 {
     [SerializeField] private int tempsCharge;
     [SerializeField] private int declancheur=0;
+    [SerializeField]
+    AudioSource son;
+    public AudioClip charge;
     public GameObject erruption;
     private bool tremble,tir,intermediaire, intermediaire2 = false;
     void Update()
@@ -13,8 +16,9 @@ public class GeyserBehaviour : MonoBehaviour
         if (tremble)
         {
             intermediaire2 = true;
-            
+
             //tremblement
+            son.PlayOneShot(charge);
             StartCoroutine(AttenteCoroutine(2f));
             tremble = false;
             
