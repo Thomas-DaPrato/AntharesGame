@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, fighterData.playerHeight * 0.5f + 0.2f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, groundLayer);
 
 
         SpeedController();

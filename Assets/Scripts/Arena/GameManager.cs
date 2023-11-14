@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public CameraManager cameraManager;
+
     public Transform spawnP1;
     public Transform spawnP2;
     private static PlayerInput fighter1;
@@ -33,10 +35,12 @@ public class GameManager : MonoBehaviour
         menuEndFight.SetActive(false);
 
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
+        cameraManager.player1 = fighter1.transform;
         nbRoundP1 = 0;
 
-        fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current); ;
+        fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]); ;
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        cameraManager.player2 = fighter2.transform;
         nbRoundP2 = 0;
     }
 
