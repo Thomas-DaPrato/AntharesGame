@@ -8,7 +8,7 @@ public class GeyserBehaviour : MonoBehaviour
     [SerializeField] private int declancheur=0;
     [SerializeField]
     AudioSource son;
-    public AudioClip charge;
+    public AudioClip charge,sonTir;
     public GameObject erruption,vib;
     private bool tremble,tir,intermediaire, intermediaire2 = false;
     void Update()
@@ -53,6 +53,7 @@ public class GeyserBehaviour : MonoBehaviour
         if (intermediaire2)
         {
             //fin du tremblement
+            son.PlayOneShot(sonTir);
             vib.SetActive(false);
             tir = true;
             intermediaire2 = false;

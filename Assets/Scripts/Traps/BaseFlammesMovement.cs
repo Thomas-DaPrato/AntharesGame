@@ -10,7 +10,7 @@ public class BaseFlammesMovement : MonoBehaviour
     [SerializeField]
     AudioSource son;
     public GameObject flammes,vib;
-    public AudioClip charge;
+    public AudioClip charge,sonTir;
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
@@ -67,6 +67,7 @@ public class BaseFlammesMovement : MonoBehaviour
         {
             //arret de la vibration
             vib.SetActive(false);
+            son.PlayOneShot(sonTir);
             flammes.SetActive(true);
             
             StartCoroutine(AttenteCoroutine(5f));

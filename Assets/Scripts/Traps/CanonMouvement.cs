@@ -9,6 +9,9 @@ public class CanonMouvement : MonoBehaviour
     [SerializeField] private float limiteHaute,limiteBasse;
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
+    [SerializeField]
+    AudioSource son;
+    public AudioClip chargement,sonTir;
     public GameObject laser,charge;
     private int declancheur = 0;
     private bool attenteEnCours;
@@ -32,6 +35,7 @@ public class CanonMouvement : MonoBehaviour
             {
                 canMove = false;
                 charge.SetActive(true);
+                son.PlayOneShot(chargement); 
                 StartCoroutine(AttenteCoroutine(2f));
             }
             
@@ -78,6 +82,7 @@ public class CanonMouvement : MonoBehaviour
         {
             charge.SetActive(false);
             laser.SetActive(true);
+            son.PlayOneShot(sonTir);
             StartCoroutine(AttenteCoroutine(3f));
         }
         else
