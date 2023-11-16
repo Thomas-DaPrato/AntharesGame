@@ -9,7 +9,7 @@ public class BaseFlammesMovement : MonoBehaviour
     [SerializeField] private float limiteHaute, limiteBasse;
     [SerializeField]
     AudioSource son;
-    public GameObject flammes;
+    public GameObject flammes,vib;
     public AudioClip charge;
     private bool canMove = true;
     private bool attente = false;
@@ -36,6 +36,7 @@ public class BaseFlammesMovement : MonoBehaviour
             if (attente == false)
             {
                 // vibration de la plateform
+                vib.SetActive(true);
                 son.PlayOneShot(charge);
                 StartCoroutine(AttenteCoroutine(2f));
                 attente = true;
@@ -65,6 +66,7 @@ public class BaseFlammesMovement : MonoBehaviour
         if (sec==2)
         {
             //arret de la vibration
+            vib.SetActive(false);
             flammes.SetActive(true);
             
             StartCoroutine(AttenteCoroutine(5f));

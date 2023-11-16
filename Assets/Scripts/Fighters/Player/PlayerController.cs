@@ -291,7 +291,10 @@ public class PlayerController : MonoBehaviour {
         }
 
         Debug.Log("percentageHp " + (hp / maxHp));
-        //hpBarre.fillAmount = hp / maxHp ;
+        if(hpBarre != null) {
+            hpBarre.fillAmount = hp / maxHp;
+        }
+            
         Debug.Log(gameObject.name + " hp " + hp);
         //Debug.Log("fill " + hpBarre.fillAmount);
     }

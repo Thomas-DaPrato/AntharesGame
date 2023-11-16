@@ -9,7 +9,7 @@ public class GeyserBehaviour : MonoBehaviour
     [SerializeField]
     AudioSource son;
     public AudioClip charge;
-    public GameObject erruption;
+    public GameObject erruption,vib;
     private bool tremble,tir,intermediaire, intermediaire2 = false;
     void Update()
     {
@@ -18,6 +18,7 @@ public class GeyserBehaviour : MonoBehaviour
             intermediaire2 = true;
 
             //tremblement
+            vib.SetActive(true);
             son.PlayOneShot(charge);
             StartCoroutine(AttenteCoroutine(2f));
             tremble = false;
@@ -26,7 +27,7 @@ public class GeyserBehaviour : MonoBehaviour
         else if (tir)
         {
             intermediaire = true;
-            StartCoroutine(AttenteCoroutine(1f));
+            StartCoroutine(AttenteCoroutine(2f));
             erruption.SetActive(true);
             tir = false;
             
@@ -52,6 +53,7 @@ public class GeyserBehaviour : MonoBehaviour
         if (intermediaire2)
         {
             //fin du tremblement
+            vib.SetActive(false);
             tir = true;
             intermediaire2 = false;
         }

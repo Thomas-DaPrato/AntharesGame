@@ -35,7 +35,7 @@ public class OneWayPlatform : MonoBehaviour
         {
             if (other.GetComponent<PlayerController>().y < 0)
             {
-                Debug.Log("done");
+
                 other.gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
             }
         }

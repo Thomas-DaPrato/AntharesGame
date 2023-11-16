@@ -52,7 +52,7 @@ public class CanonMouvement : MonoBehaviour
 
                 vitesse = -vitesse;
             }
-            transform.Translate(Vector3.up * Time.deltaTime*vitesse);
+            transform.Translate(Vector3.forward * Time.deltaTime*vitesse);
             
 
             declancheur++;

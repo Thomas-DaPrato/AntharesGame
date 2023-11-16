@@ -57,7 +57,7 @@ public class ScieEffect : MonoBehaviour
         else
         {
             son.UnPause();
-            vitesse = 300;
+            vitesse = 200;
             col.isTrigger = true;
         }
         
