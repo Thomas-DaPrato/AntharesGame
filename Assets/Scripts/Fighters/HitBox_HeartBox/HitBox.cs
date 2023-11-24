@@ -19,11 +19,14 @@ public class HitBox : MonoBehaviour
     private HitBoxType type;
 
     [SerializeField]
+    private GameObject heartBoxPlayer;
+
+    [SerializeField]
     private float percentageDamage;
 
     
     private void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals("HeartBox") && !other.GetComponentInParent<PlayerController>().isParrying) {
+        if (other.tag.Equals("HeartBox") && other.gameObject != heartBoxPlayer && !other.GetComponentInParent<PlayerController>().isParrying) {
             FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:

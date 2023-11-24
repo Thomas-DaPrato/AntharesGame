@@ -16,13 +16,13 @@ public class PlayerController : MonoBehaviour {
 
     [HideInInspector]
     public float lastDirection = 0;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isAttacking = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isParrying = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isStun = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool canDash = true;
     [HideInInspector]
     public string playerName;
@@ -89,8 +89,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, groundLayer);
-
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, fighterData.playerHeight * 0.5f + 0.2f, groundLayer);
 
         SpeedController();
     }
@@ -110,12 +109,16 @@ public class PlayerController : MonoBehaviour {
 
     #region Event Input System
     public void OnMoveX(InputAction.CallbackContext context) {
+        if (context.started)
+            animator.SetBool("Run", true);
         if (!isStun) {
             x = context.ReadValue<float>();
             if (x != 0) {
                 lastDirection = x;
             }
         }
+        if (context.canceled)
+            animator.SetBool("Run", false);
     }
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
@@ -131,8 +134,9 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log(gameObject.name + " Heavy");
                 animator.SetTrigger("HeavyAttack");
             }
-            else if (!isGrounded)
+            else if (!isGrounded) {
                 LaunchAerialAttack(x, y);
+            }
         }
     }
 
@@ -159,6 +163,19 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+    public void OnRightStick(InputAction.CallbackContext context) {
+        if (context.performed && !isStun && !isGrounded && !isAttacking) {
+            isAttacking = true;
+            x = context.ReadValue<Vector2>()[0];
+            if (x != 0) {
+                lastDirection = x;
+            }
+            y = context.ReadValue<Vector2>()[1];
+            LaunchAerialAttack(x, y);
+        }
+    }
+
     public void OnParry(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStun) {
             Debug.Log(gameObject.name + " Parry");
@@ -219,10 +236,11 @@ public class PlayerController : MonoBehaviour {
                 gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
-        if(isGrounded)
+        if (isGrounded) {
             rb.AddForce(move * playerSpeed * 10f, ForceMode.Force);
+        }
 
-        else if(!isGrounded)
+        else if (!isGrounded)
             rb.AddForce(move * playerSpeed * 10f * airControl, ForceMode.Force);
 
     }
@@ -380,6 +398,11 @@ public class PlayerController : MonoBehaviour {
     public void SetMenuPause(GameObject menuPauseInGame) {
         menuPause = menuPauseInGame;
         Debug.Log("SetMenuPause " + menuPause);
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.down * (fighterData.playerHeight * 0.5f + 0.2f));
     }
 
 
