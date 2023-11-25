@@ -20,14 +20,14 @@ public class GeyserBehaviour : MonoBehaviour
             //tremblement
             vib.SetActive(true);
             son.PlayOneShot(charge);
-            StartCoroutine(AttenteCoroutine(2f));
+            StartCoroutine(AttenteCoroutine(3.3f));
             tremble = false;
             
         }
         else if (tir)
         {
             intermediaire = true;
-            StartCoroutine(AttenteCoroutine(2f));
+            StartCoroutine(AttenteCoroutine(5f));
             erruption.SetActive(true);
             tir = false;
             

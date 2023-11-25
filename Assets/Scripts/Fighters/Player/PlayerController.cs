@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
@@ -9,6 +10,11 @@ public class PlayerController : MonoBehaviour {
 
     #region Intern Variable
     private bool isGrounded;
+    private bool cansDashUp = true;
+    private bool isDashDown = false;
+    private bool isGroundedOneWay = false;
+
+
     private float x = 0;
     [HideInInspector]
     public float y = 0;
@@ -28,7 +34,9 @@ public class PlayerController : MonoBehaviour {
     public string playerName;
     [HideInInspector]
     public GameManager gameManager;
-
+    public float dashForce;
+    [SerializeField]
+    TrailRenderer tr;
 
     #endregion
 
@@ -76,6 +84,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
+    private LayerMask OneWayGroundLayer;
+    [SerializeField]
     private float groundDrag;
     #endregion
 
@@ -88,8 +98,14 @@ public class PlayerController : MonoBehaviour {
         hp = maxHp;
     }
 
-    private void Update() {
+    private void Update() {        
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, groundLayer);
+
+        if (!isGrounded) {
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, OneWayGroundLayer);
+            isGroundedOneWay = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, OneWayGroundLayer);
+        }
+        
 
 
         SpeedController();
@@ -99,6 +115,7 @@ public class PlayerController : MonoBehaviour {
         if (isGrounded) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
+            cansDashUp = true;
         }
         else
             rb.drag = 0;
@@ -180,10 +197,20 @@ public class PlayerController : MonoBehaviour {
     }
     public void OnDashDown(InputAction.CallbackContext context)
     {
-        if (!isStun && isGrounded && context.performed)
+        if (!isStun && isGroundedOneWay && context.performed)
         {
             Debug.Log("DashDown");
             DashDown();
+        }
+    }
+
+    public void OnDashUp(InputAction.CallbackContext context)
+    {
+        if (!isStun && context.performed && cansDashUp && !isGrounded)
+        {
+            cansDashUp = false;
+            Debug.Log("DashUp");
+            DashUp();
         }
     }
 
@@ -240,19 +267,55 @@ public class PlayerController : MonoBehaviour {
         Vector3 move = new Vector3(lastDirection, 0, 0);
         rb.AddForce(move * dashDistance, ForceMode.Impulse);
         canDash = false;
+        tr.emitting = true;
+
         StartCoroutine(DashCoolDown());
+        StartCoroutine(StopDash());
     }
     public void DashDown()
     {
+        //transform.DOMoveY(-dashForce, 0.1f);
+
+
+        tr.emitting = true;
         Vector3 move = new Vector3(0, -1, 0);
-        rb.AddForce(move*10 , ForceMode.Impulse);
-        
-        
+        rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
+        isDashDown=true;
+        StartCoroutine(StopDash());
+
+
+    }
+    public void DashUp()
+    {
+        //transform.DOMoveY(dashForce, 0.1f);
+
+        Vector3 move = new Vector3(0, 1, 0);
+        rb.AddForce(move * dashDistance, ForceMode.Impulse);
+        tr.emitting = true;
+        StartCoroutine(StopDash());
+
+
     }
 
     public IEnumerator DashCoolDown() {
         yield return new WaitForSeconds(1);
         canDash = true;
+        
+    }
+
+    public IEnumerator StopDash()
+    {
+        if (isDashDown)
+        {
+            yield return new WaitForSeconds(0.2f);
+            isDashDown = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        
+        tr.emitting = false;
     }
 
     public IEnumerator StunCoolDown(float time) {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserEffect : MonoBehaviour
 {
     public GameObject laser;
+    public GameObject canon;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -24,6 +25,7 @@ public class LaserEffect : MonoBehaviour
 
         // Après l'attente, vous pouvez mettre votre code ici
         laser.SetActive(false);
+        canon.GetComponent<CanonMouvement>().stopSound();
 
 
     }

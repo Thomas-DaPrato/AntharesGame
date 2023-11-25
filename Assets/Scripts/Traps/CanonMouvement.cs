@@ -36,7 +36,7 @@ public class CanonMouvement : MonoBehaviour
                 canMove = false;
                 charge.SetActive(true);
                 son.PlayOneShot(chargement); 
-                StartCoroutine(AttenteCoroutine(2f));
+                StartCoroutine(AttenteCoroutine(2.3f));
             }
             
             
@@ -70,6 +70,11 @@ public class CanonMouvement : MonoBehaviour
 
     }
 
+    public void stopSound()
+    {
+        son.Stop();
+    }
+
     IEnumerator AttenteCoroutine(float sec)
     {
         attenteEnCours = true;
@@ -78,7 +83,7 @@ public class CanonMouvement : MonoBehaviour
         yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        if (sec == 2f)
+        if (sec == 2.3f)
         {
             charge.SetActive(false);
             laser.SetActive(true);

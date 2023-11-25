@@ -18,6 +18,7 @@ public class OneWayPlatform : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        
 
         if (other.tag.Equals("Player"))
         {

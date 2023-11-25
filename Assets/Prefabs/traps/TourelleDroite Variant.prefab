@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laser: {fileID: 961275188}
+  canon: {fileID: 1260893580435528919}
 --- !u!1001 &373336315505889301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,43 +324,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16301824, y: 0.23178712, z: 0.095061496}
   m_Center: {x: 0, y: 0, z: -0.00012550355}
---- !u!114 &1244581667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260893580435528919}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e75b14da10b136f4fa11d094d415260d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitesse: 2
-  reset: 0
---- !u!114 &1244581672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260893580435528919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef4af76ed47e3b45ad5cadb5d28bbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitesse: 5
-  tempsCharge: 1200
-  limiteHaute: 14
-  limiteBasse: 1
-  tir: 0
-  canMove: 1
-  son: {fileID: 74501714383030966}
-  chargement: {fileID: 8300000, guid: 4a913a4a32ecabf46aba2e3365acaf61, type: 3}
-  sonTir: {fileID: 8300000, guid: dbb4b09d837ee8f4e86926844fd8b3d3, type: 3}
-  laser: {fileID: 961275188}
-  charge: {fileID: 449195075}
 --- !u!82 &74501714383030966
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,6 +420,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1244581667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260893580435528919}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75b14da10b136f4fa11d094d415260d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesse: 2
+  reset: 0
+--- !u!114 &1244581672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260893580435528919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef4af76ed47e3b45ad5cadb5d28bbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesse: 5
+  tempsCharge: 1200
+  limiteHaute: 14
+  limiteBasse: 1
+  tir: 0
+  canMove: 1
+  son: {fileID: 74501714383030966}
+  chargement: {fileID: 8300000, guid: 4402cb3cd96dfd84b8b5526c28f22f26, type: 3}
+  sonTir: {fileID: 8300000, guid: ac108ea959333e74e9bd9ee6f9300fc8, type: 3}
+  laser: {fileID: 961275188}
+  charge: {fileID: 449195075}
 --- !u!4 &2587021359624862914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6428702242891436841, guid: 8dab1dfde5e1bb744a377860c67be798, type: 3}
