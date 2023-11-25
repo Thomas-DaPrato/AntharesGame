@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 1
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 40
 --- !u!1 &2681454889541894266
 GameObject:
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 0
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 80
 --- !u!1 &3752417416891106080
 GameObject:
@@ -375,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 40
 --- !u!1 &4490087205225506239
 GameObject:
@@ -488,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 40
 --- !u!1 &5275802793162952138
 GameObject:
@@ -684,6 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 2
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 20
 --- !u!1 &7032269596047504537
 GameObject:
@@ -797,6 +802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2224280412008635652}
   type: 3
+  heartBoxPlayer: {fileID: 0}
   percentageDamage: 40
 --- !u!1 &7726144927418361741
 GameObject:
@@ -943,7 +949,6 @@ GameObject:
   - component: {fileID: 7605181874267857725}
   - component: {fileID: 5686153626453313543}
   - component: {fileID: 3099822164796536291}
-  - component: {fileID: 3499091153582068489}
   - component: {fileID: 15989858710969286}
   m_Layer: 0
   m_Name: Fighter2
@@ -1069,6 +1074,7 @@ MonoBehaviour:
   isStun: 0
   canDash: 1
   playerName: 
+  gameManager: {fileID: 0}
   maxHp: 10
   fighterData: {fileID: 11400000, guid: dacf2b9579f08da4d8417131b3a4a8b0, type: 2}
   animator: {fileID: 7605181874267857725}
@@ -1379,19 +1385,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3499091153582068489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8506838778176565369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f58842cc6ad81b43a1da59ffa14600b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animatorBase: {fileID: 7605181874267857725}
 --- !u!114 &15989858710969286
 MonoBehaviour:
   m_ObjectHideFlags: 0

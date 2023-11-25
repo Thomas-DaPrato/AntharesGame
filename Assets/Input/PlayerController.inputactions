@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RightStick",
+                    "type": "Value",
+                    "id": "89bb2746-b707-424a-81b9-8eb66f85098f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "854d8722-23a4-4a48-9b1b-3642acca606a",
@@ -400,6 +409,17 @@
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "DashUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0419f9f-1564-4dea-bc58-b4dfb37429c0",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "RightStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

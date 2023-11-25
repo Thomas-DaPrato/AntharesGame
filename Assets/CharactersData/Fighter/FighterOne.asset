@@ -13,6 +13,25 @@ MonoBehaviour:
   m_Name: FighterOne
   m_EditorClassIdentifier: 
   prefab: {fileID: 6240159690015248056, guid: d806742a3d3683f49ae10ca0294dcc51, type: 3}
+  heavyAttack:
+    clip: {fileID: 7400000, guid: b10b0efcbd153de44ba1d5ce6f99b8f8, type: 2}
+    knockback: 24
+    stunTime: 3
+  middleAttack:
+    clip: {fileID: 7400000, guid: 63b2e0f84476ed04daac68d86326b395, type: 2}
+    knockback: 16
+    stunTime: 2
+  lightAttack:
+    clip: {fileID: 7400000, guid: 4a996b56761e42e4b92dc53e9786d727, type: 2}
+    knockback: 8
+    stunTime: 1
+  playerHeight: 4.5
+  aerialsAttack:
+    clipUp: {fileID: 7400000, guid: 14aad9fe7b7576540a4fe47c738b32ef, type: 2}
+    clipMiddle: {fileID: 7400000, guid: 4c7a6c4fdb49171498f3d9eeb4b8446a, type: 2}
+    clipDown: {fileID: 7400000, guid: a6dacc602297625418677ff9a525fd0c, type: 2}
+    knockback: 3
+    stunTime: 2
   sprite: {fileID: 21300000, guid: 9944b43304e1efe4eb605000d28efd42, type: 3}
   stats:
   - nameStat: Charisme
@@ -21,24 +40,3 @@ MonoBehaviour:
     value: 3
   - nameStat: Grand
     value: 1
-  lightAttack:
-    clip: {fileID: 7400000, guid: a027ce9107e821840b0af6e6badacae5, type: 2}
-    knockback: 8
-    stunTime: 1
-  middleAttack:
-    clip: {fileID: 7400000, guid: d142f033997cc6942a9d13f8b3b7683f, type: 2}
-    knockback: 16
-    stunTime: 2
-  heavyAttack:
-    clip: {fileID: 7400000, guid: b4a2a94e9cef505419816693c5b71439, type: 2}
-    knockback: 24
-    stunTime: 3
-  aerialsAttack:
-    clipUp: {fileID: 7400000, guid: 14aad9fe7b7576540a4fe47c738b32ef, type: 2}
-    clipMiddle: {fileID: 7400000, guid: 4c7a6c4fdb49171498f3d9eeb4b8446a, type: 2}
-    clipDown: {fileID: 7400000, guid: a6dacc602297625418677ff9a525fd0c, type: 2}
-    knockback: 3
-    stunTime: 2
-  jump: {fileID: 7400000, guid: 092238cf4ff388a42909c337cfdfa773, type: 2}
-  parry: {fileID: 7400000, guid: c9c6b4d9da565004c82a136d6e545604, type: 2}
-  interrupt: {fileID: 7400000, guid: 7e868bee861aaec43a7ff74c18c7e3b7, type: 2}
