@@ -11,10 +11,10 @@ public class FighterData : ScriptableObject
     public Attack heavyAttack;
     public Attack middleAttack;
     public Attack lightAttack;
+    public Attack aerialAttack;
 
     public float playerHeight;
 
-    public AttackMutipleClip aerialsAttack;
 
     [Header("Info Menu")]
     public Sprite sprite;

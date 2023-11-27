@@ -40,7 +40,7 @@ public class HitBox : MonoBehaviour
                     AttackManager(percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
                     break;
                 case HitBoxType.Aerial:
-                    AttackManager(percentageDamage, fighterData.aerialsAttack.knockback, fighterData.aerialsAttack.stunTime, other);
+                    AttackManager(percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
                     break;
                 default:
                     Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");

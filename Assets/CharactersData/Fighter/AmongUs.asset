@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005b46d02c7338a4a81fb7e27b2f54df, type: 3}
+  m_Name: AmongUs
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2788677706325981627, guid: 936b27b4d166383439e03985c20cf55e, type: 3}
+  heavyAttack:
+    knockback: 24
+    stunTime: 3
+  middleAttack:
+    knockback: 16
+    stunTime: 2
+  lightAttack:
+    knockback: 8
+    stunTime: 1
+  aerialAttack:
+    knockback: 0
+    stunTime: 0
+  playerHeight: 2
+  sprite: {fileID: 0}
+  stats:
+  - nameStat: 
+    value: 0
+  - nameStat: 
+    value: 0
+  - nameStat: 
+    value: 0

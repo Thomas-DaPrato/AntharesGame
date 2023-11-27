@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded;
     private bool cansDashUp = true;
     private bool isDashDown = false;
-    private bool isGroundedOneWay = false;
+    [HideInInspector]
+    public bool isOnPlateform = false;
 
 
     private float x = 0;
@@ -35,8 +36,9 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public GameManager gameManager;
     public float dashForce;
-    [SerializeField]
-    TrailRenderer tr;
+    
+    /*[SerializeField]
+    private TrailRenderer tr;*/
 
     #endregion
 
@@ -98,15 +100,13 @@ public class PlayerController : MonoBehaviour {
         hp = maxHp;
     }
 
-    private void Update() {        
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, groundLayer);
-
-        if (!isGrounded) {
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, OneWayGroundLayer);
-            isGroundedOneWay = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, OneWayGroundLayer);
-        }
-        
-
+    private void Update() {
+        RaycastHit raycastHit;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, 2 * 0.5f + 0.2f, groundLayer);
+        if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
+            isOnPlateform = true;
+        else
+            isOnPlateform = false;
 
         SpeedController();
     }
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour {
                 LaunchAerialAttack(x, y);
         }
     }
-    public void OnLightAttack(InputAction.CallbackContext context) {  
+    public void OnLightAttack(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
@@ -213,10 +213,9 @@ public class PlayerController : MonoBehaviour {
             Dash();
         }
     }
-    public void OnDashDown(InputAction.CallbackContext context)
+    public void OnGoDownPlateform(InputAction.CallbackContext context)
     {
-        if (!isStun && isGroundedOneWay && context.performed)
-        {
+        if (!isStun && isGrounded && isOnPlateform && context.performed){
             Debug.Log("DashDown");
             DashDown();
         }
@@ -224,8 +223,7 @@ public class PlayerController : MonoBehaviour {
 
     public void OnDashUp(InputAction.CallbackContext context)
     {
-        if (!isStun && context.performed && cansDashUp && !isGrounded)
-        {
+        if (!isStun && context.performed && cansDashUp && !isGrounded){
             cansDashUp = false;
             Debug.Log("DashUp");
             DashUp();
@@ -259,9 +257,9 @@ public class PlayerController : MonoBehaviour {
         Vector3 move = new Vector3(x, 0, 0);
         if (!isAttacking) {
             if (move.x > 0)
-                gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                gameObject.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
             if (move.x < 0)
-                gameObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                gameObject.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
         }
 
         if (isGrounded) {
@@ -286,7 +284,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 move = new Vector3(lastDirection, 0, 0);
         rb.AddForce(move * dashDistance, ForceMode.Impulse);
         canDash = false;
-        tr.emitting = true;
+        //tr.emitting = true;
 
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
@@ -296,7 +294,7 @@ public class PlayerController : MonoBehaviour {
         //transform.DOMoveY(-dashForce, 0.1f);
 
 
-        tr.emitting = true;
+        //tr.emitting = true;
         Vector3 move = new Vector3(0, -1, 0);
         rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
         isDashDown=true;
@@ -310,7 +308,7 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 move = new Vector3(0, 1, 0);
         rb.AddForce(move * dashDistance, ForceMode.Impulse);
-        tr.emitting = true;
+        //tr.emitting = true;
         StartCoroutine(StopDash());
 
 
@@ -334,7 +332,7 @@ public class PlayerController : MonoBehaviour {
             yield return new WaitForSeconds(0.3f);
         }
         
-        tr.emitting = false;
+        //tr.emitting = false;
     }
 
     public IEnumerator StunCoolDown(float time) {
@@ -403,9 +401,11 @@ public class PlayerController : MonoBehaviour {
     
 
     public void LaunchAerialAttack(float x, float y) {
-
+        Debug.Log("Aerial");
         Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
+
+        Debug.Log(coordinate);
 
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
             Debug.Log(gameObject.name + " Aerial Up");
