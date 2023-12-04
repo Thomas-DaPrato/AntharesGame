@@ -405,8 +405,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
-        Debug.Log(coordinate);
-
+        
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
             Debug.Log(gameObject.name + " Aerial Up");
             animator.SetTrigger("Aerial Up");
@@ -420,6 +419,12 @@ public class PlayerController : MonoBehaviour {
         if (coordinate.x <= 0.66f && coordinate.y < 0) {
             Debug.Log(gameObject.name + " Aerial Down");
             animator.SetTrigger("Aerial Down");
+        }
+
+        if (x == 0 && y == 0) {
+            Debug.Log("No Aerial Direction");
+            isAttacking = false;
+            return;
         }
     }
     #endregion

@@ -14,24 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6240159690015248056, guid: d806742a3d3683f49ae10ca0294dcc51, type: 3}
   heavyAttack:
-    clip: {fileID: 7400000, guid: b10b0efcbd153de44ba1d5ce6f99b8f8, type: 2}
     knockback: 24
     stunTime: 3
   middleAttack:
-    clip: {fileID: 7400000, guid: 63b2e0f84476ed04daac68d86326b395, type: 2}
     knockback: 16
     stunTime: 2
   lightAttack:
-    clip: {fileID: 7400000, guid: 4a996b56761e42e4b92dc53e9786d727, type: 2}
     knockback: 8
     stunTime: 1
+  aerialAttack:
+    knockback: 0
+    stunTime: 0
   playerHeight: 4.5
-  aerialsAttack:
-    clipUp: {fileID: 7400000, guid: 14aad9fe7b7576540a4fe47c738b32ef, type: 2}
-    clipMiddle: {fileID: 7400000, guid: 4c7a6c4fdb49171498f3d9eeb4b8446a, type: 2}
-    clipDown: {fileID: 7400000, guid: a6dacc602297625418677ff9a525fd0c, type: 2}
-    knockback: 3
-    stunTime: 2
+  skinMirrorMatch: {fileID: 2100000, guid: 8cb96d5c521662349bc9a573b6d46902, type: 2}
   sprite: {fileID: 21300000, guid: 9944b43304e1efe4eb605000d28efd42, type: 3}
   stats:
   - nameStat: Charisme

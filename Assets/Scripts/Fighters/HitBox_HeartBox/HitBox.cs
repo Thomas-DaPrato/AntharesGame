@@ -64,5 +64,7 @@ public class HitBox : MonoBehaviour
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(timeStun);
         collider.GetComponent<HeartBox>().TakeDamage(percentageDamage, type);
         collider.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(playerController.lastDirection,1));
+        //GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(1);
+        //GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(2);
     }
 }
