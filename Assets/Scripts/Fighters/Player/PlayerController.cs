@@ -56,6 +56,12 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private TrailRenderer tr;
+
+    [SerializeField]
+    private GameObject limiteHauteGauche,limiteBasseDroite;
+
     private Image hpBarre;
     private GameObject menuPause;
 
@@ -281,34 +287,94 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Dash() {
-        Vector3 move = new Vector3(lastDirection, 0, 0);
-        rb.AddForce(move * dashDistance, ForceMode.Impulse);
+        /*Vector3 move = new Vector3(lastDirection, 0, 0);
+        rb.AddForce(move * dashDistance, ForceMode.Impulse);*/
+        
+        if (lastDirection < 0){
+
+            if(transform.position.x - dashForce < limiteHauteGauche.transform.position.x)
+            {
+                transform.DOMoveX(limiteHauteGauche.transform.position.x, 0.3f);
+            }
+            else
+            {
+                transform.DOMoveX(transform.position.x - dashForce, 0.3f);
+            }
+            
+        }else if (lastDirection > 0){
+
+            if (transform.position.x + dashForce > limiteBasseDroite.transform.position.x)
+            {
+                transform.DOMoveX(limiteBasseDroite.transform.position.x, 0.3f);
+            }
+            else
+            {
+                transform.DOMoveX(transform.position.x + dashForce, 0.3f);
+            }
+            
+        }
+
+        if (y < 0)
+        {
+            if(transform.position.y - dashForce < limiteBasseDroite.transform.position.y)
+            {
+                transform.DOMoveY(limiteBasseDroite.transform.position.y, 0.3f);
+            }
+            else
+            {
+                transform.DOMoveY(transform.position.y - dashForce, 0.3f);
+            }
+            
+        }
+        else if (y > 0)
+        {
+            if (transform.position.y + dashForce > limiteHauteGauche.transform.position.y)
+            {
+                transform.DOMoveY(limiteHauteGauche.transform.position.y, 0.3f);
+            }
+            else
+            {
+                transform.DOMoveY(transform.position.y + dashForce, 0.3f);
+            }
+            
+        }
+
         canDash = false;
-        //tr.emitting = true;
+        tr.emitting = true;
 
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
     public void DashDown()
     {
-        //transform.DOMoveY(-dashForce, 0.1f);
-
-
-        //tr.emitting = true;
-        Vector3 move = new Vector3(0, -1, 0);
-        rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
+        if(transform.position.y - dashForce < limiteBasseDroite.transform.position.y)
+        {
+            transform.DOMoveY(limiteBasseDroite.transform.position.y, 0.2f);
+        }
+        else
+        {
+            transform.DOMoveY(transform.position.y - dashForce, 0.2f);
+        }
+        
+        tr.emitting = true;
         isDashDown=true;
         StartCoroutine(StopDash());
+        //Vector3 move = new Vector3(0, -1, 0);
+        //rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
 
 
     }
     public void DashUp()
     {
-        //transform.DOMoveY(dashForce, 0.1f);
-
-        Vector3 move = new Vector3(0, 1, 0);
-        rb.AddForce(move * dashDistance, ForceMode.Impulse);
-        //tr.emitting = true;
+        if (transform.position.y + dashForce > limiteHauteGauche.transform.position.y)
+        {
+            transform.DOMoveY(limiteHauteGauche.transform.position.y, 0.3f);
+        }
+        else
+        {
+            transform.DOMoveY(transform.position.y + dashForce, 0.3f);
+        }
+        tr.emitting = true;
         StartCoroutine(StopDash());
 
 
@@ -332,7 +398,7 @@ public class PlayerController : MonoBehaviour {
             yield return new WaitForSeconds(0.3f);
         }
         
-        //tr.emitting = false;
+        tr.emitting = false;
     }
 
     public IEnumerator StunCoolDown(float time) {

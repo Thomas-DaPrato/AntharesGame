@@ -208,12 +208,15 @@ MonoBehaviour:
   canDash: 1
   playerName: 
   gameManager: {fileID: 0}
-  dashForce: 0
+  dashForce: 10
   maxHp: 10
   fighterData: {fileID: 11400000, guid: caef5e420b7efd045b256b4fc3e414b5, type: 2}
   animator: {fileID: 4122495477622942463}
+  tr: {fileID: 6812376832665550814}
+  limiteHauteGauche: {fileID: 0}
+  limiteBasseDroite: {fileID: 0}
   playerSpeed: 15
-  jumpHeight: 15
+  jumpHeight: 25
   airControl: 0.4
   dashDistance: 50
   maxNbJumpInAir: 1
@@ -222,7 +225,7 @@ MonoBehaviour:
     m_Bits: 64
   OneWayGroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   groundDrag: 5
 --- !u!95 &4122495477622942463
 Animator:
@@ -506,6 +509,26 @@ MonoBehaviour:
     m_ActionId: 37444d2a-c594-4be9-afc2-8ccb1f7a2993
     m_ActionName: CharactersSwaper/Back[/Keyboard/escape]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 89bb2746-b707-424a-81b9-8eb66f85098f
+    m_ActionName: Player/RightStick
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5648420388229960902}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGoDownPlateform
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
+    m_ActionName: Player/DashDown[/Keyboard/s]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5648420388229960902}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -519,12 +542,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a2015085-7aed-4bc8-b5f4-e150433b173d
-    m_ActionName: Player/DashUp[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 89bb2746-b707-424a-81b9-8eb66f85098f
-    m_ActionName: Player/RightStick
+    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
+    m_ActionName: Player/DashUp[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -568,7 +587,8 @@ TrailRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: -4125471728267972529, guid: c7da67d347da8d447aee7f48b0a131b5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -589,7 +609,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -605,13 +625,22 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0.49019608}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -645,7 +674,7 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
 --- !u!1 &3542820687495822683
 GameObject:
   m_ObjectHideFlags: 0
