@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool isOnPlateform = false;
 
+    
 
     private float x = 0;
     [HideInInspector]
     public float y = 0;
+
+    private int chanceCommentateur=0;
 
 
     [HideInInspector]
@@ -61,6 +64,9 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private GameObject upperLeftLimit , lowerRightLimit;
+
+    [SerializeField]
+    private GameObject CameraSong;
 
     private Image hpBarre;
     private GameObject menuPause;
@@ -418,7 +424,13 @@ public class PlayerController : MonoBehaviour {
                 if (hp <= 20.0f * maxHp / 100.0f)
                     PlayerDie();
                 else
-                    hp -= percentageDamage * maxHp / 100.0f; 
+                    hp -= percentageDamage * maxHp / 100.0f;
+
+                chanceCommentateur = Random.Range(0, 3);
+                if (chanceCommentateur == 1)
+                {
+                    CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
+                }
                 break;
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
@@ -428,6 +440,19 @@ public class PlayerController : MonoBehaviour {
                     if (hp <= 0)
                         hp = 1;
                 }
+                break;
+            case HitBox.HitBoxType.Trap:
+                hp -= percentageDamage * maxHp / 100.0f;
+                if (hp <= 0)
+                    hp = 1;
+
+                chanceCommentateur = Random.Range(0, 5);
+                if (chanceCommentateur == 1)
+                {
+                    CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
+                }
+                
+
                 break;
             default :
                 hp -= percentageDamage * maxHp / 100.0f;
