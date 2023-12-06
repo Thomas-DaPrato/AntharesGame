@@ -8,6 +8,7 @@ public class Characters : MonoBehaviour
     private static List<FighterData> fighters = new List<FighterData>();
 
     private void Awake() {
+        Debug.Log("init fighter");
         fighters = fightersData;
     }
 

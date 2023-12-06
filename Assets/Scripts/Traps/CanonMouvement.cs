@@ -6,7 +6,7 @@ public class CanonMouvement : MonoBehaviour
 {
     
     [SerializeField] private int vitesse, tempsCharge;
-    [SerializeField] private float limiteHaute,limiteBasse;
+    [SerializeField] private Transform limiteHaute,limiteBasse;
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
     [SerializeField]
@@ -45,15 +45,12 @@ public class CanonMouvement : MonoBehaviour
         }
         else
         {
-
-            if (transform.position.y > limiteHaute && vitesse>0)
+            if (transform.position.y > limiteHaute.position.y )
             {
-
                 vitesse = -vitesse;
             }
-            else if (transform.position.y < limiteBasse && vitesse<0)
+            else if (transform.position.y < limiteBasse.position.y )
             {
-
                 vitesse = -vitesse;
             }
             transform.Translate(Vector3.forward * Time.deltaTime*vitesse);

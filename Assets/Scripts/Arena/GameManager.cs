@@ -8,13 +8,20 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    public CinemachineTargetGroup targetsGroup;
-    public CinemachineVirtualCamera virtualCamera;
+    private CinemachineTargetGroup targetsGroup;
+    private CinemachineVirtualCamera virtualCamera;
 
-    public Freezer freezer;
+    [SerializeField]
+    private Freezer freezer;
 
-    public Transform spawnP1;
-    public Transform spawnP2;
+    
+    private Transform spawnP1;
+    private Transform spawnP2;
+
+    
+    private GameObject upperLeftLimit;
+    private GameObject lowerRightLimit;
+
     private static PlayerInput fighter1;
     private static PlayerInput fighter2;
 
@@ -42,6 +49,9 @@ public class GameManager : MonoBehaviour
         spawnP1 = GameObject.Find("SpawnP1").transform;
         spawnP2 = GameObject.Find("SpawnP2").transform;
 
+        upperLeftLimit = GameObject.Find("UpLimit");
+        lowerRightLimit = GameObject.Find("DownLimit");
+
         Instantiate(UI);
 
         menuPause = GameObject.Find("MenuPause");
@@ -52,26 +62,29 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayers() {
+        Debug.Log("size " + Characters.GetFighters().Count);
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
-        targetsGroup.AddMember(fighter1.transform,1,0);
+        targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundP1 = 0;
 
-        fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1] /*Keyboard.current*/);
+        if(Gamepad.all.Count == 1)
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
+        else
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
+        
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        targetsGroup.AddMember(fighter2.transform,1,0);
+        targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundP2 = 0;
 
+        fighter1.transform.SetParent(GameObject.Find("Fighters").transform);
+        fighter2.transform.SetParent(GameObject.Find("Fighters").transform);
+
         if (PlayerPrefs.GetInt("ChooseFighterP1") == PlayerPrefs.GetInt("ChooseFighterP2")) {
-            Debug.Log("Mirror Match");
-            Debug.Log("Skinned Mesh Rendere " + fighter2.GetComponentInChildren<SkinnedMeshRenderer>());
-            Debug.Log("Mesh Rendere " + fighter2.GetComponentInChildren<MeshRenderer>());
             if(fighter2.GetComponentInChildren<SkinnedMeshRenderer>() != null)
                 fighter2.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].skinMirrorMatch;
 
             if (fighter2.GetComponentInChildren<MeshRenderer>() != null) {
-                Debug.Log("change material mesh renderer");
                 fighter2.GetComponentInChildren<MeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].skinMirrorMatch;
-                Debug.Log("material mirror match " + fighter2.GetComponentInChildren<MeshRenderer>().materials[0]);
             }
         }
     }
@@ -88,6 +101,7 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().SetMenuPause(menuPause);
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
+        fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
 
 
         return fighter;

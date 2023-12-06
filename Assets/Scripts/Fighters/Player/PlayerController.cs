@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
     private TrailRenderer tr;
 
     [SerializeField]
-    private GameObject limiteHauteGauche,limiteBasseDroite;
+    private GameObject upperLeftLimit , lowerRightLimit;
 
     private Image hpBarre;
     private GameObject menuPause;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         RaycastHit raycastHit;
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, 2 * 0.5f + 0.2f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
         if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
             isOnPlateform = true;
         else
@@ -292,9 +292,9 @@ public class PlayerController : MonoBehaviour {
         
         if (lastDirection < 0){
 
-            if(transform.position.x - dashForce < limiteHauteGauche.transform.position.x)
+            if(transform.position.x - dashForce < upperLeftLimit.transform.position.x)
             {
-                transform.DOMoveX(limiteHauteGauche.transform.position.x, 0.3f);
+                transform.DOMoveX(upperLeftLimit.transform.position.x, 0.3f);
             }
             else
             {
@@ -303,9 +303,9 @@ public class PlayerController : MonoBehaviour {
             
         }else if (lastDirection > 0){
 
-            if (transform.position.x + dashForce > limiteBasseDroite.transform.position.x)
+            if (transform.position.x + dashForce > lowerRightLimit.transform.position.x)
             {
-                transform.DOMoveX(limiteBasseDroite.transform.position.x, 0.3f);
+                transform.DOMoveX(lowerRightLimit.transform.position.x, 0.3f);
             }
             else
             {
@@ -316,9 +316,9 @@ public class PlayerController : MonoBehaviour {
 
         if (y < 0)
         {
-            if(transform.position.y - dashForce < limiteBasseDroite.transform.position.y)
+            if(transform.position.y - dashForce < lowerRightLimit.transform.position.y)
             {
-                transform.DOMoveY(limiteBasseDroite.transform.position.y, 0.3f);
+                transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
             }
             else
             {
@@ -328,9 +328,9 @@ public class PlayerController : MonoBehaviour {
         }
         else if (y > 0)
         {
-            if (transform.position.y + dashForce > limiteHauteGauche.transform.position.y)
+            if (transform.position.y + dashForce > upperLeftLimit.transform.position.y)
             {
-                transform.DOMoveY(limiteHauteGauche.transform.position.y, 0.3f);
+                transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
             }
             else
             {
@@ -347,9 +347,9 @@ public class PlayerController : MonoBehaviour {
     }
     public void DashDown()
     {
-        if(transform.position.y - dashForce < limiteBasseDroite.transform.position.y)
+        if(transform.position.y - dashForce < lowerRightLimit.transform.position.y)
         {
-            transform.DOMoveY(limiteBasseDroite.transform.position.y, 0.2f);
+            transform.DOMoveY(lowerRightLimit.transform.position.y, 0.2f);
         }
         else
         {
@@ -366,9 +366,9 @@ public class PlayerController : MonoBehaviour {
     }
     public void DashUp()
     {
-        if (transform.position.y + dashForce > limiteHauteGauche.transform.position.y)
+        if (transform.position.y + dashForce > upperLeftLimit.transform.position.y)
         {
-            transform.DOMoveY(limiteHauteGauche.transform.position.y, 0.3f);
+            transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
         }
         else
         {
@@ -532,7 +532,11 @@ public class PlayerController : MonoBehaviour {
 
     public void SetMenuPause(GameObject menuPauseInGame) {
         menuPause = menuPauseInGame;
-        Debug.Log("SetMenuPause " + menuPause);
+    }
+
+    public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {
+        this.upperLeftLimit = upperLeftLimit;
+        this.lowerRightLimit = lowerRightLimit;
     }
 
     private void OnDrawGizmos() {

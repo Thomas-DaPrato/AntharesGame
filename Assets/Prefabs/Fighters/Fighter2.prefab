@@ -1067,6 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd9ff28f4630ed4288b66568b48734e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnPlateform: 0
   y: 0
   lastDirection: 0
   isAttacking: 0
@@ -1075,6 +1076,7 @@ MonoBehaviour:
   canDash: 1
   playerName: 
   gameManager: {fileID: 0}
+  dashForce: 0
   maxHp: 10
   fighterData: {fileID: 11400000, guid: dacf2b9579f08da4d8417131b3a4a8b0, type: 2}
   animator: {fileID: 7605181874267857725}
@@ -1086,6 +1088,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  OneWayGroundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   groundDrag: 5
 --- !u!95 &7605181874267857725
 Animator:
@@ -1380,6 +1385,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 37444d2a-c594-4be9-afc2-8ccb1f7a2993
     m_ActionName: CharactersSwaper/Back[/XInputControllerWindows/buttonEast,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 89bb2746-b707-424a-81b9-8eb66f85098f
+    m_ActionName: Player/RightStick
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a2015085-7aed-4bc8-b5f4-e150433b173d
+    m_ActionName: Player/DashUp[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
