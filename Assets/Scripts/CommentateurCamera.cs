@@ -11,6 +11,8 @@ public class CommentateurCamera : MonoBehaviour
     public AudioSource audioSource;
     private bool isCommenting = false;
 
+    private float dureeAudio=0;
+
     private void Start()
     {
         
@@ -18,10 +20,11 @@ public class CommentateurCamera : MonoBehaviour
         {
             int r = Random.Range(0, commentateurStart.Count);
             AudioClip clip = commentateurStart[r];
+            dureeAudio = clip.length;
             audioSource.clip = clip;
             audioSource.Play();
             isCommenting = true;
-            //arret
+            StartCoroutine(CanComment(dureeAudio));
         }
 
     }
@@ -31,10 +34,11 @@ public class CommentateurCamera : MonoBehaviour
         if (!isCommenting) { 
         int r = Random.Range(0, commentateurAudioPieges.Count);
         AudioClip clip = commentateurAudioPieges[r];
+        dureeAudio = clip.length;
         audioSource.clip = clip;
         audioSource.Play();
-            isCommenting = true;
-            //arret
+        isCommenting = true;
+        StartCoroutine(CanComment(dureeAudio));
         }
     }
     public void CommentateurCoups()
@@ -43,11 +47,18 @@ public class CommentateurCamera : MonoBehaviour
         {
             int r = Random.Range(0, commentateurAudioCoups.Count);
             AudioClip clip = commentateurAudioCoups[r];
+            dureeAudio = clip.length;
             audioSource.clip = clip;
             audioSource.Play();
             isCommenting = true;
-            //arret
+            StartCoroutine(CanComment(dureeAudio));
         }
+    }
+
+    public IEnumerator CanComment(float durée)
+    {
+        yield return new WaitForSeconds(durée);
+        isCommenting = false;
     }
 
 }
