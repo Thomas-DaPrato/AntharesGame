@@ -41,17 +41,16 @@ public class CharactersPanel : MonoBehaviour
     }
 
     public void FillInfos() {
-        Transform stats = infos.transform.Find("Stats");
         for (int i = 0; i < Characters.GetFighters()[currentFighter].stats.Length; i += 1) {
-            stats.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
+            infos.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
 
             //Reset color stat
             for (int j = 0; j < 3; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
 
             //Set color stat
             for (int j = 0; j < Characters.GetFighters()[currentFighter].stats[i].value; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
     }
 

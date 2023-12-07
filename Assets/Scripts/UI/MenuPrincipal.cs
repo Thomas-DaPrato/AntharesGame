@@ -8,4 +8,8 @@ public class MenuPrincipal : MonoBehaviour
 
     }
 
+    public void PrintDebug() {
+        Debug.Log("PLay");
+    }
+
 }

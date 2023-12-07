@@ -13,9 +13,22 @@ public class CharacterSelecter : MonoBehaviour
     private bool haveChooseFighter = false;
 
     [SerializeField]
+    private string player;
+
+    [SerializeField]
     private GameObject menu;
     [SerializeField]
     private GameObject characterSelecter;
+
+    [Header("Virtual Cam")]
+    [SerializeField]
+    private GameObject vcMenu;
+    [SerializeField]
+    private GameObject vcBat;
+    [SerializeField]
+    private GameObject vcRecul;
+    [SerializeField]
+    private GameObject vcEnter;
 
     [SerializeField]
     private Image support;
@@ -26,8 +39,6 @@ public class CharacterSelecter : MonoBehaviour
     [SerializeField]
     private GameObject ready;
 
-    [SerializeField]
-    private GameObject visualHold;
 
 
     private void Awake() {
@@ -80,6 +91,8 @@ public class CharacterSelecter : MonoBehaviour
             else {
                 characterSelecter.SetActive(false);
                 menu.SetActive(true);
+                vcMenu.SetActive(true);
+                vcBat.SetActive(false);
             }
 
         }
@@ -87,7 +100,7 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnValidateCharacter(InputAction.CallbackContext context) {
         if (context.performed) {
-            PlayerPrefs.SetInt(gameObject.name, currentFighter);
+            PlayerPrefs.SetInt(player, currentFighter);
 
 
             ready.SetActive(true);
@@ -97,27 +110,37 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnStartFight(InputAction.CallbackContext context) {
         if (context.performed) {
-            Debug.Log(PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1);
-            Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt("ChooseFighterP1"));
-            Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt("ChooseFighterP2"));
-            if (PlayerPrefs.GetInt("ChooseFighterP1") != -1 && PlayerPrefs.GetInt("ChooseFighterP2") != -1)
-                SceneManager.LoadScene("Game");
+            Debug.Log(PlayerPrefs.GetInt("FighterP1") != -1 && PlayerPrefs.GetInt("FighterP2") != -1);
+            Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt("FighterP1"));
+            Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt("FighterP2"));
+            if (PlayerPrefs.GetInt("FighterP1") != -1 && PlayerPrefs.GetInt("FighterP2") != -1)
+                StartCoroutine(StartFight());
+                
         }
+    }
+
+    public IEnumerator StartFight() {
+        vcBat.SetActive(false);
+        vcRecul.SetActive(true);
+        yield return new WaitForSeconds(2);
+        vcRecul.SetActive(false);
+        vcEnter.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Game");
     }
 
 
     public void FillInfos() {
-        Transform stats = infos.transform.Find("Stats");
         for(int i = 0; i < Characters.GetFighters()[currentFighter].stats.Length; i+=1) {
-            stats.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
+            infos.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
             
             //Reset color stat
             for (int j = 0; j < 3; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
 
             //Set color stat
             for (int j = 0; j < Characters.GetFighters()[currentFighter].stats[i].value; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
     }
 }

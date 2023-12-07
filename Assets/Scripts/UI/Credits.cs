@@ -15,6 +15,8 @@ public class Credits : MonoBehaviour
     private Image support;
     [SerializeField]
     private GameObject infos;
+    [SerializeField]
+    private TextMeshProUGUI name;
 
     private void Awake() {
         currentMember = 0;
@@ -41,18 +43,17 @@ public class Credits : MonoBehaviour
     }
 
     public void FillInfos() {
-        infos.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = teamData[currentMember].name;
-        Transform stats = infos.transform.Find("Stats");
+        name.text = teamData[currentMember].name;
         for (int i = 0; i < teamData[currentMember].stats.Length; i += 1) {
-            stats.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = teamData[currentMember].stats[i].nameStat;
+            infos.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = teamData[currentMember].stats[i].nameStat;
 
             //Reset color stat
             for (int j = 0; j < 3; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
 
             //Set color stat
             for (int j = 0; j < teamData[currentMember].stats[i].value; j += 1)
-                stats.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
+                infos.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
     }
 

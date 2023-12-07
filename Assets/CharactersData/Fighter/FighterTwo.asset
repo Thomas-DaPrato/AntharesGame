@@ -13,7 +13,21 @@ MonoBehaviour:
   m_Name: FighterTwo
   m_EditorClassIdentifier: 
   prefab: {fileID: 8506838778176565369, guid: b27a4a36bc1432740a90e9129676e4cd, type: 3}
-  sprite: {fileID: 21300000, guid: 971853647b50f93468798637cdc33b25, type: 3}
+  heavyAttack:
+    knockback: 24
+    stunTime: 3
+  middleAttack:
+    knockback: 16
+    stunTime: 2
+  lightAttack:
+    knockback: 8
+    stunTime: 1
+  aerialAttack:
+    knockback: 0
+    stunTime: 0
+  playerHeight: 0
+  skinMirrorMatch: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ebb5b2d4a3ee667429f9249faf3bc280, type: 3}
   stats:
   - nameStat: 'Riche '
     value: 0
@@ -21,24 +35,3 @@ MonoBehaviour:
     value: 3
   - nameStat: Musicienne
     value: 2
-  lightAttack:
-    clip: {fileID: 7400000, guid: 443bcc9ff6750a84f88ea97505a7cbd4, type: 2}
-    knockback: 8
-    stunTime: 1
-  middleAttack:
-    clip: {fileID: 7400000, guid: 7d815a22ad7ab454e93ea777c9408b94, type: 2}
-    knockback: 16
-    stunTime: 2
-  heavyAttack:
-    clip: {fileID: 7400000, guid: 9ca181fdd121ded4e90b3c57adda2c43, type: 2}
-    knockback: 24
-    stunTime: 3
-  aerialsAttack:
-    clipUp: {fileID: 7400000, guid: 46fb2e2641d5896499085109f3f6336b, type: 2}
-    clipMiddle: {fileID: 7400000, guid: b5ddbba3266fb724db97c48cf2f4f00b, type: 2}
-    clipDown: {fileID: 7400000, guid: 7849217ddb86d334f90839c5a204341e, type: 2}
-    knockback: 3
-    stunTime: 2
-  jump: {fileID: 7400000, guid: 3327c8e7be32be047949a92e2dac24bc, type: 2}
-  parry: {fileID: 7400000, guid: 198925296f182cb4184fa49c9600e7ce, type: 2}
-  interrupt: {fileID: 7400000, guid: be9846574a3f54a4aae35f9f015fe3b0, type: 2}
