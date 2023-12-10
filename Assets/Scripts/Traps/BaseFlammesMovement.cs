@@ -14,22 +14,27 @@ public class BaseFlammesMovement : MonoBehaviour
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
+    public bool mouvementPermis = false;
 
     void Update()
     {
         if (canMove) {
 
-            if (transform.position.x < limiteBasse && vitesse > 0)
+            if (mouvementPermis)
             {
+                if (transform.position.x < limiteBasse && vitesse > 0)
+                {
 
-                vitesse = -vitesse;
-            }
-            else if (transform.position.x > limiteHaute && vitesse < 0)
-            {
+                    vitesse = -vitesse;
+                }
+                else if (transform.position.x > limiteHaute && vitesse < 0)
+                {
 
-                vitesse = -vitesse;
+                    vitesse = -vitesse;
+                }
+                transform.Translate(Vector3.left * Time.deltaTime * vitesse);
             }
-            transform.Translate(Vector3.left * Time.deltaTime * vitesse);
+            
         }
         else
         {
