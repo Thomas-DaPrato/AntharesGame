@@ -16,6 +16,9 @@ public class CharacterSelecter : MonoBehaviour
     private string player;
 
     [SerializeField]
+    private Animator animatorFadeIn;
+
+    [SerializeField]
     private GameObject menu;
     [SerializeField]
     private GameObject characterSelecter;
@@ -125,8 +128,10 @@ public class CharacterSelecter : MonoBehaviour
         yield return new WaitForSeconds(2);
         vcRecul.SetActive(false);
         vcEnter.SetActive(true);
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("Game");
+        yield return new WaitForSeconds(1);
+        animatorFadeIn.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("LoadScene");
     }
 
 

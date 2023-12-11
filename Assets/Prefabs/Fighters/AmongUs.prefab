@@ -213,8 +213,8 @@ MonoBehaviour:
   fighterData: {fileID: 11400000, guid: caef5e420b7efd045b256b4fc3e414b5, type: 2}
   animator: {fileID: 4122495477622942463}
   tr: {fileID: 6812376832665550814}
-  limiteHauteGauche: {fileID: 0}
-  limiteBasseDroite: {fileID: 0}
+  upperLeftLimit: {fileID: 0}
+  lowerRightLimit: {fileID: 0}
   CameraSong: {fileID: 0}
   playerSpeed: 15
   jumpHeight: 25
@@ -498,7 +498,19 @@ MonoBehaviour:
     m_ActionId: bb76b618-f494-48a0-9c4e-d535457a3f31
     m_ActionName: CharacterSelection/StartFight
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5648420388229960902}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4263f575-c144-4709-829a-fc6e2e705bd5
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
@@ -510,7 +522,19 @@ MonoBehaviour:
     m_ActionId: 37444d2a-c594-4be9-afc2-8ccb1f7a2993
     m_ActionName: CharactersSwaper/Back[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5648420388229960902}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRightStick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 89bb2746-b707-424a-81b9-8eb66f85098f
     m_ActionName: Player/RightStick
   - m_PersistentCalls:
@@ -545,6 +569,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
     m_ActionName: Player/DashUp[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2ce1e4f9-40d9-4d6a-870f-e89191b1cda0
+    m_ActionName: UI/Start / A[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/start,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9bbfa3ee-5d99-45ab-a689-dceb87c9b53e
+    m_ActionName: OptionSwap/ChangeOptionPannel[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01cd7a7b-1a13-400c-9686-811e658cfe4d
+    m_ActionName: OptionSwap/Back[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

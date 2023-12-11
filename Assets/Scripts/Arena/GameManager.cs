@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
+        fighter.GetComponent<PlayerController>().isStun = true;
 
 
         return fighter;
@@ -138,6 +139,11 @@ public class GameManager : MonoBehaviour
         fighter2.transform.position = spawnP2.position;
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         
+    }
+
+    public static void SetFighterNotStun() {
+        fighter1.GetComponent<PlayerController>().isStun = false;
+        fighter2.GetComponent<PlayerController>().isStun = false;
     }
 
     public void DoFreeze(float duration) {
