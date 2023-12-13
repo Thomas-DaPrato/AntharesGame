@@ -1062,6 +1062,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeInfoPannel",
+                    "type": "Button",
+                    "id": "9ed3b176-823e-4bf5-8f48-58f4d0f07652",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1196,15 +1205,59 @@
                     "action": "StartFight",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76e49ff5-44c9-4db4-875f-0545966efc6f",
+                    "path": "<Gamepad>/rightStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ChangeInfoPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Right/Left",
+                    "id": "c2b0bccb-c674-45bd-bdfa-f980321c98e8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeInfoPannel",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "543ad169-c7df-41ac-bb4a-efbcd9780496",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeInfoPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3c074300-12b3-4d82-8b36-003fe3804a50",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeInfoPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
         {
-            "name": "CharactersSwaper",
+            "name": "MemberSwaper",
             "id": "04045974-3048-4ae4-b6bb-1b3ec4dd7501",
             "actions": [
                 {
-                    "name": "CharacterSwap",
+                    "name": "MemberSwap",
                     "type": "Button",
                     "id": "e774b48d-9986-4818-b5c9-52af75b1b609",
                     "expectedControlType": "Button",
@@ -1230,7 +1283,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CharacterSwap",
+                    "action": "MemberSwap",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -1241,7 +1294,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
-                    "action": "CharacterSwap",
+                    "action": "MemberSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1252,7 +1305,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
-                    "action": "CharacterSwap",
+                    "action": "MemberSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1263,7 +1316,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "CharacterSwap",
+                    "action": "MemberSwap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

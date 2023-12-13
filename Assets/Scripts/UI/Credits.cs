@@ -16,7 +16,7 @@ public class Credits : MonoBehaviour
     [SerializeField]
     private GameObject infos;
     [SerializeField]
-    private TextMeshProUGUI name;
+    private TextMeshProUGUI memberName;
 
     private void Awake() {
         currentMember = 0;
@@ -43,7 +43,7 @@ public class Credits : MonoBehaviour
     }
 
     public void FillInfos() {
-        name.text = teamData[currentMember].name;
+        memberName.text = teamData[currentMember].memberName;
         for (int i = 0; i < teamData[currentMember].stats.Length; i += 1) {
             infos.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = teamData[currentMember].stats[i].nameStat;
 

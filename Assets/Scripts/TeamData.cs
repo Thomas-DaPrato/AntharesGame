@@ -7,6 +7,6 @@ public class TeamData : ScriptableObject
 {
     [Header("Info Menu")]
     public Sprite sprite;
-    public string name;
+    public string memberName;
     public Stat[] stats = new Stat[3];
 }

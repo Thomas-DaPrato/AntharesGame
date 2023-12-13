@@ -62,15 +62,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayers() {
-        Debug.Log("size " + Characters.GetFighters().Count);
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP1")].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundP1 = 0;
 
         if(Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
         
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         targetsGroup.AddMember(fighter2.transform, 1, 0);
@@ -79,22 +78,22 @@ public class GameManager : MonoBehaviour
         fighter1.transform.SetParent(GameObject.Find("Fighters").transform);
         fighter2.transform.SetParent(GameObject.Find("Fighters").transform);
 
-        if (PlayerPrefs.GetInt("ChooseFighterP1") == PlayerPrefs.GetInt("ChooseFighterP2")) {
+        if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) == PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)) {
             if(fighter2.GetComponentInChildren<SkinnedMeshRenderer>() != null)
-                fighter2.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].skinMirrorMatch;
+                fighter2.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
 
             if (fighter2.GetComponentInChildren<MeshRenderer>() != null) {
-                fighter2.GetComponentInChildren<MeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt("ChooseFighterP2")].skinMirrorMatch;
+                fighter2.GetComponentInChildren<MeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
             }
         }
     }
 
     public void SetPlayerPrefToFighterAmongUS() {
-        PlayerPrefs.SetInt("ChooseFighterP1", 2);
-        PlayerPrefs.SetInt("ChooseFighterP2", 2);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 2);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 2);
     }
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre,string playerName, InputDevice controller) {
+    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre, string playerName, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetHpBarre(hpBarre);
