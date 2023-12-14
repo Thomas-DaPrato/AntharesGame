@@ -36,7 +36,7 @@ public class Credits : MonoBehaviour
                 if (currentMember < 0)
                     currentMember = teamData.Count - 1;
             }
-            Debug.Log("currentFighter " + currentMember);
+            Debug.Log("currentMember " + currentMember);
             support.sprite = teamData[currentMember].sprite;
             FillInfos();
         }
