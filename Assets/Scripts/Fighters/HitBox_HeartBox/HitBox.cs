@@ -35,16 +35,16 @@ public class HitBox : MonoBehaviour
             switch (type) {
                 case HitBoxType.Heavy:
 
-                    AttackManager(percentageDamage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
+                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
                     break;
                 case HitBoxType.Middle:
-                    AttackManager(percentageDamage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
+                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
                     break;
                 case HitBoxType.Light:
-                    AttackManager(percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
+                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
                     break;
                 case HitBoxType.Aerial:
-                    AttackManager(percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
+                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
                     break;
                 default:
                     Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");

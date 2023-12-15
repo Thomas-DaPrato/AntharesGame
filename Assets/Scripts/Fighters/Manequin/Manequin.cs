@@ -15,6 +15,7 @@ public class Manequin : MonoBehaviour
     [SerializeField]
     private bool isParrying;
 
+
     [SerializeField]
     private PlayerController playerController;
 

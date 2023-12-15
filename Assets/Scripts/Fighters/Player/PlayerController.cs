@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour {
     public GameManager gameManager;
     public float dashForce;
 
+    [SerializeField]
+    private bool isInvicible;
+
     /*[SerializeField]
     private TrailRenderer tr;*/
 
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
+        animator.SetBool("In Air", !isGrounded);
         if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
             isOnPlateform = true;
         else
@@ -157,19 +161,18 @@ public class PlayerController : MonoBehaviour {
 
     #region Event Input System
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded) {
             animator.SetBool("Run", true);
+            playerRun.Play();
+        }
+        if (!isGrounded)
+            playerRun.Stop();
         if (!isStun) {
             x = context.ReadValue<float>();
-            if (x > 0) {
+            if (x > 0)
                 x = 1;
-                animator.SetBool("Mirror", false);
-            }
-            else if (x < 0) {
+            else if (x < 0)
                 x = -1;
-                animator.SetBool("Mirror", true);
-
-            }
             else
                 x = 0;
             if (lastDirection * -1 == x && rb.velocity.x !=0) {
@@ -178,10 +181,23 @@ public class PlayerController : MonoBehaviour {
             }
             if (x != 0) 
                 lastDirection = x;
-            
+
+            if (lastDirection < 0) {
+                animator.SetBool("Mirror", true);
+                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                playerRun.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            if (lastDirection > 0) {
+                animator.SetBool("Mirror", false);
+                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+                playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            }
+
         }
-        if (context.canceled && isGrounded)
+        if (context.canceled) {
             animator.SetBool("Run", false);
+            playerRun.Stop();
+        }
     }
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
@@ -248,14 +264,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (!isStun && context.performed)
+        if (!isStun && !isAttacking && context.performed) {
             Jump();
+            
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context) {
         if (!isStun && canDash && context.performed) {
             Debug.Log("Dash");
             Dash();
+            playerDash.Play();
         }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context)
@@ -292,9 +311,11 @@ public class PlayerController : MonoBehaviour {
     #region Player Movement
     public void Jump() {
         if (nbJump > 0) {
+            animator.SetTrigger("Jump");
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             nbJump -= 1;
+            playerJump.Play();
         }
     }
 
@@ -452,6 +473,8 @@ public class PlayerController : MonoBehaviour {
 
     #region Player Fonctions
     public void TakeDamage(float percentageDamage, HitBox.HitBoxType type) {
+        if (isInvicible)
+            return;
         switch (type) {
             case HitBox.HitBoxType.Heavy:
                 if (hp <= 20.0f * maxHp / 100.0f)
