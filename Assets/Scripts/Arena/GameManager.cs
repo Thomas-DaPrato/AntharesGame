@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject UI;
     private GameObject menuPause;
     private GameObject menuEndFight;
+    private GameObject fightTransition;
 
     private static int nbRoundP1;
     private static int nbRoundP2;
@@ -35,9 +36,9 @@ public class GameManager : MonoBehaviour
     public bool onSceneTest;
 
     
-    private void Awake() {
+    private void Start() {
         if(onSceneTest)
-            SetPlayerPrefToFighterAmongUS();
+            SetPlayerPrefToFighterBourrin();
         InitGameManager();
         SpawnPlayers();
     }
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour
 
         menuEndFight = GameObject.Find("MenuEndFight");
         menuEndFight.SetActive(false);
+
+        fightTransition = GameObject.Find("FightTransition");
+        fightTransition.SetActive(false);
     }
 
     public void SpawnPlayers() {
@@ -88,7 +92,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetPlayerPrefToFighterAmongUS() {
+    public void SetPlayerPrefToFighterBourrin() {
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 0);
+    }
+    
+    public void SetPlayerPrefToFighterAmongUs() {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 2);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 2);
     }
@@ -117,6 +126,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("P1 Round " + nbRoundP1);
         Debug.Log("P2 Round " + nbRoundP2);
 
+        StartCoroutine(Transition());
         ResetFight();
 
         if(nbRoundP1 == 3 || nbRoundP2 == 3) {
@@ -130,6 +140,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator Transition() {
+        SetFighterStun();
+        fightTransition.SetActive(true);
+        yield return new WaitForSeconds(1);
+        fightTransition.SetActive(false);
+        SetFighterNotStun();
+    }
+
     public void ResetFight() {
         fighter1.GetComponent<PlayerController>().ResetFighter();
         fighter1.transform.position = spawnP1.position;
@@ -139,10 +157,23 @@ public class GameManager : MonoBehaviour
         fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         
     }
+    
+    public static void DisableFighterAnimator() {
+        fighter1.GetComponent<Animator>().enabled = false;
+        fighter2.GetComponent<Animator>().enabled = false;
+    }
+    public static void EnableFighterAniamtor() {
+        fighter1.GetComponent<Animator>().enabled = true;
+        fighter2.GetComponent<Animator>().enabled = true;
+    }
 
     public static void SetFighterNotStun() {
         fighter1.GetComponent<PlayerController>().isStun = false;
         fighter2.GetComponent<PlayerController>().isStun = false;
+    }
+    public static void SetFighterStun() {
+        fighter1.GetComponent<PlayerController>().isStun = true;
+        fighter2.GetComponent<PlayerController>().isStun = true;
     }
 
     public void DoFreeze(float duration) {

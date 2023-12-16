@@ -32,13 +32,13 @@ public class CommentateurCamera : MonoBehaviour
     public void CommentateurPiege()
     {
         if (!isCommenting) { 
-        int r = Random.Range(0, commentateurAudioPieges.Count);
-        AudioClip clip = commentateurAudioPieges[r];
-        dureeAudio = clip.length;
-        audioSource.clip = clip;
-        audioSource.Play();
-        isCommenting = true;
-        StartCoroutine(CanComment(dureeAudio));
+            int r = Random.Range(0, commentateurAudioPieges.Count);
+            AudioClip clip = commentateurAudioPieges[r];
+            dureeAudio = clip.length;
+            audioSource.clip = clip;
+            audioSource.Play();
+            isCommenting = true;
+            StartCoroutine(CanComment(dureeAudio));
         }
     }
     public void CommentateurCoups()

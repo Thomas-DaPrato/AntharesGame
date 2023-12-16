@@ -1387,6 +1387,7 @@ MonoBehaviour:
   playerName: 
   gameManager: {fileID: 0}
   dashForce: 0
+  isInvicible: 0
   playerJump: {fileID: 6776241857002243251}
   playerLand: {fileID: 8104876122139984561}
   playerRun: {fileID: 2715529769824070995}
@@ -1401,7 +1402,7 @@ MonoBehaviour:
   playerSpeed: 15
   jumpHeight: 15
   airControl: 0.4
-  groundControl: 0
+  groundControl: 0.4
   dashDistance: 50
   maxNbJumpInAir: 1
   groundLayer:
@@ -1410,7 +1411,7 @@ MonoBehaviour:
   OneWayGroundLayer:
     serializedVersion: 2
     m_Bits: 0
-  groundDrag: 5
+  groundDrag: 0
 --- !u!95 &5268319310007295484
 Animator:
   serializedVersion: 5

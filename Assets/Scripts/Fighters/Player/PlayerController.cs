@@ -161,12 +161,13 @@ public class PlayerController : MonoBehaviour {
 
     #region Event Input System
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (context.started && isGrounded) {
+        if (!isStun && context.started && isGrounded) {
             animator.SetBool("Run", true);
             playerRun.Play();
         }
         if (!isGrounded)
             playerRun.Stop();
+
         if (!isStun) {
             x = context.ReadValue<float>();
             if (x > 0)
@@ -485,7 +486,7 @@ public class PlayerController : MonoBehaviour {
                 chanceCommentateur = Random.Range(0, 3);
                 if (chanceCommentateur == 1)
                 {
-                    CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
+                    //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
                 break;
             case HitBox.HitBoxType.Middle:
@@ -505,7 +506,7 @@ public class PlayerController : MonoBehaviour {
                 chanceCommentateur = Random.Range(0, 5);
                 if (chanceCommentateur == 1)
                 {
-                    CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
+                    //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
                 }
                 
 
@@ -573,6 +574,10 @@ public class PlayerController : MonoBehaviour {
             isAttacking = false;
             return;
         }
+    }
+
+    public void RebindAnimator() {
+        animator.Rebind();
     }
     #endregion
 
