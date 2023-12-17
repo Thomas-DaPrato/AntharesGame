@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -316,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1867066259}
     m_Modifications:
+    - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: rotationScie.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8185317613982745314, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Name
       value: piege_scie (2)
@@ -886,6 +890,10 @@ PrefabInstance:
     - target: {fileID: 3076696429556365509, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_Name
       value: BaseFlammes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: tempsCharge
+      value: 1700
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429778312560, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_IsActive
@@ -2051,6 +2059,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseFlammes (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: tempsCharge
+      value: 1700
+      objectReference: {fileID: 0}
     - target: {fileID: 3076696429778312560, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2108,6 +2120,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1867066259}
     m_Modifications:
+    - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: rotationScie.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8185317613982745314, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Name
       value: piege_scie (1)
