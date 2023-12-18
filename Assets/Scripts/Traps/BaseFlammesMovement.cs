@@ -55,7 +55,7 @@ public class BaseFlammesMovement : MonoBehaviour
         if (declancheur > tempsCharge)
         {
             declancheur = 0;
-            Debug.Log("actif");
+            //Debug.Log("actif");
             canMove = false;
         }
     }

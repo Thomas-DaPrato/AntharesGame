@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 2
   heartBoxPlayer: {fileID: 4289050501973159503}
@@ -145,7 +146,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2788677706325981627}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -156,7 +157,7 @@ Transform:
   - {fileID: 4098669306525803303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!136 &2073978171873545011
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd9ff28f4630ed4288b66568b48734e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitBoxs: {fileID: 8469989241051810232}
   isOnPlateform: 0
   y: 0
   lastDirection: 0
@@ -209,6 +211,11 @@ MonoBehaviour:
   playerName: 
   gameManager: {fileID: 0}
   dashForce: 5
+  isInvicible: 0
+  playerJump: {fileID: 0}
+  playerLand: {fileID: 0}
+  playerRun: {fileID: 0}
+  playerDash: {fileID: 0}
   maxHp: 10
   fighterData: {fileID: 11400000, guid: caef5e420b7efd045b256b4fc3e414b5, type: 2}
   animator: {fileID: 4122495477622942463}
@@ -219,6 +226,7 @@ MonoBehaviour:
   playerSpeed: 15
   jumpHeight: 25
   airControl: 0.4
+  groundControl: 0
   dashDistance: 50
   maxNbJumpInAir: 1
   groundLayer:
@@ -585,6 +593,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
     m_ActionName: CharacterSelection/ChangeInfoPannel[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
+    m_ActionName: UI3D/ButtonSwap[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
+    m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -826,6 +842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 3
   heartBoxPlayer: {fileID: 4289050501973159503}
@@ -1151,6 +1168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 1
   heartBoxPlayer: {fileID: 4289050501973159503}
@@ -1265,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 3
   heartBoxPlayer: {fileID: 4289050501973159503}
@@ -1462,6 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 3
   heartBoxPlayer: {fileID: 4289050501973159503}
@@ -1613,6 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBonk: {fileID: 0}
   playerController: {fileID: 5648420388229960902}
   type: 0
   heartBoxPlayer: {fileID: 4289050501973159503}
