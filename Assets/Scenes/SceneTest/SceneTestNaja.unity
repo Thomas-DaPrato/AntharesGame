@@ -782,8 +782,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 911711268}
   - {fileID: 858125532}
   - {fileID: 1750597059}
+  - {fileID: 1870453889}
   - {fileID: 1007134323}
   - {fileID: 1858387969}
   - {fileID: 609938036}
@@ -791,10 +793,8 @@ Transform:
   - {fileID: 145910978}
   - {fileID: 66522871}
   - {fileID: 411132632}
-  - {fileID: 911711268}
-  - {fileID: 1491007809}
   - {fileID: 2117226926}
-  - {fileID: 1870453889}
+  - {fileID: 1491007809}
   - {fileID: 1115788692}
   - {fileID: 2049927166}
   - {fileID: 353323638}
@@ -8604,7 +8604,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 141006709}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &911711269
 MeshCollider:
@@ -10314,7 +10314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1125137039
 Transform:
   m_ObjectHideFlags: 0
@@ -11828,7 +11828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8f48e4b427a3c68458842d195c4eabaa, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f48e4b427a3c68458842d195c4eabaa, type: 3}
       propertyPath: m_LocalScale.x
@@ -12506,7 +12506,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d340c64309c4da845a27e01c9df54e88, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d340c64309c4da845a27e01c9df54e88, type: 3}
       propertyPath: m_LocalScale.y
@@ -13143,7 +13143,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 141006709}
-  m_RootOrder: 12
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1877233847
 PrefabInstance:
