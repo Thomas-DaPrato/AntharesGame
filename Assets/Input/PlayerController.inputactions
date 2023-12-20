@@ -381,7 +381,7 @@
                     "name": "",
                     "id": "588ca4cb-7294-4205-8b0f-9771a5a78041",
                     "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
+                    "interactions": "MultiTap",
                     "processors": "",
                     "groups": "Controller",
                     "action": "GoDownPlateform",
@@ -1463,7 +1463,7 @@
                 {
                     "name": "negative",
                     "id": "28d07663-7af2-494d-9ec8-5d48376d72f1",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1474,7 +1474,7 @@
                 {
                     "name": "positive",
                     "id": "69a96376-62b6-40ae-8b28-b8bb7b66ae39",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1533,6 +1533,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d59bf55-c459-4a3c-ae53-11c26073677e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
                     "action": "Validate",
                     "isComposite": false,
                     "isPartOfComposite": false

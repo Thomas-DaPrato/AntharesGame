@@ -1377,6 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxs: {fileID: 405796631167401659}
+  deadCam: {fileID: 0}
   isOnPlateform: 0
   y: 0
   lastDirection: 0
@@ -2601,7 +2602,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
 --- !u!4 &6184467207012500430 stripped
 Transform:

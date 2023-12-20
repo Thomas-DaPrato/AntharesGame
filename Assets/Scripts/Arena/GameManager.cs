@@ -25,10 +25,13 @@ public class GameManager : MonoBehaviour
     private static PlayerInput fighter1;
     private static PlayerInput fighter2;
 
+    #region UI Variable
     public GameObject UI;
     private GameObject menuPause;
     private GameObject menuEndFight;
     private GameObject fightTransition;
+    private GameObject timer;
+    #endregion
 
     private static int nbRoundP1;
     private static int nbRoundP2;
@@ -62,20 +65,20 @@ public class GameManager : MonoBehaviour
         menuEndFight.SetActive(false);
 
         fightTransition = GameObject.Find("FightTransition");
-        fightTransition.SetActive(false);
+
+        timer = GameObject.Find("Timer");
     }
 
     public void SpawnPlayers() {
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundP1 = 0;
 
         if(Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
         
-        fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundP2 = 0;
 
@@ -102,7 +105,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 2);
     }
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, Image hpBarre, string playerName, InputDevice controller) {
+    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, Image hpBarre, string playerName, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetHpBarre(hpBarre);
@@ -111,6 +114,8 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().gameManager = this;
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
         fighter.GetComponent<PlayerController>().isStun = true;
+        fighter.GetComponent<PlayerController>().lastDirection = lastDirection;
+        //fighter.GetComponent<PlayerController>().deadCam.SetActive(false);
 
 
         return fighter;
@@ -126,8 +131,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("P1 Round " + nbRoundP1);
         Debug.Log("P2 Round " + nbRoundP2);
 
-        StartCoroutine(Transition());
-        ResetFight();
+        StartCoroutine(Transition(looser));
 
         if(nbRoundP1 == 3 || nbRoundP2 == 3) {
             Debug.Log("P1 win " + nbRoundP1 + " rounds, P2 win " + nbRoundP2 + " rounds");
@@ -140,21 +144,40 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public IEnumerator Transition() {
+    public IEnumerator Transition(string looser) {
         SetFighterStun();
-        fightTransition.SetActive(true);
+
+        if (looser.Equals("P1")) {
+            //fighter1.GetComponent<PlayerController>().deadCam.SetActive(true);
+            fighter1.GetComponent<Animator>().SetTrigger("End Round Death");
+        }
+        if (looser.Equals("P2")) {
+            //fighter2.GetComponent<PlayerController>().deadCam.SetActive(true);
+            fighter2.GetComponent<Animator>().SetTrigger("End Round Death");
+        }
+
+        Time.timeScale = 0.5f;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Time.timeScale = 1f;
+        
+        fightTransition.GetComponent<Animator>().SetTrigger("Close");
         yield return new WaitForSeconds(1);
-        fightTransition.SetActive(false);
+        ResetFight();
+        yield return new WaitForSeconds(1);
+        fightTransition.GetComponent<Animator>().SetTrigger("Open");
         SetFighterNotStun();
     }
 
     public void ResetFight() {
-        fighter1.GetComponent<PlayerController>().ResetFighter();
+        fighter1.GetComponent<PlayerController>().ResetFighter(1);
+        //fighter1.GetComponent<PlayerController>().deadCam.SetActive(false);
         fighter1.transform.position = spawnP1.position;
         
-        fighter2.GetComponent<PlayerController>().ResetFighter();
+        fighter2.GetComponent<PlayerController>().ResetFighter(-1);
+        //fighter2.GetComponent<PlayerController>().deadCam.SetActive(false);
         fighter2.transform.position = spawnP2.position;
-        fighter2.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         
     }
     

@@ -4,12 +4,16 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using DG.Tweening;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
+
     [SerializeField]
     private GameObject hitBoxs;
+
+    //public GameObject deadCam;
 
     #region Intern Variable
     private bool isGrounded;
@@ -71,6 +75,11 @@ public class PlayerController : MonoBehaviour {
     private float maxHp;
     private float hp;
 
+    private List<Image> whiteHpBarre;
+    private List<Image> redHpBarre;
+
+    private int currentCell;
+
     [SerializeField]
     private FighterData fighterData;
     public FighterData GetFighterData() { return fighterData; }
@@ -131,22 +140,38 @@ public class PlayerController : MonoBehaviour {
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
+        currentCell = whiteHpBarre.Count - 1;
     }
 
     private void Update() {
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
+        
         animator.SetBool("In Air", !isGrounded);
+
         if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
             isOnPlateform = true;
         else
             isOnPlateform = false;
 
+        if (lastDirection < 0) {
+            animator.SetBool("Mirror", true);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            //deadCam.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        if (lastDirection > 0) {
+            animator.SetBool("Mirror", false);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            //deadCam.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+        }
+
         SpeedController();
     }
 
     void FixedUpdate() {
-        if (isGrounded) {
+        if (isGrounded && rb.velocity.y == 0) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
             cansDashUp = true;
@@ -154,7 +179,8 @@ public class PlayerController : MonoBehaviour {
         else
             rb.drag = 0;
 
-        Move();
+        if(!isAttacking)
+            Move();
     }
 
 
@@ -170,29 +196,23 @@ public class PlayerController : MonoBehaviour {
 
         if (!isStun) {
             x = context.ReadValue<float>();
+
             if (x > 0)
                 x = 1;
             else if (x < 0)
                 x = -1;
             else
                 x = 0;
+
             if (lastDirection * -1 == x && rb.velocity.x !=0) {
                 Debug.Log("drift");
                 animator.SetTrigger("Drift");
             }
+
             if (x != 0) 
                 lastDirection = x;
 
-            if (lastDirection < 0) {
-                animator.SetBool("Mirror", true);
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                playerRun.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-            }
-            if (lastDirection > 0) {
-                animator.SetBool("Mirror", false);
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-                playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            }
+            
 
         }
         if (context.canceled) {
@@ -527,13 +547,20 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log("fill " + hpBarre.fillAmount);
     }
 
+    public void UpdateHpBarre(float percentageDamage) {
+        float percentageDamageRemaining = percentageDamage;
+        while(percentageDamageRemaining > 0) {
+            percentageDamageRemaining -= 20;
+        }
+    }
+
     public void PlayerDie() {
         Debug.Log("T MORT !!!!!");
         gameManager.EndRound(playerName);
     }
 
-    public void ResetFighter() {
-        lastDirection = 0;
+    public void ResetFighter(int lastDirection) {
+        this.lastDirection = lastDirection;
         isAttacking = false;
         isParrying = false;
         isStun = false;
