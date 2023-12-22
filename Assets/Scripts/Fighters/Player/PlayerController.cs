@@ -81,6 +81,10 @@ public class PlayerController : MonoBehaviour
     private List<Image> whiteHpBarre;
     private List<Image> redHpBarre;
 
+    private bool canDecreaseRedHpBarre = false;
+    [SerializeField]
+    private float rateRedHpBarre;
+
     private int currentWhiteCell;
     private int currentRedCell;
 
@@ -168,6 +172,17 @@ public class PlayerController : MonoBehaviour
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
             playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
             //deadCam.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+        }
+
+        if (canDecreaseRedHpBarre) {
+            Debug.Log("decrease");
+            if (currentRedCell == currentWhiteCell && whiteHpBarre[currentWhiteCell].fillAmount >= redHpBarre[currentRedCell].fillAmount)
+                canDecreaseRedHpBarre = false;
+            else {
+                redHpBarre[currentRedCell].fillAmount -= 0.01f;
+                if (redHpBarre[currentRedCell].fillAmount == 0)
+                    currentRedCell -= 1;
+            }
         }
 
         SpeedController();
@@ -516,13 +531,13 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("percentageHp " + (hp / maxHp));
 
-        UpdateHpBarre(percentageDamage);
+        StartCoroutine(UpdateHpBarre(percentageDamage));
 
         Debug.Log(gameObject.name + " hp " + hp);
     }
 
 
-    public void UpdateHpBarre(float percentageDamage) {
+    public IEnumerator UpdateHpBarre(float percentageDamage) {
         float nbCellToUpdate = percentageDamage / 20;
         int nbCellFull = (int) nbCellToUpdate;
         float nbCellDecimal = nbCellToUpdate - nbCellFull;
@@ -552,7 +567,9 @@ public class PlayerController : MonoBehaviour
                 whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal;
         }
 
+        yield return new WaitForSeconds(0.4f);
 
+        canDecreaseRedHpBarre = true;
 
     }
 
