@@ -70,14 +70,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayers() {
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, GameObject.Find("Player1Hp").GetComponent<Image>(), "P1", Gamepad.all[0]);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, GameObject.Find("HpBarreP1").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP1").GetComponent<HpBarre>().redHpBarre, "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundP1 = 0;
 
         if(Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Keyboard.current);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().redHpBarre, "P2", Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("Player2Hp").GetComponent<Image>(), "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().redHpBarre, "P2", Gamepad.all[1]);
         
         targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundP2 = 0;
@@ -105,10 +105,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 2);
     }
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, Image hpBarre, string playerName, InputDevice controller) {
+    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
-        fighter.GetComponent<PlayerController>().SetHpBarre(hpBarre);
+        fighter.GetComponent<PlayerController>().SetHpBarre(whiteHpBarre,redHpBarre);
         fighter.GetComponent<PlayerController>().SetMenuPause(menuPause);
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
@@ -161,6 +161,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Time.timeScale = 1f;
+
         
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
         yield return new WaitForSeconds(1);

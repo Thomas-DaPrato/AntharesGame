@@ -6,8 +6,10 @@ using UnityEngine.VFX;
 using DG.Tweening;
 using System.Collections.Generic;
 
+
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     private Rigidbody rb;
 
     [SerializeField]
@@ -19,16 +21,17 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded;
     private bool cansDashUp = true;
     private bool isDashDown = false;
+    private bool isDie = false;
     [HideInInspector]
     public bool isOnPlateform = false;
 
-    
+
 
     private float x = 0;
     [HideInInspector]
     public float y = 0;
 
-    private int chanceCommentateur=0;
+    private int chanceCommentateur = 0;
 
 
     [HideInInspector]
@@ -78,7 +81,8 @@ public class PlayerController : MonoBehaviour {
     private List<Image> whiteHpBarre;
     private List<Image> redHpBarre;
 
-    private int currentCell;
+    private int currentWhiteCell;
+    private int currentRedCell;
 
     [SerializeField]
     private FighterData fighterData;
@@ -91,12 +95,11 @@ public class PlayerController : MonoBehaviour {
     private TrailRenderer tr;
 
     [SerializeField]
-    private GameObject upperLeftLimit , lowerRightLimit;
+    private GameObject upperLeftLimit, lowerRightLimit;
 
     [SerializeField]
     private GameObject CameraSong;
 
-    private Image hpBarre;
     private GameObject menuPause;
 
     #region Movement Variable
@@ -122,7 +125,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private int maxNbJumpInAir;
     private int nbJump;
-    
+
     [Space(20)]
 
     [SerializeField]
@@ -140,13 +143,13 @@ public class PlayerController : MonoBehaviour {
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
-        currentCell = whiteHpBarre.Count - 1;
+
     }
 
     private void Update() {
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
-        
+
         animator.SetBool("In Air", !isGrounded);
 
         if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
@@ -179,7 +182,7 @@ public class PlayerController : MonoBehaviour {
         else
             rb.drag = 0;
 
-        if(!isAttacking)
+        if (!isAttacking)
             Move();
     }
 
@@ -204,15 +207,15 @@ public class PlayerController : MonoBehaviour {
             else
                 x = 0;
 
-            if (lastDirection * -1 == x && rb.velocity.x !=0) {
+            if (lastDirection * -1 == x && rb.velocity.x != 0) {
                 Debug.Log("drift");
                 animator.SetTrigger("Drift");
             }
 
-            if (x != 0) 
+            if (x != 0)
                 lastDirection = x;
 
-            
+
 
         }
         if (context.canceled) {
@@ -223,7 +226,7 @@ public class PlayerController : MonoBehaviour {
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
             y = context.ReadValue<float>();
-            
+
         }
     }
 
@@ -287,7 +290,7 @@ public class PlayerController : MonoBehaviour {
     public void OnJump(InputAction.CallbackContext context) {
         if (!isStun && !isAttacking && context.performed) {
             Jump();
-            
+
         }
     }
 
@@ -298,17 +301,15 @@ public class PlayerController : MonoBehaviour {
             playerDash.Play();
         }
     }
-    public void OnGoDownPlateform(InputAction.CallbackContext context)
-    {
-        if (!isStun && isGrounded && isOnPlateform && context.performed){
+    public void OnGoDownPlateform(InputAction.CallbackContext context) {
+        if (!isStun && isGrounded && isOnPlateform && context.performed) {
             Debug.Log("DashDown");
             DashDown();
         }
     }
 
-    public void OnDashUp(InputAction.CallbackContext context)
-    {
-        if (!isStun && context.performed && cansDashUp && !isGrounded){
+    public void OnDashUp(InputAction.CallbackContext context) {
+        if (!isStun && context.performed && cansDashUp && !isGrounded) {
             cansDashUp = false;
             Debug.Log("DashUp");
             DashUp();
@@ -319,7 +320,7 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (menuPause.activeSelf) {
                 menuPause.SetActive(false);
-                Time.timeScale = 1;               
+                Time.timeScale = 1;
             }
             else {
                 menuPause.SetActive(true);
@@ -361,7 +362,7 @@ public class PlayerController : MonoBehaviour {
     public void SpeedController() {
         Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, 0f);
 
-        if(flatVelocity.magnitude > playerSpeed) {
+        if (flatVelocity.magnitude > playerSpeed) {
             Vector3 limitedSpeed = flatVelocity.normalized * playerSpeed;
             rb.velocity = new Vector3(limitedSpeed.x, rb.velocity.y, 0f);
         }
@@ -370,54 +371,45 @@ public class PlayerController : MonoBehaviour {
     public void Dash() {
         /*Vector3 move = new Vector3(lastDirection, 0, 0);
         rb.AddForce(move * dashDistance, ForceMode.Impulse);*/
-        
-        if (lastDirection < 0){
 
-            if(transform.position.x - dashForce < upperLeftLimit.transform.position.x)
-            {
+        if (lastDirection < 0) {
+
+            if (transform.position.x - dashForce < upperLeftLimit.transform.position.x) {
                 transform.DOMoveX(upperLeftLimit.transform.position.x, 0.3f);
             }
-            else
-            {
+            else {
                 transform.DOMoveX(transform.position.x - dashForce, 0.3f);
             }
-            
-        }else if (lastDirection > 0){
 
-            if (transform.position.x + dashForce > lowerRightLimit.transform.position.x)
-            {
+        }
+        else if (lastDirection > 0) {
+
+            if (transform.position.x + dashForce > lowerRightLimit.transform.position.x) {
                 transform.DOMoveX(lowerRightLimit.transform.position.x, 0.3f);
             }
-            else
-            {
+            else {
                 transform.DOMoveX(transform.position.x + dashForce, 0.3f);
             }
-            
+
         }
 
-        if (y < 0)
-        {
-            if(transform.position.y - dashForce < lowerRightLimit.transform.position.y)
-            {
+        if (y < 0) {
+            if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
                 transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
             }
-            else
-            {
+            else {
                 transform.DOMoveY(transform.position.y - dashForce, 0.3f);
             }
-            
+
         }
-        else if (y > 0)
-        {
-            if (transform.position.y + dashForce > upperLeftLimit.transform.position.y)
-            {
+        else if (y > 0) {
+            if (transform.position.y + dashForce > upperLeftLimit.transform.position.y) {
                 transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
             }
-            else
-            {
+            else {
                 transform.DOMoveY(transform.position.y + dashForce, 0.3f);
             }
-            
+
         }
 
         canDash = false;
@@ -426,33 +418,27 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
-    public void DashDown()
-    {
-        if(transform.position.y - dashForce < lowerRightLimit.transform.position.y)
-        {
+    public void DashDown() {
+        if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
             transform.DOMoveY(lowerRightLimit.transform.position.y, 0.2f);
         }
-        else
-        {
+        else {
             transform.DOMoveY(transform.position.y - dashForce, 0.2f);
         }
-        
+
         tr.emitting = true;
-        isDashDown=true;
+        isDashDown = true;
         StartCoroutine(StopDash());
         //Vector3 move = new Vector3(0, -1, 0);
         //rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
 
 
     }
-    public void DashUp()
-    {
-        if (transform.position.y + dashForce > upperLeftLimit.transform.position.y)
-        {
+    public void DashUp() {
+        if (transform.position.y + dashForce > upperLeftLimit.transform.position.y) {
             transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
         }
-        else
-        {
+        else {
             transform.DOMoveY(transform.position.y + dashForce, 0.3f);
         }
         tr.emitting = true;
@@ -464,21 +450,18 @@ public class PlayerController : MonoBehaviour {
     public IEnumerator DashCoolDown() {
         yield return new WaitForSeconds(1);
         canDash = true;
-        
+
     }
 
-    public IEnumerator StopDash()
-    {
-        if (isDashDown)
-        {
+    public IEnumerator StopDash() {
+        if (isDashDown) {
             yield return new WaitForSeconds(0.2f);
             isDashDown = false;
         }
-        else
-        {
+        else {
             yield return new WaitForSeconds(0.3f);
         }
-        
+
         tr.emitting = false;
     }
 
@@ -504,58 +487,79 @@ public class PlayerController : MonoBehaviour {
                     hp -= percentageDamage * maxHp / 100.0f;
 
                 chanceCommentateur = Random.Range(0, 3);
-                if (chanceCommentateur == 1)
-                {
+                if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
                 break;
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
-                else {
+                else 
                     hp -= percentageDamage * maxHp / 100.0f;
-                    if (hp <= 0)
-                        hp = 1;
-                }
                 break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
-                if (hp <= 0)
-                    hp = 1;
-
                 chanceCommentateur = Random.Range(0, 5);
-                if (chanceCommentateur == 1)
-                {
+                if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
                 }
-                
+
 
                 break;
-            default :
+            default:
                 hp -= percentageDamage * maxHp / 100.0f;
-                if (hp <= 0)
-                    hp = 1;
                 break;
         }
+
+        if (!isDie && hp < 0)
+            hp = 1;
 
         Debug.Log("percentageHp " + (hp / maxHp));
-        if(hpBarre != null) {
-            hpBarre.fillAmount = hp / maxHp;
-        }
-            
+
+        UpdateHpBarre(percentageDamage);
+
         Debug.Log(gameObject.name + " hp " + hp);
-        //Debug.Log("fill " + hpBarre.fillAmount);
     }
 
+
     public void UpdateHpBarre(float percentageDamage) {
-        float percentageDamageRemaining = percentageDamage;
-        while(percentageDamageRemaining > 0) {
-            percentageDamageRemaining -= 20;
+        float nbCellToUpdate = percentageDamage / 20;
+        int nbCellFull = (int) nbCellToUpdate;
+        float nbCellDecimal = nbCellToUpdate - nbCellFull;
+
+
+        for (int i = nbCellFull; !isDie && (i > 0); i -= 1) {
+            if (currentWhiteCell > 0) {
+                whiteHpBarre[currentWhiteCell].fillAmount = 0;
+                currentWhiteCell -= 1;
+            }
         }
+
+        if (!isDie) {
+            if (whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal < 0) {
+                //fillAmountRemaining alway be negative
+                float fillAmountRemaining = whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal;
+                whiteHpBarre[currentWhiteCell].fillAmount += fillAmountRemaining;
+                currentWhiteCell -= 1;
+                if (currentWhiteCell >= 0)
+                    whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal + fillAmountRemaining;
+            }
+            else if (whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal == 0) {
+                whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal;
+                currentWhiteCell -= 1;
+            }
+            else
+                whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal;
+        }
+
+
+
     }
 
     public void PlayerDie() {
         Debug.Log("T MORT !!!!!");
+        hp = 0;
+        isDie = true;
         gameManager.EndRound(playerName);
     }
 
@@ -565,22 +569,32 @@ public class PlayerController : MonoBehaviour {
         isParrying = false;
         isStun = false;
         canDash = true;
+        isDie = false;
 
         hp = maxHp;
+        for (int i = 0; i < whiteHpBarre.Count; i += 1) {
+            whiteHpBarre[i].fillAmount = 1;
+            redHpBarre[i].fillAmount = 1;
+        }
+
+        currentWhiteCell = whiteHpBarre.Count - 1;
+        currentRedCell = redHpBarre.Count - 1;
+
+
         nbJump = maxNbJumpInAir;
     }
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
-    
+
 
     public void LaunchAerialAttack(float x, float y) {
         Debug.Log("Aerial");
         Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
-        
+
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
             Debug.Log(gameObject.name + " Aerial Up");
             animator.SetTrigger("Aerial Up");
@@ -590,7 +604,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log(gameObject.name + " Aerial Middle");
             animator.SetTrigger("Aerial Middle");
         }
-        
+
         if (coordinate.x <= 0.66f && coordinate.y < 0) {
             Debug.Log(gameObject.name + " Aerial Down");
             animator.SetTrigger("Aerial Down");
@@ -631,7 +645,7 @@ public class PlayerController : MonoBehaviour {
 
     public void SetIsStunFalse() {
         isStun = false;
-        
+
     }
     #endregion
 
@@ -639,8 +653,11 @@ public class PlayerController : MonoBehaviour {
         isGrounded = val;
     }
 
-    public void SetHpBarre(Image hpBarreInGame) {
-        hpBarre = hpBarreInGame;
+    public void SetHpBarre(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame) {
+        whiteHpBarre = whiteHpBarreInGame;
+        redHpBarre = redHpBarreInGame;
+        currentWhiteCell = whiteHpBarre.Count - 1;
+        currentRedCell = redHpBarre.Count - 1;
     }
 
     public void SetMenuPause(GameObject menuPauseInGame) {

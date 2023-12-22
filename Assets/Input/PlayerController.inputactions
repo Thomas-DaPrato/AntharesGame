@@ -1075,7 +1075,7 @@
             ],
             "bindings": [
                 {
-                    "name": "QD",
+                    "name": "Left/Right",
                     "id": "48e3427e-7587-401d-ba39-98e6675198d3",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1088,7 +1088,7 @@
                 {
                     "name": "negative",
                     "id": "1bc072b4-fbf6-446b-acdd-a335ef7a1f02",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1099,7 +1099,7 @@
                 {
                     "name": "positive",
                     "id": "dc6aea66-dcc2-4f96-9a9a-83336773b6c6",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1121,7 +1121,7 @@
                 {
                     "name": "",
                     "id": "1f1f0b23-2742-4154-be3f-33d17e0c1866",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1176,7 +1176,7 @@
                 {
                     "name": "",
                     "id": "1a073a41-7dfe-4d4a-9760-3434c1c19798",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1198,7 +1198,7 @@
                 {
                     "name": "",
                     "id": "b7f7acf8-e3c2-42ea-8bc5-9473c3d23460",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1277,7 +1277,7 @@
             ],
             "bindings": [
                 {
-                    "name": "QD",
+                    "name": "Left/Right",
                     "id": "e883ab5c-acff-4d52-a3df-318729dcf030",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1290,7 +1290,7 @@
                 {
                     "name": "negative",
                     "id": "d07779dd-b819-49e3-a470-226c42d2eb69",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1301,7 +1301,7 @@
                 {
                     "name": "positive",
                     "id": "72a0e30f-e113-4d80-811b-687029cb664c",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1334,7 +1334,7 @@
                 {
                     "name": "",
                     "id": "6aee1c2b-f83c-4416-b7fc-ced53cf8e2e2",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -1380,7 +1380,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Right/Left",
+                    "name": "KM",
                     "id": "b29053ec-adb7-4acc-bd15-ecffbf1cda78",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1393,7 +1393,7 @@
                 {
                     "name": "negative",
                     "id": "97ab4398-1930-41e9-a597-b97f7d6a360d",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1404,7 +1404,7 @@
                 {
                     "name": "positive",
                     "id": "b5cd2677-750b-4eef-9aca-28ebf38fccaa",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1419,6 +1419,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "961605c6-6fde-4751-81ac-f6e9f9388195",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1450,7 +1461,7 @@
             ],
             "bindings": [
                 {
-                    "name": "ZS",
+                    "name": "Up/Down",
                     "id": "4fa58ec8-b276-4490-9519-788d50d29576",
                     "path": "1DAxis",
                     "interactions": "",

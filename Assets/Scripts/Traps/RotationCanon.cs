@@ -35,7 +35,7 @@ public class RotationCanon : MonoBehaviour
                 declancheur++;
                 if (declancheur > tempsCharge)
                 {
-                    Debug.Log("actif");
+                    //Debug.Log("actif");
                     tir = true;
                 }
 

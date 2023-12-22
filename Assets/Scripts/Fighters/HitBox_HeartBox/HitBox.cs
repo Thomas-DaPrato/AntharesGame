@@ -25,8 +25,6 @@ public class HitBox : MonoBehaviour
     [SerializeField]
     private GameObject heartBoxPlayer;
 
-    [SerializeField]
-    private float percentageDamage;
 
     
     private void OnTriggerEnter(Collider other) {
@@ -38,13 +36,13 @@ public class HitBox : MonoBehaviour
                     AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
                     break;
                 case HitBoxType.Middle:
-                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
+                    AttackManager(fighterData.middleAttack.percentageDamage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
                     break;
                 case HitBoxType.Light:
-                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
+                    AttackManager(fighterData.lightAttack.percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
                     break;
                 case HitBoxType.Aerial:
-                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
+                    AttackManager(fighterData.aerialAttack.percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
                     break;
                 default:
                     Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");

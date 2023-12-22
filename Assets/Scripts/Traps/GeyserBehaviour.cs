@@ -37,7 +37,7 @@ public class GeyserBehaviour : MonoBehaviour
         if (declancheur > tempsCharge)
         {
             declancheur = 0;
-            Debug.Log("actif");
+            //Debug.Log("actif");
             tremble = true;
         }
     }

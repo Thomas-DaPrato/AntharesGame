@@ -16,7 +16,7 @@ public class LoadArenaASync : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync("Game");
         operation.allowSceneActivation = false;
         while (!operation.isDone) {
-            Debug.Log(operation.progress);
+            //Debug.Log(operation.progress);
             if (canChangeScene && operation.progress == 0.9f) {
                 operation.allowSceneActivation = true;
             }
