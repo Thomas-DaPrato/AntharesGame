@@ -16,5 +16,6 @@ public class MenuPause : MonoBehaviour
     public void Resume() {
         gameObject.SetActive(false);
         Time.timeScale = 1;
+        GameManager.SetActionMap("Player");
     }
 }

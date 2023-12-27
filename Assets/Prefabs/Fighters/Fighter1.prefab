@@ -65,7 +65,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894856842993145036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: 0.37, z: 0}
+  m_LocalPosition: {x: -0.703, y: 0.237, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBonk: {fileID: 0}
+  playerBonk: {fileID: 415078637176929400}
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBonk: {fileID: 0}
+  playerBonk: {fileID: 6462365689820332375}
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
@@ -630,7 +630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3086532959163525696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.075, y: 0.377, z: 0}
+  m_LocalPosition: {x: -1.075, y: 0.533, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -759,8 +759,8 @@ VisualEffect:
   m_GameObject: {fileID: 3471071766362322015}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -869,8 +869,8 @@ VisualEffect:
   m_GameObject: {fileID: 3553887505749380500}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff492bd398dc6e545ac466a27f028e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBonk: {fileID: 0}
+  playerBonk: {fileID: 5080310210067957814}
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
@@ -1332,8 +1332,8 @@ VisualEffect:
   m_GameObject: {fileID: 5601323409231858228}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -1510,6 +1510,50 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &5824648859766781466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8361993661263864058}
+  - component: {fileID: 1974464482336729388}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8361993661263864058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824648859766781466}
+  m_LocalRotation: {x: 0.107296534, y: 0.20224641, z: -0.022298478, w: -0.9731838}
+  m_LocalPosition: {x: 0.5235921, y: -0.69000196, z: 4.628237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1150896965919387066}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1974464482336729388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824648859766781466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6240159690015248056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1593,7 @@ Transform:
   - {fileID: 1046523303918456833}
   - {fileID: 3190598405555709279}
   - {fileID: 8060985727840387930}
+  - {fileID: 1150896965919387066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1595,7 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBoxs: {fileID: 405796631167401659}
-  isOnPlateform: 0
+  fighterCam: {fileID: 7753521008608249549}
   y: 0
   lastDirection: 0
   isAttacking: 0
@@ -1604,25 +1649,24 @@ MonoBehaviour:
   canDash: 1
   playerName: 
   gameManager: {fileID: 0}
-  dashForce: 0
+  dashForce: 10
   isInvicible: 0
   playerJump: {fileID: 6776241857002243251}
   playerLand: {fileID: 8104876122139984561}
   playerRun: {fileID: 2715529769824070995}
   playerDash: {fileID: 1228340352156086507}
   maxHp: 10
-  rateRedHpBarre: 0
+  rateRedHpBarre: 0.1
   fighterData: {fileID: 11400000, guid: 96946a2be377d0241bff423d7f13de91, type: 2}
   animator: {fileID: 5268319310007295484}
-  tr: {fileID: 0}
   upperLeftLimit: {fileID: 0}
   lowerRightLimit: {fileID: 0}
   CameraSong: {fileID: 0}
+  playerInput: {fileID: 0}
   playerSpeed: 15
   jumpHeight: 15
   airControl: 0.4
   groundControl: 0.4
-  dashDistance: 50
   maxNbJumpInAir: 1
   groundLayer:
     serializedVersion: 2
@@ -1828,7 +1872,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4488373448364204997}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnDashDown
+        m_MethodName: OnGoDownPlateform
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1953,11 +1997,35 @@ MonoBehaviour:
     m_ActionId: 2ce1e4f9-40d9-4d6a-870f-e89191b1cda0
     m_ActionName: UI/Start / A[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4488373448364204997}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnChangePannel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9bbfa3ee-5d99-45ab-a689-dceb87c9b53e
     m_ActionName: OptionSwap/ChangeOptionPannel[/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4488373448364204997}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnReturn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 01cd7a7b-1a13-400c-9686-811e658cfe4d
     m_ActionName: OptionSwap/Back
   - m_PersistentCalls:
@@ -2037,8 +2105,8 @@ VisualEffect:
   m_GameObject: {fileID: 6473195694780540628}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -2147,8 +2215,8 @@ VisualEffect:
   m_GameObject: {fileID: 7618037779249352681}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -2215,6 +2283,77 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &7753521008608249549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150896965919387066}
+  - component: {fileID: 7007843572444665746}
+  m_Layer: 0
+  m_Name: FighterCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1150896965919387066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7753521008608249549}
+  m_LocalRotation: {x: 0.026208252, y: -0.9500878, z: 0.08312195, w: 0.29956153}
+  m_LocalPosition: {x: 2, y: 1, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8361993661263864058}
+  m_Father: {fileID: 5793388193495133462}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 10, y: -145, z: 0}
+--- !u!114 &7007843572444665746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7753521008608249549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_Lens:
+    FieldOfView: 100
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
+    Dutch: 0
+    ModeOverride: 0
+    LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1, y: 1}
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 8361993661263864058}
 --- !u!1 &8144324929031126565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,8 +2511,8 @@ VisualEffect:
   m_GameObject: {fileID: 8351446936594263177}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b55056f089b44b4e8c6f2197c2ba7ea, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1

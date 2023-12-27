@@ -60,7 +60,15 @@ public class CharacterSelecter : MonoBehaviour
         currentFighter = 0;
     }
 
-    
+    private void OnEnable() {
+        haveChooseFighter = false;
+        ready.SetActive(false);
+        support.sprite = Characters.GetFighters()[currentFighter].spriteNotSelected;
+        animatorBackground.SetBool("isSelected", false);
+        PlayerPrefs.SetInt(gameObject.name, -1);
+    }
+
+
     public void OnCharacterSwap(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
             infos.SetActive(false);

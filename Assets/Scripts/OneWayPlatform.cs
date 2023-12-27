@@ -30,18 +30,6 @@ public class OneWayPlatform : MonoBehaviour
     }
    
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (other.GetComponent<PlayerController>().y < 0)
-            {
-
-                other.gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
-            }
-        }
-        
-    }
 
     
 

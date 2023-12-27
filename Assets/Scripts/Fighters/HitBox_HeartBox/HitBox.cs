@@ -63,9 +63,9 @@ public class HitBox : MonoBehaviour
     }
 
     private void AttackManager(float percentageDamage, float knockbackForce, float timeStun, Collider collider) {
-        collider.GetComponentInParent<PlayerController>().SetTriggerStun(timeStun);
         collider.GetComponent<HeartBox>().TakeDamage(percentageDamage, type);
         collider.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(playerController.lastDirection,1));
+        collider.GetComponentInParent<PlayerController>().SetTriggerStun(timeStun);
         playerBonk.Play();
         //GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(1);
         //GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(2);

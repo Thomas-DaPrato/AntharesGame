@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class OptionsSwapper : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> optionsPannel;
+
+    [SerializeField]
+    private GameObject options;
+
+    [SerializeField]
+    private EventSystem eventSystem;
+
+    [SerializeField]
+    private GameObject objectSelectedOnReturn;
 
     private int currentPannel;
 
@@ -32,7 +42,12 @@ public class OptionsSwapper : MonoBehaviour
         }
     }
 
-   
+   public void OnReturn(InputAction.CallbackContext context) {
+        if (context.performed) {
+            options.SetActive(false);
+            eventSystem.SetSelectedGameObject(objectSelectedOnReturn);
+        }
+    }
 
    
 }

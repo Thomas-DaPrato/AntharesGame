@@ -15,17 +15,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject hitBoxs;
 
-    //public GameObject deadCam;
+    public GameObject fighterCam;
 
     #region Intern Variable
     private bool isGrounded;
-    private bool cansDashUp = true;
     private bool isDashDown = false;
     private bool isDie = false;
-    [HideInInspector]
-    public bool isOnPlateform = false;
-
-
+    private bool isOnPlateform = false;
 
     private float x = 0;
     [HideInInspector]
@@ -34,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private int chanceCommentateur = 0;
 
 
+    [Header("Variables")]
     [HideInInspector]
     public float lastDirection = 0;
     //[HideInInspector]
@@ -53,8 +50,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isInvicible;
 
-    /*[SerializeField]
-    private TrailRenderer tr;*/
 
     #endregion
 
@@ -73,7 +68,8 @@ public class PlayerController : MonoBehaviour
 
     [Space(20)]
 
-
+    #region HP
+    [Header("Hp")]
     [SerializeField]
     private float maxHp;
     private float hp;
@@ -87,16 +83,16 @@ public class PlayerController : MonoBehaviour
 
     private int currentWhiteCell;
     private int currentRedCell;
+    #endregion
 
+    [Space(20)]
+    [Header("Autres variables")]
     [SerializeField]
     private FighterData fighterData;
     public FighterData GetFighterData() { return fighterData; }
 
     [SerializeField]
     private Animator animator;
-
-    [SerializeField]
-    private TrailRenderer tr;
 
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
@@ -106,32 +102,31 @@ public class PlayerController : MonoBehaviour
 
     private GameObject menuPause;
 
-    #region Movement Variable
     [SerializeField]
-    private float playerSpeed;
+    private PlayerInput playerInput;
+
+    #region Movement Variable
+
 
     [Space(20)]
 
+    [Header("Mouvement")]
+    [SerializeField]
+    private float playerSpeed;
     [SerializeField]
     private float jumpHeight;
     [SerializeField]
     private float airControl;
     [SerializeField]
     private float groundControl;
-
-    [Space(20)]
-
-    [SerializeField]
-    private float dashDistance;
-
-    [Space(20)]
-
     [SerializeField]
     private int maxNbJumpInAir;
     private int nbJump;
 
+
     [Space(20)]
 
+    [Header("Friction")]
     [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
@@ -165,13 +160,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Mirror", true);
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
             playerRun.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-            //deadCam.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         }
         if (lastDirection > 0) {
             animator.SetBool("Mirror", false);
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
             playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            //deadCam.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
         }
 
         if (canDecreaseRedHpBarre) {
@@ -179,7 +172,7 @@ public class PlayerController : MonoBehaviour
             if (currentRedCell == currentWhiteCell && whiteHpBarre[currentWhiteCell].fillAmount >= redHpBarre[currentRedCell].fillAmount)
                 canDecreaseRedHpBarre = false;
             else {
-                redHpBarre[currentRedCell].fillAmount -= 0.01f;
+                redHpBarre[currentRedCell].fillAmount -= rateRedHpBarre;
                 if (redHpBarre[currentRedCell].fillAmount == 0)
                     currentRedCell -= 1;
             }
@@ -192,7 +185,6 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && rb.velocity.y == 0) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
-            cansDashUp = true;
         }
         else
             rb.drag = 0;
@@ -204,6 +196,7 @@ public class PlayerController : MonoBehaviour
 
 
     #region Event Input System
+    #region Map Player
     public void OnMoveX(InputAction.CallbackContext context) {
         if (!isStun && context.started && isGrounded) {
             animator.SetBool("Run", true);
@@ -291,6 +284,7 @@ public class PlayerController : MonoBehaviour
             }
             y = context.ReadValue<Vector2>()[1];
             LaunchAerialAttack(x, y);
+            
         }
     }
 
@@ -323,26 +317,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnDashUp(InputAction.CallbackContext context) {
-        if (!isStun && context.performed && cansDashUp && !isGrounded) {
-            cansDashUp = false;
-            Debug.Log("DashUp");
-            DashUp();
-        }
-    }
 
     public void OnPause(InputAction.CallbackContext context) {
         if (context.performed) {
             if (menuPause.activeSelf) {
-                menuPause.SetActive(false);
-                Time.timeScale = 1;
+                menuPause.GetComponent<MenuPause>().Resume();
             }
             else {
                 menuPause.SetActive(true);
                 Time.timeScale = 0;
+                GameManager.SetActionMap("OptionSwap");
             }
         }
     }
+    #endregion
+
+    #region Map Options Swapper
+    public void OnChangePannel(InputAction.CallbackContext context) {
+        if (context.performed)
+            menuPause.GetComponent<OptionsSwapper>().OnChangePannel(context);
+    }
+
+    public void OnReturn(InputAction.CallbackContext context) {
+        if (context.performed)
+            menuPause.GetComponent<OptionsSwapper>().OnReturn(context);
+    }
+
+    #endregion
     #endregion
 
     #region Player Movement
@@ -384,8 +385,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Dash() {
-        /*Vector3 move = new Vector3(lastDirection, 0, 0);
-        rb.AddForce(move * dashDistance, ForceMode.Impulse);*/
 
         if (lastDirection < 0) {
 
@@ -428,12 +427,12 @@ public class PlayerController : MonoBehaviour
         }
 
         canDash = false;
-        tr.emitting = true;
 
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
     public void DashDown() {
+        gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
             transform.DOMoveY(lowerRightLimit.transform.position.y, 0.2f);
         }
@@ -441,22 +440,7 @@ public class PlayerController : MonoBehaviour
             transform.DOMoveY(transform.position.y - dashForce, 0.2f);
         }
 
-        tr.emitting = true;
         isDashDown = true;
-        StartCoroutine(StopDash());
-        //Vector3 move = new Vector3(0, -1, 0);
-        //rb.AddForce(move* dashDistance/2, ForceMode.Impulse);
-
-
-    }
-    public void DashUp() {
-        if (transform.position.y + dashForce > upperLeftLimit.transform.position.y) {
-            transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
-        }
-        else {
-            transform.DOMoveY(transform.position.y + dashForce, 0.3f);
-        }
-        tr.emitting = true;
         StartCoroutine(StopDash());
 
 
@@ -477,7 +461,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
 
-        tr.emitting = false;
     }
 
     public IEnumerator StunCoolDown(float time) {
@@ -509,7 +492,7 @@ public class PlayerController : MonoBehaviour
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
-                else 
+                else
                     hp -= percentageDamage * maxHp / 100.0f;
                 break;
             case HitBox.HitBoxType.Trap:
@@ -539,7 +522,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator UpdateHpBarre(float percentageDamage) {
         float nbCellToUpdate = percentageDamage / 20;
-        int nbCellFull = (int) nbCellToUpdate;
+        int nbCellFull = (int)nbCellToUpdate;
         float nbCellDecimal = nbCellToUpdate - nbCellFull;
 
 
@@ -587,6 +570,10 @@ public class PlayerController : MonoBehaviour
         isStun = false;
         canDash = true;
         isDie = false;
+
+        animator.SetTrigger("ReturnIdle");
+
+        fighterCam.SetActive(false);
 
         hp = maxHp;
         for (int i = 0; i < whiteHpBarre.Count; i += 1) {
@@ -642,9 +629,12 @@ public class PlayerController : MonoBehaviour
 
     #region Set Variable With Animation
     public void SetTriggerStun(float time) {
-        Debug.Log(gameObject.name + " Stun");
-        StartCoroutine(StunCoolDown(time));
-        animator.SetTrigger("Stun");
+        if (!isDie) {
+            Debug.Log(gameObject.name + " Stun");
+            StartCoroutine(StunCoolDown(time));
+            animator.SetTrigger("Stun");
+        }
+
     }
 
     public void SetIsAttackingFalse() {

@@ -8,8 +8,10 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
     private CinemachineTargetGroup targetsGroup;
-    private CinemachineVirtualCamera virtualCamera;
+    [SerializeField]
+    private CinemachineVirtualCamera mainVirtualCamera;
 
     [SerializeField]
     private Freezer freezer;
@@ -46,9 +48,12 @@ public class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.C))
+            StartCoroutine(RoundTransition("P2"));
+    }
+
     public void InitGameManager() {
-        targetsGroup = GameObject.Find("TargetGroup").GetComponent<CinemachineTargetGroup>();
-        virtualCamera = GameObject.Find("VirtualCam").GetComponent<CinemachineVirtualCamera>();
 
         spawnP1 = GameObject.Find("SpawnP1").transform;
         spawnP2 = GameObject.Find("SpawnP2").transform;
@@ -131,53 +136,88 @@ public class GameManager : MonoBehaviour
         Debug.Log("P1 Round " + nbRoundP1);
         Debug.Log("P2 Round " + nbRoundP2);
 
-        StartCoroutine(Transition(looser));
 
-        if(nbRoundP1 == 3 || nbRoundP2 == 3) {
-            Debug.Log("P1 win " + nbRoundP1 + " rounds, P2 win " + nbRoundP2 + " rounds");
-            GameObject.Find("HpBarre").SetActive(false);
-            menuEndFight.SetActive(true);
-            fighter1.GetComponent<PlayerInput>().enabled = false;
-            fighter2.GetComponent<PlayerInput>().enabled = false;
-            EventSystem.current.SetSelectedGameObject(GameObject.Find("RematchButton"));
-        }
+        if (nbRoundP1 == 3 || nbRoundP2 == 3)
+            StartCoroutine(EndMatch(looser));
+        else
+            StartCoroutine(RoundTransition(looser));
 
     }
 
-    public IEnumerator Transition(string looser) {
+    public IEnumerator EndMatch(string looser) {
         SetFighterStun();
+        mainVirtualCamera.gameObject.SetActive(false);
 
         if (looser.Equals("P1")) {
-            //fighter1.GetComponent<PlayerController>().deadCam.SetActive(true);
-            fighter1.GetComponent<Animator>().SetTrigger("End Round Death");
+            SetFighterEndAnimation(fighter1, "End Match Death");
         }
         if (looser.Equals("P2")) {
-            //fighter2.GetComponent<PlayerController>().deadCam.SetActive(true);
-            fighter2.GetComponent<Animator>().SetTrigger("End Round Death");
+            SetFighterEndAnimation(fighter2, "End Match Death");
         }
 
         Time.timeScale = 0.5f;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         Time.timeScale = 1f;
 
-        
+        yield return new WaitForSeconds(1f);
+
+        if (looser.Equals("P1")) {
+            SetFighterEndAnimation(fighter2, "Victory");
+        }
+        if (looser.Equals("P2")) {
+            SetFighterEndAnimation(fighter1, "Victory");
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        Debug.Log("P1 win " + nbRoundP1 + " rounds, P2 win " + nbRoundP2 + " rounds");
+        GameObject.Find("HpBarre").SetActive(false);
+        menuEndFight.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("RematchButton"));
+
+    }
+
+    public IEnumerator RoundTransition(string looser) {
+        SetFighterStun();
+        mainVirtualCamera.gameObject.SetActive(false);
+        if (looser.Equals("P1")) {
+            SetFighterEndAnimation(fighter1,"End Round Death");
+        }
+        if (looser.Equals("P2")) {
+            SetFighterEndAnimation(fighter2, "End Round Death");
+        }
+
+        Time.timeScale = 0.5f;
+
+        yield return new WaitForSeconds(1f);
+
+        Time.timeScale = 1f;
+
+        yield return new WaitForSeconds(1f);
+
+
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         ResetFight();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
         SetFighterNotStun();
     }
 
+    private void SetFighterEndAnimation(PlayerInput fighter, string trigger) {
+        fighter.GetComponent<PlayerController>().fighterCam.SetActive(true);
+        fighter.GetComponent<Animator>().SetTrigger(trigger);
+    }
+
     public void ResetFight() {
+        mainVirtualCamera.gameObject.SetActive(true);
+
         fighter1.GetComponent<PlayerController>().ResetFighter(1);
-        //fighter1.GetComponent<PlayerController>().deadCam.SetActive(false);
         fighter1.transform.position = spawnP1.position;
         
         fighter2.GetComponent<PlayerController>().ResetFighter(-1);
-        //fighter2.GetComponent<PlayerController>().deadCam.SetActive(false);
         fighter2.transform.position = spawnP2.position;
         
     }
@@ -200,12 +240,17 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().isStun = true;
     }
 
+    public static void SetActionMap(string actionMap) {
+        fighter1.SwitchCurrentActionMap(actionMap);
+        fighter2.SwitchCurrentActionMap(actionMap);
+    }
+
     public void DoFreeze(float duration) {
         StartCoroutine(freezer.Freeze(duration));
     }
 
     public void DoShake(float duration) {
-        StartCoroutine(virtualCamera.GetComponent<CameraShake>().Shake(duration));
+        StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(duration));
     }
 
 }
