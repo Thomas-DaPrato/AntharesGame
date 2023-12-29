@@ -32,17 +32,16 @@ public class HitBox : MonoBehaviour
             FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:
-
-                    AttackManager(fighterData.heavyAttack.percentageDamage, fighterData.heavyAttack.knockback, fighterData.heavyAttack.stunTime ,other);
+                    AttackManager(fighterData.heavyAttack ,other);
                     break;
                 case HitBoxType.Middle:
-                    AttackManager(fighterData.middleAttack.percentageDamage, fighterData.middleAttack.knockback, fighterData.middleAttack.stunTime, other);
+                    AttackManager(fighterData.middleAttack, other);
                     break;
                 case HitBoxType.Light:
-                    AttackManager(fighterData.lightAttack.percentageDamage, fighterData.lightAttack.knockback, fighterData.lightAttack.stunTime, other);
+                    AttackManager(fighterData.lightAttack, other);
                     break;
                 case HitBoxType.Aerial:
-                    AttackManager(fighterData.aerialAttack.percentageDamage, fighterData.aerialAttack.knockback, fighterData.aerialAttack.stunTime, other);
+                    AttackManager(fighterData.aerialAttack, other);
                     break;
                 default:
                     Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");
@@ -62,12 +61,12 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    private void AttackManager(float percentageDamage, float knockbackForce, float timeStun, Collider collider) {
-        collider.GetComponent<HeartBox>().TakeDamage(percentageDamage, type);
-        collider.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(playerController.lastDirection,1));
-        collider.GetComponentInParent<PlayerController>().SetTriggerStun(timeStun);
+    private void AttackManager(Attack attack, Collider collider) {
+        collider.GetComponent<HeartBox>().TakeDamage(attack.percentageDamage, type);
+        collider.GetComponentInParent<PlayerController>().ApplyKnockback(attack.knockback, new Vector2(playerController.lastDirection,1));
+        collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
         playerBonk.Play();
-        //GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(1);
-        //GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(2);
+        GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
+        GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity);
     }
 }

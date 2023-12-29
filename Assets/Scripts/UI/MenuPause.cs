@@ -10,10 +10,12 @@ public class MenuPause : MonoBehaviour
         pannelOptions.SetActive(false);
     }
     public void MainMenu() {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }   
 
     public void Resume() {
+        GameObject.Find("GameManager").GetComponent<GameManager>().HideBlurEffect();
         gameObject.SetActive(false);
         Time.timeScale = 1;
         GameManager.SetActionMap("Player");

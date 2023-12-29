@@ -10,6 +10,8 @@ public class Attack
     public float knockback;
     public float stunTime;
     public float percentageDamage;
+    public float hitFreezeTime;
+    public float shakeScreenIntensity;
 }
 
 

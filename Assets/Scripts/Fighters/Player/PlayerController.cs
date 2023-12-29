@@ -322,9 +322,11 @@ public class PlayerController : MonoBehaviour
         if (context.performed) {
             if (menuPause.activeSelf) {
                 menuPause.GetComponent<MenuPause>().Resume();
+                gameManager.HideBlurEffect();
             }
             else {
                 menuPause.SetActive(true);
+                gameManager.DisplayBlurEffect();
                 Time.timeScale = 0;
                 GameManager.SetActionMap("OptionSwap");
             }

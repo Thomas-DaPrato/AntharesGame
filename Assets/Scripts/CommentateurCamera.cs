@@ -18,7 +18,7 @@ public class CommentateurCamera : MonoBehaviour
         
         if (!isCommenting)
         {
-            int r = Random.Range(0, commentateurStart.Count);
+            int r = Random.Range(0, commentateurStart.Count -1);
             AudioClip clip = commentateurStart[r];
             dureeAudio = clip.length;
             audioSource.clip = clip;
@@ -32,7 +32,7 @@ public class CommentateurCamera : MonoBehaviour
     public void CommentateurPiege()
     {
         if (!isCommenting) { 
-            int r = Random.Range(0, commentateurAudioPieges.Count);
+            int r = Random.Range(0, commentateurAudioPieges.Count - 1);
             AudioClip clip = commentateurAudioPieges[r];
             dureeAudio = clip.length;
             audioSource.clip = clip;
@@ -45,7 +45,7 @@ public class CommentateurCamera : MonoBehaviour
     {
         if (!isCommenting)
         {
-            int r = Random.Range(0, commentateurAudioCoups.Count);
+            int r = Random.Range(0, commentateurAudioCoups.Count - 1);
             AudioClip clip = commentateurAudioCoups[r];
             dureeAudio = clip.length;
             audioSource.clip = clip;

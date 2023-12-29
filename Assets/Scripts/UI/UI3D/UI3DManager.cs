@@ -51,7 +51,7 @@ public class UI3DManager : MonoBehaviour
             if (!buttons[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton) {
                 gameObject.SetActive(false);
                 buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
-                vcMenu.SetActive(false);
+                //vcMenu.SetActive(false);
                 vcBat.SetActive(true);
                 
             }

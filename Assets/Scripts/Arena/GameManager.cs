@@ -8,21 +8,34 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Camera")]
     [SerializeField]
     private CinemachineTargetGroup targetsGroup;
     [SerializeField]
     private CinemachineVirtualCamera mainVirtualCamera;
 
+    [Header("Camera Effect")]
     [SerializeField]
     private Freezer freezer;
+    [SerializeField]
+    private GameObject blurEffect;
 
     
+    [Header("Player Spawn")]
+    [SerializeField]
     private Transform spawnP1;
+    [SerializeField]
     private Transform spawnP2;
 
-    
+    [Header("Limit Arena")]
+    [SerializeField]
     private GameObject upperLeftLimit;
+    [SerializeField]
     private GameObject lowerRightLimit;
+
+    [Space(10)]
+    [SerializeField]
+    private GameObject fighters;
 
     private static PlayerInput fighter1;
     private static PlayerInput fighter2;
@@ -33,10 +46,12 @@ public class GameManager : MonoBehaviour
     private GameObject menuEndFight;
     private GameObject fightTransition;
     private GameObject timer;
+    private UiInGameManager uiInGameManager;
     #endregion
 
-    private static int nbRoundP1;
-    private static int nbRoundP2;
+    private static int nbRound;
+    private static int nbRoundWinP1;
+    private static int nbRoundWinP2;
 
     public bool onSceneTest;
 
@@ -54,42 +69,43 @@ public class GameManager : MonoBehaviour
     }
 
     public void InitGameManager() {
+        nbRound = 1;
 
-        spawnP1 = GameObject.Find("SpawnP1").transform;
-        spawnP2 = GameObject.Find("SpawnP2").transform;
+        uiInGameManager = Instantiate(UI).GetComponent<UiInGameManager>();
 
-        upperLeftLimit = GameObject.Find("UpLimit");
-        lowerRightLimit = GameObject.Find("DownLimit");
+        menuPause = uiInGameManager.menuPause;
 
-        Instantiate(UI);
+        menuEndFight = uiInGameManager.menuEndOfFight;
 
-        menuPause = GameObject.Find("MenuPause");
-        menuPause.SetActive(false);
+        fightTransition = uiInGameManager.fightTransition;
 
-        menuEndFight = GameObject.Find("MenuEndFight");
-        menuEndFight.SetActive(false);
-
-        fightTransition = GameObject.Find("FightTransition");
-
-        timer = GameObject.Find("Timer");
+        timer = uiInGameManager.timer;
     }
 
     public void SpawnPlayers() {
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, GameObject.Find("HpBarreP1").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP1").GetComponent<HpBarre>().redHpBarre, "P1", Gamepad.all[0]);
+        List<Image> whiteHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().whiteHpBarre;
+        List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
+        
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
-        nbRoundP1 = 0;
+        nbRoundWinP1 = 0;
 
-        if(Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().redHpBarre, "P2", Keyboard.current);
+
+        List<Image> whiteHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().whiteHpBarre;
+        List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
+
+        if (Gamepad.all.Count == 1)
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().whiteHpBarre, GameObject.Find("HpBarreP2").GetComponent<HpBarre>().redHpBarre, "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Gamepad.all[1]);
         
         targetsGroup.AddMember(fighter2.transform, 1, 0);
-        nbRoundP2 = 0;
+        nbRoundWinP2 = 0;
 
-        fighter1.transform.SetParent(GameObject.Find("Fighters").transform);
-        fighter2.transform.SetParent(GameObject.Find("Fighters").transform);
+        fighter1.transform.SetParent(fighters.transform);
+        fighter2.transform.SetParent(fighters.transform);
 
+        //manage mirror match
         if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) == PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)) {
             if(fighter2.GetComponentInChildren<SkinnedMeshRenderer>() != null)
                 fighter2.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
@@ -120,28 +136,38 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
         fighter.GetComponent<PlayerController>().isStun = true;
         fighter.GetComponent<PlayerController>().lastDirection = lastDirection;
-        //fighter.GetComponent<PlayerController>().deadCam.SetActive(false);
-
 
         return fighter;
     }
 
     public void EndRound(string looser) {
+        nbRound += 1;
+
         Debug.Log("End Round");
         if (looser.Equals("P1"))
-            nbRoundP2 += 1;
+            nbRoundWinP2 += 1;
         if (looser.Equals("P2"))
-            nbRoundP1 += 1;
+            nbRoundWinP1 += 1;
 
-        Debug.Log("P1 Round " + nbRoundP1);
-        Debug.Log("P2 Round " + nbRoundP2);
+        UpdateRounBarre();
+
+        Debug.Log("P1 Round " + nbRoundWinP1);
+        Debug.Log("P2 Round " + nbRoundWinP2);
 
 
-        if (nbRoundP1 == 3 || nbRoundP2 == 3)
+        if (nbRoundWinP1 == 3 || nbRoundWinP2 == 3)
             StartCoroutine(EndMatch(looser));
         else
             StartCoroutine(RoundTransition(looser));
 
+    }
+
+    private void UpdateRounBarre() {
+        for (int i = 0; i < nbRoundWinP1; i += 1)
+            uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().roundWinCell[i].color = Color.yellow;
+        for (int i = 0; i < nbRoundWinP2; i += 1)
+            uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().roundWinCell[i].color = Color.yellow;
+        
     }
 
     public IEnumerator EndMatch(string looser) {
@@ -172,10 +198,10 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("P1 win " + nbRoundP1 + " rounds, P2 win " + nbRoundP2 + " rounds");
-        GameObject.Find("HpBarre").SetActive(false);
+        Debug.Log("P1 win " + nbRoundWinP1 + " rounds, P2 win " + nbRoundWinP2 + " rounds");
+        uiInGameManager.hpBarres.SetActive(false);
         menuEndFight.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("RematchButton"));
+        EventSystem.current.SetSelectedGameObject(uiInGameManager.rematchButton);
 
     }
 
@@ -203,7 +229,8 @@ public class GameManager : MonoBehaviour
         ResetFight();
         yield return new WaitForSeconds(0.5f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
-        SetFighterNotStun();
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(timer.GetComponent<Timer>().TransitionRoundTimer(nbRound));
     }
 
     private void SetFighterEndAnimation(PlayerInput fighter, string trigger) {
@@ -245,12 +272,20 @@ public class GameManager : MonoBehaviour
         fighter2.SwitchCurrentActionMap(actionMap);
     }
 
+    public void DisplayBlurEffect() {
+        blurEffect.SetActive(true);
+    }
+
+    public void HideBlurEffect() {
+        blurEffect.SetActive(false);
+    }
+
     public void DoFreeze(float duration) {
         StartCoroutine(freezer.Freeze(duration));
     }
 
-    public void DoShake(float duration) {
-        StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(duration));
+    public void DoShake(float intensity) {
+        StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(intensity));
     }
 
 }
