@@ -21,11 +21,15 @@ public class GameManager : MonoBehaviour
     private GameObject blurEffect;
 
     
-    [Header("Player Spawn")]
+    [Header("Fighters")]
     [SerializeField]
     private Transform spawnP1;
     [SerializeField]
     private Transform spawnP2;
+    [SerializeField]
+    private GameObject spotLightP1;
+    [SerializeField]
+    private GameObject spotLightP2;
 
     [Header("Limit Arena")]
     [SerializeField]
@@ -89,6 +93,7 @@ public class GameManager : MonoBehaviour
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundWinP1 = 0;
+        spotLightP1.GetComponent<SpotlightFollow>().fighter = fighter1.gameObject;
 
 
         List<Image> whiteHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().whiteHpBarre;
@@ -101,6 +106,7 @@ public class GameManager : MonoBehaviour
         
         targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundWinP2 = 0;
+        spotLightP2.GetComponent<SpotlightFollow>().fighter = fighter2.gameObject;
 
         fighter1.transform.SetParent(fighters.transform);
         fighter2.transform.SetParent(fighters.transform);

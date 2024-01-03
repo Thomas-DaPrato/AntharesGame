@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class SpotlightFollow : MonoBehaviour
 {
-    public GameObject Fighter;
+    [HideInInspector]
+    public GameObject fighter;
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Fighter.transform);
-        
-        // test a oublier
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, fighter.transform.position , 0.9f);
     }
 }

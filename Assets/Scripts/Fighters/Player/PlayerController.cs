@@ -223,8 +223,6 @@ public class PlayerController : MonoBehaviour
             if (x != 0)
                 lastDirection = x;
 
-
-
         }
         if (context.canceled) {
             animator.SetBool("Run", false);
@@ -321,8 +319,8 @@ public class PlayerController : MonoBehaviour
     public void OnPause(InputAction.CallbackContext context) {
         if (context.performed) {
             if (menuPause.activeSelf) {
+                Debug.Log("yolo");
                 menuPause.GetComponent<MenuPause>().Resume();
-                gameManager.HideBlurEffect();
             }
             else {
                 menuPause.SetActive(true);

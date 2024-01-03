@@ -159,6 +159,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
+      propertyPath: spotLightP1
+      value: 
+      objectReference: {fileID: 138115401}
+    - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
+      propertyPath: spotLightP2
+      value: 
+      objectReference: {fileID: 249456725}
+    - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: targetsGroup
       value: 
       objectReference: {fileID: 338624433}
@@ -251,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf957f70de74054285994004c9718f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fighter: {fileID: 6240159690015248056, guid: d806742a3d3683f49ae10ca0294dcc51, type: 3}
+  fighter: {fileID: 0}
 --- !u!114 &138115403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138115401}
   m_LocalRotation: {x: 0.000002433641, y: 0.40026796, z: -0.91639817, w: 0.0000013346521}
-  m_LocalPosition: {x: 0, y: 15.933994, z: -10}
+  m_LocalPosition: {x: 0, y: 15.93, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -657,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf957f70de74054285994004c9718f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fighter: {fileID: 6240159690015248056, guid: d806742a3d3683f49ae10ca0294dcc51, type: 3}
+  fighter: {fileID: 0}
 --- !u!114 &249456727
 MonoBehaviour:
   m_ObjectHideFlags: 0

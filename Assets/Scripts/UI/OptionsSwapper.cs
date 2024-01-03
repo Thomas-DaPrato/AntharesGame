@@ -13,6 +13,9 @@ public class OptionsSwapper : MonoBehaviour
     private GameObject options;
 
     [SerializeField]
+    private GameObject menuPause;
+
+    [SerializeField]
     private EventSystem eventSystem;
 
     [SerializeField]
@@ -44,6 +47,7 @@ public class OptionsSwapper : MonoBehaviour
 
    public void OnReturn(InputAction.CallbackContext context) {
         if (context.performed) {
+            menuPause.SetActive(true);
             options.SetActive(false);
             eventSystem.SetSelectedGameObject(objectSelectedOnReturn);
         }

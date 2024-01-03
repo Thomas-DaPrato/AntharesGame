@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField]
-    private GameObject pannelOptions;
-    private void Start() {
-        pannelOptions.SetActive(false);
-    }
+    private GameObject backgroundMenuPause;
     public void MainMenu() {
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
@@ -16,7 +13,7 @@ public class MenuPause : MonoBehaviour
 
     public void Resume() {
         GameObject.Find("GameManager").GetComponent<GameManager>().HideBlurEffect();
-        gameObject.SetActive(false);
+        backgroundMenuPause.SetActive(false);
         Time.timeScale = 1;
         GameManager.SetActionMap("Player");
     }
