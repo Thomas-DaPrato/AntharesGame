@@ -10,25 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 005b46d02c7338a4a81fb7e27b2f54df, type: 3}
-  m_Name: FighterTwo
+  m_Name: Diane
   m_EditorClassIdentifier: 
   prefab: {fileID: 8506838778176565369, guid: b27a4a36bc1432740a90e9129676e4cd, type: 3}
   heavyAttack:
     knockback: 24
     stunTime: 3
+    percentageDamage: 0
+    hitFreezeTime: 0
+    shakeScreenIntensity: 0
   middleAttack:
     knockback: 16
     stunTime: 2
+    percentageDamage: 0
+    hitFreezeTime: 0
+    shakeScreenIntensity: 0
   lightAttack:
     knockback: 8
     stunTime: 1
+    percentageDamage: 0
+    hitFreezeTime: 0
+    shakeScreenIntensity: 0
   aerialAttack:
     knockback: 0
     stunTime: 0
+    percentageDamage: 0
+    hitFreezeTime: 0
+    shakeScreenIntensity: 0
   playerHeight: 2
   skinMirrorMatch: {fileID: 2100000, guid: 11750995318c61a469f97a6307e79623, type: 2}
-  spriteNotSelected: {fileID: 21300000, guid: e8ca220fcb0808542bc5619d6f9e5c4b, type: 3}
-  spriteSelected: {fileID: 21300000, guid: 5de21f72651f07447867a7b8825f1604, type: 3}
+  spriteOriginalNotSelected: {fileID: 21300000, guid: e8ca220fcb0808542bc5619d6f9e5c4b, type: 3}
+  spriteOriginalSelected: {fileID: 21300000, guid: 5de21f72651f07447867a7b8825f1604, type: 3}
+  spriteMirrorNotSelected: {fileID: 21300000, guid: a0cfed86b645a9343942203f229297bb, type: 3}
+  spriteMirrorSelected: {fileID: 21300000, guid: 0bbfd8a7d7e79b24cadfb95deae23dd3, type: 3}
   stats:
   - nameStat: 'Riche '
     value: 0

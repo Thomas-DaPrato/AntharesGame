@@ -11,10 +11,14 @@ public class CharacterSelecter : MonoBehaviour
 
     private int currentFighter;
     private bool haveChooseFighter = false;
+    private Characters.ColorType colorType;
 
     [SerializeField]
     [Tooltip("use the same name as define in PlayerPrefConst")]
     private string playerPrefPlayerName;
+
+    [SerializeField]
+    private bool isFirstPlayer;
 
     [SerializeField]
     private Animator animatorFadeIn;
@@ -43,29 +47,21 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject infos;
     [SerializeField]
     private GameObject stats;
-    [SerializeField]
-    private GameObject lore;
     
 
     [SerializeField]
     private GameObject ready;
 
 
-
-
-    private void Awake() {
+    private void OnEnable() {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
-        support.sprite = Characters.GetFighters()[0].spriteNotSelected;
         currentFighter = 0;
-    }
-
-    private void OnEnable() {
+        colorType = Characters.ColorType.None;
         haveChooseFighter = false;
         ready.SetActive(false);
-        support.sprite = Characters.GetFighters()[currentFighter].spriteNotSelected;
+        support.sprite = Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         animatorBackground.SetBool("isSelected", false);
-        PlayerPrefs.SetInt(gameObject.name, -1);
     }
 
 
@@ -82,7 +78,7 @@ public class CharacterSelecter : MonoBehaviour
                 if (currentFighter < 0)
                     currentFighter = Characters.GetFighters().Count - 1;
             }
-            support.sprite = Characters.GetFighters()[currentFighter].spriteNotSelected;
+            support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
         }
     }
 
@@ -91,23 +87,14 @@ public class CharacterSelecter : MonoBehaviour
             if (!infos.activeSelf) {
                 infos.SetActive(true);
                 FillStats();
-                FillLore();
-                lore.SetActive(false);
             }
             else {
                 stats.SetActive(true);
-                lore.SetActive(false);
                 infos.SetActive(false);
             }
         }
     }
 
-    public void OnChangeInfoPannel(InputAction.CallbackContext context) {
-        if (infos.activeSelf && context.performed) {
-            stats.SetActive(!stats.activeSelf);
-            lore.SetActive(!lore.activeSelf);
-        }
-    }
 
     public void OnReturn(InputAction.CallbackContext context) {
         if (context.performed) {
@@ -116,7 +103,11 @@ public class CharacterSelecter : MonoBehaviour
             else if (haveChooseFighter) {
                 haveChooseFighter = false;
                 ready.SetActive(false);
-                support.sprite = Characters.GetFighters()[currentFighter].spriteNotSelected;
+                Characters.availableColorForFighter[currentFighter].Insert(0, colorType);
+                if (Characters.availableColorForFighter[currentFighter].Count >= 2)
+                    Characters.ResetAvailableColor(currentFighter);
+                colorType = Characters.ColorType.None;
+                support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(gameObject.name, -1);
             }
@@ -131,9 +122,12 @@ public class CharacterSelecter : MonoBehaviour
     }
 
     public void OnValidateCharacter(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && !haveChooseFighter) {
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
-            support.sprite = Characters.GetFighters()[currentFighter].spriteSelected;
+            colorType = Characters.availableColorForFighter[currentFighter][0];
+            PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int) colorType);
+            Characters.availableColorForFighter[currentFighter].RemoveAt(0);
+            support.sprite = GetSpriteSelected(colorType);
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
@@ -178,8 +172,16 @@ public class CharacterSelecter : MonoBehaviour
         }
     }
 
-    public void FillLore() {
-        //TO DO
-        Debug.Log("FillLore");
+    public Sprite GetSpriteNotSelected(Characters.ColorType color) {
+        if (color == Characters.ColorType.Original)
+            return Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
+        else
+            return Characters.GetFighters()[currentFighter].spriteMirrorNotSelected;
+    }
+    public Sprite GetSpriteSelected(Characters.ColorType color) {
+        if (color == Characters.ColorType.Original)
+            return Characters.GetFighters()[currentFighter].spriteOriginalSelected;
+        else
+            return Characters.GetFighters()[currentFighter].spriteMirrorSelected;
     }
 }

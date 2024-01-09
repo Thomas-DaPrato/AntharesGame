@@ -19,8 +19,10 @@ public class FighterData : ScriptableObject
 
 
     [Header("Info Menu")]
-    public Sprite spriteNotSelected;
-    public Sprite spriteSelected;
+    public Sprite spriteOriginalNotSelected;
+    public Sprite spriteOriginalSelected;
+    public Sprite spriteMirrorNotSelected;
+    public Sprite spriteMirrorSelected;
     public Stat[] stats = new Stat[3];
 
 }
