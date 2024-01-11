@@ -16,6 +16,8 @@ public class FighterData : ScriptableObject
     public float playerHeight;
 
     public Material skinMirrorMatch;
+    public Sprite orginalSkinLoadingScene;
+    public Sprite mirrorSkinLoadingScene;
 
 
     [Header("Info Menu")]

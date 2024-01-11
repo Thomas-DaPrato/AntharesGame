@@ -123,7 +123,9 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerPrefToFighterBourrin() {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
     
     public void SetPlayerPrefToFighterAmongUs() {

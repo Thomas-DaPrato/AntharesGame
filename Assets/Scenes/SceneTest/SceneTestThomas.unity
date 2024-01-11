@@ -197,6 +197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 383544128}
     m_Modifications:
+    - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: rotationScie.z
       value: -1
@@ -619,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &562810542
 Transform:
   m_ObjectHideFlags: 0
@@ -1105,11 +1109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.75
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1155,6 +1159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseFlammes (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365509, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: tempsCharge
       value: 1700
@@ -1171,6 +1179,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6070193377262733781, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408071211840567243, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
 --- !u!1001 &925907260
@@ -1180,6 +1196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 383544128}
     m_Modifications:
+    - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: rotationScie.z
       value: -1
@@ -1668,11 +1688,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.86883
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.8457
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1680,7 +1704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365504, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1729,6 +1753,14 @@ PrefabInstance:
     - target: {fileID: 4087610720515864013, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: MaxDistance
       value: 8508.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070193377262733781, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408071211840567243, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}

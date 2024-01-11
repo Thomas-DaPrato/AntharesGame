@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ScieEffect : MonoBehaviour
 {
@@ -12,23 +13,28 @@ public class ScieEffect : MonoBehaviour
     public SphereCollider col;
     public AudioClip enMarche, touche;
 
+    public VisualEffect VFXTouche;
+
 
     
     void Update()
     {
         transform.Rotate(rotationScie * vitesse * Time.deltaTime);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             son.Pause();
             son.PlayOneShot(touche);
             
-            other.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
-            other.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.GetComponent<PlayerController>().lastDirection * -1, 1));
+            VFXTouche.gameObject.transform.position = other.GetContact(0).point;
+            VFXTouche.Play();
+            
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
+            other.gameObject.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
             vitesse = -50;
-            col.isTrigger = false;
+            col.isTrigger = true;
             StartCoroutine(AttenteCoroutine(1f));
         }
     }
@@ -58,7 +64,7 @@ public class ScieEffect : MonoBehaviour
         {
             son.UnPause();
             vitesse = 200;
-            col.isTrigger = true;
+            col.isTrigger = false;
         }
         
 
