@@ -15,10 +15,12 @@ public class CanonMouvement : MonoBehaviour
     public GameObject laser,charge;
     private int declancheur = 0;
     private bool attenteEnCours;
+    private bool changeRound = false;
 
 
     private void Start()
     {
+        StartCoroutine(Attentepiege(tempsCharge));
         attenteEnCours = false;
         if (this.transform.position.x < 0)
         {
@@ -28,41 +30,42 @@ public class CanonMouvement : MonoBehaviour
     void Update()
     {
 
-
-        if (tir)
-        {
-            if (canMove)
+        if (!changeRound) { 
+            if (tir)
             {
-                canMove = false;
-                charge.SetActive(true);
-                son.PlayOneShot(chargement); 
-                StartCoroutine(AttenteCoroutine(2.3f));
+                if (canMove)
+                {
+                    canMove = false;
+                    charge.SetActive(true);
+                    son.PlayOneShot(chargement);
+                    StartCoroutine(AttenteCoroutine(2.3f));
+                }
+
+
+
+
             }
-            
-            
-
-
-        }
-        else
-        {
-            if (transform.position.y > limiteHaute.position.y )
+            else
             {
-                vitesse = -vitesse;
-            }
-            else if (transform.position.y < limiteBasse.position.y )
-            {
-                vitesse = -vitesse;
-            }
-            transform.Translate(Vector3.forward * Time.deltaTime*vitesse);
-            
+                if (transform.position.y > limiteHaute.position.y)
+                {
+                    vitesse = -vitesse;
+                }
+                else if (transform.position.y < limiteBasse.position.y)
+                {
+                    vitesse = -vitesse;
+                }
+                transform.Translate(Vector3.forward * Time.deltaTime * vitesse);
 
-            declancheur++;
-            if (declancheur > tempsCharge)
-            {
-                declancheur = 0;
-                tir = true;
-            }
 
+                
+                if (declancheur > tempsCharge)
+                {
+                    declancheur = 0;
+                    tir = true;
+                }
+
+            }
         }
 
     }
@@ -74,30 +77,72 @@ public class CanonMouvement : MonoBehaviour
 
     IEnumerator AttenteCoroutine(float sec)
     {
-        attenteEnCours = true;
+        if (!changeRound) { 
+            attenteEnCours = true;
+
+            // Attendez pendant x secondes
+            yield return new WaitForSeconds(sec);
+
+            // Après l'attente, vous pouvez mettre votre code ici
+            if (sec == 2.3f && !changeRound)
+            {
+                charge.SetActive(false);
+                laser.SetActive(true);
+                son.PlayOneShot(sonTir);
+                StartCoroutine(AttenteCoroutine(3f));
+            }
+            else if (!changeRound)
+            {
+                laser.SetActive(false);
+                declancheur = 0;
+                tir = false;
+                canMove = true;
+            
+                attenteEnCours = false;
+            }
+
+        }
+    }
+
+
+    IEnumerator AttenteRound(float sec)
+    {
 
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        if (sec == 2.3f)
-        {
-            charge.SetActive(false);
-            laser.SetActive(true);
-            son.PlayOneShot(sonTir);
-            StartCoroutine(AttenteCoroutine(3f));
-        }
-        else
-        {
-            laser.SetActive(false);
-            declancheur = 0;
-            tir = false;
-            canMove = true;
-            
-            attenteEnCours = false;
-        }
+        changeRound = false;
+        laser.SetActive(false);
+        declancheur = 0;
+        tir = false;
+        canMove = true;
+        attenteEnCours = false;
 
-       
+
+
+    }
+
+    public void ChangeRound()
+    {
+        changeRound = true;
+        declancheur = 0;
+        tir = false;
+
+        StartCoroutine(AttenteRound(7f));
+    }
+    IEnumerator Attentepiege(float sec)
+    {
+
+        // Attendez pendant x secondes
+        yield return new WaitForSeconds(sec);
+
+        // Après l'attente, vous pouvez mettre votre code ici
+        if (!changeRound)
+            declancheur = tempsCharge + 1;
+
+
+
     }
 
 }

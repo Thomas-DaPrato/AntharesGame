@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject spotLightP2;
 
+    [Header("Traps")]
+    [SerializeField]
+    private GameObject trap;
+
+
     [Header("Limit Arena")]
     [SerializeField]
     private GameObject upperLeftLimit;
@@ -148,6 +153,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void EndRound(string looser) {
+
+        trap.GetComponent<trapManager>().resetTrap();
+
         nbRound += 1;
 
         Debug.Log("End Round");
@@ -166,6 +174,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EndMatch(looser));
         else
             StartCoroutine(RoundTransition(looser));
+
 
     }
 
