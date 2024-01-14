@@ -146,6 +146,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
+
+        //adding gravity
+        rb.AddForce(transform.up * -10);
+
+
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
 
