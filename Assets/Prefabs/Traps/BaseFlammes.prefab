@@ -54,6 +54,7 @@ MonoBehaviour:
   limiteHaute: 10
   limiteBasse: -10
   son: {fileID: 4087610720515864013}
+  changeRound: 0
   flammes: {fileID: 6070193377262733781}
   vib: {fileID: 4784851821545528730}
   charge: {fileID: 8300000, guid: 1c7b013baad2c414eb7111a23fa174e1, type: 3}
@@ -539,10 +540,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 596308993937232750, guid: a6bc79ecc0b49e842983227fb9141746, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eaaa463838f35914e9bf40b95a06793c, type: 2}
     - target: {fileID: 919132149155446097, guid: a6bc79ecc0b49e842983227fb9141746, type: 3}
       propertyPath: m_Name
       value: piege_feu
       objectReference: {fileID: 0}
+    - target: {fileID: 1807777711277854014, guid: a6bc79ecc0b49e842983227fb9141746, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eaaa463838f35914e9bf40b95a06793c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bc79ecc0b49e842983227fb9141746, type: 3}
 --- !u!4 &3418980124215975226 stripped
