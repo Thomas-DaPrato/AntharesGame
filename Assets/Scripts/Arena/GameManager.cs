@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform spawnP2;
     [SerializeField]
+    private Transform endMatchPodium;
+    [SerializeField]
     private GameObject spotLightP1;
     [SerializeField]
     private GameObject spotLightP2;
@@ -63,11 +65,17 @@ public class GameManager : MonoBehaviour
     private static int nbRoundWinP2;
 
     public bool onSceneTest;
+    public bool useCesar;
 
     
     private void Start() {
-        if(onSceneTest)
-            SetPlayerPrefToFighterBourrin();
+        if (onSceneTest) {
+            if (useCesar)
+                SetPlayerPrefToFighterCesar();
+            else
+                SetPlayerPrefToFighterDiane();
+        }
+
         InitGameManager();
         SpawnPlayers();
     }
@@ -126,17 +134,20 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SetPlayerPrefToFighterBourrin() {
+    public void SetPlayerPrefToFighterCesar() {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
-    
-    public void SetPlayerPrefToFighterAmongUs() {
-        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 2);
-        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 2);
+
+    public void SetPlayerPrefToFighterDiane() {
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 1);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
+
 
     public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
@@ -154,7 +165,7 @@ public class GameManager : MonoBehaviour
 
     public void EndRound(string looser) {
 
-        trap.GetComponent<TrapManager>().resetTrap();
+        trap.GetComponent<TrapManager>().ResetTrap();
 
         nbRound += 1;
 
@@ -205,12 +216,27 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        fightTransition.GetComponent<Animator>().SetTrigger("Close");
+        
+        yield return new WaitForSeconds(0.5f);
+
         if (looser.Equals("P1")) {
-            SetFighterEndAnimation(fighter2, "Victory");
+            fighter2.transform.position = endMatchPodium.position;
+            fighter2.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
         if (looser.Equals("P2")) {
-            SetFighterEndAnimation(fighter1, "Victory");
+            fighter1.transform.position = endMatchPodium.position;
+            fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
+        
+        yield return new WaitForSeconds(1f);
+        fightTransition.GetComponent<Animator>().SetTrigger("Open");
+        yield return new WaitForSeconds(0.5f);
+
+        if (looser.Equals("P1"))
+            fighter2.GetComponent<Animator>().SetTrigger("Victory");
+        if (looser.Equals("P2"))
+            fighter1.GetComponent<Animator>().SetTrigger("Victory");
 
         yield return new WaitForSeconds(2f);
 

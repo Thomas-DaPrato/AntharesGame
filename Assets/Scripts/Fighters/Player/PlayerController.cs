@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rateRedHpBarre;
 
-    private int currentWhiteCell;
+    private int whiteCellIndex;
     private int currentRedCell;
     #endregion
 
@@ -132,8 +132,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
-    private LayerMask OneWayGroundLayer;
-    [SerializeField]
     private float groundDrag;
 
 
@@ -155,7 +153,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
 
-        Physics.IgnoreLayerCollision(player, player, !isGrounded);
 
         if (isGrounded && isRunning)
             animator.SetBool("Run", true);
@@ -179,11 +176,11 @@ public class PlayerController : MonoBehaviour
 
         if (canDecreaseRedHpBarre) {
             Debug.Log("decrease");
-            if (currentRedCell == currentWhiteCell && whiteHpBarre[currentWhiteCell].fillAmount >= redHpBarre[currentRedCell].fillAmount)
+            if (currentRedCell == whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
                 canDecreaseRedHpBarre = false;
             else {
                 redHpBarre[currentRedCell].fillAmount -= rateRedHpBarre;
-                if (redHpBarre[currentRedCell].fillAmount == 0)
+                if (redHpBarre[currentRedCell].fillAmount == 0 && currentRedCell != whiteCellIndex)
                     currentRedCell -= 1;
             }
         }
@@ -192,9 +189,6 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Debug.Log("velocity " + rb.velocity.y);
-        Debug.Log("isGrounded " + isGrounded);
-        Debug.Log(isGrounded && rb.velocity.y == 0);
         if (isGrounded && rb.velocity.y == 0) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
@@ -334,7 +328,6 @@ public class PlayerController : MonoBehaviour
     public void OnPause(InputAction.CallbackContext context) {
         if (context.performed) {
             if (menuPause.activeSelf) {
-                Debug.Log("yolo");
                 menuPause.GetComponent<MenuPause>().Resume();
             }
             else {
@@ -374,12 +367,10 @@ public class PlayerController : MonoBehaviour
 
     public void Move() {
         Vector3 move = new Vector3(x, 0, 0);
-        if (!isAttacking) {
-            if (move.x > 0)
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-            if (move.x < 0)
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
-        }
+        if (move.x > 0)
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        if (move.x < 0)
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
 
         if (isGrounded) {
             rb.AddForce(move * playerSpeed * 10f * groundControl, ForceMode.Force);
@@ -529,41 +520,29 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("percentageHp " + (hp / maxHp));
 
-        StartCoroutine(UpdateHpBarre(percentageDamage));
+        StartCoroutine(UpdateHpBarre());
 
         Debug.Log(gameObject.name + " hp " + hp);
     }
 
 
-    public IEnumerator UpdateHpBarre(float percentageDamage) {
-        float nbCellToUpdate = percentageDamage / 20;
-        int nbCellFull = (int)nbCellToUpdate;
-        float nbCellDecimal = nbCellToUpdate - nbCellFull;
+    public IEnumerator UpdateHpBarre() {
+        int currentWhiteCell;
+        float percentageHP = hp / maxHp;
 
+        float nbCellToUpdate = percentageHP * whiteHpBarre.Count;
+        int nbFullCell = (int) nbCellToUpdate;
+        float nbDecimalCell = nbCellToUpdate - nbFullCell;
 
-        for (int i = nbCellFull; !isDie && (i > 0); i -= 1) {
-            if (currentWhiteCell > 0) {
-                whiteHpBarre[currentWhiteCell].fillAmount = 0;
-                currentWhiteCell -= 1;
-            }
-        }
+        for (currentWhiteCell = 0; currentWhiteCell < whiteHpBarre.Count && currentWhiteCell < nbFullCell; currentWhiteCell += 1)
+            whiteHpBarre[currentWhiteCell].fillAmount = 1;
 
-        if (!isDie) {
-            if (whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal < 0) {
-                //fillAmountRemaining alway be negative
-                float fillAmountRemaining = whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal;
-                whiteHpBarre[currentWhiteCell].fillAmount += fillAmountRemaining;
-                currentWhiteCell -= 1;
-                if (currentWhiteCell >= 0)
-                    whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal + fillAmountRemaining;
-            }
-            else if (whiteHpBarre[currentWhiteCell].fillAmount - nbCellDecimal == 0) {
-                whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal;
-                currentWhiteCell -= 1;
-            }
-            else
-                whiteHpBarre[currentWhiteCell].fillAmount -= nbCellDecimal;
-        }
+        whiteHpBarre[currentWhiteCell].fillAmount = nbDecimalCell;
+        whiteCellIndex = currentWhiteCell;
+        currentWhiteCell += 1;
+
+        for (; currentWhiteCell < whiteHpBarre.Count; currentWhiteCell += 1)
+            whiteHpBarre[currentWhiteCell].fillAmount = 0;
 
         yield return new WaitForSeconds(0.4f);
 
@@ -596,7 +575,6 @@ public class PlayerController : MonoBehaviour
             redHpBarre[i].fillAmount = 1;
         }
 
-        currentWhiteCell = whiteHpBarre.Count - 1;
         currentRedCell = redHpBarre.Count - 1;
 
 
@@ -613,27 +591,28 @@ public class PlayerController : MonoBehaviour
         Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
+        Debug.Log(gameObject.name + " Aerial Up");
+        animator.SetTrigger("Aerial Up");
+        //if (coordinate.x <= 0.66f && coordinate.y > 0) {
+        //    Debug.Log(gameObject.name + " Aerial Up");
+        //    animator.SetTrigger("Aerial Up");
+        //}
 
-        if (coordinate.x <= 0.66f && coordinate.y > 0) {
-            Debug.Log(gameObject.name + " Aerial Up");
-            animator.SetTrigger("Aerial Up");
-        }
+        //if (coordinate.x > 0.66f) {
+        //    Debug.Log(gameObject.name + " Aerial Middle");
+        //    animator.SetTrigger("Aerial Middle");
+        //}
 
-        if (coordinate.x > 0.66f) {
-            Debug.Log(gameObject.name + " Aerial Middle");
-            animator.SetTrigger("Aerial Middle");
-        }
+        //if (coordinate.x <= 0.66f && coordinate.y < 0) {
+        //    Debug.Log(gameObject.name + " Aerial Down");
+        //    animator.SetTrigger("Aerial Down");
+        //}
 
-        if (coordinate.x <= 0.66f && coordinate.y < 0) {
-            Debug.Log(gameObject.name + " Aerial Down");
-            animator.SetTrigger("Aerial Down");
-        }
-
-        if (x == 0 && y == 0) {
-            Debug.Log("No Aerial Direction");
-            isAttacking = false;
-            return;
-        }
+        //if (x == 0 && y == 0) {
+        //    Debug.Log("No Aerial Direction");
+        //    isAttacking = false;
+        //    return;
+        //}
     }
 
     public void RebindAnimator() {
@@ -678,7 +657,6 @@ public class PlayerController : MonoBehaviour
     public void SetHpBarre(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame) {
         whiteHpBarre = whiteHpBarreInGame;
         redHpBarre = redHpBarreInGame;
-        currentWhiteCell = whiteHpBarre.Count - 1;
         currentRedCell = redHpBarre.Count - 1;
     }
 

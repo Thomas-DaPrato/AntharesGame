@@ -41,7 +41,7 @@ public class TrapManager : MonoBehaviour
 
     }
 
-    public void resetTrap()
+    public void ResetTrap()
     {
         laserD.transform.position = lD.position;
         laserG.transform.position = lG.position;

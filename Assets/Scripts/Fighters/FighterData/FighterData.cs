@@ -25,6 +25,7 @@ public class FighterData : ScriptableObject
     public Sprite spriteOriginalSelected;
     public Sprite spriteMirrorNotSelected;
     public Sprite spriteMirrorSelected;
+    public TextAsset lore;
     public Stat[] stats = new Stat[3];
 
 }
