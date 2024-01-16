@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapManager : MonoBehaviour
+public class trapManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject laserD;
@@ -21,19 +21,22 @@ public class TrapManager : MonoBehaviour
     [SerializeField]
     private GameObject scieG;
 
-    public float tempsCharge = 7;
+    public float tempsCharge = 7f;
 
-    private Transform lD, lG,fB,fH;
+    private Transform lD, lG, fB, fH;
     private bool flammemove1, flammemove2;
     private void Start()
     {
+
+
+
         flammemove1 = flammesBas.GetComponent<BaseFlammesMovement>().flammeBouge;
         flammemove2 = flammesHaut.GetComponent<BaseFlammesMovement>().flammeBouge;
 
-        lD = laserD.transform;
-        lG = laserG.transform;
 
-        if (flammemove1) {
+
+        if (flammemove1)
+        {
             fB = flammesBas.transform;
         }
         if (flammemove2)
@@ -41,12 +44,12 @@ public class TrapManager : MonoBehaviour
             fH = flammesHaut.transform;
         }
 
+
     }
 
     public void ResetTrap()
     {
-        laserD.transform.position = lD.position;
-        laserG.transform.position = lG.position;
+
 
         if (flammemove1)
         {
