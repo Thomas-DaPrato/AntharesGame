@@ -13,10 +13,6 @@ public class CharacterSelecter : MonoBehaviour
     private bool haveChooseFighter = false;
     private Characters.ColorType colorType;
 
-    public AudioSource sd;
-    public List<AudioClip> swapSelectBackValidInfo;
-    private AudioClip clip;
-
     [SerializeField]
     [Tooltip("use the same name as define in PlayerPrefConst")]
     private string playerPrefPlayerName;
@@ -71,13 +67,6 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnCharacterSwap(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
-
-            //adding sound design swap
-            clip = swapSelectBackValidInfo[0];
-            sd.clip = clip;
-            sd.Play();
-
-
             infos.SetActive(false);
             if (context.ReadValue<float>() > 0) {
                 currentFighter += 1;
@@ -96,22 +85,10 @@ public class CharacterSelecter : MonoBehaviour
     public void OnOpenInformation(InputAction.CallbackContext context) {
         if (context.performed) {
             if (!infos.activeSelf) {
-
-                //adding sound design info
-                clip = swapSelectBackValidInfo[4];
-                sd.clip = clip;
-                sd.Play();
-
                 infos.SetActive(true);
                 FillStats();
             }
             else {
-
-                //adding sound design info
-                clip = swapSelectBackValidInfo[4];
-                sd.clip = clip;
-                sd.Play();
-
                 stats.SetActive(true);
                 infos.SetActive(false);
             }
@@ -121,23 +98,9 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnReturn(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (infos.activeSelf) {
-
-                //adding sound design info
-                clip = swapSelectBackValidInfo[4];
-                sd.clip = clip;
-                sd.Play();
-
+            if (infos.activeSelf)
                 infos.SetActive(false);
-
-            }
             else if (haveChooseFighter) {
-
-                //adding sound design back
-                clip = swapSelectBackValidInfo[2];
-                sd.clip = clip;
-                sd.Play();
-
                 haveChooseFighter = false;
                 ready.SetActive(false);
                 Characters.availableColorForFighter[currentFighter].Insert(0, colorType);
@@ -149,12 +112,6 @@ public class CharacterSelecter : MonoBehaviour
                 PlayerPrefs.SetInt(gameObject.name, -1);
             }
             else {
-
-                //adding sound design back
-                clip = swapSelectBackValidInfo[2];
-                sd.clip = clip;
-                sd.Play();
-
                 characterSelecter.SetActive(false);
                 menu.SetActive(true);
                 vcMenu.SetActive(true);
@@ -166,12 +123,6 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnValidateCharacter(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
-
-            //adding sound design select
-            clip = swapSelectBackValidInfo[1];
-            sd.clip = clip;
-            sd.Play();
-
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
             colorType = Characters.availableColorForFighter[currentFighter][0];
             PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int) colorType);
@@ -185,11 +136,6 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnStartFight(InputAction.CallbackContext context) {
         if (context.performed) {
-            //adding sound design valid
-            clip = swapSelectBackValidInfo[3];
-            sd.clip = clip;
-            sd.Play();
-
             Debug.Log(PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1);
             Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
             Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
@@ -208,7 +154,7 @@ public class CharacterSelecter : MonoBehaviour
         yield return new WaitForSeconds(1);
         animatorFadeIn.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("LoadScene");
+        SceneManager.LoadScene("ChooseMap");
     }
 
 

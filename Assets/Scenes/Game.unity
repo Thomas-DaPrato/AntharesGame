@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -426,6 +426,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648652015947290635, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
@@ -1058,7 +1062,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338624434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86e7839793283cf4a84149bda70bebd4, type: 3}
   m_Name: 
@@ -1116,7 +1120,9 @@ MonoBehaviour:
   commentateurStart:
   - {fileID: 0}
   - {fileID: 0}
-  commentateurBienvenu: []
+  commentateurBienvenu:
+  - {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
+  - {fileID: 8300000, guid: a3e02d6a7bc3a2e41878ba34ce445b64, type: 3}
   audioSource: {fileID: 338624436}
   audioSourceMusic: {fileID: 338624437}
   player1: {fileID: 0}
@@ -2341,7 +2347,6 @@ MonoBehaviour:
   fightersData:
   - {fileID: 11400000, guid: 96946a2be377d0241bff423d7f13de91, type: 2}
   - {fileID: 11400000, guid: dacf2b9579f08da4d8417131b3a4a8b0, type: 2}
-  - {fileID: 11400000, guid: caef5e420b7efd045b256b4fc3e414b5, type: 2}
 --- !u!4 &1575778834
 Transform:
   m_ObjectHideFlags: 0
@@ -2798,6 +2803,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1867066259}
     m_Modifications:
+    - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: rotationScie.z
       value: -1

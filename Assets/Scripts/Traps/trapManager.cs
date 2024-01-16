@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class trapManager : MonoBehaviour
+public class TrapManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject laserD;

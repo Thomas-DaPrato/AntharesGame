@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     public void EndRound(string looser) {
 
-        trap.GetComponent<trapManager>().resetTrap();
+        trap.GetComponent<TrapManager>().resetTrap();
 
         nbRound += 1;
 

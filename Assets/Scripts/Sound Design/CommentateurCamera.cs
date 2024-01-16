@@ -15,7 +15,7 @@ public class CommentateurCamera : MonoBehaviour
     public List<AudioClip> commentateurStart;
     public List<AudioClip> commentateurBienvenu;
 
-    public AudioSource audioSource,audioSourceMusic;
+    public AudioSource audioSource;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
     [SerializeField] private GameObject flammes;
@@ -42,14 +42,6 @@ public class CommentateurCamera : MonoBehaviour
 
         
 
-    }
-
-    private void Update()
-    {
-        if (!audioSourceMusic.isPlaying)
-        {
-            audioSourceMusic.Play();
-        }
     }
 
 
@@ -142,19 +134,8 @@ public class CommentateurCamera : MonoBehaviour
         audioSource.clip = clip;
         audioSource.Play();
         isCommenting = true;
-        StartCoroutine(musicCanPlay(dureeAudio));
+        StartCoroutine(CanComment(dureeAudio));
     }
-
-
-    public IEnumerator musicCanPlay(float durée)
-    {
-        yield return new WaitForSeconds(durée);
-
-        audioSourceMusic.Play();
-        isCommenting = false;
-    }
-
-
     public IEnumerator CommentDiane(float durée)
     {
 

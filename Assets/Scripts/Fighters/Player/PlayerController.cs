@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashDown = false;
     private bool isDie = false;
     private bool isOnPlateform = false;
+    private bool isRunning = false;
 
     private float x = 0;
     [HideInInspector]
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameManager gameManager;
     public float dashForce;
+    public float downForcePlateforme;
 
     [SerializeField]
     private bool isInvicible;
@@ -133,6 +135,10 @@ public class PlayerController : MonoBehaviour
     private LayerMask OneWayGroundLayer;
     [SerializeField]
     private float groundDrag;
+
+
+    [SerializeField]
+    private LayerMask player;
     #endregion
 
 
@@ -146,14 +152,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-
-        //adding gravity
-        rb.AddForce(transform.up * -10);
-
-
         RaycastHit raycastHit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
 
+        Physics.IgnoreLayerCollision(player, player, !isGrounded);
+
+        if (isGrounded && isRunning)
+            animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
         if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
@@ -187,12 +192,16 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
+        Debug.Log("velocity " + rb.velocity.y);
+        Debug.Log("isGrounded " + isGrounded);
+        Debug.Log(isGrounded && rb.velocity.y == 0);
         if (isGrounded && rb.velocity.y == 0) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
         }
-        else
+        else {
             rb.drag = 0;
+        }
 
         if (!isAttacking)
             Move();
@@ -203,8 +212,8 @@ public class PlayerController : MonoBehaviour
     #region Event Input System
     #region Map Player
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (!isStun && context.started && isGrounded) {
-            animator.SetBool("Run", true);
+        if (!isStun && context.started) {
+            isRunning = true;
             playerRun.Play();
         }
         if (!isGrounded)
@@ -220,16 +229,17 @@ public class PlayerController : MonoBehaviour
             else
                 x = 0;
 
-            if (lastDirection * -1 == x && rb.velocity.x != 0) {
-                Debug.Log("drift");
-                animator.SetTrigger("Drift");
-            }
+            //if (lastDirection * -1 == x && rb.velocity.x != 0) {
+            //    Debug.Log("drift");
+            //    animator.SetTrigger("Drift");
+            //}
 
             if (x != 0)
                 lastDirection = x;
 
         }
         if (context.canceled) {
+            isRunning = false;
             animator.SetBool("Run", false);
             playerRun.Stop();
         }
@@ -316,7 +326,7 @@ public class PlayerController : MonoBehaviour
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
         if (!isStun && isGrounded && isOnPlateform && context.performed) {
             Debug.Log("DashDown");
-            DashDown();
+            SpeedDown();
         }
     }
 
@@ -436,13 +446,13 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
-    public void DashDown() {
+    public void SpeedDown() {
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
-        if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
+        if (transform.position.y - downForcePlateforme < lowerRightLimit.transform.position.y) {
             transform.DOMoveY(lowerRightLimit.transform.position.y, 0.2f);
         }
         else {
-            transform.DOMoveY(transform.position.y - dashForce, 0.2f);
+            transform.DOMoveY(transform.position.y - downForcePlateforme, 0.2f);
         }
 
         isDashDown = true;

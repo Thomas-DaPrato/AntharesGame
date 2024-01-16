@@ -1619,11 +1619,11 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240159690015248056}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 1
@@ -1650,6 +1650,7 @@ MonoBehaviour:
   playerName: 
   gameManager: {fileID: 0}
   dashForce: 10
+  downForcePlateforme: 0
   isInvicible: 0
   playerJump: {fileID: 6776241857002243251}
   playerLand: {fileID: 8104876122139984561}
@@ -1663,10 +1664,10 @@ MonoBehaviour:
   lowerRightLimit: {fileID: 0}
   CameraSong: {fileID: 0}
   playerInput: {fileID: 0}
-  playerSpeed: 15
+  playerSpeed: 8
   jumpHeight: 15
-  airControl: 0.4
-  groundControl: 0.4
+  airControl: 1
+  groundControl: 3
   maxNbJumpInAir: 1
   groundLayer:
     serializedVersion: 2
@@ -1674,7 +1675,10 @@ MonoBehaviour:
   OneWayGroundLayer:
     serializedVersion: 2
     m_Bits: 0
-  groundDrag: 0
+  groundDrag: 12
+  player:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &5268319310007295484
 Animator:
   serializedVersion: 5

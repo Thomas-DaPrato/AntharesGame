@@ -13,7 +13,7 @@ public class LoadArenaASync : MonoBehaviour
     }
 
     public IEnumerator LoadASync() {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Game");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(PlayerPrefs.GetString("mapName"));
         operation.allowSceneActivation = false;
         while (!operation.isDone) {
             //Debug.Log(operation.progress);
