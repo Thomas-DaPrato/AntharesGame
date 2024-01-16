@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float y = 0;
 
+    private float xDash = 0;
+    private float yDash = 0;
+
     private int chanceCommentateur = 0;
 
 
@@ -146,6 +149,7 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
+        
 
     }
 
@@ -215,6 +219,7 @@ public class PlayerController : MonoBehaviour
 
         if (!isStun) {
             x = context.ReadValue<float>();
+            xDash = x;
 
             if (x > 0)
                 x = 1;
@@ -241,7 +246,7 @@ public class PlayerController : MonoBehaviour
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
             y = context.ReadValue<float>();
-
+            yDash = y;
         }
     }
 
@@ -312,14 +317,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) {
         if (!isStun && canDash && context.performed) {
-            Debug.Log("Dash");
+            
             Dash();
             playerDash.Play();
         }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
         if (!isStun && isGrounded && isOnPlateform && context.performed) {
-            Debug.Log("DashDown");
+            
             SpeedDown();
         }
     }
@@ -392,7 +397,10 @@ public class PlayerController : MonoBehaviour
 
     public void Dash() {
 
-        if (lastDirection < 0) {
+        
+
+        if (xDash < -0.4) 
+        {
 
             if (transform.position.x - dashForce < upperLeftLimit.transform.position.x) {
                 transform.DOMoveX(upperLeftLimit.transform.position.x, 0.3f);
@@ -402,7 +410,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else if (lastDirection > 0) {
+        else if (xDash > 0.4) {
 
             if (transform.position.x + dashForce > lowerRightLimit.transform.position.x) {
                 transform.DOMoveX(lowerRightLimit.transform.position.x, 0.3f);
@@ -413,7 +421,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (y < 0) {
+        if (yDash < -0.4) {
             if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
                 transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
             }
@@ -422,7 +430,8 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else if (y > 0) {
+        else if (yDash > 0.4) {
+            
             if (transform.position.y + dashForce > upperLeftLimit.transform.position.y) {
                 transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
             }

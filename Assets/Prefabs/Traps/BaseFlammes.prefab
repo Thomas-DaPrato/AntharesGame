@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 5
-  tempsCharge: 0
+  tempsCharge: 12
   limiteHaute: 10
   limiteBasse: -10
   son: {fileID: 4087610720515864013}
@@ -58,7 +58,8 @@ MonoBehaviour:
   flammes: {fileID: 6070193377262733781}
   vib: {fileID: 4784851821545528730}
   charge: {fileID: 8300000, guid: 1c7b013baad2c414eb7111a23fa174e1, type: 3}
-  mouvementPermis: 0
+  flammeBouge: 0
+  dureeCharge: 2
 --- !u!82 &4087610720515864013
 AudioSource:
   m_ObjectHideFlags: 0

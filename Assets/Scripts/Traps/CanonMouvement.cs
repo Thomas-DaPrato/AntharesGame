@@ -14,7 +14,7 @@ public class CanonMouvement : MonoBehaviour
     public AudioClip chargement,sonTir;
     public GameObject laser,charge;
     private int declancheur = 0;
-    private bool attenteEnCours;
+    private bool attenteEnCours = false;
     private bool changeRound = false;
 
 
@@ -112,10 +112,8 @@ public class CanonMouvement : MonoBehaviour
         yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        changeRound = false;
-        laser.SetActive(false);
+        changeRound = false;        
         declancheur = 0;
-        tir = false;
         canMove = true;
         attenteEnCours = false;
 
@@ -123,13 +121,13 @@ public class CanonMouvement : MonoBehaviour
 
     }
 
-    public void ChangeRound()
+    public void ChangeRound(float tempRound)
     {
         changeRound = true;
         declancheur = 0;
         tir = false;
-
-        StartCoroutine(AttenteRound(7f));
+        laser.SetActive(false);
+        StartCoroutine(AttenteRound(tempRound));
     }
     IEnumerator Attentepiege(float sec)
     {

@@ -18,7 +18,8 @@ public class BaseFlammesMovement : MonoBehaviour
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
-    public bool mouvementPermis = false;
+    public bool flammeBouge = false;
+    public float dureeCharge = 2;
     
 
 
@@ -33,7 +34,7 @@ public class BaseFlammesMovement : MonoBehaviour
         if (!changeRound) { 
             if (canMove) {
 
-                if (mouvementPermis)
+                if (flammeBouge)
                 {
                     if (transform.position.x < limiteBasse && vitesse > 0)
                     {
@@ -53,11 +54,8 @@ public class BaseFlammesMovement : MonoBehaviour
             {
                 if (attente == false)
                 {
-                    // vibration de la plateform
-                    vib.SetActive(true);
-                    son.PlayOneShot(charge);
-                    StartCoroutine(AttenteCoroutine(2f));
-                    attente = true;
+                    // chargement des flammes
+                    chargePiege(true);
                 }
             
 
@@ -83,12 +81,10 @@ public class BaseFlammesMovement : MonoBehaviour
 
         // Après l'attente, vous pouvez mettre votre code ici
         if (!changeRound) { 
-            if (sec==2)
+            if (sec== dureeCharge)
             {
                 //arret de la vibration
-                vib.SetActive(false);
-                //son.PlayOneShot(sonTir);
-                flammes.SetActive(true);
+                activeFlammes();
             
                 StartCoroutine(AttenteCoroutine(5f));
             }
@@ -131,13 +127,36 @@ public class BaseFlammesMovement : MonoBehaviour
 
     }
 
-    public void ChangeRound()
+    public void ChangeRound(float tempRound)
     {
         changeRound = true;
-        canMove = true;
+        declancheur = 0;
+        canMove = false;
         attente = false;
         flammes.SetActive(false);
-        StartCoroutine(AttenteRound(7f));
+        StartCoroutine(AttenteRound(tempRound));
+    }
+
+    private void chargePiege(bool chargeOuPas)
+    {
+        if (chargeOuPas)
+        {
+            vib.SetActive(true);
+            son.PlayOneShot(charge);
+            StartCoroutine(AttenteCoroutine(dureeCharge));
+            attente = true;
+        }
+        else
+        {
+            vib.SetActive(false);
+        }
+        
+    }
+    private void activeFlammes()
+    {
+        chargePiege(false);
+        //son.PlayOneShot(sonTir);
+        flammes.SetActive(true);
     }
 
 

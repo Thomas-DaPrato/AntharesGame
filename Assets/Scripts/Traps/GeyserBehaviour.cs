@@ -11,6 +11,12 @@ public class GeyserBehaviour : MonoBehaviour
     public AudioClip charge,sonTir;
     public GameObject erruption,vib;
     private bool tremble,tir,intermediaire, intermediaire2 = false, changeRound=false;
+
+
+    private void Start()
+    {
+        StartCoroutine(Attentepiege(tempsCharge));
+    }
     void Update()
     {
         if (!changeRound) { 
@@ -70,6 +76,7 @@ public class GeyserBehaviour : MonoBehaviour
 
                 erruption.SetActive(false);
                 intermediaire = false;
+                StartCoroutine(Attentepiege(tempsCharge));
             }
 
         }
@@ -103,7 +110,7 @@ public class GeyserBehaviour : MonoBehaviour
 
     }
 
-    public void ChangeRound()
+    public void ChangeRound(float tempRound)
     {
         changeRound = true;
         vib.SetActive(false);
@@ -111,7 +118,7 @@ public class GeyserBehaviour : MonoBehaviour
         intermediaire2 = false;
         changeRound = false;
         tir = false;
-        StartCoroutine(AttenteRound(7f));
+        StartCoroutine(AttenteRound(tempRound));
     }
 
 

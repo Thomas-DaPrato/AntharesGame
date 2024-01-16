@@ -9,15 +9,19 @@ public class ScieEffect : MonoBehaviour
     private Vector3 rotationScie;
     [SerializeField]
     AudioSource son;
-    public int vitesse;
+    private int vitesse;
+    public int vitRotation;
     public SphereCollider col;
     public AudioClip enMarche, touche;
     private bool changeRound = false;
 
     public VisualEffect VFXTouche;
 
+    private void Start()
+    {
+        vitesse = vitRotation;
+    }
 
-    
     void Update()
     {
         if(!changeRound)
@@ -68,7 +72,7 @@ public class ScieEffect : MonoBehaviour
             else
             {
                 son.UnPause();
-                vitesse = 200;
+                vitesse = vitRotation;
                 col.isTrigger = false;
             }
         }
@@ -87,19 +91,20 @@ public class ScieEffect : MonoBehaviour
 
         // Après l'attente, vous pouvez mettre votre code ici
         changeRound = false;
+        vitesse = vitRotation;
         
         son.UnPause();
 
 
     }
 
-    public void ChangeRound()
+    public void ChangeRound(float tempRound)
     {
-        vitesse = 200;
+        vitesse = 0;
         col.isTrigger = false;
         son.Pause();
         changeRound = true;
-        StartCoroutine(AttenteRound(7f));
+        StartCoroutine(AttenteRound(tempRound));
     }
 
 }
