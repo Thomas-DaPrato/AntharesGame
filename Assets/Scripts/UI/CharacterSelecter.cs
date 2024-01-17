@@ -47,6 +47,8 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject infos;
     [SerializeField]
     private GameObject stats;
+    [SerializeField]
+    private GameObject lore;
     
 
     [SerializeField]
@@ -159,8 +161,10 @@ public class CharacterSelecter : MonoBehaviour
 
 
     public void FillStats() {
-        for(int i = 0; i < Characters.GetFighters()[currentFighter].stats.Length; i+=1) {
-            stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Characters.GetFighters()[currentFighter].stats[i].nameStat;
+        FighterData fighter = Characters.GetFighters()[currentFighter];
+
+        for (int i = 0; i < fighter.stats.Length; i+=1) {
+            stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = fighter.stats[i].nameStat;
             
             //Reset color stat
             for (int j = 0; j < 3; j += 1)

@@ -21,6 +21,7 @@ public class FighterData : ScriptableObject
 
 
     [Header("Info Menu")]
+    public string nickName;
     public Sprite spriteOriginalNotSelected;
     public Sprite spriteOriginalSelected;
     public Sprite spriteMirrorNotSelected;
