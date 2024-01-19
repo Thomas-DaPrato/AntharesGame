@@ -27,6 +27,13 @@ public class UI3DManager : MonoBehaviour
     private int currentButtonSelected = 0;
 
     private void Start() {
+        if(PlayerPrefs.GetInt("chooseFighter") == 1) {
+            gameObject.SetActive(false);
+            buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
+            vcMenu.SetActive(false);
+            vcBat.SetActive(true);
+        }
+        PlayerPrefs.SetInt("chooseFighter", 0);
         ChangeMaterial(buttons[0], selectedButton);
     }
 

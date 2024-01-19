@@ -20,7 +20,7 @@ public class LoadSceneUIManager : MonoBehaviour
         if ((Characters.ColorType) PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Original)
             fighterRight.sprite = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].orginalSkinLoadingScene;
         else
-            fighterRight.sprite = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].orginalSkinLoadingScene;
+            fighterRight.sprite = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorSkinLoadingScene;
 
     }
 }

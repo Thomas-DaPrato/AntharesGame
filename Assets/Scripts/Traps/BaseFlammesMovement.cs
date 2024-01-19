@@ -13,8 +13,8 @@ public class BaseFlammesMovement : MonoBehaviour
     [HideInInspector] public bool changeRound = false;
 
 
-    public GameObject flammes,vib;
-    public AudioClip charge/*,sonTir*/;
+    public GameObject flammes,vib, VFXs;
+    public AudioClip charge;
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
@@ -94,6 +94,7 @@ public class BaseFlammesMovement : MonoBehaviour
                 canMove = true;
                 attente = false;
                 flammes.SetActive(false);
+                VFXs.SetActive(false);
             }
 
 
@@ -134,6 +135,7 @@ public class BaseFlammesMovement : MonoBehaviour
         canMove = false;
         attente = false;
         flammes.SetActive(false);
+        VFXs.SetActive(false);
         StartCoroutine(AttenteRound(tempRound));
     }
 
@@ -157,6 +159,7 @@ public class BaseFlammesMovement : MonoBehaviour
         chargePiege(false);
         //son.PlayOneShot(sonTir);
         flammes.SetActive(true);
+        VFXs.SetActive(true);
     }
 
 

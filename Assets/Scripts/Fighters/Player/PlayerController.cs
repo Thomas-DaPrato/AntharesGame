@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public GameObject fighterCam;
 
     #region Intern Variable
-    [HideInInspector]
     public bool isGrounded;
     private bool isDashDown = false;
     private bool isDie = false;
@@ -192,7 +191,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (isGrounded && rb.velocity.y == 0) {
+        if (isGrounded && rb.velocity.y <= 0) {
             rb.drag = groundDrag;
             nbJump = maxNbJumpInAir;
         }
@@ -590,6 +589,7 @@ public class PlayerController : MonoBehaviour
         isStun = false;
         canDash = true;
         isDie = false;
+        rb.mass = 1;
 
         animator.SetTrigger("ReturnIdle");
 
@@ -617,28 +617,26 @@ public class PlayerController : MonoBehaviour
         Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
-        Debug.Log(gameObject.name + " Aerial Up");
-        animator.SetTrigger("Aerial Up");
-        //if (coordinate.x <= 0.66f && coordinate.y > 0) {
-        //    Debug.Log(gameObject.name + " Aerial Up");
-        //    animator.SetTrigger("Aerial Up");
-        //}
+        if (coordinate.x <= 0.66f && coordinate.y > 0) {
+            Debug.Log(gameObject.name + " Aerial Up");
+            animator.SetTrigger("Aerial Up");
+        }
 
-        //if (coordinate.x > 0.66f) {
-        //    Debug.Log(gameObject.name + " Aerial Middle");
-        //    animator.SetTrigger("Aerial Middle");
-        //}
+        if (coordinate.x > 0.66f) {
+            Debug.Log(gameObject.name + " Aerial Middle");
+            animator.SetTrigger("Aerial Middle");
+        }
 
-        //if (coordinate.x <= 0.66f && coordinate.y < 0) {
-        //    Debug.Log(gameObject.name + " Aerial Down");
-        //    animator.SetTrigger("Aerial Down");
-        //}
+        if (coordinate.x <= 0.66f && coordinate.y < 0) {
+            Debug.Log(gameObject.name + " Aerial Down");
+            animator.SetTrigger("Aerial Down");
+        }
 
-        //if (x == 0 && y == 0) {
-        //    Debug.Log("No Aerial Direction");
-        //    isAttacking = false;
-        //    return;
-        //}
+        if (x == 0 && y == 0) {
+            Debug.Log("No Aerial Direction");
+            isAttacking = false;
+            return;
+        }
     }
 
     public void RebindAnimator() {

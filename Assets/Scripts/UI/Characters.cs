@@ -7,7 +7,7 @@ public class Characters : MonoBehaviour
     private List<FighterData> fightersData = new List<FighterData>();
     private static List<FighterData> fighters = new List<FighterData>();
     private static List<ColorType> initialAvailableColor = new List<ColorType>();
-    public static Dictionary<int, List<ColorType>> availableColorForFighter = new Dictionary<int, List<ColorType>>();
+    public static Dictionary<int, List<ColorType>> availableColorForFighter;
 
     private static bool isInit = false;
 
@@ -26,9 +26,11 @@ public class Characters : MonoBehaviour
             fighters = fightersData;
             initialAvailableColor.Add(ColorType.Original);
             initialAvailableColor.Add(ColorType.Mirror);
-            foreach (FighterData fighter in fighters)
-                availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
         }
+
+        availableColorForFighter = new Dictionary<int, List<ColorType>>();
+        foreach (FighterData fighter in fighters)
+            availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
     }
 
     public static List<FighterData> GetFighters() {

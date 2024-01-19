@@ -291,14 +291,6 @@ public class GameManager : MonoBehaviour
         
     }
     
-    public static void DisableFighterAnimator() {
-        fighter1.GetComponent<Animator>().enabled = false;
-        fighter2.GetComponent<Animator>().enabled = false;
-    }
-    public static void EnableFighterAniamtor() {
-        fighter1.GetComponent<Animator>().enabled = true;
-        fighter2.GetComponent<Animator>().enabled = true;
-    }
 
     public static void SetFighterNotStun() {
         fighter1.GetComponent<PlayerController>().isStun = false;

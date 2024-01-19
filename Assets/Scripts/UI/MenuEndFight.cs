@@ -10,6 +10,7 @@ public class MenuEndFight : MonoBehaviour
    }
 
     public void ChooseFighters() {
+        PlayerPrefs.SetInt("chooseFighter", 1);
         SceneManager.LoadScene("Menu");
     }
 
