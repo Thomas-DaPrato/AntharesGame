@@ -9,6 +9,8 @@ public class Characters : MonoBehaviour
     private static List<ColorType> initialAvailableColor = new List<ColorType>();
     public static Dictionary<int, List<ColorType>> availableColorForFighter = new Dictionary<int, List<ColorType>>();
 
+    private static bool isInit = false;
+
 
     public enum ColorType{
         Original,
@@ -19,11 +21,14 @@ public class Characters : MonoBehaviour
 
 
     private void Awake() {
-        fighters = fightersData;
-        initialAvailableColor.Add(ColorType.Original);
-        initialAvailableColor.Add(ColorType.Mirror);
-        foreach (FighterData fighter in fighters)
-            availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
+        if (!isInit) {
+            isInit = true;
+            fighters = fightersData;
+            initialAvailableColor.Add(ColorType.Original);
+            initialAvailableColor.Add(ColorType.Mirror);
+            foreach (FighterData fighter in fighters)
+                availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
+        }
     }
 
     public static List<FighterData> GetFighters() {

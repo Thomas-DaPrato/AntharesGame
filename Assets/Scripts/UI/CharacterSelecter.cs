@@ -41,6 +41,10 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject vcEnter;
 
     [SerializeField]
+    private AudioSource audioSource;
+    public AudioClip audioBack;
+
+    [SerializeField]
     private Image support;
 
     [SerializeField]
@@ -114,6 +118,7 @@ public class CharacterSelecter : MonoBehaviour
                 PlayerPrefs.SetInt(gameObject.name, -1);
             }
             else {
+                audioSource.PlayOneShot(audioBack);
                 characterSelecter.SetActive(false);
                 menu.SetActive(true);
                 vcMenu.SetActive(true);

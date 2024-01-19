@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public GameObject fighterCam;
 
     #region Intern Variable
-    private bool isGrounded;
+    [HideInInspector]
+    public bool isGrounded;
     private bool isDashDown = false;
     private bool isDie = false;
     private bool isOnPlateform = false;
@@ -139,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField]
-    private LayerMask player;
+    private LayerMask playerLayer;
     #endregion
 
 
@@ -149,8 +150,6 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
-        
-
     }
 
     private void Update() {
@@ -168,14 +167,14 @@ public class PlayerController : MonoBehaviour
             isOnPlateform = false;
 
         if (lastDirection < 0) {
-            animator.SetBool("Mirror", true);
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-        if (lastDirection > 0) {
             animator.SetBool("Mirror", false);
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
             playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+        }
+        if (lastDirection > 0) {
+            animator.SetBool("Mirror", true);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
         }
 
         if (canDecreaseRedHpBarre) {
@@ -205,6 +204,23 @@ public class PlayerController : MonoBehaviour
             Move();
     }
 
+    public void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag.Equals("Player")) {
+            if (isGrounded) { 
+                collision.gameObject.GetComponent<Rigidbody>().mass = 5;
+                rb.mass = 5;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision) {
+        if (collision.gameObject.tag.Equals("Player")) {
+            if (isGrounded) {
+                collision.gameObject.GetComponent<Rigidbody>().mass = 1;
+                GetComponentInParent<Rigidbody>().mass = 1;
+            }
+        }
+    }
 
 
     #region Event Input System
@@ -221,9 +237,9 @@ public class PlayerController : MonoBehaviour
             x = context.ReadValue<float>();
             xDash = x;
 
-            if (x > 0)
+            if (x < 0)
                 x = 1;
-            else if (x < 0)
+            else if (x > 0)
                 x = -1;
             else
                 x = 0;
@@ -363,6 +379,7 @@ public class PlayerController : MonoBehaviour
     public void Jump() {
         if (nbJump > 0) {
             animator.SetTrigger("Jump");
+            rb.mass = 1;
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             nbJump -= 1;

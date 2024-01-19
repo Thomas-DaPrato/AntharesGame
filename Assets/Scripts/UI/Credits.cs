@@ -49,28 +49,12 @@ public class Credits : MonoBehaviour
 
         //Set infos left
         for (int i = 0; i < teamData[currentMember].stats.Length; i += 1) {
-            infosLeft.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = teamData[currentMember].stats[i].nameStat;
-
-            //Reset color stat
-            for (int j = 0; j < 3; j += 1)
-                infosLeft.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
-
-            //Set color stat
-            for (int j = 0; j < teamData[currentMember].stats[i].value; j += 1)
-                infosLeft.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
+            infosLeft.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = teamData[currentMember].stats[i].nameStat;
         }
         if (currentMember + 1 < teamData.Count) {
             //Set infos right
             for (int i = 0; i < teamData[currentMember + 1].stats.Length; i += 1) {
-                infosRight.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = teamData[currentMember + 1].stats[i].nameStat;
-
-                //Reset color stat
-                for (int j = 0; j < 3; j += 1)
-                    infosRight.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
-
-                //Set color stat
-                for (int j = 0; j < teamData[currentMember + 1].stats[i].value; j += 1)
-                    infosRight.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
+                infosRight.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = teamData[currentMember + 1].stats[i].nameStat;
             }
         }
     }
