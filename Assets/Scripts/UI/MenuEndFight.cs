@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuEndFight : MonoBehaviour
 {
    public void Rematch() {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game_Final");
    }
 
     public void ChooseFighters() {
