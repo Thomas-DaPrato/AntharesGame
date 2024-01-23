@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
 
     private float x = 0;
-    [HideInInspector]
-    public float y = 0;
+    private float xAerial = 0;
+    private float yAerial = 0;
 
     private float xDash = 0;
     private float yDash = 0;
@@ -152,31 +152,30 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-        RaycastHit raycastHit;
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
 
 
         if (isGrounded && isRunning)
             animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
-        if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
+        if (raycastHit.transform != null && raycastHit.transform.gameObject.CompareTag("Plateform"))
             isOnPlateform = true;
         else
             isOnPlateform = false;
 
-        //if (!isAttacking) {
-            if (lastDirection < 0) {
+        if (!isAttacking) {
+            if (lastDirection > 0) {
                 animator.SetBool("Mirror", false);
                 hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
                 playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
             }
-            if (lastDirection > 0) {
+            if (lastDirection < 0) {
                 animator.SetBool("Mirror", true);
                 hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
                 playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
             }
-        //}
+        }
 
         if (canDecreaseRedHpBarre) {
             Debug.Log("decrease");
@@ -206,7 +205,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag.Equals("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
             if (isGrounded) { 
                 collision.gameObject.GetComponent<Rigidbody>().mass = 5;
                 rb.mass = 5;
@@ -215,7 +214,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.tag.Equals("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
             if (isGrounded) {
                 collision.gameObject.GetComponent<Rigidbody>().mass = 1;
                 GetComponentInParent<Rigidbody>().mass = 1;
@@ -238,9 +237,9 @@ public class PlayerController : MonoBehaviour
             x = context.ReadValue<float>();
             xDash = x;
 
-            if (x < 0)
+            if (x > 0)
                 x = 1;
-            else if (x > 0)
+            else if (x < 0)
                 x = -1;
             else
                 x = 0;
@@ -257,8 +256,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
-            y = context.ReadValue<float>();
-            yDash = y;
+            yAerial = context.ReadValue<float>();
+            yDash = yAerial;
         }
     }
 
@@ -269,9 +268,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(gameObject.name + " Heavy");
                 animator.SetTrigger("HeavyAttack");
             }
-            else if (!isGrounded) {
-                LaunchAerialAttack(x, y);
-            }
+            else if (!isGrounded)
+                LaunchAerialAttack(x, yAerial);
         }
     }
 
@@ -283,7 +281,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("MiddleAttack");
             }
             else if (!isGrounded)
-                LaunchAerialAttack(x, y);
+                LaunchAerialAttack(x, yAerial);
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {
@@ -294,7 +292,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("LightAttack");
             }
             else if (!isGrounded)
-                LaunchAerialAttack(x, y);
+                LaunchAerialAttack(x, yAerial);
         }
 
     }
@@ -302,13 +300,9 @@ public class PlayerController : MonoBehaviour
     public void OnRightStick(InputAction.CallbackContext context) {
         if (context.performed && !isStun && !isGrounded && !isAttacking) {
             isAttacking = true;
-            x = context.ReadValue<Vector2>()[0];
-            if (x != 0) {
-                lastDirection = x;
-            }
-            y = context.ReadValue<Vector2>()[1];
-            LaunchAerialAttack(x, y);
-            
+            xAerial = context.ReadValue<Vector2>()[0];
+            yAerial = context.ReadValue<Vector2>()[1];
+            LaunchAerialAttack(xAerial, yAerial);
         }
     }
 
@@ -384,23 +378,20 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Move() {
-        Vector3 move = new Vector3(x, 0, 0);
-        if (move.x > 0)
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-        if (move.x < 0)
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+        Vector3 move = new(x, 0, 0);
+
 
         if (isGrounded) {
-            rb.AddForce(move * playerSpeed * 10f * groundControl, ForceMode.Force);
+            rb.AddForce(10f * groundControl * playerSpeed * move, ForceMode.Force);
         }
 
         else if (!isGrounded)
-            rb.AddForce(move * playerSpeed * 10f * airControl, ForceMode.Force);
+            rb.AddForce(10f * airControl * playerSpeed * move, ForceMode.Force);
 
     }
 
     public void SpeedController() {
-        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, 0f);
+        Vector3 flatVelocity = new(rb.velocity.x, 0f, 0f);
 
         if (flatVelocity.magnitude > playerSpeed) {
             Vector3 limitedSpeed = flatVelocity.normalized * playerSpeed;
@@ -530,7 +521,6 @@ public class PlayerController : MonoBehaviour
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
                 }
 
-
                 break;
             default:
                 hp -= percentageDamage * maxHp / 100.0f;
@@ -588,7 +578,6 @@ public class PlayerController : MonoBehaviour
         rb.mass = 1;
 
         x = 0;
-        y = 0;
 
         animator.SetTrigger("ReturnIdle");
 
@@ -613,7 +602,7 @@ public class PlayerController : MonoBehaviour
 
     public void LaunchAerialAttack(float x, float y) {
         Debug.Log("Aerial");
-        Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
+        Vector2 coordinate = new(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
@@ -692,7 +681,10 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.down * (fighterData.playerHeight * 0.5f + 0.2f));
+
     }
+    
+
 
 
 }

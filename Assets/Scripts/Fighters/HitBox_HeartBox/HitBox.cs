@@ -26,7 +26,7 @@ public class HitBox : MonoBehaviour
     private GameObject heartBoxPlayer;
 
 
-    
+
     private void OnTriggerEnter(Collider other) {
         if (other.tag.Equals("HeartBox") && other.gameObject != heartBoxPlayer && !other.GetComponentInParent<PlayerController>().isParrying) {
             FighterData fighterData = playerController.GetFighterData();

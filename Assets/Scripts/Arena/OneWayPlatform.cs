@@ -24,7 +24,6 @@ public class OneWayPlatform : MonoBehaviour
         {
             other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
         }
-            
 
         
     }
