@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         List<Image> whiteHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().whiteHpBarre;
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
         
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", Gamepad.all[0]);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, -1, whiteHpBarreP1, redHpBarreP1, "P1", Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundWinP1 = 0;
         spotLightP1.GetComponent<SpotlightFollow>().fighter = fighter1.gameObject;
@@ -113,9 +113,9 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
 
         if (Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Keyboard.current);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, 1, whiteHpBarreP2, redHpBarreP2, "P2", Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, 1, whiteHpBarreP2, redHpBarreP2, "P2", Gamepad.all[1]);
         
         targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundWinP2 = 0;
@@ -283,10 +283,10 @@ public class GameManager : MonoBehaviour
     public void ResetFight() {
         mainVirtualCamera.gameObject.SetActive(true);
 
-        fighter1.GetComponent<PlayerController>().ResetFighter(1);
+        fighter1.GetComponent<PlayerController>().ResetFighter(-1);
         fighter1.transform.position = spawnP1.position;
         
-        fighter2.GetComponent<PlayerController>().ResetFighter(-1);
+        fighter2.GetComponent<PlayerController>().ResetFighter(1);
         fighter2.transform.position = spawnP2.position;
         
     }

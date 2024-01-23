@@ -46,7 +46,7 @@ public class OptionsSwapper : MonoBehaviour
     }
 
    public void OnReturn(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && options.activeSelf) {
             menuPause.SetActive(true);
             options.SetActive(false);
             eventSystem.SetSelectedGameObject(objectSelectedOnReturn);

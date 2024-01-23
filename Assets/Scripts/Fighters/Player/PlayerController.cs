@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     #region Intern Variable
     public bool isGrounded;
     private bool isDashDown = false;
-    private bool isDie = false;
+    public bool isDie = false;
     private bool isOnPlateform = false;
     private bool isRunning = false;
 
@@ -165,16 +165,18 @@ public class PlayerController : MonoBehaviour
         else
             isOnPlateform = false;
 
-        if (lastDirection < 0) {
-            animator.SetBool("Mirror", false);
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-        }
-        if (lastDirection > 0) {
-            animator.SetBool("Mirror", true);
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-        }
+        //if (!isAttacking) {
+            if (lastDirection < 0) {
+                animator.SetBool("Mirror", false);
+                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+                playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            }
+            if (lastDirection > 0) {
+                animator.SetBool("Mirror", true);
+                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+                playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+            }
+        //}
 
         if (canDecreaseRedHpBarre) {
             Debug.Log("decrease");
@@ -199,7 +201,7 @@ public class PlayerController : MonoBehaviour
             rb.drag = 0;
         }
 
-        if (!isAttacking)
+        if (!isAttacking && !isStun)
             Move();
     }
 
@@ -242,11 +244,6 @@ public class PlayerController : MonoBehaviour
                 x = -1;
             else
                 x = 0;
-
-            //if (lastDirection * -1 == x && rb.velocity.x != 0) {
-            //    Debug.Log("drift");
-            //    animator.SetTrigger("Drift");
-            //}
 
             if (x != 0)
                 lastDirection = x;
@@ -586,10 +583,12 @@ public class PlayerController : MonoBehaviour
         this.lastDirection = lastDirection;
         isAttacking = false;
         isParrying = false;
-        isStun = false;
         canDash = true;
         isDie = false;
         rb.mass = 1;
+
+        x = 0;
+        y = 0;
 
         animator.SetTrigger("ReturnIdle");
 
@@ -639,9 +638,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RebindAnimator() {
-        animator.Rebind();
-    }
     #endregion
 
 
