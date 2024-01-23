@@ -11,6 +11,7 @@ public class CharacterSelecter : MonoBehaviour
 
     private int currentFighter;
     private bool haveChooseFighter = false;
+    private bool haveLaunchAnimation = false;
     private Characters.ColorType colorType;
 
     [SerializeField]
@@ -47,16 +48,22 @@ public class CharacterSelecter : MonoBehaviour
     [SerializeField]
     private Image support;
 
+    [Header("Informations")]
+    [SerializeField]
+    private TextMeshProUGUI nickName;
     [SerializeField]
     private GameObject infos;
     [SerializeField]
     private GameObject stats;
     [SerializeField]
-    private GameObject lore;
+    private TextMeshProUGUI lore;
     
 
     [SerializeField]
     private GameObject ready;
+
+    [SerializeField]
+    private GameObject startButtonUI;
 
 
     private void OnEnable() {
@@ -89,7 +96,7 @@ public class CharacterSelecter : MonoBehaviour
     }
 
     public void OnOpenInformation(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && !haveChooseFighter) {
             if (!infos.activeSelf) {
                 infos.SetActive(true);
                 FillStats();
@@ -115,7 +122,8 @@ public class CharacterSelecter : MonoBehaviour
                 colorType = Characters.ColorType.None;
                 support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
-                PlayerPrefs.SetInt(gameObject.name, -1);
+                PlayerPrefs.SetInt(playerPrefPlayerName, -1);
+                startButtonUI.SetActive(false);
             }
             else {
                 audioSource.PlayOneShot(audioBack);
@@ -138,11 +146,16 @@ public class CharacterSelecter : MonoBehaviour
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
+            Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
+            Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1)
+                startButtonUI.SetActive(true);
         }
     }
 
     public void OnStartFight(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && !haveLaunchAnimation) {
+            haveLaunchAnimation = true;
             Debug.Log(PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1);
             Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
             Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
@@ -168,6 +181,8 @@ public class CharacterSelecter : MonoBehaviour
     public void FillStats() {
         FighterData fighter = Characters.GetFighters()[currentFighter];
 
+        nickName.text = fighter.nickName;
+
         for (int i = 0; i < fighter.stats.Length; i+=1) {
             stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = fighter.stats[i].nameStat;
             
@@ -179,6 +194,8 @@ public class CharacterSelecter : MonoBehaviour
             for (int j = 0; j < Characters.GetFighters()[currentFighter].stats[i].value; j += 1)
                 stats.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
+
+        lore.text = fighter.lore.text;
     }
 
     public Sprite GetSpriteNotSelected(Characters.ColorType color) {
