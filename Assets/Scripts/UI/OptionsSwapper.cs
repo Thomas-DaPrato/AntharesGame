@@ -40,7 +40,6 @@ public class OptionsSwapper : MonoBehaviour
                 if (currentPannel < 0)
                     currentPannel = optionsPannel.Count - 1;
             }
-            Debug.Log("currentPannel " + currentPannel);
             optionsPannel[currentPannel].SetActive(true);
         }
     }

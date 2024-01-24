@@ -170,16 +170,12 @@ public class GameManager : MonoBehaviour
 
         nbRound += 1;
 
-        Debug.Log("End Round");
         if (looser.Equals("P1"))
             nbRoundWinP2 += 1;
         if (looser.Equals("P2"))
             nbRoundWinP1 += 1;
 
         UpdateRounBarre();
-
-        Debug.Log("P1 Round " + nbRoundWinP1);
-        Debug.Log("P2 Round " + nbRoundWinP2);
 
 
         if (nbRoundWinP1 == 3 || nbRoundWinP2 == 3)
@@ -242,7 +238,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("P1 win " + nbRoundWinP1 + " rounds, P2 win " + nbRoundWinP2 + " rounds");
         uiInGameManager.hpBarres.SetActive(false);
         menuEndFight.SetActive(true);
         EventSystem.current.SetSelectedGameObject(uiInGameManager.rematchButton);

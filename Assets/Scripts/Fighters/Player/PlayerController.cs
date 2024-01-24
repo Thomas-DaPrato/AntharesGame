@@ -171,7 +171,6 @@ public class PlayerController : MonoBehaviour
         }
 
         if (canDecreaseRedHpBarre) {
-            Debug.Log("decrease");
             if (currentRedCell == whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
                 canDecreaseRedHpBarre = false;
             else {
@@ -260,10 +259,8 @@ public class PlayerController : MonoBehaviour
         else
             val = 0;
 
-        if (val != 0) {
+        if (val != 0) 
             lastDirection = val;
-            Debug.Log("lastDirection " + lastDirection);
-        }
     }
 
     public void OnMoveY(InputAction.CallbackContext context) {
@@ -311,7 +308,6 @@ public class PlayerController : MonoBehaviour
             isAttacking = true;
 
             xAerial = context.ReadValue<Vector2>()[0];
-            Debug.Log("xAerial " + xAerial);
             yAerial = context.ReadValue<Vector2>()[1];
 
             SetLastDirection(xAerial);
@@ -503,7 +499,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("ReturnIdle");
         isStun = false;
         isAttacking = false;
-        Debug.Log(gameObject.name + " is not anymore stunt");
     }
     #endregion
 
@@ -548,11 +543,9 @@ public class PlayerController : MonoBehaviour
         if ((hp / maxHp) * 100 <= 10)
             XKey.GetComponent<DarkenKey>().DarkenXKey();
 
-        Debug.Log("percentageHp " + (hp / maxHp));
 
         StartCoroutine(UpdateHpBarre());
 
-        Debug.Log(gameObject.name + " hp " + hp);
     }
 
 
@@ -647,7 +640,6 @@ public class PlayerController : MonoBehaviour
     #region Set Variable With Animation
     public void SetTriggerStun(float time) {
         if (!isDie) {
-            Debug.Log(gameObject.name + " Stun");
             StartCoroutine(StunCoolDown(time));
             animator.SetTrigger("Stun");
         }

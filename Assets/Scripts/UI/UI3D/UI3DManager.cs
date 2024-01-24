@@ -34,13 +34,16 @@ public class UI3DManager : MonoBehaviour
 
     private void Start() {
         if(PlayerPrefs.GetInt("chooseFighter") == 1) {
-            gameObject.SetActive(false);
+            GetComponent<PlayerInput>().enabled = false;
+            foreach (GameObject button in buttons)
+                button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
             buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
             vcMenu.SetActive(false);
             vcBat.SetActive(true);
         }
+        else 
+            ChangeMaterial(buttons[0], selectedButton);
         PlayerPrefs.SetInt("chooseFighter", 0);
-        ChangeMaterial(buttons[0], selectedButton);
     }
 
     public void OnSwapButton(InputAction.CallbackContext context) {
