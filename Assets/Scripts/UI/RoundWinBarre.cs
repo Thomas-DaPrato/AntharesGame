@@ -6,4 +6,6 @@ using UnityEngine.UI;
 public class RoundWinBarre : MonoBehaviour
 {
     public List<Image> roundWinCell;
+
+    public Sprite fullCell;
 }

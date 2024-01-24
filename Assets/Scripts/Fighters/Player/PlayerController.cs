@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject menuPause;
 
+    private GameObject XKey;
+
     [SerializeField]
     private PlayerInput playerInput;
 
@@ -543,6 +545,9 @@ public class PlayerController : MonoBehaviour
         if (!isDie && hp < 0)
             hp = 1;
 
+        if ((hp / maxHp) * 100 <= 10)
+            XKey.GetComponent<DarkenKey>().DarkenXKey();
+
         Debug.Log("percentageHp " + (hp / maxHp));
 
         StartCoroutine(UpdateHpBarre());
@@ -603,7 +608,7 @@ public class PlayerController : MonoBehaviour
         }
 
         currentRedCell = redHpBarre.Count - 1;
-
+        XKey.GetComponent<DarkenKey>().ResetColorSprite();
 
         nbJump = maxNbJumpInAir;
     }
@@ -680,6 +685,10 @@ public class PlayerController : MonoBehaviour
 
     public void SetMenuPause(GameObject menuPauseInGame) {
         menuPause = menuPauseInGame;
+    }
+
+    public void SetXKey(GameObject XKeyInGame) {
+        XKey = XKeyInGame;
     }
 
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {
