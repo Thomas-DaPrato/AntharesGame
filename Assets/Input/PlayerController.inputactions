@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "ce0c9f18-7864-4b71-9d74-09b9367b0f18",
                     "expectedControlType": "Axis",
-                    "processors": "",
+                    "processors": "AxisDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -19,8 +19,8 @@
                     "type": "Value",
                     "id": "3812877e-8131-40eb-b001-d28bf6a4c4e3",
                     "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "Hold",
+                    "processors": "AxisDeadzone",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -28,7 +28,7 @@
                     "type": "Value",
                     "id": "89bb2746-b707-424a-81b9-8eb66f85098f",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },

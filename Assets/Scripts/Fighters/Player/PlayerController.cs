@@ -165,16 +165,7 @@ public class PlayerController : MonoBehaviour
             isOnPlateform = false;
 
         if (!isAttacking) {
-            if (lastDirection > 0) {
-                animator.SetBool("Mirror", false);
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-                playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            }
-            if (lastDirection < 0) {
-                animator.SetBool("Mirror", true);
-                hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-                playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-            }
+            RotateComponent();
         }
 
         if (canDecreaseRedHpBarre) {
@@ -189,6 +180,19 @@ public class PlayerController : MonoBehaviour
         }
 
         SpeedController();
+    }
+
+    private void RotateComponent() {
+        if (lastDirection > 0) {
+            animator.SetBool("Mirror", false);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+        }
+        if (lastDirection < 0) {
+            animator.SetBool("Mirror", true);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+        }
     }
 
     void FixedUpdate() {
@@ -236,16 +240,7 @@ public class PlayerController : MonoBehaviour
         if (!isStun) {
             x = context.ReadValue<float>();
             xDash = x;
-
-            if (x > 0)
-                x = 1;
-            else if (x < 0)
-                x = -1;
-            else
-                x = 0;
-
-            if (x != 0)
-                lastDirection = x;
+            SetLastDirection(x);
 
         }
         if (context.canceled) {
@@ -254,6 +249,21 @@ public class PlayerController : MonoBehaviour
             playerRun.Stop();
         }
     }
+
+    private void SetLastDirection(float val) {
+        if (val > 0)
+            val = 1;
+        else if (val < 0)
+            val = -1;
+        else
+            val = 0;
+
+        if (val != 0) {
+            lastDirection = val;
+            Debug.Log("lastDirection " + lastDirection);
+        }
+    }
+
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
             yAerial = context.ReadValue<float>();
@@ -265,7 +275,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Heavy");
                 animator.SetTrigger("HeavyAttack");
             }
             else if (!isGrounded)
@@ -277,7 +286,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Middle");
                 animator.SetTrigger("MiddleAttack");
             }
             else if (!isGrounded)
@@ -288,7 +296,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Light");
                 animator.SetTrigger("LightAttack");
             }
             else if (!isGrounded)
@@ -300,8 +307,14 @@ public class PlayerController : MonoBehaviour
     public void OnRightStick(InputAction.CallbackContext context) {
         if (context.performed && !isStun && !isGrounded && !isAttacking) {
             isAttacking = true;
+
             xAerial = context.ReadValue<Vector2>()[0];
+            Debug.Log("xAerial " + xAerial);
             yAerial = context.ReadValue<Vector2>()[1];
+
+            SetLastDirection(xAerial);
+            RotateComponent();
+
             LaunchAerialAttack(xAerial, yAerial);
         }
     }
@@ -601,22 +614,18 @@ public class PlayerController : MonoBehaviour
 
 
     public void LaunchAerialAttack(float x, float y) {
-        Debug.Log("Aerial");
         Vector2 coordinate = new(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
-            Debug.Log(gameObject.name + " Aerial Up");
             animator.SetTrigger("Aerial Up");
         }
 
         if (coordinate.x > 0.66f) {
-            Debug.Log(gameObject.name + " Aerial Middle");
             animator.SetTrigger("Aerial Middle");
         }
 
         if (coordinate.x <= 0.66f && coordinate.y < 0) {
-            Debug.Log(gameObject.name + " Aerial Down");
             animator.SetTrigger("Aerial Down");
         }
 

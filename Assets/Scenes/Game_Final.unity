@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
+  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1343,6 +1343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &135893421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+  m_PrefabInstance: {fileID: 1984778114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &138749128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8850637234420897880, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
@@ -1605,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: rotationScie.z
@@ -2807,7 +2812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &417456251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,6 +2825,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452ad2ecf8bb1024486d4686959b1e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserD: {fileID: 1691029166}
+  laserG: {fileID: 1134806714}
+  flammesBas: {fileID: 907154849}
+  flammesHaut: {fileID: 1134348505}
+  geyserD: {fileID: 135893421}
+  geyserG: {fileID: 637891783}
+  scieD: {fileID: 641144770}
+  scieG: {fileID: 1136152094}
+  tempsCharge: 7
 --- !u!4 &417456252
 Transform:
   m_ObjectHideFlags: 0
@@ -4703,6 +4717,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630352017}
   m_Mesh: {fileID: 1285351595916916637, guid: ca2838f5246f82041a4f2ab69257fead, type: 3}
+--- !u!1 &637891783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+  m_PrefabInstance: {fileID: 790478709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &641144770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3577242032467138145, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+  m_PrefabInstance: {fileID: 2017492954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &641729632
 GameObject:
   m_ObjectHideFlags: 0
@@ -6987,6 +7011,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 110706045635206320, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
   m_PrefabInstance: {fileID: 2116032089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &907154849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076696429556365509, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+  m_PrefabInstance: {fileID: 1415101411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &922317296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8803,6 +8832,21 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ebddc8b7e85fc6c43a75953e8186412e, type: 3}
   m_PrefabInstance: {fileID: 1960629689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134348505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076696429556365509, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+  m_PrefabInstance: {fileID: 76947782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134806714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 701658652044259494, guid: 1c237b21c2af1314fa9cdf0af609cf62, type: 3}
+  m_PrefabInstance: {fileID: 1520414060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1136152094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3577242032467138145, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
+  m_PrefabInstance: {fileID: 208375456}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1141915475 stripped
 Transform:
@@ -18378,6 +18422,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8242076695823084325, guid: a8d40fcb095b024499bf87f9846dc85d, type: 3}
   m_PrefabInstance: {fileID: 477040845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1691029166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8752708326523234004, guid: 9511e41648b2a484ab60f36eeb716713, type: 3}
+  m_PrefabInstance: {fileID: 406544137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1691688763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20924,7 +20973,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7801139571383514323, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: rotationScie.z
