@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class UI3DManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> buttons;
 
+    [Header("Material")]
     [SerializeField]
     private Material selectedButton;
     [SerializeField]
     private Material notSelectedButton;
+    [SerializeField]
+    private Material blackButton;
 
+    [Header("Camera")]
     [SerializeField]
     private GameObject vcMenu;
     [SerializeField]
     private GameObject vcBat;
 
 
+    [Header("Audio")]
     public AudioSource audioSource; 
     public AudioClip audioButtonSwap;
     public AudioClip audioButtonClick;
@@ -59,9 +65,11 @@ public class UI3DManager : MonoBehaviour
     public void OnClick(InputAction.CallbackContext context) {
         if (context.performed) {
             audioSource.PlayOneShot(audioButtonClick);
-            
+                
             if (!buttons[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton) {
-                gameObject.SetActive(false);
+                GetComponent<PlayerInput>().enabled = false;
+                foreach(GameObject button in buttons)
+                    button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
                 buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
                 vcMenu.SetActive(false);
                 vcBat.SetActive(true);
@@ -76,5 +84,12 @@ public class UI3DManager : MonoBehaviour
         button.GetComponent<MeshRenderer>().sharedMaterial = material;
     }
 
-   
+    public void ResetMaterial() {
+        for(int i = 0; i < buttons.Count; i+=1) {
+            if (i != currentButtonSelected)
+                buttons[i].GetComponent<MeshRenderer>().sharedMaterial = notSelectedButton;
+            else
+                buttons[i].GetComponent<MeshRenderer>().sharedMaterial = selectedButton;
+        }
+    }
 }

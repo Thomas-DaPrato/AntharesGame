@@ -101,10 +101,8 @@ public class CharacterSelecter : MonoBehaviour
                 infos.SetActive(true);
                 FillStats();
             }
-            else {
-                stats.SetActive(true);
+            else 
                 infos.SetActive(false);
-            }
         }
     }
 
@@ -128,7 +126,8 @@ public class CharacterSelecter : MonoBehaviour
             else {
                 audioSource.PlayOneShot(audioBack);
                 characterSelecter.SetActive(false);
-                menu.SetActive(true);
+                menu.GetComponent<PlayerInput>().enabled = true;
+                menu.GetComponent<UI3DManager>().ResetMaterial();
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
             }
@@ -138,6 +137,7 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnValidateCharacter(InputAction.CallbackContext context) {
         if (context.performed && !haveChooseFighter) {
+            infos.SetActive(false);
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
             colorType = Characters.availableColorForFighter[currentFighter][0];
             PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int) colorType);
