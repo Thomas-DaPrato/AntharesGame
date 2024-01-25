@@ -10,7 +10,9 @@ public class AnimationEvent : MonoBehaviour
     public GameObject hitBoxAerialAttackUp;
     public GameObject hitBoxAerialAttackMiddle;
     public GameObject hitBoxAerialAttackDown;
-    public MeshRenderer heartBoxParry;
+    public Collider intialHeartBox;
+    public Collider parryHeartBox;
+    public GameObject VFXParry;
 
     [SerializeField]
     private PlayerController playerController;
@@ -48,11 +50,16 @@ public class AnimationEvent : MonoBehaviour
 
     #region HeartBoxParry
     public void DisplayHeartBoxParry() {
-        if (!playerController.isDie)
-            heartBoxParry.enabled = true;
+        if (!playerController.isDie) {
+            intialHeartBox.enabled = false;
+            parryHeartBox.enabled = true;
+            VFXParry.SetActive(true);
+        }
     }
     public void HideHeartBoxParry() {
-        heartBoxParry.enabled = false;
+        intialHeartBox.enabled = true;
+        parryHeartBox.enabled = false;
+        VFXParry.SetActive(false);
     }
     #endregion
 

@@ -65,15 +65,18 @@ public class GameManager : MonoBehaviour
     private static int nbRoundWinP2;
 
     public bool onSceneTest;
-    public bool useCesar;
+    public bool useOnlyCesar;
+    public bool useOnlyDiane;
 
     
     private void Start() {
         if (onSceneTest) {
-            if (useCesar)
+            if (useOnlyCesar)
                 SetPlayerPrefToFighterCesar();
-            else
+            else if (useOnlyDiane)
                 SetPlayerPrefToFighterDiane();
+            else
+                SetPlayerPrefToFighter();
         }
 
         InitGameManager();
@@ -146,6 +149,13 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
+    }
+
+    public void SetPlayerPrefToFighter() {
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 0);
     }
 
 

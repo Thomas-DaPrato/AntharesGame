@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CubeOnTriggerEnter : MonoBehaviour
 {
+    public string val;
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("entry");
+        Debug.Log(val);
     }
 
     private void OnTriggerExit(Collider other) {
