@@ -1174,6 +1174,7 @@ GameObject:
   - component: {fileID: 7062209102258003241}
   - component: {fileID: 5393273615202157440}
   - component: {fileID: 8194181382035539801}
+  - component: {fileID: 5472202714611528833}
   - component: {fileID: 1996598213823284517}
   - component: {fileID: 7626882537462708737}
   m_Layer: 7
@@ -1260,6 +1261,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &5472202714611528833
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453607366595205452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.65
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1996598213823284517
 MonoBehaviour:
@@ -1716,7 +1730,9 @@ MonoBehaviour:
   hitBoxAerialAttackUp: {fileID: 2222564241923595134}
   hitBoxAerialAttackMiddle: {fileID: 1478481551990848993}
   hitBoxAerialAttackDown: {fileID: 4683883325244934744}
-  heartBoxParry: {fileID: 5393273615202157440}
+  intialHeartBox: {fileID: 8194181382035539801}
+  parryHeartBox: {fileID: 5472202714611528833}
+  VFXParry: {fileID: 3136513602941079983}
   playerController: {fileID: 4488373448364204997}
 --- !u!114 &834040269773802274
 MonoBehaviour:
@@ -3297,5 +3313,10 @@ PrefabInstance:
 --- !u!4 &2363530182147148565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8db622fd53bb55a4b9ce38ec7dd1e51c, type: 3}
+  m_PrefabInstance: {fileID: 2830032226651401470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3136513602941079983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8db622fd53bb55a4b9ce38ec7dd1e51c, type: 3}
   m_PrefabInstance: {fileID: 2830032226651401470}
   m_PrefabAsset: {fileID: 0}
