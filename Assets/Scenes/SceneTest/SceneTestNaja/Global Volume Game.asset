@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.232
+    m_Value: 0.243
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.483
+    m_Value: 0.365
   rounded:
     m_OverrideState: 1
     m_Value: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
     m_Value: 17
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 1.8049871, g: 2.6390157, b: 2.4780703, a: 1}
+    m_Value: {r: 2.4264188, g: 2.4264188, b: 2.4264188, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: -172
@@ -74,13 +74,13 @@ MonoBehaviour:
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 550
+    m_Value: 15
   gaussianEnd:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 500
   gaussianMaxRadius:
-    m_OverrideState: 0
-    m_Value: 1.5
+    m_OverrideState: 1
+    m_Value: 0.5
   highQualitySampling:
     m_OverrideState: 0
     m_Value: 0
@@ -117,10 +117,10 @@ MonoBehaviour:
   active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.14
+    m_Value: 0.61
   intensity:
     m_OverrideState: 1
-    m_Value: 0.33
+    m_Value: 0.27
   scatter:
     m_OverrideState: 1
     m_Value: 0.933
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
+  m_Name: Global Volume Game
   m_EditorClassIdentifier: 
   components:
   - {fileID: -9177308731570419670}
@@ -193,4 +193,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.075
