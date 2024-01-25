@@ -129,6 +129,8 @@ public class CharacterSelecter : MonoBehaviour
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(playerPrefPlayerName, -1);
                 startButtonUI.SetActive(false);
+                validateButtonUI.SetActive(true);
+                navigateButtonUI.SetActive(true);
             }
             else {
                 audioSource.PlayOneShot(audioBack);
