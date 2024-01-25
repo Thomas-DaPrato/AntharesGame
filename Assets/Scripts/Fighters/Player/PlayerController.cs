@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) {
         if (!isStun && canDash && context.performed) {
-            
+            animator.SetTrigger("Dash");
             Dash();
             playerDash.Play();
         }
