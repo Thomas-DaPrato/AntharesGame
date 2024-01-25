@@ -227,6 +227,7 @@ public class GameManager : MonoBehaviour
             fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
         
+        uiInGameManager.hpBarres.SetActive(false);
         yield return new WaitForSeconds(1f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
@@ -238,7 +239,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        uiInGameManager.hpBarres.SetActive(false);
         menuEndFight.SetActive(true);
         EventSystem.current.SetSelectedGameObject(uiInGameManager.rematchButton);
 

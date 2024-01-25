@@ -524,13 +524,18 @@ public class PlayerController : MonoBehaviour
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
                 break;
+            case HitBox.HitBoxType.Aerial:
+                if (hp <= 10.0f * maxHp / 100.0f)
+                    PlayerDie();
+                else
+                    hp -= percentageDamage * maxHp / 100.0f;
+                break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
                 chanceCommentateur = Random.Range(0, 5);
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
                 }
-
                 break;
             default:
                 hp -= percentageDamage * maxHp / 100.0f;
