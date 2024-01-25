@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
+  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2805,7 +2805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417456252}
-  - component: {fileID: 417456251}
+  - component: {fileID: 417456253}
   m_Layer: 0
   m_Name: Traps
   m_TagString: Untagged
@@ -2813,7 +2813,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &417456251
+--- !u!4 &417456252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417456250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1999362862}
+  - {fileID: 505436664}
+  - {fileID: 922317297}
+  - {fileID: 1335443742}
+  m_Father: {fileID: 1823528194}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417456253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2834,25 +2853,6 @@ MonoBehaviour:
   scieD: {fileID: 641144770}
   scieG: {fileID: 1136152094}
   tempsCharge: 7
---- !u!4 &417456252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417456250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1999362862}
-  - {fileID: 505436664}
-  - {fileID: 922317297}
-  - {fileID: 1335443742}
-  m_Father: {fileID: 1823528194}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &424680420
 PrefabInstance:
   m_ObjectHideFlags: 0
