@@ -22,6 +22,8 @@ public class CanonMouvement : MonoBehaviour
     {
         StartCoroutine(Attentepiege(tempsCharge));
         attenteEnCours = false;
+
+        
         if (this.transform.position.x < 0)
         {
             vitesse = -vitesse;
@@ -97,7 +99,8 @@ public class CanonMouvement : MonoBehaviour
                 declancheur = 0;
                 tir = false;
                 canMove = true;
-            
+                StartCoroutine(Attentepiege(tempsCharge));
+
                 attenteEnCours = false;
             }
 

@@ -21,7 +21,7 @@ public class TrapManager : MonoBehaviour
     [SerializeField]
     private GameObject scieG;
 
-    public float tempsCharge = 7f;
+    public float tempsRound = 7f;
 
     private Transform lD, lG, fB, fH;
     private bool flammemove1, flammemove2;
@@ -60,17 +60,17 @@ public class TrapManager : MonoBehaviour
             flammesHaut.transform.position = fH.position;
         }
 
-        flammesBas.GetComponent<BaseFlammesMovement>().ChangeRound(tempsCharge);
-        flammesHaut.GetComponent<BaseFlammesMovement>().ChangeRound(tempsCharge);
+        flammesBas.GetComponent<BaseFlammesMovement>().ChangeRound(tempsRound);
+        flammesHaut.GetComponent<BaseFlammesMovement>().ChangeRound(tempsRound);
 
-        laserD.GetComponent<CanonMouvement>().ChangeRound(tempsCharge);
-        laserG.GetComponent<CanonMouvement>().ChangeRound(tempsCharge);
+        laserD.GetComponent<CanonMouvement>().ChangeRound(tempsRound);
+        laserG.GetComponent<CanonMouvement>().ChangeRound(tempsRound);
 
-        geyserD.GetComponent<GeyserBehaviour>().ChangeRound(tempsCharge);
-        geyserG.GetComponent<GeyserBehaviour>().ChangeRound(tempsCharge);
+        geyserD.GetComponent<GeyserBehaviour>().ChangeRound(tempsRound);
+        geyserG.GetComponent<GeyserBehaviour>().ChangeRound(tempsRound);
 
-        scieD.GetComponent<ScieEffect>().ChangeRound(tempsCharge);
-        scieG.GetComponent<ScieEffect>().ChangeRound(tempsCharge);
+        scieD.GetComponent<ScieEffect>().ChangeRound(tempsRound);
+        scieG.GetComponent<ScieEffect>().ChangeRound(tempsRound);
 
 
     }

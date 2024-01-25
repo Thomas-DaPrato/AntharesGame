@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class ScieEffect : MonoBehaviour
+public class RotationScie : MonoBehaviour
 {
     [SerializeField]
     private Vector3 rotationScie;
     [SerializeField]
     AudioSource son;
+    public GameObject scie;
     private int vitesse;
     public int vitRotation;
-    public SphereCollider col;
+    public CapsuleCollider col;
     public AudioClip enMarche, touche;
     private bool changeRound = false;
 
@@ -24,39 +25,41 @@ public class ScieEffect : MonoBehaviour
 
     void Update()
     {
-        if(!changeRound)
-        transform.Rotate(rotationScie * vitesse * Time.deltaTime);
+        if (!changeRound)
+            scie.transform.Rotate(rotationScie * vitesse * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (!changeRound) { 
-            if (other.gameObject.tag == "Player")
+        if (!changeRound)
+        {
+            if (other.gameObject.tag == "Player" && vitesse == vitRotation)
             {
                 son.Pause();
                 son.PlayOneShot(touche);
-            
+
                 VFXTouche.gameObject.transform.position = other.GetContact(0).point;
                 VFXTouche.Play();
-            
+
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
                 other.gameObject.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
                 vitesse = -50;
-                
+
                 StartCoroutine(AttenteCoroutine(1f));
             }
         }
     }
-    
+
 
     IEnumerator AttenteCoroutine(float sec)
     {
-        
+
 
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
         // Après l'attente, vous pouvez mettre votre code ici
-        if (!changeRound) {
+        if (!changeRound)
+        {
             if (sec == 1)
             {
                 vitesse = 0;
@@ -75,7 +78,7 @@ public class ScieEffect : MonoBehaviour
     }
 
 
-    
+
     IEnumerator AttenteRound(float sec)
     {
 
@@ -85,7 +88,7 @@ public class ScieEffect : MonoBehaviour
         // Après l'attente, vous pouvez mettre votre code ici
         changeRound = false;
         vitesse = vitRotation;
-        
+
         son.UnPause();
 
 
