@@ -64,6 +64,12 @@ public class CharacterSelecter : MonoBehaviour
 
     [SerializeField]
     private GameObject startButtonUI;
+    [SerializeField]
+    private GameObject validateButtonUI;
+    [SerializeField]
+    private GameObject returnButtonUI;
+    [SerializeField]
+    private GameObject navigateButtonUI;
 
 
     private void OnEnable() {
@@ -75,6 +81,7 @@ public class CharacterSelecter : MonoBehaviour
         ready.SetActive(false);
         support.sprite = Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         animatorBackground.SetBool("isSelected", false);
+        validateButtonUI.SetActive(true);
     }
 
 
@@ -130,6 +137,8 @@ public class CharacterSelecter : MonoBehaviour
                 menu.GetComponent<UI3DManager>().ResetMaterial();
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
+                navigateButtonUI.SetActive(false);
+                returnButtonUI.SetActive(false);
             }
 
         }
@@ -146,8 +155,11 @@ public class CharacterSelecter : MonoBehaviour
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
-            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1)
+
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1) {
+                validateButtonUI.SetActive(false);
                 startButtonUI.SetActive(true);
+            }
         }
     }
 
