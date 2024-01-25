@@ -159,6 +159,7 @@ public class CharacterSelecter : MonoBehaviour
             if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1) {
                 validateButtonUI.SetActive(false);
                 startButtonUI.SetActive(true);
+                navigateButtonUI.SetActive(false);
             }
         }
     }

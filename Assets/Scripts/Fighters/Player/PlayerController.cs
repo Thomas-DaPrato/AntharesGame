@@ -98,6 +98,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audio;
 
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
@@ -613,6 +615,10 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyKnockback(float knockbackForce, Vector2 knockbackDirection) {
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+    }
+
+    public void PlayOneShot(AudioClip clip) {
+        audio.PlayOneShot(clip);
     }
 
 
