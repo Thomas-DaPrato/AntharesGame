@@ -14,6 +14,7 @@ public class CanonMouvement : MonoBehaviour
     public AudioClip chargement,sonTir;
     public GameObject laser,charge;
     private int declancheur = 0;
+    public bool rightTurret = false;
     private bool attenteEnCours = false;
     private bool changeRound = false;
 
@@ -24,7 +25,7 @@ public class CanonMouvement : MonoBehaviour
         attenteEnCours = false;
 
         
-        if (this.transform.position.x < 0)
+        if (rightTurret)
         {
             vitesse = -vitesse;
         }
@@ -49,11 +50,11 @@ public class CanonMouvement : MonoBehaviour
             }
             else
             {
-                if (transform.position.y > limiteHaute.position.y)
+                if (transform.position.y > limiteHaute.position.y && vitesse<0)
                 {
                     vitesse = -vitesse;
                 }
-                else if (transform.position.y < limiteBasse.position.y)
+                else if (transform.position.y < limiteBasse.position.y && vitesse>0)
                 {
                     vitesse = -vitesse;
                 }
