@@ -66,7 +66,7 @@ public class HitBox : MonoBehaviour
         collider.GetComponentInParent<Rigidbody>().mass = 1;
         collider.GetComponentInParent<PlayerController>().ApplyKnockback(attack.knockback, new Vector2(playerController.lastDirection,1));
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
-        //playerController.PlayOneShot(attack.SFX);
+        playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity);

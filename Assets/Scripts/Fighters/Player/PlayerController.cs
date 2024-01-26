@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private AudioSource audio;
+    private AudioSource audioSource;
 
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
@@ -618,7 +618,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayOneShot(AudioClip clip) {
-        audio.PlayOneShot(clip);
+        audioSource.PlayOneShot(clip);
     }
 
 

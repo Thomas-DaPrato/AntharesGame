@@ -69,8 +69,8 @@ public class TrapManager : MonoBehaviour
         geyserD.GetComponent<GeyserBehaviour>().ChangeRound(tempsRound);
         geyserG.GetComponent<GeyserBehaviour>().ChangeRound(tempsRound);
 
-        scieD.GetComponent<ScieEffect>().ChangeRound(tempsRound);
-        scieG.GetComponent<ScieEffect>().ChangeRound(tempsRound);
+        scieD.GetComponent<RotationScie>().ChangeRound(tempsRound);
+        scieG.GetComponent<RotationScie>().ChangeRound(tempsRound);
 
 
     }
