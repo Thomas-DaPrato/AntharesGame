@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
 
     public void EndRound(string looser) {
 
-        trap.GetComponent<TrapManager>().ResetTrap();
+        trap.GetComponent<TrapController>().ResetTrap();
 
         nbRound += 1;
 
@@ -236,6 +236,9 @@ public class GameManager : MonoBehaviour
             fighter1.transform.position = endMatchPodium.position;
             fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
+
+
+        trap.SetActive(false);
         
         uiInGameManager.hpBarres.SetActive(false);
         yield return new WaitForSeconds(1f);

@@ -162,6 +162,7 @@ MonoBehaviour:
   rotationScie: {x: 0, y: 0, z: -1}
   son: {fileID: 1770340162722311724}
   scie: {fileID: 3577242032467138145}
+  vfxScie: {fileID: 2648652016367554452}
   vitRotation: 200
   col: {fileID: 351797929948433308}
   enMarche: {fileID: 8300000, guid: 812f1917bb7b52d4bbebe2a95a6d6df2, type: 3}
@@ -177,8 +178,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 812f1917bb7b52d4bbebe2a95a6d6df2, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
@@ -473,6 +474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39779f19a7ab2146b992f3cd8c1a48d, type: 3}
+--- !u!1 &2648652016367554452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6838762289292012745, guid: e39779f19a7ab2146b992f3cd8c1a48d, type: 3}
+  m_PrefabInstance: {fileID: 8802792244913611613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2648652016367554453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6838762289292012744, guid: e39779f19a7ab2146b992f3cd8c1a48d, type: 3}

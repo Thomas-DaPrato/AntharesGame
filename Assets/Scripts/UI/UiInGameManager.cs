@@ -34,6 +34,8 @@ public class UiInGameManager : MonoBehaviour
     public GameObject rematchButton;
 
     private void Start() {
+
+
         //fighter left
         if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Original)
             player1Image.sprite = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].orginalSkinLoadingScene;
