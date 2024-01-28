@@ -98,8 +98,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16301824, y: 0.23178712, z: 0.095061496}
-  m_Center: {x: 0, y: 0, z: -0.00012550355}
+  m_Size: {x: 0.16301824, y: 0.18477936, z: 0.095061496}
+  m_Center: {x: 0, y: 2.6739533, z: -0.00012550355}
 --- !u!82 &4647444848254987637
 AudioSource:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -120,7 +120,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.95688486
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -215,10 +215,11 @@ MonoBehaviour:
   tir: 0
   canMove: 1
   son: {fileID: 4647444848254987637}
-  chargement: {fileID: 8300000, guid: 4402cb3cd96dfd84b8b5526c28f22f26, type: 3}
-  sonTir: {fileID: 8300000, guid: ac108ea959333e74e9bd9ee6f9300fc8, type: 3}
+  chargement: {fileID: 8300000, guid: b9596ad43a037b14f917d4536b5f8772, type: 3}
+  sonTir: {fileID: 8300000, guid: 1eea9e8f1585eb842b1aac297f9b99b2, type: 3}
   laser: {fileID: 5538897727369793939}
   charge: {fileID: 3729700929471643974}
+  rightTurret: 0
 --- !u!114 &1553094060748224773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3729700929471643974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17, z: 0}
+  m_LocalPosition: {x: 0, y: 2.511, z: 0.014}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -706,7 +707,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5538897727369793939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0.017}
   m_LocalScale: {x: 0.01, y: 5, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -65,15 +65,18 @@ public class GameManager : MonoBehaviour
     private static int nbRoundWinP2;
 
     public bool onSceneTest;
-    public bool useCesar;
+    public bool useOnlyCesar;
+    public bool useOnlyDiane;
 
     
     private void Start() {
         if (onSceneTest) {
-            if (useCesar)
+            if (useOnlyCesar)
                 SetPlayerPrefToFighterCesar();
-            else
+            else if (useOnlyDiane)
                 SetPlayerPrefToFighterDiane();
+            else
+                SetPlayerPrefToFighter();
         }
 
         InitGameManager();
@@ -103,7 +106,7 @@ public class GameManager : MonoBehaviour
         List<Image> whiteHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().whiteHpBarre;
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
         
-        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", Gamepad.all[0]);
+        fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 0);
         nbRoundWinP1 = 0;
         spotLightP1.GetComponent<SpotlightFollow>().fighter = fighter1.gameObject;
@@ -113,9 +116,9 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
 
         if (Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Keyboard.current);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Keyboard.current);
         else
-            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", Gamepad.all[1]);
+            fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
         
         targetsGroup.AddMember(fighter2.transform, 1, 0);
         nbRoundWinP2 = 0;
@@ -148,8 +151,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
 
+    public void SetPlayerPrefToFighter() {
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
+        PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 0);
+    }
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, InputDevice controller) {
+
+    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetHpBarre(whiteHpBarre,redHpBarre);
@@ -159,26 +169,23 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
         fighter.GetComponent<PlayerController>().isStun = true;
         fighter.GetComponent<PlayerController>().lastDirection = lastDirection;
+        fighter.GetComponent<PlayerController>().SetXKey(Xkey);
 
         return fighter;
     }
 
     public void EndRound(string looser) {
 
-        trap.GetComponent<TrapManager>().ResetTrap();
+        trap.GetComponent<TrapController>().ResetTrap();
 
         nbRound += 1;
 
-        Debug.Log("End Round");
         if (looser.Equals("P1"))
             nbRoundWinP2 += 1;
         if (looser.Equals("P2"))
             nbRoundWinP1 += 1;
 
         UpdateRounBarre();
-
-        Debug.Log("P1 Round " + nbRoundWinP1);
-        Debug.Log("P2 Round " + nbRoundWinP2);
 
 
         if (nbRoundWinP1 == 3 || nbRoundWinP2 == 3)
@@ -190,10 +197,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void UpdateRounBarre() {
-        for (int i = 0; i < nbRoundWinP1; i += 1)
-            uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().roundWinCell[i].color = Color.yellow;
-        for (int i = 0; i < nbRoundWinP2; i += 1)
-            uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().roundWinCell[i].color = Color.yellow;
+        if(nbRoundWinP1 > 0)
+            uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP1-1].sprite = uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().fullCell;
+        
+        if(nbRoundWinP2 > 0)
+            uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP2-1].sprite = uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().fullCell;
         
     }
 
@@ -228,7 +236,11 @@ public class GameManager : MonoBehaviour
             fighter1.transform.position = endMatchPodium.position;
             fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
+
+
+        trap.SetActive(false);
         
+        uiInGameManager.hpBarres.SetActive(false);
         yield return new WaitForSeconds(1f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
@@ -240,8 +252,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        Debug.Log("P1 win " + nbRoundWinP1 + " rounds, P2 win " + nbRoundWinP2 + " rounds");
-        uiInGameManager.hpBarres.SetActive(false);
         menuEndFight.SetActive(true);
         EventSystem.current.SetSelectedGameObject(uiInGameManager.rematchButton);
 

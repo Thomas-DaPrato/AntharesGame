@@ -10,12 +10,18 @@ public class AnimationEvent : MonoBehaviour
     public GameObject hitBoxAerialAttackUp;
     public GameObject hitBoxAerialAttackMiddle;
     public GameObject hitBoxAerialAttackDown;
-    public MeshRenderer heartBoxParry;
+    public Collider intialHeartBox;
+    public Collider parryHeartBox;
+    public GameObject VFXParry;
+
+    [SerializeField]
+    private PlayerController playerController;
 
 
     #region Heavy Attack
     public void DisplayHitBoxHeavyAttack() {
-        hitBoxHeavyAttack.SetActive(true);
+        if(!playerController.isDie)
+            hitBoxHeavyAttack.SetActive(true);
     }
     public void HideHitBoxHeavyAttack() {
         hitBoxHeavyAttack.SetActive(false);
@@ -24,7 +30,8 @@ public class AnimationEvent : MonoBehaviour
 
     #region Middle Attack
     public void DisplayHitBoxMiddleAttack() {
-        hitBoxMiddleAttack.SetActive(true);
+        if (!playerController.isDie)
+            hitBoxMiddleAttack.SetActive(true);
     }
     public void HideHitBoxMiddleAttack() {
         hitBoxMiddleAttack.SetActive(false);
@@ -33,7 +40,8 @@ public class AnimationEvent : MonoBehaviour
 
     #region Light Attack
     public void DisplayHitBoxLightAttack() {
-        hitBoxLightAttack.SetActive(true);
+        if (!playerController.isDie)
+            hitBoxLightAttack.SetActive(true);
     }
     public void HideHitBoxLightAttack() {
         hitBoxLightAttack.SetActive(false);
@@ -42,16 +50,23 @@ public class AnimationEvent : MonoBehaviour
 
     #region HeartBoxParry
     public void DisplayHeartBoxParry() {
-        heartBoxParry.enabled = true;
+        if (!playerController.isDie) {
+            intialHeartBox.enabled = false;
+            parryHeartBox.enabled = true;
+            VFXParry.SetActive(true);
+        }
     }
     public void HideHeartBoxParry() {
-        heartBoxParry.enabled = false;
+        intialHeartBox.enabled = true;
+        parryHeartBox.enabled = false;
+        VFXParry.SetActive(false);
     }
     #endregion
 
     #region Aerial Attack Up
     public void DisplayHitBoxAerialAttackUp() {
-        hitBoxAerialAttackUp.SetActive(true);
+        if (!playerController.isDie)
+            hitBoxAerialAttackUp.SetActive(true);
     }
     public void HideHitBoxAerialAttackUp() {
         hitBoxAerialAttackUp.SetActive(false);
@@ -60,7 +75,8 @@ public class AnimationEvent : MonoBehaviour
 
     #region Aerial Attack Middle 
     public void DisplayHitBoxAerialAttackMiddle() {
-        hitBoxAerialAttackMiddle.SetActive(true);
+        if (!playerController.isDie)
+            hitBoxAerialAttackMiddle.SetActive(true);
     }
     public void HideHitBoxAerialAttackMiddle() {
         hitBoxAerialAttackMiddle.SetActive(false);
@@ -69,7 +85,8 @@ public class AnimationEvent : MonoBehaviour
 
     #region Aerial Attack Down
     public void DisplayHitBoxAerialAttackDown() {
-        hitBoxAerialAttackDown.SetActive(true);
+        if (!playerController.isDie)
+            hitBoxAerialAttackDown.SetActive(true);
     }
     public void HideHitBoxAerialAttackDown() {
         hitBoxAerialAttackDown.SetActive(false);

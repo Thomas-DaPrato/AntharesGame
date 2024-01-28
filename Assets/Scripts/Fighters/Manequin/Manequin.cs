@@ -29,25 +29,21 @@ public class Manequin : MonoBehaviour
 
     private void Update() {
         if (!playerController.isAttacking && isHeavyAttacking) {
-            Debug.Log("Heavy Mannequin");
             playerController.isAttacking = true;
             animator.SetTrigger("HeavyAttack");         
         }
 
         if (!playerController.isAttacking && isMiddleAttacking) {
-            Debug.Log("Middle Mannequin");
             playerController.isAttacking = true;
             animator.SetTrigger("MiddleAttack");         
         }
 
         if (!playerController.isAttacking && isLightAttacking) {
-            Debug.Log("Light Mannequin");
             playerController.isAttacking = true;
             animator.SetTrigger("LightAttack");         
         }
         
         if (!playerController.isParrying && isParrying) {
-            Debug.Log("Parry Mannequin");
             animator.SetTrigger("Parry");         
         }
             

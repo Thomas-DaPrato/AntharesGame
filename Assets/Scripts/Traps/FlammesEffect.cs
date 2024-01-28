@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class FlammesEffect : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().TakeDamage(15.0f, HitBox.HitBoxType.Trap);
-            other.GetComponent<PlayerController>().ApplyKnockback(25, new Vector2(other.GetComponent<PlayerController>().lastDirection * -1, 1));
-            
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(15.0f, HitBox.HitBoxType.Trap);
+            collision.gameObject.GetComponent<PlayerController>().ApplyKnockback(25, new Vector2(collision.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
+
         }
     }
+    
 }

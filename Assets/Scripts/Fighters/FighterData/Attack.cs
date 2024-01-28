@@ -12,6 +12,7 @@ public class Attack
     public float percentageDamage;
     public float hitFreezeTime;
     public float shakeScreenIntensity;
+    public AudioClip SFX;
 }
 
 

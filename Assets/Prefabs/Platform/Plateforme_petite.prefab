@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6911331456345678613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554108144021553471}
+  - component: {fileID: 6611610442173205214}
+  - component: {fileID: 3212523422214414510}
+  m_Layer: 6
+  m_Name: OneWAyPlateform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554108144021553471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911331456345678613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8242076695823084325}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6611610442173205214
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911331456345678613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.048638433, y: 0.006795813, z: 0.0131074665}
+  m_Center: {x: 0.0000000016387477, y: -0.0010731462, z: 0}
+--- !u!114 &3212523422214414510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911331456345678613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928730d20e39af94cbfc585424428b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8730911476342010271
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +69,7 @@ GameObject:
   - component: {fileID: 8242076695823084325}
   - component: {fileID: 5030070548323918976}
   - component: {fileID: 7073626463891656778}
-  - component: {fileID: 4410187906788456164}
   - component: {fileID: 2742013276767231643}
-  - component: {fileID: 4549154670651434820}
   m_Layer: 6
   m_Name: Plateforme_petite
   m_TagString: Plateform
@@ -28,16 +84,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8730911476342010271}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 16.36, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1089292578393184243}
   - {fileID: 7059024526673740328}
+  - {fileID: 554108144021553471}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5030070548323918976
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,18 +146,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4410187906788456164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730911476342010271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928730d20e39af94cbfc585424428b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2742013276767231643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114,19 +159,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04155713, y: 0.005448864, z: 0.0131074665}
   m_Center: {x: -0.0000000016387477, y: -0.00019884319, z: 0}
---- !u!65 &4549154670651434820
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730911476342010271}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.048638433, y: 0.008715056, z: 0.013107464}
-  m_Center: {x: 0.0000000023841857, y: -0.000113524795, z: 0}
 --- !u!1001 &580826479633275035
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -37,7 +37,6 @@ public class Credits : MonoBehaviour
                 if (currentMember < 0)
                     currentMember = teamData.Count - 2;
             }
-            Debug.Log("currentMember " + currentMember);
             FillInfos();
         }
     }

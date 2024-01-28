@@ -20,13 +20,13 @@ public class PlayerController : MonoBehaviour
     #region Intern Variable
     public bool isGrounded;
     private bool isDashDown = false;
-    private bool isDie = false;
+    public bool isDie = false;
     private bool isOnPlateform = false;
     private bool isRunning = false;
 
     private float x = 0;
-    [HideInInspector]
-    public float y = 0;
+    private float xAerial = 0;
+    private float yAerial = 0;
 
     private float xDash = 0;
     private float yDash = 0;
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameManager gameManager;
     public float dashForce;
+    private float dashForceVal;
     public float downForcePlateforme;
 
     [SerializeField]
@@ -98,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audioSource;
 
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
@@ -106,6 +109,8 @@ public class PlayerController : MonoBehaviour
     private GameObject CameraSong;
 
     private GameObject menuPause;
+
+    private GameObject XKey;
 
     [SerializeField]
     private PlayerInput playerInput;
@@ -149,35 +154,27 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
+        dashForceVal = dashForce;
     }
 
     private void Update() {
-        RaycastHit raycastHit;
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, out raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
 
 
         if (isGrounded && isRunning)
             animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
-        if (raycastHit.transform != null && raycastHit.transform.gameObject.tag.Equals("Plateform"))
+        if (raycastHit.transform != null && raycastHit.transform.gameObject.CompareTag("Plateform"))
             isOnPlateform = true;
         else
             isOnPlateform = false;
 
-        if (lastDirection < 0) {
-            animator.SetBool("Mirror", false);
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-        }
-        if (lastDirection > 0) {
-            animator.SetBool("Mirror", true);
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+        if (!isAttacking) {
+            RotateComponent();
         }
 
         if (canDecreaseRedHpBarre) {
-            Debug.Log("decrease");
             if (currentRedCell == whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
                 canDecreaseRedHpBarre = false;
             else {
@@ -190,6 +187,19 @@ public class PlayerController : MonoBehaviour
         SpeedController();
     }
 
+    private void RotateComponent() {
+        if (lastDirection > 0) {
+            animator.SetBool("Mirror", false);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
+        }
+        if (lastDirection < 0) {
+            animator.SetBool("Mirror", true);
+            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
+        }
+    }
+
     void FixedUpdate() {
         if (isGrounded && rb.velocity.y <= 0) {
             rb.drag = groundDrag;
@@ -199,12 +209,12 @@ public class PlayerController : MonoBehaviour
             rb.drag = 0;
         }
 
-        if (!isAttacking)
+        if (!isAttacking && !isStun)
             Move();
     }
 
     public void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag.Equals("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
             if (isGrounded) { 
                 collision.gameObject.GetComponent<Rigidbody>().mass = 5;
                 rb.mass = 5;
@@ -213,7 +223,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.tag.Equals("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
             if (isGrounded) {
                 collision.gameObject.GetComponent<Rigidbody>().mass = 1;
                 GetComponentInParent<Rigidbody>().mass = 1;
@@ -235,21 +245,7 @@ public class PlayerController : MonoBehaviour
         if (!isStun) {
             x = context.ReadValue<float>();
             xDash = x;
-
-            if (x < 0)
-                x = 1;
-            else if (x > 0)
-                x = -1;
-            else
-                x = 0;
-
-            //if (lastDirection * -1 == x && rb.velocity.x != 0) {
-            //    Debug.Log("drift");
-            //    animator.SetTrigger("Drift");
-            //}
-
-            if (x != 0)
-                lastDirection = x;
+            SetLastDirection(x);
 
         }
         if (context.canceled) {
@@ -258,10 +254,23 @@ public class PlayerController : MonoBehaviour
             playerRun.Stop();
         }
     }
+
+    private void SetLastDirection(float val) {
+        if (val > 0)
+            val = 1;
+        else if (val < 0)
+            val = -1;
+        else
+            val = 0;
+
+        if (val != 0) 
+            lastDirection = val;
+    }
+
     public void OnMoveY(InputAction.CallbackContext context) {
         if (!isStun) {
-            y = context.ReadValue<float>();
-            yDash = y;
+            yAerial = context.ReadValue<float>();
+            yDash = yAerial;
         }
     }
 
@@ -269,12 +278,10 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Heavy");
                 animator.SetTrigger("HeavyAttack");
             }
-            else if (!isGrounded) {
-                LaunchAerialAttack(x, y);
-            }
+            else if (!isGrounded)
+                LaunchAerialAttack(x, yAerial);
         }
     }
 
@@ -282,22 +289,20 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Middle");
                 animator.SetTrigger("MiddleAttack");
             }
             else if (!isGrounded)
-                LaunchAerialAttack(x, y);
+                LaunchAerialAttack(x, yAerial);
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStun) {
             isAttacking = true;
             if (isGrounded) {
-                Debug.Log(gameObject.name + " Light");
                 animator.SetTrigger("LightAttack");
             }
             else if (!isGrounded)
-                LaunchAerialAttack(x, y);
+                LaunchAerialAttack(x, yAerial);
         }
 
     }
@@ -305,13 +310,14 @@ public class PlayerController : MonoBehaviour
     public void OnRightStick(InputAction.CallbackContext context) {
         if (context.performed && !isStun && !isGrounded && !isAttacking) {
             isAttacking = true;
-            x = context.ReadValue<Vector2>()[0];
-            if (x != 0) {
-                lastDirection = x;
-            }
-            y = context.ReadValue<Vector2>()[1];
-            LaunchAerialAttack(x, y);
-            
+
+            xAerial = context.ReadValue<Vector2>()[0];
+            yAerial = context.ReadValue<Vector2>()[1];
+
+            SetLastDirection(xAerial);
+            RotateComponent();
+
+            LaunchAerialAttack(xAerial, yAerial);
         }
     }
 
@@ -332,7 +338,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) {
         if (!isStun && canDash && context.performed) {
-            
+            animator.SetTrigger("Dash");
             Dash();
             playerDash.Play();
         }
@@ -387,23 +393,20 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Move() {
-        Vector3 move = new Vector3(x, 0, 0);
-        if (move.x > 0)
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-        if (move.x < 0)
-            hitBoxs.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+        Vector3 move = new(x, 0, 0);
+
 
         if (isGrounded) {
-            rb.AddForce(move * playerSpeed * 10f * groundControl, ForceMode.Force);
+            rb.AddForce(10f * groundControl * playerSpeed * move, ForceMode.Force);
         }
 
         else if (!isGrounded)
-            rb.AddForce(move * playerSpeed * 10f * airControl, ForceMode.Force);
+            rb.AddForce(10f * airControl * playerSpeed * move, ForceMode.Force);
 
     }
 
     public void SpeedController() {
-        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, 0f);
+        Vector3 flatVelocity = new(rb.velocity.x, 0f, 0f);
 
         if (flatVelocity.magnitude > playerSpeed) {
             Vector3 limitedSpeed = flatVelocity.normalized * playerSpeed;
@@ -413,7 +416,10 @@ public class PlayerController : MonoBehaviour
 
     public void Dash() {
 
-        
+        if((xDash < -0.4 || xDash > 0.4) && (yDash < -0.4 || yDash > 0.4))
+        {
+            dashForce = Mathf.Sqrt(dashForce * dashForce / 2);
+        }
 
         if (xDash < -0.4) 
         {
@@ -458,7 +464,7 @@ public class PlayerController : MonoBehaviour
         }
 
         canDash = false;
-
+        dashForce = dashForceVal;
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
@@ -500,7 +506,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("ReturnIdle");
         isStun = false;
         isAttacking = false;
-        Debug.Log(gameObject.name + " is not anymore stunt");
     }
     #endregion
 
@@ -526,14 +531,18 @@ public class PlayerController : MonoBehaviour
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
                 break;
+            case HitBox.HitBoxType.Aerial:
+                if (hp <= 10.0f * maxHp / 100.0f)
+                    PlayerDie();
+                else
+                    hp -= percentageDamage * maxHp / 100.0f;
+                break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
                 chanceCommentateur = Random.Range(0, 5);
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
                 }
-
-
                 break;
             default:
                 hp -= percentageDamage * maxHp / 100.0f;
@@ -543,11 +552,12 @@ public class PlayerController : MonoBehaviour
         if (!isDie && hp < 0)
             hp = 1;
 
-        Debug.Log("percentageHp " + (hp / maxHp));
+        if ((hp / maxHp) * 100 <= 10)
+            XKey.GetComponent<DarkenKey>().DarkenXKey();
+
 
         StartCoroutine(UpdateHpBarre());
 
-        Debug.Log(gameObject.name + " hp " + hp);
     }
 
 
@@ -586,10 +596,11 @@ public class PlayerController : MonoBehaviour
         this.lastDirection = lastDirection;
         isAttacking = false;
         isParrying = false;
-        isStun = false;
         canDash = true;
         isDie = false;
         rb.mass = 1;
+
+        x = 0;
 
         animator.SetTrigger("ReturnIdle");
 
@@ -602,7 +613,7 @@ public class PlayerController : MonoBehaviour
         }
 
         currentRedCell = redHpBarre.Count - 1;
-
+        XKey.GetComponent<DarkenKey>().ResetColorSprite();
 
         nbJump = maxNbJumpInAir;
     }
@@ -611,24 +622,24 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
 
+    public void PlayOneShot(AudioClip clip) {
+        audioSource.PlayOneShot(clip);
+    }
+
 
     public void LaunchAerialAttack(float x, float y) {
-        Debug.Log("Aerial");
-        Vector2 coordinate = new Vector2(Mathf.Abs(x), y);
+        Vector2 coordinate = new(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
         if (coordinate.x <= 0.66f && coordinate.y > 0) {
-            Debug.Log(gameObject.name + " Aerial Up");
             animator.SetTrigger("Aerial Up");
         }
 
         if (coordinate.x > 0.66f) {
-            Debug.Log(gameObject.name + " Aerial Middle");
             animator.SetTrigger("Aerial Middle");
         }
 
         if (coordinate.x <= 0.66f && coordinate.y < 0) {
-            Debug.Log(gameObject.name + " Aerial Down");
             animator.SetTrigger("Aerial Down");
         }
 
@@ -639,16 +650,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RebindAnimator() {
-        animator.Rebind();
-    }
     #endregion
 
 
     #region Set Variable With Animation
     public void SetTriggerStun(float time) {
         if (!isDie) {
-            Debug.Log(gameObject.name + " Stun");
             StartCoroutine(StunCoolDown(time));
             animator.SetTrigger("Stun");
         }
@@ -688,6 +695,10 @@ public class PlayerController : MonoBehaviour
         menuPause = menuPauseInGame;
     }
 
+    public void SetXKey(GameObject XKeyInGame) {
+        XKey = XKeyInGame;
+    }
+
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {
         this.upperLeftLimit = upperLeftLimit;
         this.lowerRightLimit = lowerRightLimit;
@@ -696,7 +707,10 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.down * (fighterData.playerHeight * 0.5f + 0.2f));
+
     }
+    
+
 
 
 }

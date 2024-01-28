@@ -48,8 +48,8 @@ GameObject:
   - component: {fileID: 7485923212583511189}
   - component: {fileID: 131546057574648365}
   - component: {fileID: 371538563111930681}
-  - component: {fileID: 7564815100931611087}
   - component: {fileID: 2942512928743070022}
+  - component: {fileID: 6198470465441521853}
   m_Layer: 7
   m_Name: HeavyAttack
   m_TagString: Untagged
@@ -65,8 +65,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894856842993145036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.703, y: 0.237, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -0.82, y: 0.209, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9104283328343642590}
@@ -80,7 +80,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894856842993145036}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &371538563111930681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,19 +123,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7564815100931611087
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894856842993145036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2942512928743070022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +139,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 0
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &6198470465441521853
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894856842993145036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: -0.00000023841858, z: 0}
 --- !u!1 &1478481551990848993
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,8 +163,8 @@ GameObject:
   - component: {fileID: 9055996450968826464}
   - component: {fileID: 1308601562129989792}
   - component: {fileID: 5858854377446858854}
-  - component: {fileID: 2693578521513474614}
   - component: {fileID: 8897565679259243871}
+  - component: {fileID: 3121712125147729947}
   m_Layer: 7
   m_Name: AerialAttackMidle
   m_TagString: Untagged
@@ -180,8 +180,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478481551990848993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: -0.984, y: 0.234, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 848883814706760942}
@@ -195,7 +195,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478481551990848993}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5858854377446858854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -238,19 +238,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2693578521513474614
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478481551990848993}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8897565679259243871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +254,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &3121712125147729947
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478481551990848993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1556752084325450209
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,8 +498,8 @@ GameObject:
   - component: {fileID: 4840011375639105615}
   - component: {fileID: 545024090229606524}
   - component: {fileID: 2282032481221423103}
-  - component: {fileID: 5611274768856688605}
   - component: {fileID: 6568981685301146010}
+  - component: {fileID: 8191553536367930452}
   m_Layer: 7
   m_Name: AerialAttackUp
   m_TagString: Untagged
@@ -515,8 +515,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2222564241923595134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.306, y: 0.987, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -0.19, y: 1, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6796160361760232768}
@@ -530,7 +530,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2222564241923595134}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2282032481221423103
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -573,19 +573,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5611274768856688605
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2222564241923595134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6568981685301146010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,6 +589,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &8191553536367930452
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222564241923595134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3086532959163525696
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,8 +613,8 @@ GameObject:
   - component: {fileID: 5657294048497838497}
   - component: {fileID: 1849016607088896079}
   - component: {fileID: 2535392519312024619}
-  - component: {fileID: 5178372003410945052}
   - component: {fileID: 2089228998138525277}
+  - component: {fileID: 9109923152414127150}
   m_Layer: 7
   m_Name: MiddleAttack
   m_TagString: Untagged
@@ -630,8 +630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3086532959163525696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.075, y: 0.533, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: -1.185, y: 0.533, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6504481914060482968}
@@ -645,7 +645,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3086532959163525696}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2535392519312024619
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -688,19 +688,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5178372003410945052
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3086532959163525696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2089228998138525277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +704,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 1
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &9109923152414127150
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086532959163525696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3471071766362322015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,8 +1058,8 @@ GameObject:
   - component: {fileID: 7479070484266492638}
   - component: {fileID: 3692733643632693508}
   - component: {fileID: 2234996556577486260}
-  - component: {fileID: 2803509972208901889}
   - component: {fileID: 6144824481561482648}
+  - component: {fileID: 7363359214847640620}
   m_Layer: 7
   m_Name: AerialAttackDown
   m_TagString: Untagged
@@ -1075,8 +1075,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4683883325244934744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.83, y: -0.67, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.704, y: -0.84, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4220741754204596251}
@@ -1090,7 +1090,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4683883325244934744}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2234996556577486260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1133,19 +1133,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2803509972208901889
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4683883325244934744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6144824481561482648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,6 +1149,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 3
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &7363359214847640620
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683883325244934744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5453607366595205452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1174,7 @@ GameObject:
   - component: {fileID: 7062209102258003241}
   - component: {fileID: 5393273615202157440}
   - component: {fileID: 8194181382035539801}
+  - component: {fileID: 5472202714611528833}
   - component: {fileID: 1996598213823284517}
   - component: {fileID: 7626882537462708737}
   m_Layer: 7
@@ -1260,6 +1261,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &5472202714611528833
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453607366595205452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.65
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1996598213823284517
 MonoBehaviour:
@@ -1570,6 +1584,7 @@ GameObject:
   - component: {fileID: 7961971039152764614}
   - component: {fileID: 834040269773802274}
   - component: {fileID: 2355121265344292103}
+  - component: {fileID: 318945383595727915}
   m_Layer: 7
   m_Name: Cesar
   m_TagString: Player
@@ -1584,7 +1599,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240159690015248056}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1596,7 +1611,7 @@ Transform:
   - {fileID: 1150896965919387066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &7846008996449336368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1642,7 +1657,7 @@ MonoBehaviour:
   hitBoxs: {fileID: 405796631167401659}
   fighterCam: {fileID: 7753521008608249549}
   isGrounded: 0
-  y: 0
+  isDie: 0
   lastDirection: 0
   isAttacking: 0
   isParrying: 0
@@ -1651,7 +1666,7 @@ MonoBehaviour:
   playerName: 
   gameManager: {fileID: 0}
   dashForce: 7
-  downForcePlateforme: 1
+  downForcePlateforme: 3
   isInvicible: 0
   playerJump: {fileID: 6776241857002243251}
   playerLand: {fileID: 8104876122139984561}
@@ -1661,6 +1676,7 @@ MonoBehaviour:
   rateRedHpBarre: 0.1
   fighterData: {fileID: 11400000, guid: 96946a2be377d0241bff423d7f13de91, type: 2}
   animator: {fileID: 5268319310007295484}
+  audioSource: {fileID: 318945383595727915}
   upperLeftLimit: {fileID: 0}
   lowerRightLimit: {fileID: 0}
   CameraSong: {fileID: 0}
@@ -1716,7 +1732,10 @@ MonoBehaviour:
   hitBoxAerialAttackUp: {fileID: 2222564241923595134}
   hitBoxAerialAttackMiddle: {fileID: 1478481551990848993}
   hitBoxAerialAttackDown: {fileID: 4683883325244934744}
-  heartBoxParry: {fileID: 5393273615202157440}
+  intialHeartBox: {fileID: 8194181382035539801}
+  parryHeartBox: {fileID: 5472202714611528833}
+  VFXParry: {fileID: 3136513602941079983}
+  playerController: {fileID: 4488373448364204997}
 --- !u!114 &834040269773802274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,6 +2084,102 @@ MonoBehaviour:
   isParrying: 0
   playerController: {fileID: 4488373448364204997}
   animator: {fileID: 5268319310007295484}
+--- !u!82 &318945383595727915
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6240159690015248056}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6473195694780540628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,8 +2614,8 @@ GameObject:
   - component: {fileID: 1623354830845395367}
   - component: {fileID: 6901590952011440498}
   - component: {fileID: 165398673155089022}
-  - component: {fileID: 6543557889853070463}
   - component: {fileID: 6829043130979617890}
+  - component: {fileID: 7312282190832809619}
   m_Layer: 7
   m_Name: LightAttack
   m_TagString: Untagged
@@ -2516,8 +2631,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8144324929031126565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.829, y: 0.63, z: 0}
-  m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
+  m_LocalPosition: {x: -0.774, y: 0.36, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3267890647347820833}
@@ -2531,7 +2646,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8144324929031126565}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &165398673155089022
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2574,19 +2689,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6543557889853070463
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144324929031126565}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6829043130979617890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,6 +2705,19 @@ MonoBehaviour:
   playerController: {fileID: 4488373448364204997}
   type: 2
   heartBoxPlayer: {fileID: 5453607366595205452}
+--- !u!135 &7312282190832809619
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144324929031126565}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.00000047683716, z: 0}
 --- !u!1 &8351446936594263177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,6 +3279,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5771110791531137288, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6240733294840144465, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3292,5 +3411,10 @@ PrefabInstance:
 --- !u!4 &2363530182147148565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8db622fd53bb55a4b9ce38ec7dd1e51c, type: 3}
+  m_PrefabInstance: {fileID: 2830032226651401470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3136513602941079983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8db622fd53bb55a4b9ce38ec7dd1e51c, type: 3}
   m_PrefabInstance: {fileID: 2830032226651401470}
   m_PrefabAsset: {fileID: 0}
