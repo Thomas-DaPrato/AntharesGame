@@ -55,6 +55,11 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject lore;
     [SerializeField]
     private MeshRenderer[] neonReady;
+    [SerializeField]
+    private Material readyMaterial;
+    [SerializeField]
+    private Material notReadyMaterial;
+
 
     [SerializeField]
     private GameObject ready;
@@ -129,6 +134,10 @@ public class CharacterSelecter : MonoBehaviour
                 support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(gameObject.name, -1);
+                for (int i = 0; i < neonReady.Length; i++)
+                {
+                    neonReady[i].material = notReadyMaterial;
+                }
             }
             else
             {
@@ -154,6 +163,10 @@ public class CharacterSelecter : MonoBehaviour
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
+            for (int i = 0; i < neonReady.Length; i++)
+            {
+                neonReady[i].material = readyMaterial;
+            }
         }
     }
 
