@@ -11,7 +11,6 @@ public class CharacterSelecter : MonoBehaviour
 
     private int currentFighter;
     private bool haveChooseFighter = false;
-    private bool haveLaunchAnimation = false;
     private Characters.ColorType colorType;
 
     [SerializeField]
@@ -48,31 +47,26 @@ public class CharacterSelecter : MonoBehaviour
     [SerializeField]
     private Image support;
 
-    [Header("Informations")]
-    [SerializeField]
-    private TextMeshProUGUI nickName;
     [SerializeField]
     private GameObject infos;
     [SerializeField]
     private GameObject stats;
     [SerializeField]
-    private TextMeshProUGUI lore;
-    
+    private GameObject lore;
+    [SerializeField]
+    private MeshRenderer[] neonReady;
+    [SerializeField]
+    private Material readyMaterial;
+    [SerializeField]
+    private Material notReadyMaterial;
+
 
     [SerializeField]
     private GameObject ready;
 
-    [SerializeField]
-    private GameObject startButtonUI;
-    [SerializeField]
-    private GameObject validateButtonUI;
-    [SerializeField]
-    private GameObject returnButtonUI;
-    [SerializeField]
-    private GameObject navigateButtonUI;
 
-
-    private void OnEnable() {
+    private void OnEnable()
+    {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
         currentFighter = 0;
@@ -81,19 +75,22 @@ public class CharacterSelecter : MonoBehaviour
         ready.SetActive(false);
         support.sprite = Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         animatorBackground.SetBool("isSelected", false);
-        validateButtonUI.SetActive(true);
     }
 
 
-    public void OnCharacterSwap(InputAction.CallbackContext context) {
-        if (context.performed && !haveChooseFighter) {
+    public void OnCharacterSwap(InputAction.CallbackContext context)
+    {
+        if (context.performed && !haveChooseFighter)
+        {
             infos.SetActive(false);
-            if (context.ReadValue<float>() > 0) {
+            if (context.ReadValue<float>() > 0)
+            {
                 currentFighter += 1;
                 if (currentFighter >= Characters.GetFighters().Count)
                     currentFighter = 0;
             }
-            if (context.ReadValue<float>() < 0) {
+            if (context.ReadValue<float>() < 0)
+            {
                 currentFighter -= 1;
                 if (currentFighter < 0)
                     currentFighter = Characters.GetFighters().Count - 1;
@@ -102,23 +99,32 @@ public class CharacterSelecter : MonoBehaviour
         }
     }
 
-    public void OnOpenInformation(InputAction.CallbackContext context) {
-        if (context.performed && !haveChooseFighter) {
-            if (!infos.activeSelf) {
+    public void OnOpenInformation(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!infos.activeSelf)
+            {
                 infos.SetActive(true);
                 FillStats();
             }
-            else 
+            else
+            {
+                stats.SetActive(true);
                 infos.SetActive(false);
+            }
         }
     }
 
 
-    public void OnReturn(InputAction.CallbackContext context) {
-        if (context.performed) {
+    public void OnReturn(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             if (infos.activeSelf)
                 infos.SetActive(false);
-            else if (haveChooseFighter) {
+            else if (haveChooseFighter)
+            {
                 haveChooseFighter = false;
                 ready.SetActive(false);
                 Characters.availableColorForFighter[currentFighter].Insert(0, colorType);
@@ -127,55 +133,58 @@ public class CharacterSelecter : MonoBehaviour
                 colorType = Characters.ColorType.None;
                 support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
-                PlayerPrefs.SetInt(playerPrefPlayerName, -1);
-                startButtonUI.SetActive(false);
-                validateButtonUI.SetActive(true);
-                navigateButtonUI.SetActive(true);
+                PlayerPrefs.SetInt(gameObject.name, -1);
+                for (int i = 0; i < neonReady.Length; i++)
+                {
+                    neonReady[i].material = notReadyMaterial;
+                }
             }
-            else {
+            else
+            {
                 audioSource.PlayOneShot(audioBack);
                 characterSelecter.SetActive(false);
-                menu.GetComponent<PlayerInput>().enabled = true;
-                menu.GetComponent<UI3DManager>().ResetMaterial();
+                menu.SetActive(true);
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
-                navigateButtonUI.SetActive(false);
-                returnButtonUI.SetActive(false);
             }
 
         }
     }
 
-    public void OnValidateCharacter(InputAction.CallbackContext context) {
-        if (context.performed && !haveChooseFighter) {
-            infos.SetActive(false);
+    public void OnValidateCharacter(InputAction.CallbackContext context)
+    {
+        if (context.performed && !haveChooseFighter)
+        {
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
             colorType = Characters.availableColorForFighter[currentFighter][0];
-            PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int) colorType);
+            PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int)colorType);
             Characters.availableColorForFighter[currentFighter].RemoveAt(0);
             support.sprite = GetSpriteSelected(colorType);
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
-
-            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1) {
-                validateButtonUI.SetActive(false);
-                startButtonUI.SetActive(true);
-                navigateButtonUI.SetActive(false);
+            for (int i = 0; i < neonReady.Length; i++)
+            {
+                neonReady[i].material = readyMaterial;
             }
         }
     }
 
-    public void OnStartFight(InputAction.CallbackContext context) {
-        if (context.performed && !haveLaunchAnimation) {
-            haveLaunchAnimation = true;
+    public void OnStartFight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log(PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1);
+            Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
+            Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
             if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1)
                 StartCoroutine(StartFight());
-                
+
         }
     }
 
-    public IEnumerator StartFight() {
+    public IEnumerator StartFight()
+    {
         vcBat.SetActive(false);
         vcRecul.SetActive(true);
         yield return new WaitForSeconds(2);
@@ -188,14 +197,14 @@ public class CharacterSelecter : MonoBehaviour
     }
 
 
-    public void FillStats() {
+    public void FillStats()
+    {
         FighterData fighter = Characters.GetFighters()[currentFighter];
 
-        nickName.text = fighter.nickName;
-
-        for (int i = 0; i < fighter.stats.Length; i+=1) {
+        for (int i = 0; i < fighter.stats.Length; i += 1)
+        {
             stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = fighter.stats[i].nameStat;
-            
+
             //Reset color stat
             for (int j = 0; j < 3; j += 1)
                 stats.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
@@ -204,17 +213,17 @@ public class CharacterSelecter : MonoBehaviour
             for (int j = 0; j < Characters.GetFighters()[currentFighter].stats[i].value; j += 1)
                 stats.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
-
-        lore.text = fighter.lore.text;
     }
 
-    public Sprite GetSpriteNotSelected(Characters.ColorType color) {
+    public Sprite GetSpriteNotSelected(Characters.ColorType color)
+    {
         if (color == Characters.ColorType.Original)
             return Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         else
             return Characters.GetFighters()[currentFighter].spriteMirrorNotSelected;
     }
-    public Sprite GetSpriteSelected(Characters.ColorType color) {
+    public Sprite GetSpriteSelected(Characters.ColorType color)
+    {
         if (color == Characters.ColorType.Original)
             return Characters.GetFighters()[currentFighter].spriteOriginalSelected;
         else
