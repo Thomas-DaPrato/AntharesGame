@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameManager gameManager;
     public float dashForce;
+    private float dashForceVal;
     public float downForcePlateforme;
 
     [SerializeField]
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
+        dashForceVal = dashForce;
     }
 
     private void Update() {
@@ -414,7 +416,10 @@ public class PlayerController : MonoBehaviour
 
     public void Dash() {
 
-        
+        if((xDash < -0.4 || xDash > 0.4) && (yDash < -0.4 || yDash > 0.4))
+        {
+            dashForce = Mathf.Sqrt(dashForce * dashForce / 2);
+        }
 
         if (xDash < -0.4) 
         {
@@ -459,7 +464,7 @@ public class PlayerController : MonoBehaviour
         }
 
         canDash = false;
-
+        dashForce = dashForceVal;
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
