@@ -328,8 +328,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(freezer.Freeze(duration));
     }
 
-    public void DoShake(float intensity) {
-        StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(intensity));
+    public void DoShake(float intensity, float time) {
+        StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(intensity, time));
     }
 
 }

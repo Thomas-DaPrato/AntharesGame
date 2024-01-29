@@ -69,6 +69,6 @@ public class HitBox : MonoBehaviour
         playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
-        GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity);
+        GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
     }
 }
