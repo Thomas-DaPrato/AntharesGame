@@ -60,6 +60,16 @@ public class CharacterSelecter : MonoBehaviour
     [SerializeField]
     private Material notReadyMaterial;
 
+    [Header("UI")]
+    [SerializeField]
+    private GameObject startButtonUI;
+    [SerializeField]
+    private GameObject validateButtonUI;
+    [SerializeField]
+    private GameObject returnButtonUI;
+    [SerializeField]
+    private GameObject navigateButtonUI;
+
 
     [SerializeField]
     private GameObject ready;
@@ -75,6 +85,8 @@ public class CharacterSelecter : MonoBehaviour
         ready.SetActive(false);
         support.sprite = Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         animatorBackground.SetBool("isSelected", false);
+        validateButtonUI.SetActive(true);
+        navigateButtonUI.SetActive(true);
     }
 
 
@@ -138,14 +150,19 @@ public class CharacterSelecter : MonoBehaviour
                 {
                     neonReady[i].material = notReadyMaterial;
                 }
+                validateButtonUI.SetActive(true);
+                startButtonUI.SetActive(false);
             }
             else
             {
                 audioSource.PlayOneShot(audioBack);
                 characterSelecter.SetActive(false);
-                menu.SetActive(true);
+                menu.GetComponent<PlayerInput>().enabled = true;
+                menu.GetComponent<UI3DManager>().ResetMaterial();
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
+                navigateButtonUI.SetActive(false);
+                returnButtonUI.SetActive(false);
             }
 
         }
@@ -166,6 +183,10 @@ public class CharacterSelecter : MonoBehaviour
             for (int i = 0; i < neonReady.Length; i++)
             {
                 neonReady[i].material = readyMaterial;
+            }
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1) {
+                validateButtonUI.SetActive(false);
+                startButtonUI.SetActive(true);
             }
         }
     }
@@ -193,7 +214,7 @@ public class CharacterSelecter : MonoBehaviour
         yield return new WaitForSeconds(1);
         animatorFadeIn.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("ChooseMap");
+        SceneManager.LoadScene("LoadScene");
     }
 
 

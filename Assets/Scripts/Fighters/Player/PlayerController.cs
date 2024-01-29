@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
             rb.drag = 0;
         }
 
-        if (!isAttacking && !isStun)
+        if (!isAttacking && !isStun && !isParrying)
             Move();
     }
 
@@ -549,7 +549,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        if (!isDie && hp < 0)
+        if (!isDie && hp <= 0)
             hp = 1;
 
         if ((hp / maxHp) * 100 <= 10)
