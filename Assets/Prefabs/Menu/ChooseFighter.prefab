@@ -69,11 +69,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4926591525273944097}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: 0}
+  m_AnchoredPosition: {x: -105, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &326544928842542994
@@ -226,7 +226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107, y: 150}
+  m_AnchoredPosition: {x: 100, y: 150}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8728300864318468251
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cesar
+  m_text: New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f386fe19272d55e45a24b8093074cedf, type: 2}
   m_sharedMaterial: {fileID: 7982747969130893354, guid: f386fe19272d55e45a24b8093074cedf, type: 2}
@@ -1240,10 +1240,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 978580636853401495}
-  - {fileID: 2089467834854251710}
-  - {fileID: 8314790670097325572}
   - {fileID: 8555502979957831527}
   - {fileID: 8919483003769632659}
+  - {fileID: 2089467834854251710}
+  - {fileID: 8314790670097325572}
   - {fileID: 7404004669677547265}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1316,12 +1316,17 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioBack: {fileID: 8300000, guid: d48068dd647015947a939d38eb90b860, type: 3}
   support: {fileID: 4700349371448995110}
-  infos: {fileID: 9174490607325377667}
+  nickName: {fileID: 1446425272915185241}
+  panelInfos: {fileID: 9174490607325377667}
   stats: {fileID: 6760650382949101489}
-  lore: {fileID: 0}
+  lore: {fileID: 7344606771052192765}
   neonReady: []
   readyMaterial: {fileID: 2100000, guid: 47e033d0f50c54741892972735e880e1, type: 2}
   notReadyMaterial: {fileID: 2100000, guid: 9dd95a855cc10894da569f0decd34b36, type: 2}
+  startButtonUI: {fileID: 0}
+  validateButtonUI: {fileID: 0}
+  returnButtonUI: {fileID: 0}
+  navigateButtonUI: {fileID: 0}
   ready: {fileID: 8864617067515242480}
 --- !u!114 &2337939033068806821
 MonoBehaviour:
@@ -1717,11 +1722,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4926591525273944097}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: 0}
+  m_AnchoredPosition: {x: 105, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3349803734356998383
@@ -2043,8 +2048,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -10}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7850611760685218293
 CanvasRenderer:
@@ -2074,7 +2079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 45c86db8b3985424b8722ebd9b7c4d61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bfeb14431365314a839ba0bd894cb71, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2554,7 +2559,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4926591525273944097}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2709,7 +2714,7 @@ RectTransform:
   - {fileID: 6407362812573896491}
   - {fileID: 7562540404760115923}
   m_Father: {fileID: 4926591525273944097}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
