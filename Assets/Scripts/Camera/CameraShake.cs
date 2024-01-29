@@ -7,10 +7,7 @@ public class CameraShake : MonoBehaviour
 {
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
-    [SerializeField]
-    private float shakeIntensity = 2f;
 
-    private float timer;
     private CinemachineBasicMultiChannelPerlin cbmcp;
 
     private void Awake() {
@@ -21,7 +18,7 @@ public class CameraShake : MonoBehaviour
         StopShake();
     }
 
-    public void StartShake() {
+    public void StartShake(float shakeIntensity) {
         cbmcp = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cbmcp.m_AmplitudeGain = shakeIntensity;
     }
@@ -32,8 +29,8 @@ public class CameraShake : MonoBehaviour
 
     }
 
-    public IEnumerator Shake(float duration) {
-        StartShake();
+    public IEnumerator Shake(float shakeIntensity,float duration) {
+        StartShake(shakeIntensity);
         yield return new WaitForSeconds(duration);
         StopShake();
     }
