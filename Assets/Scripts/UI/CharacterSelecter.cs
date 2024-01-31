@@ -58,11 +58,13 @@ public class CharacterSelecter : MonoBehaviour
     private TextMeshProUGUI lore;
 
     [SerializeField]
-    private MeshRenderer[] neonReady;
+    public MeshRenderer[] neonReady;
     [SerializeField]
     private Material readyMaterial;
     [SerializeField]
     private Material notReadyMaterial;
+    [SerializeField]
+    private CharacterSelecter otherCharacterSelecter;
 
     [Header("UI")]
     [SerializeField]
@@ -73,6 +75,8 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject returnButtonUI;
     [SerializeField]
     private GameObject navigateButtonUI;
+
+
 
 
     [SerializeField]
@@ -167,6 +171,15 @@ public class CharacterSelecter : MonoBehaviour
                 vcBat.SetActive(false);
                 navigateButtonUI.SetActive(false);
                 returnButtonUI.SetActive(false);
+                for (int i = 0; i < otherCharacterSelecter.neonReady.Length; i++)
+                {
+                    otherCharacterSelecter.neonReady[i].material = notReadyMaterial;
+                }
+
+                for (int i = 0; i < neonReady.Length; i++)
+                {
+                    otherCharacterSelecter.neonReady[i].material = notReadyMaterial;
+                }
             }
 
         }
@@ -189,7 +202,8 @@ public class CharacterSelecter : MonoBehaviour
             {
                 neonReady[i].material = readyMaterial;
             }
-            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1) {
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1)
+            {
                 validateButtonUI.SetActive(false);
                 startButtonUI.SetActive(true);
             }

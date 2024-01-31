@@ -27707,6 +27707,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4926591525273944097, guid: 242feb78205025741a93aa6a6700b663, type: 3}
   m_PrefabInstance: {fileID: 4926591524774610827}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1656965038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 4926591524774610827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad2e39d7617507428bb83765132ff3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1661684940
 GameObject:
   m_ObjectHideFlags: 3
@@ -33838,6 +33849,10 @@ PrefabInstance:
       value: FighterP2
       objectReference: {fileID: 0}
     - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: otherCharacterSelecter
+      value: 
+      objectReference: {fileID: 1656965038}
+    - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: neonReady.Array.data[0]
       value: 
       objectReference: {fileID: 1626527855}
@@ -34716,6 +34731,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4926591525273944097, guid: 242feb78205025741a93aa6a6700b663, type: 3}
   m_PrefabInstance: {fileID: 2060463359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2060463364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 2060463359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad2e39d7617507428bb83765132ff3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2066084013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37280,6 +37306,10 @@ PrefabInstance:
       propertyPath: playerPrefPlayerName
       value: FighterP1
       objectReference: {fileID: 0}
+    - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: otherCharacterSelecter
+      value: 
+      objectReference: {fileID: 2060463364}
     - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: neonReady.Array.data[0]
       value: 
