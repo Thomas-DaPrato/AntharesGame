@@ -62,13 +62,13 @@ public class PlayerController : MonoBehaviour
     #region VFX
     [Header("VFX")]
     [SerializeField]
-    private VisualEffect playerJump;
+    private GameObject playerDashVFX;
     [SerializeField]
-    private VisualEffect playerLand;
+    private List<GameObject> playerBurnVFX;
     [SerializeField]
-    private VisualEffect playerRun;
+    private List<ParticleSystem> playerHeavyVFX;
     [SerializeField]
-    private VisualEffect playerDash;
+    private GameObject playerParryVFX;
 
     #endregion
 
@@ -191,12 +191,10 @@ public class PlayerController : MonoBehaviour
         if (lastDirection > 0) {
             animator.SetBool("Mirror", false);
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 0, 0f);
         }
         if (lastDirection < 0) {
             animator.SetBool("Mirror", true);
             hitBoxs.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
-            playerRun.transform.localRotation = Quaternion.Euler(0f, 180, 0f);
         }
     }
 
@@ -237,10 +235,7 @@ public class PlayerController : MonoBehaviour
     public void OnMoveX(InputAction.CallbackContext context) {
         if (!isStun && context.started) {
             isRunning = true;
-            playerRun.Play();
         }
-        if (!isGrounded)
-            playerRun.Stop();
 
         if (!isStun) {
             x = context.ReadValue<float>();
@@ -251,7 +246,6 @@ public class PlayerController : MonoBehaviour
         if (context.canceled) {
             isRunning = false;
             animator.SetBool("Run", false);
-            playerRun.Stop();
         }
     }
 
@@ -340,12 +334,12 @@ public class PlayerController : MonoBehaviour
         if (!isStun && canDash && context.performed) {
             animator.SetTrigger("Dash");
             Dash();
-            playerDash.Play();
+            playerDashVFX.SetActive(true);
         }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
         if (!isStun && isGrounded && isOnPlateform && context.performed) {
-            
+            playerDashVFX.SetActive(true);
             SpeedDown();
         }
     }
@@ -388,7 +382,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             nbJump -= 1;
-            playerJump.Play();
         }
     }
 
@@ -497,6 +490,7 @@ public class PlayerController : MonoBehaviour
         else {
             yield return new WaitForSeconds(0.3f);
         }
+        playerDashVFX.SetActive(false);
 
     }
 
@@ -650,6 +644,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public IEnumerator BurnEffect(float timeBurn) {
+        EnableBurnEffect();
+        yield return new WaitForSeconds(timeBurn);
+        DisableBurnEffect();
+    }
+
+    public void EnableBurnEffect() {
+        foreach (GameObject burnEffect in playerBurnVFX)
+            burnEffect.SetActive(true);
+    }
+    public void DisableBurnEffect() {
+        foreach (GameObject burnEffect in playerBurnVFX)
+            burnEffect.SetActive(false);
+    }
+
+    public void HeavyEffect() {
+        foreach (ParticleSystem VFX in playerHeavyVFX)
+            VFX.Play();
+    }
+
+
+
     #endregion
 
 
@@ -702,6 +718,10 @@ public class PlayerController : MonoBehaviour
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {
         this.upperLeftLimit = upperLeftLimit;
         this.lowerRightLimit = lowerRightLimit;
+    }
+
+    public void SetParryColor(Color color) {
+        playerParryVFX.GetComponent<MeshRenderer>().sharedMaterial.color = color;
     }
 
     private void OnDrawGizmos() {
