@@ -19,6 +19,9 @@ public class FighterData : ScriptableObject
     public Sprite orginalSkinLoadingScene;
     public Sprite mirrorSkinLoadingScene;
 
+    public Color originalColor;
+    public Color mirrorColor;
+
 
     [Header("Info Menu")]
     public string nickName;

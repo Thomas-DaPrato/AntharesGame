@@ -1668,10 +1668,16 @@ MonoBehaviour:
   dashForce: 7
   downForcePlateforme: 3
   isInvicible: 0
-  playerJump: {fileID: 6776241857002243251}
-  playerLand: {fileID: 8104876122139984561}
-  playerRun: {fileID: 2715529769824070995}
-  playerDash: {fileID: 1228340352156086507}
+  playerDashVFX: {fileID: 0}
+  playerBurnVFX:
+  - {fileID: 1708638299043980752}
+  - {fileID: 837142317531233212}
+  - {fileID: 4900739567244995176}
+  - {fileID: 4360455446394605840}
+  playerHeavyVFX:
+  - {fileID: 502489617192642803}
+  - {fileID: 5677343248461968544}
+  playerParryVFX: {fileID: 3136513602941079983}
   maxHp: 10
   rateRedHpBarre: 0.1
   fighterData: {fileID: 11400000, guid: 96946a2be377d0241bff423d7f13de91, type: 2}
@@ -2898,6 +2904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CesarDash
       objectReference: {fileID: 0}
+    - target: {fileID: 1995580241984281078, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
 --- !u!1001 &536225868600154174
@@ -3077,8 +3087,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy Attack Cesar
       objectReference: {fileID: 0}
+    - target: {fileID: 2337310500651413026, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+--- !u!198 &502489617192642803 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 878885383871506838, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 777818975125324133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5677343248461968544 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4900663677405820357, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 777818975125324133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1527704026815924880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3144,6 +3168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b27e9d641e3334a87576677c7e980c, type: 3}
+--- !u!1 &1708638299043980752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 181608315814997824, guid: 36b27e9d641e3334a87576677c7e980c, type: 3}
+  m_PrefabInstance: {fileID: 1527704026815924880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2133507901229700679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3758,6 +3787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca5cdcc07c18fe4296e8232df66e42c, type: 3}
+--- !u!1 &837142317531233212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3631206766967361865, guid: 2ca5cdcc07c18fe4296e8232df66e42c, type: 3}
+  m_PrefabInstance: {fileID: 4177796535157844725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5400306480757841758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3823,6 +3857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f51713dee1bba41963fd4e20f0fd32, type: 3}
+--- !u!1 &4360455446394605840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8535109651799936590, guid: c7f51713dee1bba41963fd4e20f0fd32, type: 3}
+  m_PrefabInstance: {fileID: 5400306480757841758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7473449151299892673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4059,3 +4098,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3b6b53703ef859459341d6fbc79d70c, type: 3}
+--- !u!1 &4900739567244995176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4121055591716127509, guid: b3b6b53703ef859459341d6fbc79d70c, type: 3}
+  m_PrefabInstance: {fileID: 9021275830230608253}
+  m_PrefabAsset: {fileID: 0}

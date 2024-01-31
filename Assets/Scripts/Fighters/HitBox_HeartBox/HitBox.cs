@@ -32,6 +32,7 @@ public class HitBox : MonoBehaviour
             FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:
+                    playerController.HeavyEffect();
                     AttackManager(fighterData.heavyAttack ,other);
                     break;
                 case HitBoxType.Middle:
