@@ -2726,6 +2726,11 @@ MonoBehaviour:
   pathCreator: {fileID: 1095286572}
   endOfPathInstruction: 0
   speed: 5
+--- !u!1 &301475643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 832211266624181671, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+  m_PrefabInstance: {fileID: 837730402869705326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &352116406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3188,8 +3193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4830f0ccc980f4e4a89e018a0a6d83b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserD: {fileID: 1691029166}
-  laserG: {fileID: 1134806714}
+  laserD: {fileID: 301475643}
+  laserG: {fileID: 799506856}
   flammesBas: {fileID: 907154849}
   flammesHaut: {fileID: 1134348505}
   geyserD: {fileID: 135893421}
@@ -6988,6 +6993,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4125965570099986, guid: 761d600d1e80341ac97f3228771ce637, type: 3}
   m_PrefabInstance: {fileID: 385717283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &799506856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 832211266624181671, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+  m_PrefabInstance: {fileID: 1338305005}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &806280158 stripped
 Transform:
@@ -19686,11 +19696,6 @@ MeshFilter:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8242076695823084325, guid: a8d40fcb095b024499bf87f9846dc85d, type: 3}
   m_PrefabInstance: {fileID: 477040845}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1691029166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8752708326523234004, guid: 9511e41648b2a484ab60f36eeb716713, type: 3}
-  m_PrefabInstance: {fileID: 406544137}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1691688763
 PrefabInstance:
