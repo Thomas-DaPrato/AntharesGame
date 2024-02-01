@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [SerializeField]
     private GameObject fighters;
+    [SerializeField]
+    private Material forceShieldFighter1;
+    [SerializeField]
+    private Material forceShieldFighter2;
+    
 
     private static PlayerInput fighter1;
     private static PlayerInput fighter2;
@@ -107,7 +112,7 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
         
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
-        targetsGroup.AddMember(fighter1.transform, 1, 0);
+        targetsGroup.AddMember(fighter1.transform, 1, 2);
         nbRoundWinP1 = 0;
         spotLightP1.GetComponent<SpotlightFollow>().fighter = fighter1.gameObject;
 
@@ -120,7 +125,7 @@ public class GameManager : MonoBehaviour
         else
             fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
         
-        targetsGroup.AddMember(fighter2.transform, 1, 0);
+        targetsGroup.AddMember(fighter2.transform, 1, 2);
         nbRoundWinP2 = 0;
         spotLightP2.GetComponent<SpotlightFollow>().fighter = fighter2.gameObject;
 
@@ -129,22 +134,11 @@ public class GameManager : MonoBehaviour
 
         //manage mirror match
         //fighter 1
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror) {
-            fighter1.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
-            fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColor);
-        }
-        else {
-            Debug.Log("color P1 " + Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].originalColor);
-            fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].originalColor);
-        }
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror)
+            fighter1.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
         //fighter 2
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror) {
-            fighter2.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
-            fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColor);
-        }
-        else
-            fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].originalColor);
-
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror)
+            fighter2.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
     }
 
     public void SetPlayerPrefToFighterCesar() {

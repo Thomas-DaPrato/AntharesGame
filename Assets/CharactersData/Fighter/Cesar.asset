@@ -20,6 +20,7 @@ MonoBehaviour:
     hitFreezeTime: 1
     shakeScreenIntensity: 2
     shakeScreenTime: 1
+    SFXHit: {fileID: 8300000, guid: c57f3bfffe5a2f74c9b37e7f40db193b, type: 3}
     SFX: {fileID: 8300000, guid: d9c190abb0bb44f4eba6d67467fa3085, type: 3}
   middleAttack:
     knockback: 6
@@ -28,6 +29,7 @@ MonoBehaviour:
     hitFreezeTime: 1
     shakeScreenIntensity: 2
     shakeScreenTime: 1
+    SFXHit: {fileID: 8300000, guid: 3e1b0d30d3b74a74fb622060623c7e1d, type: 3}
     SFX: {fileID: 8300000, guid: 81729a19586b7e945a4af6a206b79801, type: 3}
   lightAttack:
     knockback: 2
@@ -36,6 +38,7 @@ MonoBehaviour:
     hitFreezeTime: 1
     shakeScreenIntensity: 2
     shakeScreenTime: 1
+    SFXHit: {fileID: 8300000, guid: bfbdd01318019104499c49940e473270, type: 3}
     SFX: {fileID: 8300000, guid: 73472bc7648d2744fb0512c3fd6a08ac, type: 3}
   aerialAttack:
     knockback: 6
@@ -44,11 +47,14 @@ MonoBehaviour:
     hitFreezeTime: 1
     shakeScreenIntensity: 2
     shakeScreenTime: 1
+    SFXHit: {fileID: 8300000, guid: 3e1b0d30d3b74a74fb622060623c7e1d, type: 3}
     SFX: {fileID: 8300000, guid: 81729a19586b7e945a4af6a206b79801, type: 3}
   playerHeight: 2
   skinMirrorMatch: {fileID: 2100000, guid: 8cb96d5c521662349bc9a573b6d46902, type: 2}
   orginalSkinLoadingScene: {fileID: 21300000, guid: 5c1e8ebd89ae6774bb6c5f67383e049c, type: 3}
   mirrorSkinLoadingScene: {fileID: 21300000, guid: fef53538bf092a84a809fc150e2e828a, type: 3}
+  originalColor: {r: 0.63479805, g: 0, b: 1, a: 0}
+  mirrorColor: {r: 0.745283, g: 0, b: 0, a: 0}
   nickName: Cesar
   spriteOriginalNotSelected: {fileID: 21300000, guid: 60c52e921d33b9a4b997967cb0474015, type: 3}
   spriteOriginalSelected: {fileID: 21300000, guid: 3b564bde08a70324284225f88d0001cc, type: 3}

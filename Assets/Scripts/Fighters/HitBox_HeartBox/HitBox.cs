@@ -25,7 +25,26 @@ public class HitBox : MonoBehaviour
     [SerializeField]
     private GameObject heartBoxPlayer;
 
-
+    private void OnEnable() {
+        FighterData fighterData = playerController.GetFighterData();
+        switch (type) {
+            case HitBoxType.Heavy:
+                playerController.PlayOneShot(fighterData.heavyAttack.SFX);
+                break;
+            case HitBoxType.Middle:
+                playerController.PlayOneShot(fighterData.middleAttack.SFX);
+                break;
+            case HitBoxType.Light:
+                playerController.PlayOneShot(fighterData.lightAttack.SFX);
+                break;
+            case HitBoxType.Aerial:
+                playerController.PlayOneShot(fighterData.aerialAttack.SFX);
+                break;
+            default:
+                Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");
+                break;
+        }
+    }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag.Equals("HeartBox") && other.gameObject != heartBoxPlayer && !other.GetComponentInParent<PlayerController>().isParrying) {

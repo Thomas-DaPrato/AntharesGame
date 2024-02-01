@@ -51,6 +51,8 @@ public class CharacterSelecter : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nickName;
     [SerializeField]
+    private GameObject iconInfos;
+    [SerializeField]
     private GameObject panelInfos;
     [SerializeField]
     private GameObject stats;
@@ -154,6 +156,7 @@ public class CharacterSelecter : MonoBehaviour
                 support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(gameObject.name, -1);
+                iconInfos.SetActive(true);
                 for (int i = 0; i < neonReady.Length; i++)
                 {
                     neonReady[i].material = notReadyMaterial;
@@ -198,6 +201,7 @@ public class CharacterSelecter : MonoBehaviour
             ready.SetActive(true);
             haveChooseFighter = true;
             panelInfos.SetActive(false);
+            iconInfos.SetActive(false);
             for (int i = 0; i < neonReady.Length; i++)
             {
                 neonReady[i].material = readyMaterial;

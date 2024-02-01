@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+
 
 public class CanonMouvement : MonoBehaviour
 {
     
     [SerializeField] private int vitesse, tempsCharge;
-    [SerializeField] private Transform limiteHaute,limiteBasse;
+    [SerializeField] private Transform limiteHaute, limiteBasse, laserBegin, laserEnd;
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
     [SerializeField]
     AudioSource son;
     public AudioClip chargement,sonTir;
+    public GameObject turret;
     public GameObject laser,charge;
+    public LayerMask playerMask;
     private int declancheur = 0;
     public bool rightTurret = false;
     private bool attenteEnCours = false;
     private bool changeRound = false;
+    private bool canRayCast = false;
+
+    public VisualEffect laserVFX;
 
 
     private void Start()
@@ -30,9 +37,21 @@ public class CanonMouvement : MonoBehaviour
             vitesse = -vitesse;
         }
     }
+
+    private void FixedUpdate() {
+        if (canRayCast) {
+            if (Physics.Raycast(laserBegin.position, laserEnd.position, out RaycastHit raycastHit, Mathf.Abs(laserEnd.position.x - laserBegin.position.x), playerMask)) {
+                canRayCast = false;
+                raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
+                raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(20, new Vector2(raycastHit.transform.GetComponentInParent<PlayerController>().lastDirection * -1, 1));
+                StopSound();
+                laser.SetActive(false);
+            }
+        }
+            
+    }
     void Update()
     {
-
         if (!changeRound) { 
             if (tir)
             {
@@ -50,15 +69,15 @@ public class CanonMouvement : MonoBehaviour
             }
             else
             {
-                if (transform.position.y > limiteHaute.position.y && vitesse<0)
+                if (turret.transform.position.y > limiteHaute.position.y && vitesse<0)
                 {
                     vitesse = -vitesse;
                 }
-                else if (transform.position.y < limiteBasse.position.y && vitesse>0)
+                else if (turret.transform.position.y < limiteBasse.position.y && vitesse>0)
                 {
                     vitesse = -vitesse;
                 }
-                transform.Translate(Vector3.forward * Time.deltaTime * vitesse);
+                turret.transform.Translate(Vector3.forward * Time.deltaTime * vitesse);
 
 
                 
@@ -73,7 +92,7 @@ public class CanonMouvement : MonoBehaviour
 
     }
 
-    public void stopSound()
+    public void StopSound()
     {
         son.Stop();
     }
@@ -91,6 +110,8 @@ public class CanonMouvement : MonoBehaviour
             {
                 charge.SetActive(false);
                 laser.SetActive(true);
+                laserVFX.SetFloat("SizeLaser", Mathf.Abs(laserEnd.position.x - laserBegin.position.x));
+                canRayCast = true;
                 son.PlayOneShot(sonTir);
                 StartCoroutine(AttenteCoroutine(3f));
             }
@@ -107,6 +128,7 @@ public class CanonMouvement : MonoBehaviour
 
         }
     }
+
 
 
     IEnumerator AttenteRound(float sec)

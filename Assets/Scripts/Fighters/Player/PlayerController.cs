@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (canDecreaseRedHpBarre) {
-            if (currentRedCell == whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
+            if (currentRedCell <= whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
                 canDecreaseRedHpBarre = false;
             else {
                 redHpBarre[currentRedCell].fillAmount -= rateRedHpBarre;
@@ -563,7 +563,7 @@ public class PlayerController : MonoBehaviour
         int nbFullCell = (int) nbCellToUpdate;
         float nbDecimalCell = nbCellToUpdate - nbFullCell;
 
-        for (currentWhiteCell = 0; currentWhiteCell < whiteHpBarre.Count && currentWhiteCell < nbFullCell; currentWhiteCell += 1)
+        for (currentWhiteCell = 0; currentWhiteCell < nbFullCell && currentWhiteCell < whiteHpBarre.Count; currentWhiteCell += 1)
             whiteHpBarre[currentWhiteCell].fillAmount = 1;
 
         whiteHpBarre[currentWhiteCell].fillAmount = nbDecimalCell;
@@ -720,8 +720,9 @@ public class PlayerController : MonoBehaviour
         this.lowerRightLimit = lowerRightLimit;
     }
 
-    public void SetParryColor(Color color) {
-        playerParryVFX.GetComponent<MeshRenderer>().sharedMaterial.color = color;
+    public void SetParryColor(Material forceShield, Color color) {
+        playerParryVFX.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+        playerParryVFX.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",color);
     }
 
     private void OnDrawGizmos() {

@@ -13,6 +13,7 @@ public class Attack
     public float hitFreezeTime;
     public float shakeScreenIntensity;
     public float shakeScreenTime;
+    public AudioClip SFXHit;
     public AudioClip SFX;
 }
 

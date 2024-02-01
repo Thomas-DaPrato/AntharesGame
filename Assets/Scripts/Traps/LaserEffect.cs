@@ -25,7 +25,7 @@ public class LaserEffect : MonoBehaviour
 
         // Après l'attente, vous pouvez mettre votre code ici
         laser.SetActive(false);
-        canon.GetComponent<CanonMouvement>().stopSound();
+        canon.GetComponent<CanonMouvement>().StopSound();
 
 
     }

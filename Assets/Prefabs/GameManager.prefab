@@ -46,10 +46,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetsGroup: {fileID: 0}
+  mainVirtualCamera: {fileID: 0}
   freezer: {fileID: 110706045635206321}
+  blurEffect: {fileID: 0}
   spawnP1: {fileID: 0}
   spawnP2: {fileID: 0}
+  endMatchPodium: {fileID: 0}
+  spotLightP1: {fileID: 0}
+  spotLightP2: {fileID: 0}
+  trap: {fileID: 0}
+  upperLeftLimit: {fileID: 0}
+  lowerRightLimit: {fileID: 0}
+  fighters: {fileID: 0}
+  forceShieldFighter1: {fileID: 2100000, guid: d55258f93a524f64db81e8d846a35517, type: 2}
+  forceShieldFighter2: {fileID: 2100000, guid: 14215a94c41e1874ea0d29b21132e64e, type: 2}
   UI: {fileID: 9022753983602422047, guid: 654f7a9187963a34b80f23859a5dcc6b, type: 3}
+  onSceneTest: 0
+  useOnlyCesar: 0
+  useOnlyDiane: 0
 --- !u!114 &110706045635206321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,4 +76,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f88ffdb9f6e6e4982b1bb4c1bcf26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFroozen: 0
