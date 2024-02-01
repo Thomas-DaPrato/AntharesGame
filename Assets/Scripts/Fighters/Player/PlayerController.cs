@@ -233,14 +233,11 @@ public class PlayerController : MonoBehaviour
     #region Event Input System
     #region Map Player
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (!isStun && context.started) {
-            isRunning = true;
-        }
-
         if (!isStun) {
             x = context.ReadValue<float>();
             xDash = x;
             SetLastDirection(x);
+            isRunning = true;
 
         }
         if (context.canceled) {
@@ -377,7 +374,10 @@ public class PlayerController : MonoBehaviour
     #region Player Movement
     public void Jump() {
         if (nbJump > 0) {
-            animator.SetTrigger("Jump");
+            if (isGrounded)
+                animator.SetTrigger("Jump");
+            else
+                animator.SetTrigger("Salto");
             rb.mass = 1;
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);

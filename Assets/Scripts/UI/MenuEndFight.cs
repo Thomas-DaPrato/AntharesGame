@@ -15,6 +15,7 @@ public class MenuEndFight : MonoBehaviour
     }
 
     public void Menu() {
-        SceneManager.LoadScene("Menu");
+        PlayerPrefs.SetString("SceneToLoad", "Menu");
+        SceneManager.LoadScene("LoadScene");
     }
 }
