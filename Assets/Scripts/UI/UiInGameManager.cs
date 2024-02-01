@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UiInGameManager : MonoBehaviour
 {
+    public GameObject UICombat;
+    
     [Header("HP Barre")]
     public GameObject hpBarres;
     public GameObject hpBarreP1;

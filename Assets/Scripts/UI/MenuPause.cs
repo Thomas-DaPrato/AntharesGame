@@ -8,7 +8,8 @@ public class MenuPause : MonoBehaviour
     private GameObject backgroundMenuPause;
     public void MainMenu() {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Menu");
+        PlayerPrefs.SetString("SceneToLoad", "Menu");
+        SceneManager.LoadScene("LoadScene");
     }   
 
     public void Resume() {

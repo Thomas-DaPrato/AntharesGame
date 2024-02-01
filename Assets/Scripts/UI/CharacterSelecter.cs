@@ -85,8 +85,8 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject ready;
 
 
-    private void OnEnable()
-    {
+    private void OnEnable(){
+        Characters.InitDicoAvailableColor();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
         currentFighter = 0;
@@ -229,6 +229,9 @@ public class CharacterSelecter : MonoBehaviour
 
     public IEnumerator StartFight()
     {
+        startButtonUI.SetActive(false);
+        navigateButtonUI.SetActive(false);
+        returnButtonUI.SetActive(false);
         haveLaunchAnimation = true;
         vcBat.SetActive(false);
         vcRecul.SetActive(true);
@@ -238,6 +241,7 @@ public class CharacterSelecter : MonoBehaviour
         yield return new WaitForSeconds(1);
         animatorFadeIn.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1);
+        PlayerPrefs.SetString("SceneToLoad", "Game_Final");
         SceneManager.LoadScene("LoadScene");
     }
 

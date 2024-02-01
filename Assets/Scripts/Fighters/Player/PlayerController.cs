@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.VFX;
 using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -109,6 +110,8 @@ public class PlayerController : MonoBehaviour
     private GameObject CameraSong;
 
     private GameObject menuPause;
+    private GameObject UICombat;
+    private TextMeshProUGUI timer;
 
     private GameObject XKey;
 
@@ -170,7 +173,7 @@ public class PlayerController : MonoBehaviour
         else
             isOnPlateform = false;
 
-        if (!isAttacking) {
+        if (!isAttacking && !isParrying) {
             RotateComponent();
         }
 
@@ -233,14 +236,11 @@ public class PlayerController : MonoBehaviour
     #region Event Input System
     #region Map Player
     public void OnMoveX(InputAction.CallbackContext context) {
-        if (!isStun && context.started) {
-            isRunning = true;
-        }
-
         if (!isStun) {
             x = context.ReadValue<float>();
             xDash = x;
             SetLastDirection(x);
+            isRunning = true;
 
         }
         if (context.canceled) {
@@ -347,15 +347,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (menuPause.activeSelf) {
-                menuPause.GetComponent<MenuPause>().Resume();
-            }
-            else {
-                menuPause.SetActive(true);
-                gameManager.DisplayBlurEffect();
-                Time.timeScale = 0;
-                GameManager.SetActionMap("OptionSwap");
-            }
+            UICombat.SetActive(false);
+            timer.enabled = false;
+            menuPause.SetActive(true);
+            gameManager.DisplayBlurEffect();
+            Time.timeScale = 0;
+            GameManager.SetActionMap("OptionSwap");
         }
     }
     #endregion
@@ -377,7 +374,10 @@ public class PlayerController : MonoBehaviour
     #region Player Movement
     public void Jump() {
         if (nbJump > 0) {
-            animator.SetTrigger("Jump");
+            if (isGrounded)
+                animator.SetTrigger("Jump");
+            else
+                animator.SetTrigger("Salto");
             rb.mass = 1;
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
@@ -701,18 +701,16 @@ public class PlayerController : MonoBehaviour
         isGrounded = val;
     }
 
-    public void SetHpBarre(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame) {
+    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, TextMeshProUGUI textTimer) {
         whiteHpBarre = whiteHpBarreInGame;
         redHpBarre = redHpBarreInGame;
         currentRedCell = redHpBarre.Count - 1;
-    }
 
-    public void SetMenuPause(GameObject menuPauseInGame) {
+
         menuPause = menuPauseInGame;
-    }
-
-    public void SetXKey(GameObject XKeyInGame) {
+        UICombat = UICombatInGame;
         XKey = XKeyInGame;
+        timer = textTimer;
     }
 
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {

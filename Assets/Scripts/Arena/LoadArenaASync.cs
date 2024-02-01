@@ -13,7 +13,7 @@ public class LoadArenaASync : MonoBehaviour
     }
 
     public IEnumerator LoadASync() {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Game_Final");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(PlayerPrefs.GetString("SceneToLoad"));
         operation.allowSceneActivation = false;
         while (!operation.isDone) {
             if (canChangeScene && operation.progress == 0.9f) {
