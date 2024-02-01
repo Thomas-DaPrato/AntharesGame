@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Cinemachine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     #region UI Variable
     public GameObject UI;
+    private GameObject UICombat;
     private GameObject menuPause;
     private GameObject menuEndFight;
     private GameObject fightTransition;
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         nbRound = 1;
 
         uiInGameManager = Instantiate(UI).GetComponent<UiInGameManager>();
+
+        UICombat = uiInGameManager.UICombat;
 
         menuPause = uiInGameManager.menuPause;
 
@@ -159,14 +163,12 @@ public class GameManager : MonoBehaviour
     public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
-        fighter.GetComponent<PlayerController>().SetHpBarre(whiteHpBarre,redHpBarre);
-        fighter.GetComponent<PlayerController>().SetMenuPause(menuPause);
+        fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre,redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<TextMeshProUGUI>());
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
         fighter.GetComponent<PlayerController>().isStun = true;
         fighter.GetComponent<PlayerController>().lastDirection = lastDirection;
-        fighter.GetComponent<PlayerController>().SetXKey(Xkey);
 
         return fighter;
     }

@@ -21,6 +21,7 @@ public class Characters : MonoBehaviour
 
 
     private void Awake() {
+        Debug.Log("init");
         if (!isInit) {
             isInit = true;
             fighters = fightersData;
@@ -28,14 +29,20 @@ public class Characters : MonoBehaviour
             initialAvailableColor.Add(ColorType.Mirror);
         }
 
-        availableColorForFighter = new Dictionary<int, List<ColorType>>();
-        foreach (FighterData fighter in fighters)
-            availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
+
+        InitDicoAvailableColor();
     }
 
     public static List<FighterData> GetFighters() {
         return fighters;
     }
+
+    public static void InitDicoAvailableColor() {
+        availableColorForFighter = new Dictionary<int, List<ColorType>>();
+        foreach (FighterData fighter in fighters)
+            availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
+    }
+
 
     public static void ResetAvailableColor(int index) {
         availableColorForFighter[index] = initialAvailableColor;

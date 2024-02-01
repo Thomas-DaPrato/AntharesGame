@@ -85,8 +85,8 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject ready;
 
 
-    private void OnEnable()
-    {
+    private void OnEnable(){
+        Characters.InitDicoAvailableColor();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
         currentFighter = 0;

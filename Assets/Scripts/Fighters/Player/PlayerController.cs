@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.VFX;
 using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -109,6 +110,8 @@ public class PlayerController : MonoBehaviour
     private GameObject CameraSong;
 
     private GameObject menuPause;
+    private GameObject UICombat;
+    private TextMeshProUGUI timer;
 
     private GameObject XKey;
 
@@ -170,7 +173,7 @@ public class PlayerController : MonoBehaviour
         else
             isOnPlateform = false;
 
-        if (!isAttacking) {
+        if (!isAttacking && !isParrying) {
             RotateComponent();
         }
 
@@ -344,15 +347,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (menuPause.activeSelf) {
-                menuPause.GetComponent<MenuPause>().Resume();
-            }
-            else {
-                menuPause.SetActive(true);
-                gameManager.DisplayBlurEffect();
-                Time.timeScale = 0;
-                GameManager.SetActionMap("OptionSwap");
-            }
+            UICombat.SetActive(false);
+            timer.enabled = false;
+            menuPause.SetActive(true);
+            gameManager.DisplayBlurEffect();
+            Time.timeScale = 0;
+            GameManager.SetActionMap("OptionSwap");
         }
     }
     #endregion
@@ -701,18 +701,16 @@ public class PlayerController : MonoBehaviour
         isGrounded = val;
     }
 
-    public void SetHpBarre(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame) {
+    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, TextMeshProUGUI textTimer) {
         whiteHpBarre = whiteHpBarreInGame;
         redHpBarre = redHpBarreInGame;
         currentRedCell = redHpBarre.Count - 1;
-    }
 
-    public void SetMenuPause(GameObject menuPauseInGame) {
+
         menuPause = menuPauseInGame;
-    }
-
-    public void SetXKey(GameObject XKeyInGame) {
+        UICombat = UICombatInGame;
         XKey = XKeyInGame;
+        timer = textTimer;
     }
 
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {
