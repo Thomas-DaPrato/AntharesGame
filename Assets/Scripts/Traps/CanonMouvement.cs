@@ -41,6 +41,7 @@ public class CanonMouvement : MonoBehaviour
     private void FixedUpdate() {
         if (canRayCast) {
             if (Physics.Raycast(laserBegin.position, laserEnd.position, out RaycastHit raycastHit, Mathf.Abs(laserEnd.position.x - laserBegin.position.x), playerMask)) {
+                Debug.DrawRay(laserBegin.position, laserEnd.position, Color.green);
                 Debug.Log("laser hit");
                 canRayCast = false;
                 raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);

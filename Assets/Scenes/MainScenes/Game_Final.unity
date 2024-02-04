@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
+  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15403,9 +15403,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftLaserTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 1040415654960227406, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1127589868793605219, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173793357687671733, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1633162322727843129, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18448,7 +18456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1765777375
 Transform:
   m_ObjectHideFlags: 0
@@ -21273,9 +21281,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightLaserTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 1040415654960227406, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1127589868793605219, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173793357687671733, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1633162322727843129, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalPosition.y

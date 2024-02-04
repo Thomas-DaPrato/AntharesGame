@@ -155,7 +155,7 @@ public class CharacterSelecter : MonoBehaviour
                 colorType = Characters.ColorType.None;
                 support.sprite = GetSpriteNotSelected(Characters.availableColorForFighter[currentFighter][0]);
                 animatorBackground.SetBool("isSelected", false);
-                PlayerPrefs.SetInt(gameObject.name, -1);
+                PlayerPrefs.SetInt(playerPrefPlayerName, -1);
                 iconInfos.SetActive(true);
                 for (int i = 0; i < neonReady.Length; i++)
                 {

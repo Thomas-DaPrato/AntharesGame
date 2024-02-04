@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public bool isDie = false;
     private bool isOnPlateform = false;
     private bool isRunning = false;
+    [HideInInspector]
+    public bool lightAttackCanTouch = true;
 
     private float x = 0;
     private float xAerial = 0;
@@ -178,13 +180,15 @@ public class PlayerController : MonoBehaviour
         }
 
         if (canDecreaseRedHpBarre) {
-            if (currentRedCell <= whiteCellIndex && whiteHpBarre[whiteCellIndex].fillAmount >= redHpBarre[currentRedCell].fillAmount)
-                canDecreaseRedHpBarre = false;
-            else {
+            if (currentRedCell > whiteCellIndex) {
                 redHpBarre[currentRedCell].fillAmount -= rateRedHpBarre;
-                if (redHpBarre[currentRedCell].fillAmount == 0 && currentRedCell != whiteCellIndex)
+                if (redHpBarre[currentRedCell].fillAmount == 0)
                     currentRedCell -= 1;
             }
+            else if (currentRedCell == whiteCellIndex && redHpBarre[currentRedCell].fillAmount > whiteHpBarre[whiteCellIndex].fillAmount)
+                redHpBarre[currentRedCell].fillAmount -= rateRedHpBarre;
+            else
+                canDecreaseRedHpBarre = false;
         }
 
         SpeedController();
@@ -546,8 +550,10 @@ public class PlayerController : MonoBehaviour
         if (!isDie && hp <= 0)
             hp = 1;
 
-        if ((hp / maxHp) * 100 <= 10)
+        if ((hp / maxHp) * 100 <= 10) {
             XKey.GetComponent<DarkenKey>().DarkenXKey();
+            lightAttackCanTouch = false;
+        }
 
 
         StartCoroutine(UpdateHpBarre());
@@ -651,10 +657,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void EnableBurnEffect() {
+        Debug.Log("enableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(true);
     }
     public void DisableBurnEffect() {
+        Debug.Log("disableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(false);
     }

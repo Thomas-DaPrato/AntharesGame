@@ -13,6 +13,8 @@ public class FighterData : ScriptableObject
     public Attack lightAttack;
     public Attack aerialAttack;
 
+    public float stunTimeParry;
+
     public float playerHeight;
 
     public Material skinMirrorMatch;

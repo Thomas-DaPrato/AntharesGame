@@ -47,8 +47,8 @@ public class HitBox : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        FighterData fighterData = playerController.GetFighterData();
         if (other.tag.Equals("HeartBox") && other.gameObject != heartBoxPlayer && !other.GetComponentInParent<PlayerController>().isParrying) {
-            FighterData fighterData = playerController.GetFighterData();
             switch (type) {
                 case HitBoxType.Heavy:
                     playerController.HeavyEffect();
@@ -72,12 +72,10 @@ public class HitBox : MonoBehaviour
             Debug.Log(gameObject.transform.parent.parent.name + " My ennemy...y...y is parrying");
             if (type == HitBoxType.Heavy) {
                 playerController.ApplyKnockback(5, new Vector2(playerController.lastDirection * -1, 1));
-                playerController.SetTriggerStun(2);
                 other.GetComponentInParent<PlayerController>().ApplyKnockback(5, new Vector2(other.GetComponentInParent<PlayerController>().lastDirection * -1,1));
-                other.GetComponentInParent<PlayerController>().SetTriggerStun(2);
             }
             else
-                playerController.SetTriggerStun(1);
+                playerController.SetTriggerStun(fighterData.stunTimeParry);
         }
     }
 
@@ -88,6 +86,8 @@ public class HitBox : MonoBehaviour
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
         playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
+        if (type == HitBoxType.Light && !collider.GetComponentInParent<PlayerController>().lightAttackCanTouch)
+            return;
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
     }
