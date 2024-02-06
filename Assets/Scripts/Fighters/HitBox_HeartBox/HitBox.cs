@@ -25,6 +25,7 @@ public class HitBox : MonoBehaviour
     [SerializeField]
     private GameObject heartBoxPlayer;
 
+
     private void OnEnable() {
         FighterData fighterData = playerController.GetFighterData();
         switch (type) {
