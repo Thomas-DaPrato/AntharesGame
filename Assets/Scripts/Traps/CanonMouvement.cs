@@ -22,12 +22,15 @@ public class CanonMouvement : MonoBehaviour
     private bool attenteEnCours = false;
     private bool changeRound = false;
     private bool canRayCast = false;
+    private float laserSize;
 
     public VisualEffect laserVFX;
 
 
     private void Start()
     {
+        Vector3 distance = laserEnd.position - laserBegin.position;
+        laserSize = distance.magnitude;
         StartCoroutine(Attentepiege(tempsCharge));
         attenteEnCours = false;
 
@@ -40,8 +43,11 @@ public class CanonMouvement : MonoBehaviour
 
     private void FixedUpdate() {
         if (canRayCast) {
-            if (Physics.Raycast(laserBegin.position, laserEnd.position, out RaycastHit raycastHit, Mathf.Abs(laserEnd.position.x - laserBegin.position.x), playerMask)) {
-                Debug.DrawRay(laserBegin.position, laserEnd.position, Color.green);
+            Debug.Log("raycast");
+            bool raycastTouch = Physics.Raycast(laserBegin.position, laserEnd.position - laserBegin.position, out RaycastHit raycastHit, laserSize, playerMask);
+            Debug.DrawRay(laserBegin.position, laserEnd.position - laserBegin.position, Color.red);
+            Debug.Log("raycastTouch " + raycastTouch);
+            if (raycastTouch) {
                 Debug.Log("laser hit");
                 canRayCast = false;
                 raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
@@ -112,7 +118,7 @@ public class CanonMouvement : MonoBehaviour
             {
                 charge.SetActive(false);
                 laser.SetActive(true);
-                laserVFX.SetFloat("SizeLaser", Mathf.Abs(laserEnd.position.x - laserBegin.position.x));
+                laserVFX.SetFloat("SizeLaser", laserSize);
                 canRayCast = true;
                 son.PlayOneShot(sonTir);
                 StartCoroutine(AttenteCoroutine(3f));
@@ -123,6 +129,7 @@ public class CanonMouvement : MonoBehaviour
                 declancheur = 0;
                 tir = false;
                 canMove = true;
+                canRayCast = false;
                 StartCoroutine(Attentepiege(tempsCharge));
 
                 attenteEnCours = false;
@@ -162,13 +169,17 @@ public class CanonMouvement : MonoBehaviour
 
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
-
         // Après l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
             declancheur = tempsCharge + 1;
 
 
 
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(laserBegin.position, laserEnd.position - laserBegin.position);
     }
 
 }

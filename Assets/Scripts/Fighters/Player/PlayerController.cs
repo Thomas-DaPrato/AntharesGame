@@ -598,6 +598,7 @@ public class PlayerController : MonoBehaviour
         isParrying = false;
         canDash = true;
         isDie = false;
+        lightAttackCanTouch = true;
         rb.mass = 1;
 
         x = 0;
