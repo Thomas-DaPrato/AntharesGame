@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using MoreMountains.Feedbacks;
+
 
 public class HitBox : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class HitBox : MonoBehaviour
 
     [SerializeField]
     private VisualEffect playerBonk;
+
+    [SerializeField]
+    private MMFeedbacks feedBacks;
 
     [SerializeField]
     private PlayerController playerController;
@@ -89,6 +94,7 @@ public class HitBox : MonoBehaviour
         playerBonk.Play();
         if (type == HitBoxType.Light && !collider.GetComponentInParent<PlayerController>().lightAttackCanTouch)
             return;
+        feedBacks.PlayFeedbacks();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
     }
