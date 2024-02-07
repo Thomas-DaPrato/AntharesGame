@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -28,7 +28,7 @@ public class Shield : MonoBehaviour
             {
                 HitShield(hit.point);
             }
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.B))
         {
             OpenCloseShield();
