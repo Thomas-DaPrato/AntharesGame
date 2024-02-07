@@ -23,6 +23,8 @@ public class CanonMouvement : MonoBehaviour
     private bool changeRound = false;
     private bool canRayCast = false;
     private float laserSize;
+    public float knockbackForce = 20;
+    public float damage = 10;
 
     public VisualEffect laserVFX;
 
@@ -50,8 +52,8 @@ public class CanonMouvement : MonoBehaviour
             if (raycastTouch) {
                 Debug.Log("laser hit");
                 canRayCast = false;
-                raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
-                raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(20, new Vector2(raycastHit.transform.GetComponentInParent<PlayerController>().lastDirection * -1, 1));
+                raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
+                raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(raycastHit.transform.GetComponentInParent<PlayerController>().lastDirection * -1, 1));
                 StopSound();
                 laser.SetActive(false);
             }

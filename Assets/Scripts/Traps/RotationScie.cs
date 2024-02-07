@@ -11,6 +11,8 @@ public class RotationScie : MonoBehaviour
     AudioSource son;
     public GameObject scie,vfxScie;
     private int vitesse;
+    public float knockbackForce=10;
+    public float damage = 10;
     public int vitRotation;
     public CapsuleCollider col;
     public AudioClip enMarche, touche;
@@ -44,8 +46,8 @@ public class RotationScie : MonoBehaviour
                 VFXTouche.gameObject.transform.position = other.GetContact(0).point;
                 VFXTouche.Play();
 
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
-                other.gameObject.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
+                other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
                 vitesse = -50;
 
                 StartCoroutine(AttenteCoroutine(1f));

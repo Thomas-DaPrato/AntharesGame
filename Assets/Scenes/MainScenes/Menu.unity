@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012467816, g: 0.026368232, b: 0.027066067, a: 1}
+  m_IndirectSpecularColor: {r: 0.012486399, g: 0.026314734, b: 0.02708603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27824,6 +27824,7 @@ GameObject:
   - component: {fileID: 1163657590}
   - component: {fileID: 1163657589}
   - component: {fileID: 1163657591}
+  - component: {fileID: 1163657592}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -27841,7 +27842,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -27952,7 +27953,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d9a677e886bf214e8b40709f976a69d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f4ae39c9cbf13304f94abac459947fc4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -28038,6 +28039,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1163657592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163657588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d06924559da224c9cab9fc9a30abf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commentateurBienvenu:
+  - {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
+  - {fileID: 8300000, guid: a3e02d6a7bc3a2e41878ba34ce445b64, type: 3}
+  audioSource: {fileID: 1163657589}
+  timeBetweenCom: 35
 --- !u!1 &1176025378
 GameObject:
   m_ObjectHideFlags: 0
