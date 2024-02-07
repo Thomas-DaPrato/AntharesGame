@@ -14,15 +14,18 @@ public class DoorOpening : MonoBehaviour
     [SerializeField]
     private float timeToOpen;
 
-    void Start()
-    {
-        OpenDoors();
-    }
-
     //https://dotween.demigiant.com/documentation.php
     void OpenDoors()
     {
         door1.DORotate(rotationToDo, timeToOpen).SetEase(Ease.OutSine);
         door2.DORotate(rotationToDo * -1, timeToOpen).SetEase(Ease.OutSine);
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("DoorOpener"))
+        {
+            OpenDoors();
+        }
     }
 }

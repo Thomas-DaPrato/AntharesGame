@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012486399, g: 0.026314734, b: 0.02708603, a: 1}
+  m_IndirectSpecularColor: {r: 0.012486404, g: 0.026314734, b: 0.02708603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12583,6 +12583,9 @@ GameObject:
   - component: {fileID: 631003759}
   - component: {fileID: 631003763}
   - component: {fileID: 631003762}
+  - component: {fileID: 631003764}
+  - component: {fileID: 631003765}
+  - component: {fileID: 631003766}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12723,6 +12726,51 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!65 &631003764
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631003758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &631003765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631003758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca2679d7e39fb64aa85ee6ed50f18db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door1: {fileID: 1553038101}
+  door2: {fileID: 1978962318}
+  rotationToDo: {x: 0, y: -90, z: 0}
+  timeToOpen: 0.8
+--- !u!54 &631003766
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631003758}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &633053649
 GameObject:
   m_ObjectHideFlags: 3
@@ -28054,7 +28102,9 @@ MonoBehaviour:
   commentateurBienvenu:
   - {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
   - {fileID: 8300000, guid: a3e02d6a7bc3a2e41878ba34ce445b64, type: 3}
+  fouleReact: []
   audioSource: {fileID: 1163657589}
+  audioSourceFoule: {fileID: 0}
   timeBetweenCom: 35
 --- !u!1 &1176025378
 GameObject:
@@ -39173,6 +39223,51 @@ MonoBehaviour:
   frequencyMax: 5
   timeApparition: 0.1
   timeDisparition: 0.1
+--- !u!1 &1973256401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973256403}
+  - component: {fileID: 1973256402}
+  m_Layer: 0
+  m_Name: ColliderDoor
+  m_TagString: DoorOpener
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1973256402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973256401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.8601493}
+  m_Center: {x: 0, y: 0, z: -0.43007463}
+--- !u!4 &1973256403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973256401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.144, y: 0.606, z: -1.048}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1978962318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7531589271200273849, guid: 08f9a0795c42bf641916217c6f1c9f18, type: 3}
