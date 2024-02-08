@@ -5084,7 +5084,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5453607366595205452}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.65
@@ -5522,7 +5522,7 @@ Animator:
   m_GameObject: {fileID: 6240159690015248056}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8968cf44d33ec864db166de488d357d2, type: 3}
-  m_Controller: {fileID: 9100000, guid: b2487f94a16f36849aea235cdabc8f47, type: 2}
+  m_Controller: {fileID: 22100000, guid: fb23ef5c89f21f34692f8af25a9ed4b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5826,14 +5826,6 @@ MonoBehaviour:
     m_ActionName: Player/RightStick[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
-    m_ActionName: Player/DashDown[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
-    m_ActionName: Player/DashUp[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 2ce1e4f9-40d9-4d6a-870f-e89191b1cda0
     m_ActionName: UI/Start / A[/Keyboard/space]
   - m_PersistentCalls:
@@ -5897,7 +5889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe48ca4db08a8b84b8495cd93281cda2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeavyAttacking: 1
+  isHeavyAttacking: 0
   isMiddleAttacking: 0
   isLightAttacking: 0
   isParrying: 0

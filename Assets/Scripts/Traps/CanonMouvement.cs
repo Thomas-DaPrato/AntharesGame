@@ -45,10 +45,8 @@ public class CanonMouvement : MonoBehaviour
 
     private void FixedUpdate() {
         if (canRayCast) {
-            Debug.Log("raycast");
             bool raycastTouch = Physics.Raycast(laserBegin.position, laserEnd.position - laserBegin.position, out RaycastHit raycastHit, laserSize, playerMask);
             Debug.DrawRay(laserBegin.position, laserEnd.position - laserBegin.position, Color.red);
-            Debug.Log("raycastTouch " + raycastTouch);
             if (raycastTouch) {
                 Debug.Log("laser hit");
                 canRayCast = false;

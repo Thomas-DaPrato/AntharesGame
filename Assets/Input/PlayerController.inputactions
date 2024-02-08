@@ -103,24 +103,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "DashDown",
-                    "type": "Button",
-                    "id": "13b37cbd-571b-41bd-af7c-9b2999645207",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DashUp",
-                    "type": "Button",
-                    "id": "57793efb-a38b-47c5-b39e-5267444ebbfb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -418,39 +400,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "RightStick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "296182bc-bd41-4854-8a14-7bbc53715e19",
-                    "path": "<Keyboard>/s",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": "KeyBoard",
-                    "action": "DashDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "99686d09-fd6e-4296-a24d-f3c2bdb61f83",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "DashDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0f92bc77-9e1c-4af3-93fe-647b7817fb86",
-                    "path": "<Keyboard>/#(A)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DashUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

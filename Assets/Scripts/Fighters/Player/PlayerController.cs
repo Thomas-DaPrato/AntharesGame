@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (!isStun && !isAttacking && context.performed) {
+        if (!isStun && !isAttacking && !isParrying && context.performed) {
             Jump();
 
         }
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
-        if (!isStun && isGrounded && isOnPlateform && context.performed) {
+        if (!isStun && isGrounded && isOnPlateform &&!isAttacking && !isParrying && context.performed) {
             playerDashVFX.SetActive(true);
             SpeedDown();
         }
