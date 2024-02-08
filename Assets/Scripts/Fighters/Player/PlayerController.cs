@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool lightAttackCanTouch = true;
 
+    
+
     private float x = 0;
     private float xAerial = 0;
     private float yAerial = 0;
@@ -127,6 +129,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mouvement")]
     [SerializeField]
+    private float moveForceNotCollide;
+    [SerializeField]
+    private float moveForceCollide;
+    private float moveForce;
+    [SerializeField]
     private float playerSpeed;
     [SerializeField]
     private float jumpHeight;
@@ -159,12 +166,12 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
+        moveForce = moveForceNotCollide;
         dashForceVal = dashForce;
     }
 
     private void Update() {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
-
 
         if (isGrounded && isRunning)
             animator.SetBool("Run", true);
@@ -220,9 +227,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            if (isGrounded) { 
-                collision.gameObject.GetComponent<Rigidbody>().mass = 5;
-                rb.mass = 5;
+            if (isGrounded) {
+                moveForce = moveForceCollide;
             }
         }
     }
@@ -230,8 +236,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
             if (isGrounded) {
-                collision.gameObject.GetComponent<Rigidbody>().mass = 1;
-                GetComponentInParent<Rigidbody>().mass = 1;
+                moveForce = moveForceNotCollide;
             }
         }
     }
@@ -394,11 +399,11 @@ public class PlayerController : MonoBehaviour
 
 
         if (isGrounded) {
-            rb.AddForce(10f * groundControl * playerSpeed * move, ForceMode.Force);
+            rb.AddForce(moveForce * groundControl * playerSpeed * move, ForceMode.Force);
         }
 
         else if (!isGrounded)
-            rb.AddForce(10f * airControl * playerSpeed * move, ForceMode.Force);
+            rb.AddForce(moveForce * airControl * playerSpeed * move, ForceMode.Force);
 
     }
 
@@ -600,6 +605,7 @@ public class PlayerController : MonoBehaviour
         isDie = false;
         lightAttackCanTouch = true;
         rb.mass = 1;
+        moveForce = moveForceNotCollide;
 
         x = 0;
 

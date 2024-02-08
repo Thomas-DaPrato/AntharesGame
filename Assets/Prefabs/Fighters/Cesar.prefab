@@ -8040,6 +8040,8 @@ MonoBehaviour:
   lowerRightLimit: {fileID: 0}
   CameraSong: {fileID: 0}
   playerInput: {fileID: 0}
+  moveForceNotCollide: 10
+  moveForceCollide: 3
   playerSpeed: 8
   jumpHeight: 18
   airControl: 1.5
@@ -8364,14 +8366,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 89bb2746-b707-424a-81b9-8eb66f85098f
     m_ActionName: Player/RightStick[/XInputControllerWindows/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
-    m_ActionName: Player/DashDown[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
-    m_ActionName: Player/DashUp[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 2ce1e4f9-40d9-4d6a-870f-e89191b1cda0
