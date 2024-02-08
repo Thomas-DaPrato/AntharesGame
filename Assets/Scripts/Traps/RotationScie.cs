@@ -17,6 +17,7 @@ public class RotationScie : MonoBehaviour
     public CapsuleCollider col;
     public AudioClip enMarche, touche;
     private bool changeRound = false;
+    public bool isRightSaw;
 
     public VisualEffect VFXTouche;
 
@@ -47,7 +48,7 @@ public class RotationScie : MonoBehaviour
                 VFXTouche.Play();
 
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
-                other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
+                other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(isRightSaw ? -1 : 1, 1));
                 vitesse = -50;
 
                 StartCoroutine(AttenteCoroutine(1f));

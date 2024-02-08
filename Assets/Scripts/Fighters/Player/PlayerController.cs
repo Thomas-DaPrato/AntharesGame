@@ -657,6 +657,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EnableBurnEffect(float timeBurn) {
+        StartCoroutine(BurnEffect(timeBurn));
+    }
+
     public IEnumerator BurnEffect(float timeBurn) {
         EnableBurnEffect();
         yield return new WaitForSeconds(timeBurn);

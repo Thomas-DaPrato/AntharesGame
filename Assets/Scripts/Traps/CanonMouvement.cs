@@ -51,7 +51,7 @@ public class CanonMouvement : MonoBehaviour
                 Debug.Log("laser hit");
                 canRayCast = false;
                 raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
-                raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(raycastHit.transform.GetComponentInParent<PlayerController>().lastDirection * -1, 1));
+                raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(rightTurret ? -1 : 1, 1));
                 StopSound();
                 laser.SetActive(false);
             }
