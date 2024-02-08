@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012486404, g: 0.026314734, b: 0.02708603, a: 1}
+  m_IndirectSpecularColor: {r: 0.012467816, g: 0.026368232, b: 0.027066067, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7661,14 +7661,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4263f575-c144-4709-829a-fc6e2e705bd5
     m_ActionName: Player/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
-    m_ActionName: Player/DashDown[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
-    m_ActionName: Player/DashUp[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f191da39-47b5-4f2d-9a5c-6e34c2fc2e31
@@ -27873,6 +27865,7 @@ GameObject:
   - component: {fileID: 1163657589}
   - component: {fileID: 1163657591}
   - component: {fileID: 1163657592}
+  - component: {fileID: 1163657593}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -28102,10 +28095,109 @@ MonoBehaviour:
   commentateurBienvenu:
   - {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
   - {fileID: 8300000, guid: a3e02d6a7bc3a2e41878ba34ce445b64, type: 3}
-  fouleReact: []
+  fouleReact:
+  - {fileID: 8300000, guid: 370fad9c77ecbd24ab1fb212382e4b52, type: 3}
+  - {fileID: 8300000, guid: 5ae2976d9f511e84e82169f87613a9ae, type: 3}
+  - {fileID: 8300000, guid: 2114a5c9968804447bcc775df2fda3e4, type: 3}
   audioSource: {fileID: 1163657589}
-  audioSourceFoule: {fileID: 0}
+  audioSourceFoule: {fileID: 1163657593}
   timeBetweenCom: 35
+--- !u!82 &1163657593
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163657588}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1176025378
 GameObject:
   m_ObjectHideFlags: 0
