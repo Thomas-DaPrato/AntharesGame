@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
+using MoreMountains.Feedbacks;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -121,6 +122,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private PlayerInput playerInput;
+
+    [Space(20)]
+    [Header("UI feedback")]
+    public MMF_Player heavyUIFeedback;
+    public MMF_Player mediumUIFeedback;
+    public MMF_Player lightUIFeedback;
 
     #region Movement Variable
 
@@ -529,18 +536,24 @@ public class PlayerController : MonoBehaviour
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
+                heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
+                heavyUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
+                mediumUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
+                mediumUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Aerial:
                 if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
+                mediumUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;    
+                mediumUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
@@ -550,6 +563,10 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             default:
+                if(lightAttackCanTouch){
+                    lightUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;    
+                    lightUIFeedback.PlayFeedbacks();
+                }
                 hp -= percentageDamage * maxHp / 100.0f;
                 break;
         }

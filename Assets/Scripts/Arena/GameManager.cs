@@ -128,7 +128,14 @@ public class GameManager : MonoBehaviour
 
         fighter1.transform.SetParent(fighters.transform);
         fighter2.transform.SetParent(fighters.transform);
+        fighter1.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer1;
+        fighter1.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer1;
+        fighter1.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer1;
         
+        fighter2.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer2;
+        fighter2.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer2;
+        fighter2.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer2;
+
 
         //manage mirror match
         //fighter 1
