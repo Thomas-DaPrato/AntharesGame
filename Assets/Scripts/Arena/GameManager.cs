@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
 
         fighter1.transform.SetParent(fighters.transform);
         fighter2.transform.SetParent(fighters.transform);
+        
 
         //manage mirror match
         //fighter 1
@@ -169,7 +170,6 @@ public class GameManager : MonoBehaviour
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
         fighter.GetComponent<PlayerController>().isStun = true;
         fighter.GetComponent<PlayerController>().lastDirection = lastDirection;
-
         return fighter;
     }
 
