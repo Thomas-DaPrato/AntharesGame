@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiInGameManager : MonoBehaviour
 {
     public GameObject UICombat;
-    
+
     [Header("HP Barre")]
     public GameObject hpBarres;
     public GameObject hpBarreP1;
@@ -16,7 +17,7 @@ public class UiInGameManager : MonoBehaviour
 
     [Space(10)]
     [Header("Round Win Barre")]
-    public Image player1Image; 
+    public Image player1Image;
     public GameObject roundWinP1;
     public Image player2Image;
     public GameObject roundWinP2;
@@ -35,7 +36,20 @@ public class UiInGameManager : MonoBehaviour
     [Space(10)]
     public GameObject rematchButton;
 
-    private void Start() {
+    [Space(10)]
+    [Header("UI Feedback Player 1")]
+    public MMF_Player heavyUIFeedBackPlayer1;
+    public MMF_Player mediumUIFeedBackPlayer1;
+    public MMF_Player lightUIFeedBackPlayer1;
+    
+    [Space(10)]
+    [Header("UI Feedback Player 2")]
+    public MMF_Player heavyUIFeedBackPlayer2;
+    public MMF_Player mediumUIFeedBackPlayer2;
+    public MMF_Player lightUIFeedBackPlayer2;
+
+    private void Start()
+    {
 
 
         //fighter left
