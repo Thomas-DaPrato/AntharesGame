@@ -5414,7 +5414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240159690015248056}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10744,21 +10744,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: DianeHeavyChargeLoop
       objectReference: {fileID: 0}
+    - target: {fileID: 5212121047799794233, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6167692948303790300, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167692948303790300, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.401
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6167692948303790300, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.284
       objectReference: {fileID: 0}
     - target: {fileID: 6167692948303790300, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.29
+      value: 0.096
       objectReference: {fileID: 0}
     - target: {fileID: 6167692948303790300, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_LocalRotation.w

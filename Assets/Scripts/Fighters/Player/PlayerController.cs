@@ -467,6 +467,7 @@ public class PlayerController : MonoBehaviour
 
         canDash = false;
         dashForce = dashForceVal;
+        
         StartCoroutine(DashCoolDown());
         StartCoroutine(StopDash());
     }
@@ -499,6 +500,7 @@ public class PlayerController : MonoBehaviour
         else {
             yield return new WaitForSeconds(0.3f);
         }
+        rb.mass = 1;
         playerDashVFX.SetActive(false);
 
     }
@@ -704,9 +706,11 @@ public class PlayerController : MonoBehaviour
 
     public void SetIsParryingTrue() {
         isParrying = true;
+        canDash = false;
     }
     public void SetIsParryingFalse() {
         isParrying = false;
+        canDash = true;
     }
 
 
