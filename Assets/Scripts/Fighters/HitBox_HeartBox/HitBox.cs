@@ -86,13 +86,13 @@ public class HitBox : MonoBehaviour
     }
 
     private void AttackManager(Attack attack, Collider collider) {
+        if (type == HitBoxType.Light && !collider.GetComponentInParent<PlayerController>().lightAttackCanTouch)
+            return;
         collider.GetComponent<HeartBox>().TakeDamage(attack.percentageDamage, type);
         collider.GetComponentInParent<PlayerController>().ApplyKnockback(attack.knockback, new Vector2(playerController.lastDirection,1));
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
         playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
-        if (type == HitBoxType.Light && !collider.GetComponentInParent<PlayerController>().lightAttackCanTouch)
-            return;
         feedBacks.PlayFeedbacks();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
