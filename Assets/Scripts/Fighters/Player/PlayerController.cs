@@ -394,7 +394,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Jump");
             else
                 animator.SetTrigger("Salto");
-            rb.mass = 1;
             rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             nbJump -= 1;

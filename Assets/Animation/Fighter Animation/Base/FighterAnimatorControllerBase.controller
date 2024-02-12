@@ -382,11 +382,11 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3542516498670166027}
+  - {fileID: 8942203733070815812}
   - {fileID: -5558670342998174673}
   - {fileID: -2205577093974481391}
   - {fileID: -1403693813776051911}
   - {fileID: -1651334598624591041}
-  - {fileID: 8942203733070815812}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -678,8 +678,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.37500006
-  m_HasExitTime: 0
+  m_ExitTime: 0.6
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -984,7 +984,7 @@ AnimatorStateMachine:
     m_Position: {x: 270, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 646166163740981598}
-    m_Position: {x: 50, y: 370, z: 0}
+    m_Position: {x: 40, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1137649701359219293}
     m_Position: {x: 580, y: -60, z: 0}
@@ -1269,13 +1269,13 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
+  - {fileID: 3916004854463947628}
   - {fileID: 8229963527128042766}
   - {fileID: -2411502053163392735}
   - {fileID: -638351949008466766}
   - {fileID: 3749223153859682110}
   - {fileID: -8656588808444664953}
   - {fileID: 5731673897366613569}
-  - {fileID: 3916004854463947628}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1616,13 +1616,16 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Salto
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: In Air
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1570338342198220394}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -2125,7 +2128,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
