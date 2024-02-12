@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnDash(InputAction.CallbackContext context) {
-        if (!isStun && canDash && context.performed) {
+        if (!isAttacking && !isParrying && !isStun && canDash && context.performed) {
             animator.SetTrigger("Dash");
             Dash();
             playerDashVFX.SetActive(true);

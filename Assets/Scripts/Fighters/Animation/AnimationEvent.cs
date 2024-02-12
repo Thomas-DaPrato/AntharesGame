@@ -98,5 +98,8 @@ public class AnimationEvent : MonoBehaviour
         hitBoxHeavyAttack.SetActive(false);
         hitBoxMiddleAttack.SetActive(false);
         hitBoxLightAttack.SetActive(false);
+        hitBoxAerialAttackUp.SetActive(false);
+        hitBoxAerialAttackMiddle.SetActive(false);
+        hitBoxAerialAttackDown.SetActive(false);
     }
 }
