@@ -334,6 +334,7 @@ public class PlayerController : MonoBehaviour
     public void OnParry(InputAction.CallbackContext context) {
         if (context.performed && !isAttacking && !isStun) {
             Debug.Log(gameObject.name + " Parry");
+            isParrying = true;
             animator.SetTrigger("Parry");
         }
 
