@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField]
     private GameObject backgroundMenuPause;
+
+    [SerializeField]
+    private GameObject UICombat;
+
+    [SerializeField]
+    private TextMeshProUGUI timer;
+
     public void MainMenu() {
         Time.timeScale = 1;
         PlayerPrefs.SetString("SceneToLoad", "Menu");
@@ -13,6 +21,8 @@ public class MenuPause : MonoBehaviour
     }   
 
     public void Resume() {
+        UICombat.SetActive(true);
+        timer.enabled = true;
         GameObject.Find("GameManager").GetComponent<GameManager>().HideBlurEffect();
         backgroundMenuPause.SetActive(false);
         Time.timeScale = 1;
