@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ErruptionEffect : MonoBehaviour
 {
-    public float knockbackForce = 30;
+    public float ejectionForce = 10;
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
+            var dir = transform.up;
+            var rb = other.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(dir * ejectionForce);
             
-            other.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(other.GetComponent<PlayerController>().lastDirection * -1, 1));
             
         }
     }
