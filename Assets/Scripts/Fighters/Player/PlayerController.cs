@@ -767,9 +767,12 @@ public class PlayerController : MonoBehaviour
         this.lowerRightLimit = lowerRightLimit;
     }
 
-    public void SetParryColor(Material forceShield, Color color) {
-        playerParryVFX.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
-        playerParryVFX.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",color);
+    public void SetParryColor(Color color) {
+        playerParryVFX.GetComponent<Shield>().SetShieldColor(color);
+    }
+
+    public void ShieldOnOff() {
+        playerParryVFX.GetComponent<Shield>().OpenCloseShield();
     }
 
     private void OnDrawGizmos() {

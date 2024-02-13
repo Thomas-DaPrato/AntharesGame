@@ -15,6 +15,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        OpenCloseShield();
     }
 
     // Update is called once per frame
@@ -42,8 +43,13 @@ public class Shield : MonoBehaviour
         StartCoroutine(Coroutine_HitDisplacement());
     }
 
+    public void SetShieldColor(Color color) {
+        _renderer.material.SetColor("_FresnelColor", color);
+    }
+
     public void OpenCloseShield()
     {
+        Debug.Log("shield");
         float target = 1;
         if (_shieldOn)
         {
