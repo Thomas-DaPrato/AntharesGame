@@ -7777,6 +7777,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
+    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI3D
@@ -11892,14 +11896,6 @@ MonoBehaviour:
     m_ActionName: Player/Pause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows1/start]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
-    m_ActionName: Player/DashDown[/Keyboard/s,/XInputControllerWindows/leftStick/down,/XInputControllerWindows1/leftStick/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
-    m_ActionName: Player/DashUp[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: f191da39-47b5-4f2d-9a5c-6e34c2fc2e31
     m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows1/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows1/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows1/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows1/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows1/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows1/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows1/rightStick/right,/XInputControllerWindows/dpad,/XInputControllerWindows1/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -12110,6 +12106,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
+    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OptionSwap
@@ -41211,11 +41211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 36
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[30].m_ActionId
@@ -41228,6 +41228,14 @@ PrefabInstance:
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[32].m_ActionId
       value: 01cd7a7b-1a13-400c-9686-811e658cfe4d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[35].m_ActionId
+      value: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[36].m_ActionId
+      value: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[30].m_ActionName
@@ -41251,7 +41259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[35].m_ActionName
-      value: UI3D/Validate[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+      value: CharacterSelection/ChangeInfoPannel[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[36].m_ActionName
+      value: UI3D/ButtonSwap[/Keyboard/downArrow,/Keyboard/upArrow,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[27].m_PersistentCalls.m_Calls.Array.size
@@ -44782,6 +44794,10 @@ PrefabInstance:
     - target: {fileID: 2257872377817452697, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Controller
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.size

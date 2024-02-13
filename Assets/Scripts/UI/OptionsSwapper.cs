@@ -9,8 +9,7 @@ public class OptionsSwapper : MonoBehaviour
     [SerializeField]
     private List<GameObject> optionsPannel;
 
-    [SerializeField]
-    private GameObject options;
+    public GameObject options;
 
     [SerializeField]
     private GameObject menuPause;

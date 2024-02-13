@@ -1405,6 +1405,7 @@ MonoBehaviour:
   validateButtonUI: {fileID: 0}
   returnButtonUI: {fileID: 0}
   navigateButtonUI: {fileID: 0}
+  playerInput: {fileID: 2337939033068806821}
   ready: {fileID: 8864617067515242480}
 --- !u!114 &2337939033068806821
 MonoBehaviour:
@@ -1475,14 +1476,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4263f575-c144-4709-829a-fc6e2e705bd5
     m_ActionName: Player/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13b37cbd-571b-41bd-af7c-9b2999645207
-    m_ActionName: Player/DashDown[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 57793efb-a38b-47c5-b39e-5267444ebbfb
-    m_ActionName: Player/DashUp[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f191da39-47b5-4f2d-9a5c-6e34c2fc2e31
@@ -1647,8 +1640,12 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
+    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Controller
+  m_DefaultControlScheme: 
   m_DefaultActionMap: CharacterSelection
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

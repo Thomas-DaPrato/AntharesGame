@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    Renderer _renderer;
+    [SerializeField] private Renderer _renderer;
     [SerializeField] AnimationCurve _DisplacementCurve;
     [SerializeField] float _DisplacementMagnitude;
     [SerializeField] float _LerpSpeed;
     [SerializeField] float _DisolveSpeed;
+
+    public Color myColor;
     bool _shieldOn;
     Coroutine _disolveCoroutine;
     // Start is called before the first frame update
     void Start()
     {
-        _renderer = GetComponent<Renderer>();
         OpenCloseShield();
     }
 
@@ -34,6 +35,8 @@ public class Shield : MonoBehaviour
         {
             OpenCloseShield();
         }
+        if (Input.GetKeyDown(KeyCode.C))
+            SetShieldColor(myColor);
     }
 
     public void HitShield(Vector3 hitPos)
@@ -49,7 +52,6 @@ public class Shield : MonoBehaviour
 
     public void OpenCloseShield()
     {
-        Debug.Log("shield");
         float target = 1;
         if (_shieldOn)
         {

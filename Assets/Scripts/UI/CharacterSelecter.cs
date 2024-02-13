@@ -79,13 +79,14 @@ public class CharacterSelecter : MonoBehaviour
     private GameObject navigateButtonUI;
 
 
-
+    public PlayerInput playerInput;
 
     [SerializeField]
     private GameObject ready;
 
 
     private void OnEnable(){
+        Debug.Log(playerPrefPlayerName +  " " + playerInput.devices[0]);
         Characters.InitDicoAvailableColor();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);

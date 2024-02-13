@@ -1327,17 +1327,6 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "4d51b9c9-897c-4bf7-b75c-dcf77a6ebc3d",
-                    "path": "<Gamepad>/leftStick/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "ChangeOptionPannel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "KM",
                     "id": "b29053ec-adb7-4acc-bd15-ecffbf1cda78",
                     "path": "1DAxis",
@@ -1363,6 +1352,39 @@
                     "name": "positive",
                     "id": "b5cd2677-750b-4eef-9aca-28ebf38fccaa",
                     "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "LB/RB",
+                    "id": "980800c8-8921-4de3-bb0c-bbb92a03a6ed",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "38edc977-b011-45c1-b2bf-920224b26f01",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "94ebacce-5e2b-448b-a002-ac126edb98b1",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

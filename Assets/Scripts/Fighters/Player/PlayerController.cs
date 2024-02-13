@@ -385,16 +385,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnReturn(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (menuPause.activeSelf)
-                menuPause.GetComponentInChildren<MenuPause>().Resume();
+            if (!menuPause.GetComponent<OptionsSwapper>().options.activeSelf)
+                menuPause.GetComponent<MenuPause>().Resume();
             else
-                menuPause.GetComponentInChildren<OptionsSwapper>().OnReturn(context);
+                menuPause.GetComponent<OptionsSwapper>().OnReturn(context);
         }
     }
 
     public void OnStart(InputAction.CallbackContext context) {
-        if (context.performed && menuPause.activeSelf)
-            menuPause.GetComponentInChildren<MenuPause>().Resume();
+        if (context.performed && !menuPause.GetComponent<OptionsSwapper>().options.activeSelf)
+            menuPause.GetComponent<MenuPause>().Resume();
     }
 
     #endregion
