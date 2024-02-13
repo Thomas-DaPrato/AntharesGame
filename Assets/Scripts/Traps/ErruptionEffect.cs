@@ -11,8 +11,8 @@ public class ErruptionEffect : MonoBehaviour
         if (other.tag == "Player")
         {
             var dir = transform.up;
-            var rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(dir * ejectionForce);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(dir * ejectionForce);
+            
             
             
         }
