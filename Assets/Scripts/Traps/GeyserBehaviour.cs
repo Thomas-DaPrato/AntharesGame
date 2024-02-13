@@ -27,7 +27,7 @@ public class GeyserBehaviour : MonoBehaviour
                 //tremblement
                 vib.SetActive(true);
                 son.PlayOneShot(charge);
-                StartCoroutine(AttenteCoroutine(3.3f));
+                StartCoroutine(AttenteCoroutine(5f));
                 tremble = false;
             
             }
