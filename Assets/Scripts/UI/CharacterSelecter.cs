@@ -141,7 +141,7 @@ public class CharacterSelecter : MonoBehaviour
 
     public void OnReturn(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !haveLaunchAnimation)
         {
             if (panelInfos.activeSelf)
                 panelInfos.SetActive(false);
@@ -221,8 +221,10 @@ public class CharacterSelecter : MonoBehaviour
             Debug.Log(PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1);
             Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
             Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
-            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1 && !haveLaunchAnimation)
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1 && !haveLaunchAnimation) {
+                haveLaunchAnimation = true;
                 StartCoroutine(StartFight());
+            }
 
         }
     }
@@ -232,7 +234,6 @@ public class CharacterSelecter : MonoBehaviour
         startButtonUI.SetActive(false);
         navigateButtonUI.SetActive(false);
         returnButtonUI.SetActive(false);
-        haveLaunchAnimation = true;
         vcBat.SetActive(false);
         vcRecul.SetActive(true);
         yield return new WaitForSeconds(2);

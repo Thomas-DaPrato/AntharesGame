@@ -8,7 +8,7 @@ public class AudioMenu : MonoBehaviour
     public List<AudioClip> fouleReact;
     public AudioSource audioSource;
     public AudioSource audioSourceFoule;
-    public int timeBetweenCom;
+    public float timeBetweenCom;
     private int r;
     private AudioClip clip;
     private int rFoule;
