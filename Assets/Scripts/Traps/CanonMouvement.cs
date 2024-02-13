@@ -52,8 +52,7 @@ public class CanonMouvement : MonoBehaviour
                 canRayCast = false;
                 raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
                 raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(rightTurret ? -1 : 1, 1));
-                StopSound();
-                laser.SetActive(false);
+                StartCoroutine(AttenteHit(0.2f));
             }
         }
             
@@ -172,6 +171,18 @@ public class CanonMouvement : MonoBehaviour
         // Après l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
             declancheur = tempsCharge + 1;
+
+
+
+    }
+    IEnumerator AttenteHit(float sec)
+    {
+
+        // Attendez pendant x secondes
+        yield return new WaitForSeconds(sec);
+        // Après l'attente, vous pouvez mettre votre code ici
+        StopSound();
+        laser.SetActive(false);
 
 
 

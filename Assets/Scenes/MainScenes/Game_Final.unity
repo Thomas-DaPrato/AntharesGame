@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
+  m_IndirectSpecularColor: {r: 0.07126493, g: 0.15730777, b: 0.21790385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9280,6 +9280,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1999362862}
     m_Modifications:
+    - target: {fileID: 6003140588897657568, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003140588897657570, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6003140589162608262, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9327,6 +9335,14 @@ PrefabInstance:
     - target: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_Name
       value: LeftGeyser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110679428052496038, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402391614515139200, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
@@ -26386,6 +26402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1999362862}
     m_Modifications:
+    - target: {fileID: 6003140588897657568, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003140588897657570, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6003140589162608262, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -26433,6 +26457,14 @@ PrefabInstance:
     - target: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_Name
       value: RightGeyser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110679428052496038, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402391614515139200, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
@@ -26778,7 +26810,7 @@ PrefabInstance:
       objectReference: {fileID: 524496462}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: onSceneTest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: spotLightP1
@@ -26794,7 +26826,7 @@ PrefabInstance:
       objectReference: {fileID: 524496464}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyCesar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyDiane

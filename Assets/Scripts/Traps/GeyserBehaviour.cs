@@ -65,7 +65,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 //fin du tremblement
                 son.PlayOneShot(sonTir);
-                vib.SetActive(false);
+                
                 tir = true;
                 intermediaire2 = false;
             }
@@ -75,6 +75,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
 
                 erruption.SetActive(false);
+                vib.SetActive(false);
                 intermediaire = false;
                 StartCoroutine(Attentepiege(tempsCharge));
             }
