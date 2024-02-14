@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem.Users;
 
 public class CharacterSelecter : MonoBehaviour
 {
@@ -86,7 +87,6 @@ public class CharacterSelecter : MonoBehaviour
 
 
     private void OnEnable(){
-        Debug.Log(playerPrefPlayerName +  " " + playerInput.devices[0]);
         Characters.InitDicoAvailableColor();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);

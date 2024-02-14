@@ -350,12 +350,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) {
 
-        if (!isAttacking && !isParrying && !isStun && canDash && context.performed) {
-           
-
+        if (!isAttacking && !isParrying && !isStun && canDash && context.performed)
             Dash();
-            
-        }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
         if (!isStun && isGrounded && isOnPlateform &&!isAttacking && !isParrying && context.performed) {
@@ -437,9 +433,11 @@ public class PlayerController : MonoBehaviour
 
     public void Dash() {
 
+        //
         if((xDash < -0.4 || xDash > 0.4) && (yDash < -0.4 || yDash > 0.4))
         {
             dashForce = Mathf.Sqrt(dashForce * dashForce / 2);
+            animator.SetTrigger("DashDiag");
         }
 
         if (xDash < -0.4) 
@@ -453,8 +451,10 @@ public class PlayerController : MonoBehaviour
                 transform.DOMoveX(transform.position.x - dashForce, 0.3f);
                 isDashing = true;
             }
+            animator.SetTrigger("Dash");
 
         }
+        //
         else if (xDash > 0.4) {
 
             if (transform.position.x + dashForce > lowerRightLimit.transform.position.x) {
@@ -465,9 +465,10 @@ public class PlayerController : MonoBehaviour
                 transform.DOMoveX(transform.position.x + dashForce, 0.3f);
                 isDashing = true;
             }
+            animator.SetTrigger("Dash");
 
         }
-
+        //
         if (yDash < -0.4) {
             if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
                 transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
@@ -477,6 +478,7 @@ public class PlayerController : MonoBehaviour
                 transform.DOMoveY(transform.position.y - dashForce, 0.3f);
                 isDashing = true;
             }
+            animator.SetTrigger("DashDown");
 
         }
         else if (yDash > 0.4) {
@@ -489,12 +491,11 @@ public class PlayerController : MonoBehaviour
                 transform.DOMoveY(transform.position.y + dashForce, 0.3f);
                 isDashing = true;
             }
-
+            animator.SetTrigger("DashUp");
         }
         if (isDashing == true)
         {
             playerDashVFX.SetActive(true);
-            animator.SetTrigger("Dash");
         }
 
         canDash = false;

@@ -11,6 +11,7 @@ public class AssignController : MonoBehaviour
 
     private void OnEnable() {
         Debug.Log("assign");
+
         p1.user.UnpairDevices();
         p2.user.UnpairDevices();
 
@@ -21,6 +22,6 @@ public class AssignController : MonoBehaviour
         }
         else
             InputUser.PerformPairingWithDevice(Gamepad.all[1], p2.user);
-
     }
+
 }
