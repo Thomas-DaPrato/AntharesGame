@@ -119,6 +119,9 @@ public class PlayerController : MonoBehaviour
     private GameObject UICombat;
     private TextMeshProUGUI timer;
 
+    [SerializeField]
+    private TextMeshProUGUI playerNameText;
+
     private GameObject XKey;
 
     [SerializeField]
@@ -234,19 +237,13 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Player")) {
-            if (isGrounded) {
+        if (collision.gameObject.CompareTag("Player"))
                 moveForce = moveForceCollide;
-            }
-        }
     }
 
     private void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.CompareTag("Player")) {
-            if (isGrounded) {
+        if (collision.gameObject.CompareTag("Player"))
                 moveForce = moveForceNotCollide;
-            }
-        }
     }
 
 
@@ -545,6 +542,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("ReturnIdle");
         isStun = false;
         isAttacking = false;
+        isParrying = false;
     }
     #endregion
 
@@ -768,11 +766,12 @@ public class PlayerController : MonoBehaviour
         isGrounded = val;
     }
 
-    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, TextMeshProUGUI textTimer) {
+    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, TextMeshProUGUI textTimer, string playerName) {
         whiteHpBarre = whiteHpBarreInGame;
         redHpBarre = redHpBarreInGame;
         currentRedCell = redHpBarre.Count - 1;
 
+        playerNameText.text = playerName;
 
         menuPause = menuPauseInGame;
         UICombat = UICombatInGame;

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using MoreMountains.Feedbacks;
-
+using Lofelt.NiceVibrations;
 
 public class HitBox : MonoBehaviour
 {
+    private static bool isPlayingFeedBacks = false;
     public enum HitBoxType {
         Heavy,
         Middle,
@@ -93,7 +94,6 @@ public class HitBox : MonoBehaviour
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
         playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
-        feedBacks.PlayFeedbacks();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
     }

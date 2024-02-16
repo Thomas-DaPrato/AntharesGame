@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
     public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller) {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
-        fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<TextMeshProUGUI>());
+        fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<TextMeshProUGUI>(), playerName);
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);
