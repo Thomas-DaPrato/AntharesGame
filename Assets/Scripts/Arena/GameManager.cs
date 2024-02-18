@@ -139,16 +139,16 @@ public class GameManager : MonoBehaviour
         fighter1.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer1;
         fighter1.GetComponent<PlayerController>().charaUIFeedback = uiInGameManager.charaUIFeedbackPlayer1;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer1;
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackStartPlayer1;
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackStartPlayer1;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackLoop1Player1;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackLoop2Player1;
 
         fighter2.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().charaUIFeedback = uiInGameManager.charaUIFeedbackPlayer2;
         fighter2.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer2;
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackStartPlayer2;
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackStartPlayer2;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackLoop1Player2;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackLoop2Player2;
 
 
 

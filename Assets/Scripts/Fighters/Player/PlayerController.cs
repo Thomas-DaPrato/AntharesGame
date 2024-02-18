@@ -622,11 +622,16 @@ public class PlayerController : MonoBehaviour
 
         if (!isDie && hp <= 0)
             hp = 1;
-
+        if ((hp / maxHp) * 100 <= 20 && (hp / maxHp) * 100 > 10) {
+            skullUIFeedbackStart.PlayFeedbacks();
+            skullUIFeedbackLoop1.InitialDelay = skullUIFeedbackStart.TotalDuration;
+            skullUIFeedbackLoop1.PlayFeedbacks();
+        }
         if ((hp / maxHp) * 100 <= 10) {
             XKey.GetComponent<DarkenKey>().DarkenXKey();
             lightAttackCanTouch = false;
-            skullUIFeedbackStart.PlayFeedbacks();
+            skullUIFeedbackLoop1.StopFeedbacks();
+            skullUIFeedbackLoop2.PlayFeedbacks();
         }
 
 
