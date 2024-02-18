@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
+  m_IndirectSpecularColor: {r: 0.07126493, g: 0.15730777, b: 0.21790385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9343,7 +9343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6110679428052496038, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7402391614515139200, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_IsActive
@@ -11055,6 +11055,7 @@ GameObject:
   - component: {fileID: 1075309104}
   - component: {fileID: 1075309107}
   - component: {fileID: 1075309106}
+  - component: {fileID: 1075309108}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -11259,6 +11260,22 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1075309108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075309103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614edb33c38bcf949846d5675f29f9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutomaticallyUnparentOnAwake: 1
+  settingsSo: {fileID: 11400000, guid: 07ea3ff88e1ecb84d91f58aa804badc6, type: 2}
+  AudioSourcePoolSize: 10
+  PoolCanExpand: 1
 --- !u!1001 &1092548883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26465,7 +26482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6110679428052496038, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7402391614515139200, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_IsActive

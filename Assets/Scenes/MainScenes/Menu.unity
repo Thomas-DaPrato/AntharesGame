@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012467816, g: 0.026368232, b: 0.027066067, a: 1}
+  m_IndirectSpecularColor: {r: 0.012486399, g: 0.026314734, b: 0.02708603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27898,8 +27898,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -28110,13 +28110,17 @@ MonoBehaviour:
   commentateurBienvenu:
   - {fileID: 8300000, guid: 45e9d3cc859c00b45b0da977841af92e, type: 3}
   - {fileID: 8300000, guid: a3e02d6a7bc3a2e41878ba34ce445b64, type: 3}
+  commentateur:
+  - {fileID: 8300000, guid: d571d4ef5891be64288c8b9575cef83f, type: 3}
+  - {fileID: 8300000, guid: cce20fce938a80b45a1b16470935d640, type: 3}
   fouleReact:
+  - {fileID: 8300000, guid: 2114a5c9968804447bcc775df2fda3e4, type: 3}
   - {fileID: 8300000, guid: 370fad9c77ecbd24ab1fb212382e4b52, type: 3}
   - {fileID: 8300000, guid: 5ae2976d9f511e84e82169f87613a9ae, type: 3}
-  - {fileID: 8300000, guid: 2114a5c9968804447bcc775df2fda3e4, type: 3}
+  - {fileID: 8300000, guid: 370fad9c77ecbd24ab1fb212382e4b52, type: 3}
   audioSource: {fileID: 1163657589}
   audioSourceFoule: {fileID: 1163657593}
-  timeBetweenCom: 35
+  timeBetweenCom: 30
 --- !u!82 &1163657593
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28128,7 +28132,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
