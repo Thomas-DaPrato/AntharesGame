@@ -19,7 +19,6 @@ public class Characters : MonoBehaviour
     }
 
 
-
     private void Awake() {
         Debug.Log("init");
         if (!isInit) {

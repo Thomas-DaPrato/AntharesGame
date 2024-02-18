@@ -41,13 +41,21 @@ public class UiInGameManager : MonoBehaviour
     public MMF_Player heavyUIFeedBackPlayer1;
     public MMF_Player mediumUIFeedBackPlayer1;
     public MMF_Player lightUIFeedBackPlayer1;
+    public MMF_Player charaUIFeedbackPlayer1;
+    public MMF_Player skullUIFeedbackStartPlayer1;
+    public MMF_Player skullUIFeedbackLoop1Player1;
+    public MMF_Player skullUIFeedbackLoop2Player1;
+
     
     [Space(10)]
     [Header("UI Feedback Player 2")]
     public MMF_Player heavyUIFeedBackPlayer2;
     public MMF_Player mediumUIFeedBackPlayer2;
     public MMF_Player lightUIFeedBackPlayer2;
-
+    public MMF_Player charaUIFeedbackPlayer2;
+    public MMF_Player skullUIFeedbackStartPlayer2;
+    public MMF_Player skullUIFeedbackLoop1Player2;
+    public MMF_Player skullUIFeedbackLoop2Player2;
     private void Start()
     {
 

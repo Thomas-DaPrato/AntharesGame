@@ -20,7 +20,7 @@ public class HitBox : MonoBehaviour
     private VisualEffect playerBonk;
 
     [SerializeField]
-    private MMFeedbacks feedBacks;
+    public MMF_Player feedBacks;
 
     [SerializeField]
     private PlayerController playerController;
@@ -94,6 +94,8 @@ public class HitBox : MonoBehaviour
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
         playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
+        feedBacks.Initialization();
+        feedBacks.PlayFeedbacks();
         GameObject.Find("GameManager").GetComponent<GameManager>().DoFreeze(attack.hitFreezeTime);
         GameObject.Find("GameManager").GetComponent<GameManager>().DoShake(attack.shakeScreenIntensity,attack.shakeScreenTime);
     }

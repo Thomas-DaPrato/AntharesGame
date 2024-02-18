@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Cinemachine;
 using TMPro;
+using MoreMountains.Feedbacks;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject blurEffect;
 
-    
+
     [Header("Fighters")]
     [SerializeField]
     private Transform spawnP1;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
     private Material forceShieldFighter1;
     [SerializeField]
     private Material forceShieldFighter2;
-    
+
 
     private static PlayerInput fighter1;
     private static PlayerInput fighter2;
@@ -70,9 +71,11 @@ public class GameManager : MonoBehaviour
     public bool useOnlyCesar;
     public bool useOnlyDiane;
 
-    
-    private void Start() {
-        if (onSceneTest) {
+
+    private void Start()
+    {
+        if (onSceneTest)
+        {
             if (useOnlyCesar)
                 SetPlayerPrefToFighterCesar();
             else if (useOnlyDiane)
@@ -85,12 +88,14 @@ public class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.C))
             StartCoroutine(RoundTransition("P2"));
     }
 
-    public void InitGameManager() {
+    public void InitGameManager()
+    {
         nbRound = 1;
 
         uiInGameManager = Instantiate(UI).GetComponent<UiInGameManager>();
@@ -106,10 +111,11 @@ public class GameManager : MonoBehaviour
         timer = uiInGameManager.timer;
     }
 
-    public void SpawnPlayers() {
+    public void SpawnPlayers()
+    {
         List<Image> whiteHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().whiteHpBarre;
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
-        
+
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
         targetsGroup.AddMember(fighter1.transform, 1, 2);
         nbRoundWinP1 = 0;
@@ -122,7 +128,7 @@ public class GameManager : MonoBehaviour
             fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Keyboard.current);
         else
             fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
-        
+
         targetsGroup.AddMember(fighter2.transform, 1, 2);
         nbRoundWinP2 = 0;
 
@@ -131,39 +137,52 @@ public class GameManager : MonoBehaviour
         fighter1.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer1;
         fighter1.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer1;
         fighter1.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer1;
-        
+        fighter1.GetComponent<PlayerController>().charaUIFeedback = uiInGameManager.charaUIFeedbackPlayer1;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer1;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackStartPlayer1;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackStartPlayer1;
+
         fighter2.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().heavyUIFeedback = uiInGameManager.heavyUIFeedBackPlayer2;
+        fighter2.GetComponent<PlayerController>().charaUIFeedback = uiInGameManager.charaUIFeedbackPlayer2;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer2;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackStartPlayer2;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackStartPlayer2;
+
 
 
         //manage mirror match
         //fighter 1
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror) 
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror)
             fighter1.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
 
         //fighter 2
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror) {
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror)
+        {
             fighter2.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColor);
         }
     }
 
-    public void SetPlayerPrefToFighterCesar() {
+    public void SetPlayerPrefToFighterCesar()
+    {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
 
-    public void SetPlayerPrefToFighterDiane() {
+    public void SetPlayerPrefToFighterDiane()
+    {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color", 1);
     }
 
-    public void SetPlayerPrefToFighter() {
+    public void SetPlayerPrefToFighter()
+    {
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color", 0);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, 1);
@@ -171,7 +190,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller) {
+    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller)
+    {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<TextMeshProUGUI>(), playerName);
@@ -183,7 +203,8 @@ public class GameManager : MonoBehaviour
         return fighter;
     }
 
-    public void EndRound(string looser) {
+    public void EndRound(string looser)
+    {
 
         trap.GetComponent<TrapController>().ResetTrap();
 
@@ -205,23 +226,27 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void UpdateRounBarre() {
-        if(nbRoundWinP1 > 0)
-            uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP1-1].sprite = uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().fullCell;
-        
-        if(nbRoundWinP2 > 0)
-            uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP2-1].sprite = uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().fullCell;
-        
+    private void UpdateRounBarre()
+    {
+        if (nbRoundWinP1 > 0)
+            uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP1 - 1].sprite = uiInGameManager.roundWinP1.GetComponent<RoundWinBarre>().fullCell;
+
+        if (nbRoundWinP2 > 0)
+            uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().roundWinCell[nbRoundWinP2 - 1].sprite = uiInGameManager.roundWinP2.GetComponent<RoundWinBarre>().fullCell;
+
     }
 
-    public IEnumerator EndMatch(string looser) {
+    public IEnumerator EndMatch(string looser)
+    {
         SetFighterStun();
         mainVirtualCamera.gameObject.SetActive(false);
 
-        if (looser.Equals("P1")) {
+        if (looser.Equals("P1"))
+        {
             SetFighterEndAnimation(fighter1, "End Match Death");
         }
-        if (looser.Equals("P2")) {
+        if (looser.Equals("P2"))
+        {
             SetFighterEndAnimation(fighter2, "End Match Death");
         }
 
@@ -234,21 +259,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
-        
+
         yield return new WaitForSeconds(0.5f);
 
-        if (looser.Equals("P1")) {
+        if (looser.Equals("P1"))
+        {
             fighter2.transform.position = endMatchPodium.position;
             fighter2.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
-        if (looser.Equals("P2")) {
+        if (looser.Equals("P2"))
+        {
             fighter1.transform.position = endMatchPodium.position;
             fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }
 
 
         trap.SetActive(false);
-        
+
         uiInGameManager.hpBarres.SetActive(false);
         yield return new WaitForSeconds(1f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
@@ -266,13 +293,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public IEnumerator RoundTransition(string looser) {
+    public IEnumerator RoundTransition(string looser)
+    {
         SetFighterStun();
         mainVirtualCamera.gameObject.SetActive(false);
-        if (looser.Equals("P1")) {
-            SetFighterEndAnimation(fighter1,"End Round Death");
+        if (looser.Equals("P1"))
+        {
+            SetFighterEndAnimation(fighter1, "End Round Death");
         }
-        if (looser.Equals("P2")) {
+        if (looser.Equals("P2"))
+        {
             SetFighterEndAnimation(fighter2, "End Round Death");
         }
 
@@ -294,50 +324,59 @@ public class GameManager : MonoBehaviour
         StartCoroutine(timer.GetComponent<Timer>().TransitionRoundTimer(nbRound));
     }
 
-    private void SetFighterEndAnimation(PlayerInput fighter, string trigger) {
+    private void SetFighterEndAnimation(PlayerInput fighter, string trigger)
+    {
         fighter.GetComponent<PlayerController>().fighterCam.SetActive(true);
         fighter.GetComponent<Animator>().SetTrigger(trigger);
     }
 
-    public void ResetFight() {
+    public void ResetFight()
+    {
         mainVirtualCamera.gameObject.SetActive(true);
 
         fighter1.GetComponent<PlayerController>().ResetFighter(1);
         fighter1.transform.position = spawnP1.position;
-        
+
         fighter2.GetComponent<PlayerController>().ResetFighter(-1);
         fighter2.transform.position = spawnP2.position;
-        
-    }
-    
 
-    public static void SetFighterNotStun() {
+    }
+
+
+    public static void SetFighterNotStun()
+    {
         fighter1.GetComponent<PlayerController>().isStun = false;
         fighter2.GetComponent<PlayerController>().isStun = false;
     }
-    public static void SetFighterStun() {
+    public static void SetFighterStun()
+    {
         fighter1.GetComponent<PlayerController>().isStun = true;
         fighter2.GetComponent<PlayerController>().isStun = true;
     }
 
-    public static void SetActionMap(string actionMap) {
+    public static void SetActionMap(string actionMap)
+    {
         fighter1.SwitchCurrentActionMap(actionMap);
         fighter2.SwitchCurrentActionMap(actionMap);
     }
 
-    public void DisplayBlurEffect() {
+    public void DisplayBlurEffect()
+    {
         blurEffect.SetActive(true);
     }
 
-    public void HideBlurEffect() {
+    public void HideBlurEffect()
+    {
         blurEffect.SetActive(false);
     }
 
-    public void DoFreeze(float duration) {
+    public void DoFreeze(float duration)
+    {
         StartCoroutine(freezer.Freeze(duration));
     }
 
-    public void DoShake(float intensity, float time) {
+    public void DoShake(float intensity, float time)
+    {
         StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(intensity, time));
     }
 

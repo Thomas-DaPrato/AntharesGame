@@ -132,6 +132,10 @@ public class PlayerController : MonoBehaviour
     public MMF_Player heavyUIFeedback;
     public MMF_Player mediumUIFeedback;
     public MMF_Player lightUIFeedback;
+    public MMF_Player charaUIFeedback;
+    public MMF_Player skullUIFeedbackStart;
+    public MMF_Player skullUIFeedbackLoop1;
+    public MMF_Player skullUIFeedbackLoop2;
 
     #region Movement Variable
 
@@ -563,6 +567,8 @@ public class PlayerController : MonoBehaviour
                 }
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
+                charaUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
+                charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Middle:
                 if (hp <= 10.0f * maxHp / 100.0f)
@@ -571,6 +577,8 @@ public class PlayerController : MonoBehaviour
                     hp -= percentageDamage * maxHp / 100.0f;
                 mediumUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
                 mediumUIFeedback.PlayFeedbacks();
+                charaUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
+                charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Aerial:
                 if (hp <= 10.0f * maxHp / 100.0f)
@@ -579,6 +587,8 @@ public class PlayerController : MonoBehaviour
                     hp -= percentageDamage * maxHp / 100.0f;
                 mediumUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;    
                 mediumUIFeedback.PlayFeedbacks();
+                charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
+                charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
@@ -591,6 +601,8 @@ public class PlayerController : MonoBehaviour
                 if(lightAttackCanTouch){
                     lightUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;    
                     lightUIFeedback.PlayFeedbacks();
+                    charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
+                    charaUIFeedback.PlayFeedbacks();
                 }
                 hp -= percentageDamage * maxHp / 100.0f;
                 break;
@@ -602,6 +614,7 @@ public class PlayerController : MonoBehaviour
         if ((hp / maxHp) * 100 <= 10) {
             XKey.GetComponent<DarkenKey>().DarkenXKey();
             lightAttackCanTouch = false;
+            skullUIFeedbackStart.PlayFeedbacks();
         }
 
 
@@ -795,10 +808,5 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.down * (fighterData.playerHeight * 0.5f + 0.2f));
-
     }
-    
-
-
-
 }
