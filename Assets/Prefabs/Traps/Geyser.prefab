@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003140588897657570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -312,7 +312,16 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 3
+        m_Name: TimeCharge
+        m_Overridden: 1
+      - m_Value: 5.5
+        m_Name: TimeErupt
+        m_Overridden: 1
+      - m_Value: 8.5
+        m_Name: DelayEndErupt
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

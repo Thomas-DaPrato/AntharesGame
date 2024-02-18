@@ -5,20 +5,26 @@ using UnityEngine;
 public class AudioMenu : MonoBehaviour
 {
     public List<AudioClip> commentateurBienvenu;
+    public List<AudioClip> commentateur;
     public List<AudioClip> fouleReact;
     public AudioSource audioSource;
     public AudioSource audioSourceFoule;
     public float timeBetweenCom;
-    private int r;
-    private AudioClip clip;
+    
+    
     private int rFoule;
     private AudioClip clipFoule;
 
 
     private void Start()
     {
+        int r = Random.Range(0, commentateurBienvenu.Count - 1);
+        AudioClip clip = commentateurBienvenu[r];
+
+        audioSource.clip = clip;
+        audioSource.Play();
         StartCoroutine(WaitCom(timeBetweenCom));
-        StartCoroutine(WaitFoule(1f));
+        StartCoroutine(WaitFoule(0.1f));
     }
 
     IEnumerator WaitCom(float sec)
@@ -28,9 +34,8 @@ public class AudioMenu : MonoBehaviour
 
 
 
-        r = Random.Range(0, commentateurBienvenu.Count - 1);
-        clip = commentateurBienvenu[r];
-        
+        int r = Random.Range(0, commentateur.Count-1);
+        AudioClip clip = commentateur[r];
         audioSource.clip = clip;
         audioSource.Play();
         StartCoroutine(WaitCom(timeBetweenCom));
@@ -43,13 +48,13 @@ public class AudioMenu : MonoBehaviour
         yield return new WaitForSeconds(sec);
 
 
-
+        
         rFoule = Random.Range(0, fouleReact.Count - 1);
         clipFoule = fouleReact[rFoule];
         float dureeAudio = clipFoule.length;
         audioSourceFoule.clip = clipFoule;
         audioSourceFoule.Play();
-        StartCoroutine(WaitCom(dureeAudio));
+        StartCoroutine(WaitFoule(dureeAudio));
 
     }
 
