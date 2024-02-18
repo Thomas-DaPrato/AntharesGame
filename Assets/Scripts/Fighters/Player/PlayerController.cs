@@ -7,6 +7,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using MoreMountains.Feedbacks;
+using Lofelt.NiceVibrations;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -136,6 +137,15 @@ public class PlayerController : MonoBehaviour
     public MMF_Player skullUIFeedbackStart;
     public MMF_Player skullUIFeedbackLoop1;
     public MMF_Player skullUIFeedbackLoop2;
+
+    [Space(20)]
+    [Header("Damaged feedback")]
+    [SerializeField]
+    public MMF_Player damagedLightFeedbacks;
+    [SerializeField]
+    public MMF_Player damagedMediumFeedbacks;
+    [SerializeField]
+    public MMF_Player damagedHeavyFeedbacks;
 
     #region Movement Variable
 
@@ -557,7 +567,7 @@ public class PlayerController : MonoBehaviour
         switch (type) {
             case HitBox.HitBoxType.Heavy:
                 if (hp <= 20.0f * maxHp / 100.0f)
-                    PlayerDie();
+                PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
 
@@ -565,6 +575,7 @@ public class PlayerController : MonoBehaviour
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
+                damagedHeavyFeedbacks.PlayFeedbacks();
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
@@ -575,6 +586,7 @@ public class PlayerController : MonoBehaviour
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
+                damagedMediumFeedbacks.PlayFeedbacks();
                 mediumUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
                 mediumUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
