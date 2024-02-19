@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using MoreMountains.Feedbacks;
 
 public class RotationScie : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class RotationScie : MonoBehaviour
     public bool isRightSaw;
 
     public VisualEffect VFXTouche;
+
+    [SerializeField]
+    public MMF_Player SawIsTouchedFeedbacks;
 
     private void Start()
     {
@@ -46,6 +50,7 @@ public class RotationScie : MonoBehaviour
 
                 VFXTouche.gameObject.transform.position = other.GetContact(0).point;
                 VFXTouche.Play();
+                SawIsTouchedFeedbacks.PlayFeedbacks();
 
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
                 other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(isRightSaw ? -1 : 1, 1));

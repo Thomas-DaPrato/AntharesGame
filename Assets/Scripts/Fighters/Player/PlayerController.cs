@@ -146,6 +146,8 @@ public class PlayerController : MonoBehaviour
     public MMF_Player damagedMediumFeedbacks;
     [SerializeField]
     public MMF_Player damagedHeavyFeedbacks;
+    [SerializeField]
+    public MMF_Player damagedTrapSawFeedbacks;
 
     #region Movement Variable
 
@@ -597,6 +599,7 @@ public class PlayerController : MonoBehaviour
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
+                damagedMediumFeedbacks.PlayFeedbacks();
                 mediumUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;    
                 mediumUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
@@ -604,6 +607,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
+                damagedTrapSawFeedbacks.PlayFeedbacks();
                 chanceCommentateur = Random.Range(0, 5);
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
@@ -611,6 +615,7 @@ public class PlayerController : MonoBehaviour
                 break;
             default:
                 if(lightAttackCanTouch){
+                    damagedLightFeedbacks.PlayFeedbacks();
                     lightUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;    
                     lightUIFeedback.PlayFeedbacks();
                     charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
