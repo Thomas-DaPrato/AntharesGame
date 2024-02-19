@@ -117,7 +117,8 @@ public class CanonMouvement : MonoBehaviour
             {
                 charge.SetActive(false);
                 laser.SetActive(true);
-                laserVFX.SetFloat("SizeLaser", laserSize);
+                Debug.Log("sizeLaser " + laserSize);
+                //laserVFX.SetFloat("SizeLaser", laserSize);
                 canRayCast = true;
                 son.PlayOneShot(sonTir);
                 StartCoroutine(AttenteCoroutine(3f));

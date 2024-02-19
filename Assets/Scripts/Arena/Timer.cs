@@ -8,6 +8,9 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private GameObject support;
 
+    [SerializeField]
+    private Animator animator;
+
 
     private void Start() {
         support.SetActive(true);
@@ -15,11 +18,8 @@ public class Timer : MonoBehaviour
     }
 
     public IEnumerator MatchStartTimer() {
-        for(int i = 3; i > 0; i -= 1) {
-            support.GetComponent<TextMeshProUGUI>().text = i.ToString();
-            yield return new WaitForSeconds(1);
-        }
-        support.GetComponent<TextMeshProUGUI>().text = "GO !!";
+        animator.SetTrigger("Start");
+        yield return new WaitForSeconds(3);
         GameManager.SetFighterNotStun();
         yield return new WaitForSeconds(1);
         support.SetActive(false);
@@ -27,14 +27,8 @@ public class Timer : MonoBehaviour
 
     public IEnumerator TransitionRoundTimer(int nbRound) {
         support.SetActive(true);
-        support.GetComponent<TextMeshProUGUI>().text = "Round " + nbRound;
-        support.GetComponent<TextMeshProUGUI>().fontSize = 300;
-        
-        
+        animator.SetTrigger("Round"+nbRound);
         yield return new WaitForSeconds(1.5f);
-
-        support.GetComponent<TextMeshProUGUI>().text = "GO !!";
-        support.GetComponent<TextMeshProUGUI>().fontSize = 500;
         GameManager.SetFighterNotStun();
         yield return new WaitForSeconds(1);
         support.SetActive(false);

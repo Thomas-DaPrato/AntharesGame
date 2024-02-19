@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject menuPause;
     private GameObject UICombat;
-    private TextMeshProUGUI timer;
+    private Image timer;
 
     [SerializeField]
     private TextMeshProUGUI playerNameText;
@@ -199,6 +199,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update() {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, GetFighterData().playerHeight * 0.5f + 0.2f, groundLayer);
+
+        animator.SetBool("IsAttacking", isAttacking);
+        animator.SetBool("IsDashing", isDashing);
 
         if (isGrounded && isRunning)
             animator.SetBool("Run", true);
@@ -346,9 +349,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnParry(InputAction.CallbackContext context) {
-        if (context.performed && !isAttacking && !isStun) {
-            Debug.Log(gameObject.name + " Parry");
+        if (context.performed && !isAttacking && !isStun && !isDashing && !isDashDown) {
             isParrying = true;
+            Debug.Log(gameObject.name + " Parry");
             animator.SetTrigger("Parry");
         }
 
@@ -363,13 +366,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) {
 
-        if (!isAttacking && !isParrying && !isStun && canDash && context.performed)
+        if (!isAttacking && !isParrying && !isStun && canDash && context.performed) {
+            isDashing = true;
             Dash();
+        }
     }
     public void OnGoDownPlateform(InputAction.CallbackContext context) {
         if (!isStun && isGrounded && isOnPlateform &&!isAttacking && !isParrying && context.performed) {
-            playerDashVFX.SetActive(true);
+            isDashDown = true;
             SpeedDown();
+            playerDashVFX.SetActive(true);
         }
     }
 
@@ -458,11 +464,11 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.x - dashForce < upperLeftLimit.transform.position.x) {
                 transform.DOMoveX(upperLeftLimit.transform.position.x, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             else {
                 transform.DOMoveX(transform.position.x - dashForce, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             animator.SetTrigger("Dash");
 
@@ -472,11 +478,11 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.x + dashForce > lowerRightLimit.transform.position.x) {
                 transform.DOMoveX(lowerRightLimit.transform.position.x, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             else {
                 transform.DOMoveX(transform.position.x + dashForce, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             animator.SetTrigger("Dash");
 
@@ -485,11 +491,11 @@ public class PlayerController : MonoBehaviour
         if (yDash < -0.4) {
             if (transform.position.y - dashForce < lowerRightLimit.transform.position.y) {
                 transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             else {
                 transform.DOMoveY(transform.position.y - dashForce, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             animator.SetTrigger("DashDown");
 
@@ -498,20 +504,19 @@ public class PlayerController : MonoBehaviour
             
             if (transform.position.y + dashForce > upperLeftLimit.transform.position.y) {
                 transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             else {
                 transform.DOMoveY(transform.position.y + dashForce, 0.3f);
-                isDashing = true;
+                canDash = false;
             }
             animator.SetTrigger("DashUp");
         }
-        if (isDashing == true)
+        if (canDash == false)
         {
             playerDashVFX.SetActive(true);
         }
 
-        canDash = false;
         dashForce = dashForceVal;
         
         StartCoroutine(DashCoolDown());
@@ -525,8 +530,6 @@ public class PlayerController : MonoBehaviour
         else {
             transform.DOMoveY(transform.position.y - downForcePlateforme, 0.2f);
         }
-
-        isDashDown = true;
         StartCoroutine(StopDash());
 
 
@@ -546,7 +549,7 @@ public class PlayerController : MonoBehaviour
         else {
             yield return new WaitForSeconds(0.3f);
         }
-        rb.mass = 1;
+        moveForce = moveForceNotCollide;
         isDashing = false;
         playerDashVFX.SetActive(false);
 
@@ -683,7 +686,6 @@ public class PlayerController : MonoBehaviour
         canDash = true;
         isDie = false;
         lightAttackCanTouch = true;
-        rb.mass = 1;
         moveForce = moveForceNotCollide;
 
         x = 0;
@@ -717,15 +719,15 @@ public class PlayerController : MonoBehaviour
         Vector2 coordinate = new(Mathf.Abs(x), y);
         coordinate = coordinate.normalized;
 
-        if (coordinate.x <= 0.66f && coordinate.y > 0) {
+        if (coordinate.x <= 0.9f && coordinate.y > 0) {
             animator.SetTrigger("Aerial Up");
         }
 
-        if (coordinate.x > 0.66f) {
+        if (coordinate.x > 0.9f) {
             animator.SetTrigger("Aerial Middle");
         }
 
-        if (coordinate.x <= 0.66f && coordinate.y < 0) {
+        if (coordinate.x <= 0.9f && coordinate.y < 0) {
             animator.SetTrigger("Aerial Down");
         }
 
@@ -801,7 +803,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = val;
     }
 
-    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, TextMeshProUGUI textTimer, string playerName) {
+    public void SetUIFighter(List<Image> whiteHpBarreInGame, List<Image> redHpBarreInGame, GameObject menuPauseInGame, GameObject UICombatInGame, GameObject XKeyInGame, Image imageTimer, string playerName) {
         whiteHpBarre = whiteHpBarreInGame;
         redHpBarre = redHpBarreInGame;
         currentRedCell = redHpBarre.Count - 1;
@@ -811,7 +813,7 @@ public class PlayerController : MonoBehaviour
         menuPause = menuPauseInGame;
         UICombat = UICombatInGame;
         XKey = XKeyInGame;
-        timer = textTimer;
+        timer = imageTimer;
     }
 
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit) {

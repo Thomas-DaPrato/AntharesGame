@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
 
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
-        targetsGroup.AddMember(fighter1.transform, 1, 2);
+        targetsGroup.AddMember(fighter1.transform, 1, 5);
         nbRoundWinP1 = 0;
 
 
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         else
             fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
 
-        targetsGroup.AddMember(fighter2.transform, 1, 2);
+        targetsGroup.AddMember(fighter2.transform, 1, 5);
         nbRoundWinP2 = 0;
 
         fighter1.transform.SetParent(fighters.transform);
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
         fighter.transform.position = position.position;
-        fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<TextMeshProUGUI>(), playerName);
+        fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<Image>(), playerName);
         fighter.GetComponent<PlayerController>().playerName = playerName;
         fighter.GetComponent<PlayerController>().gameManager = this;
         fighter.GetComponent<PlayerController>().SetArenaLimit(upperLeftLimit, lowerRightLimit);

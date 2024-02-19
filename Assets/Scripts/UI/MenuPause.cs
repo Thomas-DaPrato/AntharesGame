@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+
 public class MenuPause : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +14,7 @@ public class MenuPause : MonoBehaviour
     private GameObject UICombat;
 
     [SerializeField]
-    private TextMeshProUGUI timer;
+    private Image timer;
 
     public void MainMenu() {
         Time.timeScale = 1;

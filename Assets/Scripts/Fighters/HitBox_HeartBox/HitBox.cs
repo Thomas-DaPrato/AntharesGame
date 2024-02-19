@@ -7,7 +7,6 @@ using Lofelt.NiceVibrations;
 
 public class HitBox : MonoBehaviour
 {
-    private static bool isPlayingFeedBacks = false;
     public enum HitBoxType {
         Heavy,
         Middle,
