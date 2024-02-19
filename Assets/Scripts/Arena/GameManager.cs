@@ -215,6 +215,8 @@ public class GameManager : MonoBehaviour
         if (looser.Equals("P2"))
             nbRoundWinP1 += 1;
 
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
         UpdateRounBarre();
 
 
