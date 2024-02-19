@@ -213,12 +213,14 @@ public class GameManager : MonoBehaviour
         if (looser.Equals("P1"))
             nbRoundWinP2 += 1;
         if (looser.Equals("P2"))
-            nbRoundWinP1 += 1;
+            nbRoundWinP1 += 1;   
 
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();        
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
+
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
+        print(fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.IsPlaying);        
         UpdateRounBarre();
 
 
@@ -318,6 +320,18 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
+
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
+
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
+
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
 
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
         yield return new WaitForSeconds(0.5f);
