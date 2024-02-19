@@ -216,7 +216,9 @@ public class GameManager : MonoBehaviour
             nbRoundWinP1 += 1;
 
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();        
         UpdateRounBarre();
 
 
