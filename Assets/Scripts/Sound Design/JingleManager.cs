@@ -9,8 +9,10 @@ public class JingleManager : MonoBehaviour
     private AudioSource jingle;
     public AudioClip soundJingle;
     public GameObject jinglemanager;
+    public GameObject sound;
     public void playSound()
     {
+        Destroy(sound);
         jingle.PlayOneShot(soundJingle);
         DontDestroyOnLoad(jinglemanager);
     }
