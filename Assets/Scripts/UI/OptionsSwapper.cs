@@ -11,6 +11,8 @@ public class OptionsSwapper : MonoBehaviour
 
     public GameObject options;
 
+    public DisplayUIButtonManager UIManager;
+
     [SerializeField]
     private GameObject menuPause;
 
@@ -24,6 +26,14 @@ public class OptionsSwapper : MonoBehaviour
 
     private void Awake() {
         currentPannel = 0;   
+    }
+
+    private void OnEnable() {
+        if (UIManager != null) {
+            UIManager.EnableChangePanelButton();
+            UIManager.EnableNavigateButton();
+            UIManager.EnableReturnButton();
+        }
     }
 
     public void OnChangePannel(InputAction.CallbackContext context) {

@@ -339,8 +339,8 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun)
         {
             isAttacking = true;
-            if (isGrounded)
-            {
+            if (isGrounded) {
+                HeavyEffect();
                 animator.SetTrigger("HeavyAttack");
             }
             else if (!isGrounded)
@@ -909,6 +909,7 @@ public class PlayerController : MonoBehaviour
         this.lastDirection = lastDirection;
         isAttacking = false;
         isParrying = false;
+        isRunning = false;
         canDash = true;
         isDie = false;
         lightAttackCanTouch = true;
