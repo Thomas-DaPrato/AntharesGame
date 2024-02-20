@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isDie = false;
     private bool isOnPlateform = false;
     private bool isRunning = false;
+    private bool isResetRumble = false;
     [HideInInspector]
     public bool lightAttackCanTouch = true;
 
@@ -242,7 +243,17 @@ public class PlayerController : MonoBehaviour
                 canDecreaseRedHpBarre = false;
         }
 
+        if (!isResetRumble)
+            StartCoroutine(LaunchResetRumble());
+
         SpeedController();
+    }
+
+    public IEnumerator LaunchResetRumble() {
+        isResetRumble = true;
+        GetComponent<PlayerInput>().GetDevice<Gamepad>().SetMotorSpeeds(0, 0);
+        yield return new WaitForSeconds(1);
+        isResetRumble = false;
     }
 
     private void RotateComponent()
