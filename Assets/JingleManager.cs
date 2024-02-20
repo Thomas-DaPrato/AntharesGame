@@ -18,7 +18,7 @@ public class JingleManager : MonoBehaviour
     private void Update()
     {
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().name.Equals("Game_Final"))
         {
             jingle.Stop();
             Destroy(jinglemanager);
