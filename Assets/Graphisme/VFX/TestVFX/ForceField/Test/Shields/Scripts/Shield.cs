@@ -44,8 +44,8 @@ public class Shield : MonoBehaviour
     }
 
     public void SetShieldColor(Color color) {
-        _renderer.material.SetColor("_FresnelColor", color);
-        _renderer.material.SetColor("_DisolveEdgeColor", color);
+        _renderer.material.SetColor("_FresnelColor", color * 8);
+        _renderer.material.SetColor("_DisolveEdgeColor", color * 10);
     }
 
     public void OpenCloseShield()

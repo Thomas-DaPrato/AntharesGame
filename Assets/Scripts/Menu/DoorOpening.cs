@@ -13,10 +13,15 @@ public class DoorOpening : MonoBehaviour
     private Vector3 rotationToDo;
     [SerializeField]
     private float timeToOpen;
+    [SerializeField]
+    private GameObject jingleManager;
+
+
 
     //https://dotween.demigiant.com/documentation.php
     void OpenDoors()
     {
+        jingleManager.GetComponent<JingleManager>().playSound();
         door1.DORotate(rotationToDo, timeToOpen).SetEase(Ease.OutSine);
         door2.DORotate(rotationToDo * -1, timeToOpen).SetEase(Ease.OutSine);
     }

@@ -619,6 +619,8 @@ public class PlayerController : MonoBehaviour
             case HitBox.HitBoxType.Trap:
                 hp -= percentageDamage * maxHp / 100.0f;
                 damagedTrapSawFeedbacks.PlayFeedbacks();
+                lightUIFeedback.PlayFeedbacks();
+                charaUIFeedback.PlayFeedbacks();
                 chanceCommentateur = Random.Range(0, 5);
                 if (chanceCommentateur == 1) {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
@@ -629,7 +631,7 @@ public class PlayerController : MonoBehaviour
                     damagedLightFeedbacks.PlayFeedbacks();
                     lightUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;    
                     lightUIFeedback.PlayFeedbacks();
-                    charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
+                    charaUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;
                     charaUIFeedback.PlayFeedbacks();
                 }
                 hp -= percentageDamage * maxHp / 100.0f;
