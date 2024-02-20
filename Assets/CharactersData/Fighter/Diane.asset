@@ -14,42 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6240159690015248056, guid: d429dcfbf7edebc409a70931358e2061, type: 3}
   heavyAttack:
-    knockback: 8
-    stunTime: 0.21
-    percentageDamage: 50
+    knockback: 22
+    stunTime: 0.75
+    percentageDamage: 35
     hitFreezeTime: 0.4
     shakeScreenIntensity: 2
     shakeScreenTime: 0.8
     SFXHit: {fileID: 8300000, guid: 191021b8a527cbf4496cfbd99785b62e, type: 3}
     SFX: {fileID: 8300000, guid: 5166664b4b173bf4f9e8362a313affc1, type: 3}
   middleAttack:
-    knockback: 5
-    stunTime: 0.13
-    percentageDamage: 20
+    knockback: 10
+    stunTime: 0.55
+    percentageDamage: 15
     hitFreezeTime: 0.2
     shakeScreenIntensity: 1
     shakeScreenTime: 0.4
     SFXHit: {fileID: 8300000, guid: ba4cfc752ec8cc642bf2906e53c430ff, type: 3}
     SFX: {fileID: 8300000, guid: 6511424440cfb0f47beb5106df14c326, type: 3}
   lightAttack:
-    knockback: 1.4
-    stunTime: 0.1
-    percentageDamage: 10
+    knockback: 4
+    stunTime: 0.25
+    percentageDamage: 5
     hitFreezeTime: 0.1
     shakeScreenIntensity: 0.5
     shakeScreenTime: 0.2
     SFXHit: {fileID: 8300000, guid: 00148fce011ce074790e96ddc3b7254d, type: 3}
     SFX: {fileID: 8300000, guid: e0e49ae3eecfeb54c8a24dad548de46f, type: 3}
   aerialAttack:
-    knockback: 6
-    stunTime: 0.16
-    percentageDamage: 20
+    knockback: 16
+    stunTime: 0.35
+    percentageDamage: 15
     hitFreezeTime: 0.2
     shakeScreenIntensity: 1
     shakeScreenTime: 0.4
     SFXHit: {fileID: 8300000, guid: ba4cfc752ec8cc642bf2906e53c430ff, type: 3}
     SFX: {fileID: 8300000, guid: 6511424440cfb0f47beb5106df14c326, type: 3}
-  stunTimeParry: 0.1
+  stunTimeParry: 0.75
   playerHeight: 2
   skinMirrorMatch: {fileID: 2100000, guid: 11750995318c61a469f97a6307e79623, type: 2}
   orginalSkinLoadingScene: {fileID: 21300000, guid: 86747794b7efd6a42920bb405d8f35f3, type: 3}

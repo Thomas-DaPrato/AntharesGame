@@ -181,6 +181,10 @@ public class PlayerController : MonoBehaviour
     private float dashTime;
     [SerializeField]
     private float GoDownPlatformTime;
+    [SerializeField]
+    private float stopDashTime;
+    
+    
 
 
     [Space(20)]
@@ -303,9 +307,9 @@ public class PlayerController : MonoBehaviour
     #region Map Player
     public void OnMoveX(InputAction.CallbackContext context)
     {
+        x = context.ReadValue<float>();
         if (!isStun)
         {
-            x = context.ReadValue<float>();
             xDash = x;
             SetLastDirection(x);
             isRunning = true;
@@ -632,7 +636,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator DashCoolDown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(stopDashTime);
         canDash = true;
 
     }
