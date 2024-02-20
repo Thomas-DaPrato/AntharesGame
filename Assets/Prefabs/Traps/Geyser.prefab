@@ -162,6 +162,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempsCharge: 5
   declancheur: 0
+  geyserZone: {fileID: 0}
+  minValueG: 68
+  maxValueG: 90
+  minValueB: 78
+  maxValueB: 190
+  minValueR: 47
+  maxValueR: 0
+  neon: {fileID: 2681312989313831283}
+  grille: {fileID: 3006375903540955431}
   son: {fileID: 5833377995906006152}
   charge: {fileID: 8300000, guid: 56743fedd9900e64d8bf1ea2265400b8, type: 3}
   sonTir: {fileID: 8300000, guid: 3927148773cbd894895a33231094aa5b, type: 3}
@@ -544,6 +553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8368548098714867083, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dd95a855cc10894da569f0decd34b36, type: 2}
     - target: {fileID: 527436647877259809, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -554,8 +567,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
+--- !u!23 &2681312989313831283 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 527436647877259809, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
+  m_PrefabInstance: {fileID: 2478170716832146258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2733265365897528505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
+  m_PrefabInstance: {fileID: 2478170716832146258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3006375903540955431 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8368548098714867083, guid: 9ddef0dcce91b67419842ca40522fb3f, type: 3}
   m_PrefabInstance: {fileID: 2478170716832146258}
   m_PrefabAsset: {fileID: 0}

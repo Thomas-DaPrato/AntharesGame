@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using DG.Tweening;
 
 public class GeyserBehaviour : MonoBehaviour
 {
@@ -9,6 +10,18 @@ public class GeyserBehaviour : MonoBehaviour
     [SerializeField] private int declancheur=0;
     [SerializeField]
     public MMF_Player geyserZone;
+
+    public float minValueG = 91;
+    public float maxValueG = 255;
+    
+    public float minValueB = 191;
+    public float maxValueB = 255;
+    public float minValueR = 47;
+    public float maxValueR = 0;
+
+    public MeshRenderer neon;
+    public MeshRenderer grille;
+
 
     [SerializeField]
     AudioSource son;
@@ -23,6 +36,7 @@ public class GeyserBehaviour : MonoBehaviour
     }
     void Update()
     {
+        print("r " + neon.material.GetColor("_EmissionColor").r * 255 + " g " +  neon.material.GetColor("_EmissionColor").g * 255 + " b " +  neon.material.GetColor("_EmissionColor").b * 255);
         if (!changeRound) { 
             if (tremble)
             {
@@ -31,9 +45,14 @@ public class GeyserBehaviour : MonoBehaviour
                 //tremblement
                 vib.SetActive(true);
                 geyserZone.PlayFeedbacks();
+                neon.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
+                grille.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
+
                 son.PlayOneShot(charge);
                 StartCoroutine(AttenteCoroutine(5f));
+                
                 tremble = false;
+
             
             }
             else if (tir)
@@ -50,6 +69,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 declancheur = 0;
                 //Debug.Log("actif");
+                print("ici");
                 tremble = true;
             }
 
@@ -62,7 +82,7 @@ public class GeyserBehaviour : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
         {
             declancheur = 0;
@@ -80,6 +100,8 @@ public class GeyserBehaviour : MonoBehaviour
             if (intermediaire)
             {
                 erruption.SetActive(false);
+                neon.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255f, 1), "_EmissionColor", 1).OnComplete(() => geyserZone.RestoreInitialValues());
+                grille.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255f, 1), "_EmissionColor", 1).OnComplete(() => geyserZone.RestoreInitialValues());
                 vib.SetActive(false);
                 geyserZone.StopFeedbacks();
                 intermediaire = false;
@@ -97,7 +119,7 @@ public class GeyserBehaviour : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
             declancheur = tempsCharge + 1;
 
@@ -109,7 +131,7 @@ public class GeyserBehaviour : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         changeRound = false;
         StartCoroutine(Attentepiege(tempsCharge));
         
