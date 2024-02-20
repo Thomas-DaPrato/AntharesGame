@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class BaseFlammesMovement : MonoBehaviour
 {
 
     [SerializeField] private int vitesse, tempsCharge;
-    [SerializeField] private float limiteHaute, limiteBasse;
+    [SerializeField] private float limiteHaute, limiteBasse; 
+    [SerializeField]
+    public MMF_Player flammesZone;
     [SerializeField]
     AudioSource son;
 
@@ -135,6 +138,7 @@ public class BaseFlammesMovement : MonoBehaviour
         canMove = false;
         attente = false;
         flammes.SetActive(false);
+        flammesZone.StopFeedbacks();
         VFXs.SetActive(false);
         StartCoroutine(AttenteRound(tempRound));
     }
@@ -144,6 +148,7 @@ public class BaseFlammesMovement : MonoBehaviour
         if (chargeOuPas)
         {
             vib.SetActive(true);
+            flammesZone.PlayFeedbacks();
             son.PlayOneShot(charge);
             StartCoroutine(AttenteCoroutine(dureeCharge));
             attente = true;
@@ -151,6 +156,7 @@ public class BaseFlammesMovement : MonoBehaviour
         else
         {
             vib.SetActive(false);
+            flammesZone.StopFeedbacks();
         }
         
     }

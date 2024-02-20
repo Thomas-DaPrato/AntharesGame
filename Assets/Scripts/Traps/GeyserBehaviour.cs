@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class GeyserBehaviour : MonoBehaviour
 {
     [SerializeField] private int tempsCharge;
     [SerializeField] private int declancheur=0;
+    [SerializeField]
+    public MMF_Player geyserZone;
+
     [SerializeField]
     AudioSource son;
     public AudioClip charge,sonTir;
@@ -26,6 +30,7 @@ public class GeyserBehaviour : MonoBehaviour
 
                 //tremblement
                 vib.SetActive(true);
+                geyserZone.PlayFeedbacks();
                 son.PlayOneShot(charge);
                 StartCoroutine(AttenteCoroutine(5f));
                 tremble = false;
@@ -65,7 +70,8 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 //fin du tremblement
                 son.PlayOneShot(sonTir);
-                
+                geyserZone.StopFeedbacks();
+
                 tir = true;
                 intermediaire2 = false;
             }
@@ -73,9 +79,9 @@ public class GeyserBehaviour : MonoBehaviour
 
             if (intermediaire)
             {
-
                 erruption.SetActive(false);
                 vib.SetActive(false);
+                geyserZone.StopFeedbacks();
                 intermediaire = false;
                 StartCoroutine(Attentepiege(tempsCharge));
             }
@@ -115,6 +121,7 @@ public class GeyserBehaviour : MonoBehaviour
     {
         changeRound = true;
         vib.SetActive(false);
+        geyserZone.StopFeedbacks();
         erruption.SetActive(false);
         intermediaire2 = false;
         changeRound = false;
