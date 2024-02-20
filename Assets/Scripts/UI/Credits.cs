@@ -20,9 +20,16 @@ public class Credits : MonoBehaviour
     [SerializeField]
     private GameObject infosRight;
 
+    public DisplayUIButtonManager UIManager;
+
     private void Awake() {
         currentMember = 0;
         FillInfos();
+    }
+
+    private void OnEnable() {
+        UIManager.EnableChangePanelButton();
+        UIManager.EnableReturnButton();
     }
 
     public void OnCharacterSwap(InputAction.CallbackContext context) {

@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
     private Material forceShieldFighter2;
 
 
-    private static PlayerInput fighter1;
-    private static PlayerInput fighter2;
+    public static PlayerInput fighter1;
+    public static PlayerInput fighter2;
 
     #region UI Variable
     public GameObject UI;
@@ -141,6 +141,10 @@ public class GameManager : MonoBehaviour
         fighter1.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer1;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackLoop1Player1;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackLoop2Player1;
+        fighter1.GetComponent<PlayerController>().YUIFeedbackLoop = uiInGameManager.YUIFeedbackLoopPlayer1;
+        fighter1.GetComponent<PlayerController>().BUIFeedbackLoop = uiInGameManager.BUIFeedbackLoopPlayer1;
+        fighter1.GetComponent<PlayerController>().otherPlayer = fighter2.GetComponent<PlayerController>();
+
 
         fighter2.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer2;
         fighter2.GetComponent<PlayerController>().mediumUIFeedback = uiInGameManager.mediumUIFeedBackPlayer2;
@@ -149,7 +153,9 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().skullUIFeedbackStart = uiInGameManager.skullUIFeedbackStartPlayer2;
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1 = uiInGameManager.skullUIFeedbackLoop1Player2;
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2 = uiInGameManager.skullUIFeedbackLoop2Player2;
-
+        fighter2.GetComponent<PlayerController>().YUIFeedbackLoop = uiInGameManager.YUIFeedbackLoopPlayer2;
+        fighter2.GetComponent<PlayerController>().BUIFeedbackLoop = uiInGameManager.BUIFeedbackLoopPlayer2;
+        fighter2.GetComponent<PlayerController>().otherPlayer = fighter1.GetComponent<PlayerController>();
 
 
         //manage mirror match

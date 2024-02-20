@@ -1259,15 +1259,37 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "a02ff880-f03e-4685-b757-d3c3faa33ad5",
-                    "path": "<Gamepad>/leftStick/x",
+                    "name": "LB/RB",
+                    "id": "267221b7-eda0-4365-8139-6c35eccaefcc",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
+                    "groups": "",
+                    "action": "MemberSwap",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a350b336-941d-4447-95bc-25cb51b50015",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "MemberSwap",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "94f0e915-4ac0-46b4-a6e2-a78b14415fa8",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MemberSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
