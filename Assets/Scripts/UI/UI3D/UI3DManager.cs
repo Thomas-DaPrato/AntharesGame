@@ -18,11 +18,7 @@ public class UI3DManager : MonoBehaviour
     private Material blackButton;
 
     [SerializeField]
-    private GameObject returnButtonUI;
-    [SerializeField]
-    private GameObject navigateButtonUI;
-    [SerializeField]
-    private GameObject validateButtonUI;
+    private DisplayUIButtonManager UIManager;
 
     [Header("Camera")]
     [SerializeField]
@@ -78,14 +74,13 @@ public class UI3DManager : MonoBehaviour
                 
             if (!buttons[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton) {
                 GetComponent<PlayerInput>().enabled = false;
-                validateButtonUI.SetActive(false);
+                UIManager.DisableValidateButton();
                 foreach (GameObject button in buttons)
                     button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
                 buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
                 vcMenu.SetActive(false);
                 vcBat.SetActive(true);
-                returnButtonUI.SetActive(true);
-                navigateButtonUI.SetActive(true);
+                UIManager.EnableReturnButton();
                 
             }
             else

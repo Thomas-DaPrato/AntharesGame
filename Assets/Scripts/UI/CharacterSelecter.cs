@@ -71,13 +71,7 @@ public class CharacterSelecter : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
-    private GameObject startButtonUI;
-    [SerializeField]
-    private GameObject validateButtonUI;
-    [SerializeField]
-    private GameObject returnButtonUI;
-    [SerializeField]
-    private GameObject navigateButtonUI;
+    private DisplayUIButtonManager UIManager;
 
 
     public PlayerInput playerInput;
@@ -94,10 +88,11 @@ public class CharacterSelecter : MonoBehaviour
         colorType = Characters.ColorType.None;
         haveChooseFighter = false;
         ready.SetActive(false);
+        UIManager.EnableValidateButton();
+        UIManager.EnableReturnButton();
+        UIManager.EnableNavigateButton();
         support.sprite = Characters.GetFighters()[currentFighter].spriteOriginalNotSelected;
         animatorBackground.SetBool("isSelected", false);
-        validateButtonUI.SetActive(true);
-        navigateButtonUI.SetActive(true);
     }
 
 
@@ -158,12 +153,13 @@ public class CharacterSelecter : MonoBehaviour
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(playerPrefPlayerName, -1);
                 iconInfos.SetActive(true);
+                UIManager.DisableStartButton();
+                UIManager.EnableValidateButton();
                 for (int i = 0; i < neonReady.Length; i++)
                 {
                     neonReady[i].material = notReadyMaterial;
                 }
-                validateButtonUI.SetActive(true);
-                startButtonUI.SetActive(false);
+
             }
             else
             {
@@ -173,8 +169,7 @@ public class CharacterSelecter : MonoBehaviour
                 menu.GetComponent<UI3DManager>().ResetMaterial();
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
-                navigateButtonUI.SetActive(false);
-                returnButtonUI.SetActive(false);
+                UIManager.ActiveButtonMenu();
                 for (int i = 0; i < otherCharacterSelecter.neonReady.Length; i++)
                 {
                     otherCharacterSelecter.neonReady[i].material = notReadyMaterial;
@@ -209,8 +204,9 @@ public class CharacterSelecter : MonoBehaviour
             }
             if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1)
             {
-                validateButtonUI.SetActive(false);
-                startButtonUI.SetActive(true);
+                UIManager.DisableValidateButton();
+                UIManager.DisableNavigateButton();
+                UIManager.EnableStartButton();
             }
         }
     }
@@ -232,9 +228,7 @@ public class CharacterSelecter : MonoBehaviour
 
     public IEnumerator StartFight()
     {
-        startButtonUI.SetActive(false);
-        navigateButtonUI.SetActive(false);
-        returnButtonUI.SetActive(false);
+        UIManager.DisableAllButtons();
         vcBat.SetActive(false);
         vcRecul.SetActive(true);
         yield return new WaitForSeconds(2);
