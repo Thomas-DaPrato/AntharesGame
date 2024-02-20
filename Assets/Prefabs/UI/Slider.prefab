@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3404585983940889930}
   - component: {fileID: 2514110452816011512}
   - component: {fileID: 2448324875804611496}
+  - component: {fileID: 4900979591675624229}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -163,9 +164,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1253224360821621055}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 1
-  m_Value: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -194,9 +195,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textValue: {fileID: 0}
+  slider: {fileID: 0}
   borne: {fileID: 6727405264170132912}
   emptyBorne: {fileID: 21300000, guid: a55d75ebea653d147b9b1228869827ce, type: 3}
   fullBorne: {fileID: 21300000, guid: 318152a22eb723b47996ad8be41cf14a, type: 3}
+--- !u!114 &4900979591675624229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960780036298918938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487bb7f14f728c74ca3bfc0020509b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Track: 0
+  MinVolume: 0
+  MaxVolume: 1
+  Mode: 1
+  ChangeModeOnTrackFade: 1
+  ChangeModeOnMute: 1
+  ChangeModeOnUnmute: 1
+  ChangeModeOnTrackVolumeChange: 0
+  ModeSwitchBufferTime: 0.1
+  _slider: {fileID: 0}
 --- !u!1 &2025773030362847775
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,10 @@ public class JingleManager : MonoBehaviour
     private AudioSource jingle;
     public AudioClip soundJingle;
     public GameObject jinglemanager;
+    public GameObject sound;
     public void playSound()
     {
+        Destroy(sound);
         jingle.PlayOneShot(soundJingle);
         DontDestroyOnLoad(jinglemanager);
     }
@@ -18,7 +20,7 @@ public class JingleManager : MonoBehaviour
     private void Update()
     {
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().name.Equals("Game_Final"))
         {
             jingle.Stop();
             Destroy(jinglemanager);

@@ -71,7 +71,10 @@ public class GameManager : MonoBehaviour
     public bool useOnlyCesar;
     public bool useOnlyDiane;
 
-
+    private void Awake()
+    {
+        InitGameManager();
+    }
     private void Start()
     {
         if (onSceneTest)
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
                 SetPlayerPrefToFighter();
         }
 
-        InitGameManager();
+        
         SpawnPlayers();
     }
 
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
         nbRound = 1;
 
         uiInGameManager = Instantiate(UI).GetComponent<UiInGameManager>();
+        //uiInGameManager = UI.GetComponent<UiInGameManager>();
 
         UICombat = uiInGameManager.UICombat;
 
