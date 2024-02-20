@@ -45,6 +45,8 @@ public class UiInGameManager : MonoBehaviour
     public MMF_Player skullUIFeedbackStartPlayer1;
     public MMF_Player skullUIFeedbackLoop1Player1;
     public MMF_Player skullUIFeedbackLoop2Player1;
+    public MMF_Player YUIFeedbackLoopPlayer1;
+    public MMF_Player BUIFeedbackLoopPlayer1;
 
     
     [Space(10)]
@@ -56,6 +58,8 @@ public class UiInGameManager : MonoBehaviour
     public MMF_Player skullUIFeedbackStartPlayer2;
     public MMF_Player skullUIFeedbackLoop1Player2;
     public MMF_Player skullUIFeedbackLoop2Player2;
+    public MMF_Player YUIFeedbackLoopPlayer2;
+    public MMF_Player BUIFeedbackLoopPlayer2;
     private void Start()
     {
 
