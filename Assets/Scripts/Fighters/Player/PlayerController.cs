@@ -277,8 +277,16 @@ public class PlayerController : MonoBehaviour
 
         }
         if (context.canceled) {
+            StartCoroutine(SetIsRunningFalse());
+        }
+    }
+
+    public IEnumerator SetIsRunningFalse() {
+        yield return new WaitForSeconds(0.1f);
+        if(x == 0) { 
             isRunning = false;
             animator.SetBool("Run", false);
+        
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
+  m_IndirectSpecularColor: {r: 0.071373604, g: 0.15741691, b: 0.21806262, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2914,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5948917124322488261, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: SawIsTouchedFeedbacks
@@ -5270,7 +5270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &417456252
 Transform:
   m_ObjectHideFlags: 0
@@ -6799,6 +6799,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559493647}
   m_Mesh: {fileID: 5467203087070472813, guid: 5877d21ce1f06f6408f824bfb085b747, type: 3}
+--- !u!1 &560607322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560607323}
+  - component: {fileID: 560607324}
+  m_Layer: 0
+  m_Name: Time
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560607323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560607322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 33.86916, y: 5.6979885, z: 0.26132607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &560607324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560607322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb48cbbbae48a74a84bab525b9a8227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &562053819
 GameObject:
   m_ObjectHideFlags: 0
@@ -28839,7 +28883,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4805835298246852478, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5948917124322488261, guid: 0bd25d687838b4142b181a83c7433804, type: 3}
       propertyPath: isRightSaw
@@ -30226,7 +30270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5180033898795650897, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5732864344957771601, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalRotation.w
