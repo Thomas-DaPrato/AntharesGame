@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class GeyserBehaviour : MonoBehaviour
 {
-    [SerializeField] private int tempsCharge;
+    [SerializeField] private int timeBetweenActivate;
+    [SerializeField] private float tempsCharge;
     [SerializeField] private int declancheur=0;
     [SerializeField]
     public MMF_Player geyserZone;
@@ -32,11 +33,11 @@ public class GeyserBehaviour : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Attentepiege(tempsCharge));
+        StartCoroutine(Attentepiege(timeBetweenActivate));
     }
     void Update()
     {
-        print("r " + neon.material.GetColor("_EmissionColor").r * 255 + " g " +  neon.material.GetColor("_EmissionColor").g * 255 + " b " +  neon.material.GetColor("_EmissionColor").b * 255);
+        //print("r " + neon.material.GetColor("_EmissionColor").r * 255 + " g " +  neon.material.GetColor("_EmissionColor").g * 255 + " b " +  neon.material.GetColor("_EmissionColor").b * 255);
         if (!changeRound) { 
             if (tremble)
             {
@@ -49,7 +50,7 @@ public class GeyserBehaviour : MonoBehaviour
                 grille.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
 
                 son.PlayOneShot(charge);
-                StartCoroutine(AttenteCoroutine(5f));
+                StartCoroutine(AttenteCoroutine(tempsCharge));
                 
                 tremble = false;
 
@@ -57,6 +58,7 @@ public class GeyserBehaviour : MonoBehaviour
             }
             else if (tir)
             {
+                
                 intermediaire = true;
                 StartCoroutine(AttenteCoroutine(5f));
                 erruption.SetActive(true);
@@ -65,7 +67,7 @@ public class GeyserBehaviour : MonoBehaviour
             }
 
         
-            if (declancheur > tempsCharge)
+            if (declancheur > timeBetweenActivate)
             {
                 declancheur = 0;
                 //Debug.Log("actif");
@@ -89,6 +91,8 @@ public class GeyserBehaviour : MonoBehaviour
             if (intermediaire2)
             {
                 //fin du tremblement
+                son.Stop();
+                Debug.Log("je joue le son");
                 son.PlayOneShot(sonTir);
                 geyserZone.StopFeedbacks();
 
@@ -105,7 +109,8 @@ public class GeyserBehaviour : MonoBehaviour
                 vib.SetActive(false);
                 geyserZone.StopFeedbacks();
                 intermediaire = false;
-                StartCoroutine(Attentepiege(tempsCharge));
+                son.Stop();
+                StartCoroutine(Attentepiege(timeBetweenActivate));
             }
 
         }
@@ -121,7 +126,7 @@ public class GeyserBehaviour : MonoBehaviour
 
         // Apr�s l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
-            declancheur = tempsCharge + 1;
+            declancheur = timeBetweenActivate + 1;
 
 
     }
@@ -133,7 +138,7 @@ public class GeyserBehaviour : MonoBehaviour
 
         // Apr�s l'attente, vous pouvez mettre votre code ici
         changeRound = false;
-        StartCoroutine(Attentepiege(tempsCharge));
+        StartCoroutine(Attentepiege(timeBetweenActivate));
         
 
 
