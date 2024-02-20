@@ -176,6 +176,11 @@ public class PlayerController : MonoBehaviour
     private int maxNbJumpInAir;
     private int nbJump;
 
+    [SerializeField]
+    private float dashTime;
+    [SerializeField]
+    private float GoDownPlatformTime;
+
 
     [Space(20)]
 
@@ -529,12 +534,12 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.x - dashForce < upperLeftLimit.transform.position.x)
             {
-                transform.DOMoveX(upperLeftLimit.transform.position.x, 0.3f);
+                transform.DOMoveX(upperLeftLimit.transform.position.x, dashTime);
                 canDash = false;
             }
             else
             {
-                transform.DOMoveX(transform.position.x - dashForce, 0.3f);
+                transform.DOMoveX(transform.position.x - dashForce, dashTime);
                 canDash = false;
             }
             animator.SetTrigger("Dash");
@@ -546,12 +551,12 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.x + dashForce > lowerRightLimit.transform.position.x)
             {
-                transform.DOMoveX(lowerRightLimit.transform.position.x, 0.3f);
+                transform.DOMoveX(lowerRightLimit.transform.position.x, dashTime);
                 canDash = false;
             }
             else
             {
-                transform.DOMoveX(transform.position.x + dashForce, 0.3f);
+                transform.DOMoveX(transform.position.x + dashForce, dashTime);
                 canDash = false;
             }
             animator.SetTrigger("Dash");
@@ -562,12 +567,12 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position.y - dashForce < lowerRightLimit.transform.position.y)
             {
-                transform.DOMoveY(lowerRightLimit.transform.position.y, 0.3f);
+                transform.DOMoveY(lowerRightLimit.transform.position.y, dashTime);
                 canDash = false;
             }
             else
             {
-                transform.DOMoveY(transform.position.y - dashForce, 0.3f);
+                transform.DOMoveY(transform.position.y - dashForce, dashTime);
                 canDash = false;
             }
             animator.SetTrigger("DashDown");
@@ -578,12 +583,12 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.y + dashForce > upperLeftLimit.transform.position.y)
             {
-                transform.DOMoveY(upperLeftLimit.transform.position.y, 0.3f);
+                transform.DOMoveY(upperLeftLimit.transform.position.y, dashTime);
                 canDash = false;
             }
             else
             {
-                transform.DOMoveY(transform.position.y + dashForce, 0.3f);
+                transform.DOMoveY(transform.position.y + dashForce, dashTime);
                 canDash = false;
             }
             animator.SetTrigger("DashUp");
@@ -603,11 +608,11 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         if (transform.position.y - downForcePlateforme < lowerRightLimit.transform.position.y)
         {
-            transform.DOMoveY(lowerRightLimit.transform.position.y, 0.2f);
+            transform.DOMoveY(lowerRightLimit.transform.position.y, GoDownPlatformTime);
         }
         else
         {
-            transform.DOMoveY(transform.position.y - downForcePlateforme, 0.2f);
+            transform.DOMoveY(transform.position.y - downForcePlateforme, GoDownPlatformTime);
         }
         StartCoroutine(StopDash());
 
@@ -625,12 +630,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isDashDown)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(GoDownPlatformTime);
             isDashDown = false;
         }
         else
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(dashTime);
         }
         moveForce = moveForceNotCollide;
         isDashing = false;

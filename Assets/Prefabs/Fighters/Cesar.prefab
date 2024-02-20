@@ -6224,6 +6224,7 @@ MonoBehaviour:
   CameraSong: {fileID: 0}
   playerNameText: {fileID: 7784570402199181716}
   playerInput: {fileID: 0}
+  otherPlayer: {fileID: 0}
   heavyUIFeedback: {fileID: 0}
   mediumUIFeedback: {fileID: 0}
   lightUIFeedback: {fileID: 0}
@@ -6231,6 +6232,8 @@ MonoBehaviour:
   skullUIFeedbackStart: {fileID: 0}
   skullUIFeedbackLoop1: {fileID: 0}
   skullUIFeedbackLoop2: {fileID: 0}
+  YUIFeedbackLoop: {fileID: 0}
+  BUIFeedbackLoop: {fileID: 0}
   damagedLightFeedbacks: {fileID: 6005376670761294833}
   damagedMediumFeedbacks: {fileID: 2451992799566853476}
   damagedHeavyFeedbacks: {fileID: 1846168636698725808}
@@ -6242,6 +6245,8 @@ MonoBehaviour:
   airControl: 1.5
   groundControl: 3
   maxNbJumpInAir: 1
+  dashTime: 0.3
+  GoDownPlatformTime: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
