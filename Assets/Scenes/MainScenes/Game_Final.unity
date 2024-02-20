@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
+  m_IndirectSpecularColor: {r: 0.07138893, g: 0.15733482, b: 0.218095, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -735,6 +735,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: redLight
+      value: 
+      objectReference: {fileID: 693868355}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: flammesZone
       value: 
       objectReference: {fileID: 731228046}
@@ -742,6 +746,14 @@ PrefabInstance:
       propertyPath: tempsCharge
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: planeRenderer
+      value: 
+      objectReference: {fileID: 1298162795}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: flammesZoneLight
+      value: 
+      objectReference: {fileID: 731228046}
     - target: {fileID: 3076696429778312560, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3010,7 +3022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &208477151
 Transform:
   m_ObjectHideFlags: 0
@@ -7823,7 +7835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &663449152
 Transform:
   m_ObjectHideFlags: 0
@@ -7836,6 +7848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 693868354}
   - {fileID: 1298162793}
   m_Father: {fileID: 505436664}
   m_RootOrder: 3
@@ -7969,7 +7982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &693868354
 Transform:
   m_ObjectHideFlags: 0
@@ -7977,12 +7990,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693868353}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.06384328, y: 0.08, z: -0.05}
-  m_LocalScale: {x: 3.0655835, y: 2.9207768, z: 3.6055777}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.030000687, y: 20.880613, z: -0.0012607574}
+  m_LocalScale: {x: 2.2011724, y: 1.051195, z: 1.9530046}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1298162793}
+  m_Father: {fileID: 663449152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
 --- !u!114 &693868355
@@ -8647,7 +8660,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 731228046}
         DebugActive: 0
-        TargetGameObject: {fileID: 663449151}
+        TargetGameObject: {fileID: 693868353}
         ExtraTargetGameObjects: []
         SetStateOnInit: 0
         StateOnInit: 1
@@ -12359,7 +12372,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 1050899062}
         DebugActive: 0
-        TargetGameObject: {fileID: 1162823479}
+        TargetGameObject: {fileID: 208477150}
         ExtraTargetGameObjects: []
         SetStateOnInit: 0
         StateOnInit: 1
@@ -13289,7 +13302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1162823480
 Transform:
   m_ObjectHideFlags: 0
@@ -15844,10 +15857,9 @@ Transform:
   m_LocalPosition: {x: -0.01584053, y: 20.923946, z: -0.019256592}
   m_LocalScale: {x: 0.71802723, y: 0.54166204, z: 0.35990256}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 693868354}
+  m_Children: []
   m_Father: {fileID: 663449152}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!23 &1298162795
 MeshRenderer:
@@ -22811,6 +22823,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: redLight
+      value: 
+      objectReference: {fileID: 208477152}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: flammesZone
       value: 
       objectReference: {fileID: 1050899062}
@@ -22818,6 +22834,14 @@ PrefabInstance:
       propertyPath: tempsCharge
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: planeRenderer
+      value: 
+      objectReference: {fileID: 1198029191}
+    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: flammesZoneLight
+      value: 
+      objectReference: {fileID: 1050899062}
     - target: {fileID: 3076696429778312560, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -30154,7 +30178,7 @@ PrefabInstance:
       objectReference: {fileID: 524496462}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: onSceneTest
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: spotLightP1
@@ -30170,7 +30194,7 @@ PrefabInstance:
       objectReference: {fileID: 524496464}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyCesar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyDiane
