@@ -10,7 +10,6 @@ public class Shield : MonoBehaviour
     [SerializeField] float _LerpSpeed;
     [SerializeField] float _DisolveSpeed;
 
-    public Color myColor;
     bool _shieldOn;
     Coroutine _disolveCoroutine;
     // Start is called before the first frame update
@@ -35,8 +34,6 @@ public class Shield : MonoBehaviour
         {
             OpenCloseShield();
         }
-        if (Input.GetKeyDown(KeyCode.C))
-            SetShieldColor(myColor);
     }
 
     public void HitShield(Vector3 hitPos)
@@ -48,6 +45,7 @@ public class Shield : MonoBehaviour
 
     public void SetShieldColor(Color color) {
         _renderer.material.SetColor("_FresnelColor", color);
+        _renderer.material.SetColor("_DisolveEdgeColor", color);
     }
 
     public void OpenCloseShield()
