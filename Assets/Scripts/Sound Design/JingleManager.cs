@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MoreMountains.Tools;
 
 public class JingleManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class JingleManager : MonoBehaviour
     public GameObject sound;
     public void playSound()
     {
-        Destroy(sound);
+        sound.GetComponent<MMSoundManager>().PauseAllSounds();   
         jingle.PlayOneShot(soundJingle);
         DontDestroyOnLoad(jinglemanager);
     }
