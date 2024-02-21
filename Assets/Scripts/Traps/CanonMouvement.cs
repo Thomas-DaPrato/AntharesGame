@@ -51,7 +51,7 @@ public class CanonMouvement : MonoBehaviour
             if (raycastTouch) {
                 Debug.Log("laser hit");
                 canRayCast = false;
-                raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
+                raycastHit.transform.GetComponentInParent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap,"Turret");
                 raycastHit.transform.GetComponentInParent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(rightTurret ? -1 : 1, 1));
                 StartCoroutine(AttenteHit(0.2f));
             }

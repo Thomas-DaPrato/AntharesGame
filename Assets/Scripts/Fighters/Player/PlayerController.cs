@@ -682,6 +682,8 @@ public class PlayerController : MonoBehaviour
     #region Player Fonctions
     public void TakeDamage(float percentageDamage, HitBox.HitBoxType type, string trapName = null)
     {
+        print(type);
+        print(trapName);
         if (isInvicible)
             return;
         GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
@@ -733,7 +735,6 @@ public class PlayerController : MonoBehaviour
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
-
                 if(trapName != "Geyser")
                 {
                     hp -= percentageDamage * maxHp / 100.0f;

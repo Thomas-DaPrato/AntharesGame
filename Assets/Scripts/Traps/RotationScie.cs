@@ -52,7 +52,7 @@ public class RotationScie : MonoBehaviour
                 VFXTouche.Play();
                 SawIsTouchedFeedbacks.PlayFeedbacks();
 
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap,"Saw");
                 other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(isRightSaw ? -1 : 1, 1));
                 vitesse = -50;
 
