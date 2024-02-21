@@ -6076,9 +6076,12 @@ MonoBehaviour:
   - {fileID: 837142317531233212}
   - {fileID: 4900739567244995176}
   - {fileID: 4360455446394605840}
-  playerHeavyVFX:
+  playerHeavyVFXRight:
   - {fileID: 502489617192642803}
   - {fileID: 5677343248461968544}
+  playerHeavyVFXLeft:
+  - {fileID: 6349644069842941496}
+  - {fileID: 1166077831411149419}
   playerParryVFX: {fileID: 5127451762383787848}
   maxHp: 10
   rateRedHpBarre: 0.1
@@ -11556,6 +11559,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+--- !u!198 &1166077831411149419 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4900663677405820357, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 6065251636162781102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6349644069842941496 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 878885383871506838, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 6065251636162781102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7473449151299892673
 PrefabInstance:
   m_ObjectHideFlags: 0

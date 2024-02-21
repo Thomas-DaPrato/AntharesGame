@@ -5812,8 +5812,10 @@ MonoBehaviour:
   - {fileID: 3011941603547355990}
   - {fileID: 6342777248654288479}
   - {fileID: 975914205978995638}
-  playerHeavyVFX:
+  playerHeavyVFXRight:
   - {fileID: 8961403689567707922}
+  playerHeavyVFXLeft:
+  - {fileID: 6129779180211436573}
   playerParryVFX: {fileID: 3342168298635338667}
   maxHp: 10
   rateRedHpBarre: 0.1
@@ -9677,7 +9679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5212121047799794233, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -9737,6 +9739,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+--- !u!198 &6129779180211436573 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+  m_PrefabInstance: {fileID: 426596651303335577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1236683878644017673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9820,7 +9827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5212121047799794233, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

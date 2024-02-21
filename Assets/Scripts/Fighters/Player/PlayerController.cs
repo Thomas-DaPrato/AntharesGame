@@ -77,7 +77,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> playerBurnVFX;
     [SerializeField]
-    private List<ParticleSystem> playerHeavyVFX;
+    private List<ParticleSystem> playerHeavyVFXRight;
+    [SerializeField]
+    private List<ParticleSystem> playerHeavyVFXLeft;
     [SerializeField]
     private GameObject playerParryVFX;
 
@@ -1026,8 +1028,12 @@ public class PlayerController : MonoBehaviour
 
     public void HeavyEffect()
     {
-        foreach (ParticleSystem VFX in playerHeavyVFX)
-            VFX.Play();
+        if(lastDirection > 0)
+            foreach (ParticleSystem VFX in playerHeavyVFXRight)
+                VFX.Play();
+        if(lastDirection < 0)
+            foreach (ParticleSystem VFX in playerHeavyVFXLeft)
+                VFX.Play();
     }
 
 
