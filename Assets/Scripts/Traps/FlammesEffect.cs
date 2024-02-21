@@ -9,6 +9,7 @@ public class FlammesEffect : MonoBehaviour
     public float knockbackForce = 15;
     public float damage = 15;
     
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
