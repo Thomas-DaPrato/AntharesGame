@@ -12,15 +12,13 @@ public class GeyserBehaviour : MonoBehaviour
     [SerializeField]
     public MMF_Player geyserZone;
 
-    public float minValueR = 47;
-    public float maxValueR = 0;
-
     public float minValueG = 91;
     public float maxValueG = 255;
     
     public float minValueB = 191;
     public float maxValueB = 255;
-
+    public float minValueR = 47;
+    public float maxValueR = 0;
 
     public MeshRenderer neon;
     public MeshRenderer grille;
@@ -48,8 +46,8 @@ public class GeyserBehaviour : MonoBehaviour
                 //tremblement
                 vib.SetActive(true);
                 geyserZone.PlayFeedbacks();
-                neon.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
-                grille.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
+                neon.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
+                grille.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
 
                 son.PlayOneShot(charge);
                 StartCoroutine(AttenteCoroutine(tempsCharge));
@@ -72,7 +70,8 @@ public class GeyserBehaviour : MonoBehaviour
             if (declancheur > timeBetweenActivate)
             {
                 declancheur = 0;
-                //Debug.Log("actif");
+                
+                
                 tremble = true;
             }
 
@@ -85,7 +84,7 @@ public class GeyserBehaviour : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Apr�s l'attente, vous pouvez mettre votre code ici
+       
         if (!changeRound)
         {
             declancheur = 0;
@@ -93,7 +92,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 //fin du tremblement
                 son.Stop();
-                //Debug.Log("je joue le son");
+                Debug.Log("je joue le son");
                 son.PlayOneShot(sonTir);
                 geyserZone.StopFeedbacks();
 
@@ -105,9 +104,9 @@ public class GeyserBehaviour : MonoBehaviour
             if (intermediaire)
             {
                 erruption.SetActive(false);
-                neon.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255F, 1), "_EmissionColor", 1);//.OnComplete(() => geyserZone.RestoreInitialValues());
-                grille.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/225f, 1), "_EmissionColor", 1);//.OnComplete(() => geyserZone.RestoreInitialValues());
-                StartCoroutine(WaitToDesactivate(2));
+                neon.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255f, 1), "_EmissionColor", 1).OnComplete(() => geyserZone.RestoreInitialValues());
+                grille.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255f, 1), "_EmissionColor", 1).OnComplete(() => geyserZone.RestoreInitialValues());
+                vib.SetActive(false);
                 geyserZone.StopFeedbacks();
                 intermediaire = false;
                 son.Stop();
@@ -128,8 +127,9 @@ public class GeyserBehaviour : MonoBehaviour
         // Apr�s l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
             declancheur = timeBetweenActivate + 1;
-    }
 
+
+    }
     IEnumerator AttenteRound(float sec)
     {
 
@@ -147,7 +147,7 @@ public class GeyserBehaviour : MonoBehaviour
     public void ChangeRound(float tempRound)
     {
         changeRound = true;
-        StartCoroutine(WaitToDesactivate(2));
+        vib.SetActive(false);
         geyserZone.StopFeedbacks();
         erruption.SetActive(false);
         intermediaire2 = false;
@@ -156,12 +156,6 @@ public class GeyserBehaviour : MonoBehaviour
         StartCoroutine(AttenteRound(tempRound));
     }
 
-    IEnumerator WaitToDesactivate(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        vib.SetActive(false);
-    }
-    
 
 
 }

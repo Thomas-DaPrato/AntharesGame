@@ -38,7 +38,7 @@ public class ScieEffect : MonoBehaviour
                 VFXTouche.gameObject.transform.position = other.GetContact(0).point;
                 VFXTouche.Play();
             
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap,"Saw");
                 other.gameObject.GetComponent<PlayerController>().ApplyKnockback(10, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
                 vitesse = -50;
                 
