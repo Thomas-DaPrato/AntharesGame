@@ -9,6 +9,8 @@ public class BaseFlammesMovement : MonoBehaviour
 {
 
     [SerializeField] private int vitesse, tempsCharge;
+    [SerializeField]
+    private float dureeFlammes = 5f;
     [SerializeField] private float limiteHaute, limiteBasse;
     [SerializeField]
     public MMF_Player flammesZonePlane;
@@ -25,7 +27,7 @@ public class BaseFlammesMovement : MonoBehaviour
     [HideInInspector] public bool changeRound = false;
 
 
-    public GameObject flammes, vib, VFXs;
+    public GameObject flammes, vib, VFXs, platform;
     public AudioClip charge;
     private bool canMove = true;
     private bool attente = false;
@@ -34,6 +36,7 @@ public class BaseFlammesMovement : MonoBehaviour
     public float dureeCharge = 2;
     public float minValueIntensity = 96f;
     public float maxValueIntensity = 191f;
+    public bool flammeHaut = false;
 
 
 
@@ -103,7 +106,15 @@ public class BaseFlammesMovement : MonoBehaviour
                 //arret de la vibration
                 activeFlammes();
 
-                StartCoroutine(AttenteCoroutine(5f));
+
+                if (flammeHaut)
+                {
+                    platform.GetComponent<OneWayPlatform>().flammesActif = true;
+                }
+
+ 
+                StartCoroutine(AttenteCoroutine(dureeFlammes));
+
             }
             else
             {
@@ -111,6 +122,10 @@ public class BaseFlammesMovement : MonoBehaviour
                 canMove = true;
                 attente = false;
                 flammes.SetActive(false);
+                if (flammeHaut)
+                {
+                    platform.GetComponent<OneWayPlatform>().flammesActif = false;
+                }
                 VFXs.SetActive(false);
                 //flammesZonePlane.StopFeedbacks();
                 planeRenderer.material.DOVector(new Vector4(minValueIntensity / 255, planeRenderer.material.GetColor("_EmissionColor").b, planeRenderer.material.GetColor("_EmissionColor").b, 1), "_EmissionColor", 1f);

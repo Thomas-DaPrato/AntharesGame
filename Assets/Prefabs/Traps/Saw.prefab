@@ -163,11 +163,15 @@ MonoBehaviour:
   son: {fileID: 1770340162722311724}
   scie: {fileID: 3577242032467138145}
   vfxScie: {fileID: 2648652016367554452}
-  vitRotation: 200
+  knockbackForce: 10
+  damage: 5
+  vitRotation: 500
   col: {fileID: 351797929948433308}
   enMarche: {fileID: 8300000, guid: 812f1917bb7b52d4bbebe2a95a6d6df2, type: 3}
   touche: {fileID: 8300000, guid: d7c33cbdf8fa0814b908290e92412229, type: 3}
+  isRightSaw: 0
   VFXTouche: {fileID: 6723992428442369576}
+  SawIsTouchedFeedbacks: {fileID: 0}
 --- !u!82 &1770340162722311724
 AudioSource:
   m_ObjectHideFlags: 0

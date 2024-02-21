@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89380484a1b4d44aa939f4f192acb5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ejectionForce: 100
+  ejectionForce: 85
 --- !u!1 &6003140589162608267
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,16 +160,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215b4245b978f8746a3983d033e4531b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenActivate: 4
+  timeBetweenActivate: 8
   tempsCharge: 3
   declancheur: 0
   geyserZone: {fileID: 0}
+  minValueR: 47
+  maxValueR: 0
   minValueG: 68
   maxValueG: 90
   minValueB: 78
   maxValueB: 190
-  minValueR: 47
-  maxValueR: 0
   neon: {fileID: 2681312989313831283}
   grille: {fileID: 3006375903540955431}
   son: {fileID: 5833377995906006152}

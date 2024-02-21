@@ -10,7 +10,7 @@ public class LaserEffect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap);
+            other.GetComponent<PlayerController>().TakeDamage(10.0f, HitBox.HitBoxType.Trap,"Turret");
             other.GetComponent<PlayerController>().ApplyKnockback(20, new Vector2(other.GetComponent<PlayerController>().lastDirection*-1,1));
             StartCoroutine(AttenteCoroutine(0.1f));
         }

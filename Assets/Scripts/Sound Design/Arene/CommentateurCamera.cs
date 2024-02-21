@@ -121,7 +121,7 @@ public class CommentateurCamera : MonoBehaviour
         isCommenting = false;
     }
 
-
+    /*
     public IEnumerator CanCommentstart(float durée)
     {
         
@@ -163,7 +163,7 @@ public class CommentateurCamera : MonoBehaviour
         audioSource.Play();
         isCommenting = true;
         StartCoroutine(CanCommentstart(dureeAudio));
-    }
+    }*/
 
 
     /*public IEnumerator PresentationJoueur(float durée)

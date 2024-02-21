@@ -2438,7 +2438,7 @@ MonoBehaviour:
     - rid: 7726804093274685452
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 20795768
         Label: Haptic Clip
         ChannelMode: 0
@@ -2898,7 +2898,7 @@ MonoBehaviour:
     - rid: 7726804093274685454
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 243644843
         Label: Haptic Clip
         ChannelMode: 0
@@ -6064,7 +6064,6 @@ MonoBehaviour:
   isParrying: 0
   isStun: 0
   canDash: 1
-  canParry: 1
   playerName: 
   gameManager: {fileID: 0}
   dashForce: 7
@@ -8905,7 +8904,7 @@ MonoBehaviour:
     - rid: 7726804093274685450
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1147258112
         Label: Haptic Clip
         ChannelMode: 0
@@ -9984,7 +9983,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8751292985455279859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9993,7 +9992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 175}
+  m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 75, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7088442746137073089
@@ -10149,7 +10148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.6415094
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
@@ -10157,23 +10156,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.37791893
+      value: 0.46480393
       objectReference: {fileID: 0}
     - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
       value: 0.7180627
-      objectReference: {fileID: 0}
-    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
-      propertyPath: TrailModule.colorOverLifetime.maxColor.b
-      value: 0.6431373
-      objectReference: {fileID: 0}
-    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
-      propertyPath: TrailModule.colorOverLifetime.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
-      propertyPath: TrailModule.colorOverLifetime.maxColor.r
-      value: 0.3764706
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
@@ -10879,11 +10866,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8021001004253913084, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
   m_PrefabInstance: {fileID: 2527815214411088557}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3937019798844988574 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
-  m_PrefabInstance: {fileID: 2527815214411088557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4224717578815602021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
@@ -11495,67 +11477,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8535109651799936590, guid: c7f51713dee1bba41963fd4e20f0fd32, type: 3}
   m_PrefabInstance: {fileID: 5400306480757841758}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6065251636162781102
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3937019798844988574}
-    m_Modifications:
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0000482479
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.09329166
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.00000034296934
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.000023337223
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.000037638256
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2337310500651413026, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_Name
-      value: Heavy Attack Cesar
-      objectReference: {fileID: 0}
-    - target: {fileID: 2337310500651413026, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
 --- !u!1001 &7473449151299892673
 PrefabInstance:
   m_ObjectHideFlags: 0
