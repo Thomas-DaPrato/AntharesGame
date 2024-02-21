@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
     public bool isStun = false;
     //[HideInInspector]
     public bool canDash = true;
-    //[HideInInspector]
-    public bool canParry = true;
     [HideInInspector]
     public string playerName;
     [HideInInspector]
@@ -81,9 +79,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> playerBurnVFX;
     [SerializeField]
-    private List<ParticleSystem> playerHeavyVFXRight;
-    [SerializeField]
-    private List<ParticleSystem> playerHeavyVFXLeft;
+    private List<ParticleSystem> playerHeavyVFX;
     [SerializeField]
     private GameObject playerParryVFX;
 
@@ -228,7 +224,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsAttacking", isAttacking);
         animator.SetBool("IsDashing", isDashing);
 
-        if (isGrounded && isRunning && !isStun)
+        if (isGrounded && isRunning)
             animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
@@ -294,6 +290,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = 0;
         }
+
         if (!isAttacking && !isStun && !isParrying)
             Move();
     }
@@ -316,11 +313,13 @@ public class PlayerController : MonoBehaviour
     public void OnMoveX(InputAction.CallbackContext context)
     {
         x = context.ReadValue<float>();
-        Debug.Log("moveX");
-        xDash = x;
-        SetLastDirection(x);
-        isRunning = true;
+        if (!isStun)
+        {
+            xDash = x;
+            SetLastDirection(x);
+            isRunning = true;
 
+        }
         if (context.canceled)
         {
             StartCoroutine(SetIsRunningFalse());
@@ -420,10 +419,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnParry(InputAction.CallbackContext context)
     {
-        if (context.performed && canParry && !isStun && !isDashing && !isDashDown)
+        if (context.performed && !isParrying && !isStun && !isDashing && !isDashDown)
         {
             isParrying = true;
-            canParry = false;
             Debug.Log(gameObject.name + " Parry");
             animator.SetTrigger("Parry");
         }
@@ -431,7 +429,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator LaunchCoolDownParry() {
         yield return new WaitForSeconds(1);
-        canParry = true;
+        canDash = true;
+        isParrying = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -685,7 +684,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isInvicible)
             return;
-        //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
+        GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
         switch (type)
         {
             case HitBox.HitBoxType.Heavy:
@@ -704,7 +703,7 @@ public class PlayerController : MonoBehaviour
                 {
                     soundManager.GetComponent<Foule>().FouleScream();
                 }
-                //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
+                GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
                 damagedHeavyFeedbacks.PlayFeedbacks();
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
@@ -802,11 +801,11 @@ public class PlayerController : MonoBehaviour
                 otherPlayer.skullUIFeedbackLoop1.RestoreInitialValues();
                 otherPlayer.skullUIFeedbackLoop1.InitialDelay = skullUIFeedbackStart.TotalDuration;
 
-                otherPlayer.BUIFeedbackLoop.StopFeedbacks();
-                otherPlayer.BUIFeedbackLoop.RestoreInitialValues();
-                otherPlayer.BUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
+                otherPlayer.YUIFeedbackLoop.StopFeedbacks();
+                otherPlayer.YUIFeedbackLoop.RestoreInitialValues();
+                otherPlayer.YUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
 
-                playBLoopOther = true;
+                playYLoopOther = true;
                 playSkullLoop1Other = true;
             }
             else if (otherPlayer.skullUIFeedbackLoop2.IsPlaying)
@@ -830,7 +829,7 @@ public class PlayerController : MonoBehaviour
 
             skullUIFeedbackStart.PlayFeedbacks();
             skullUIFeedbackLoop1.InitialDelay = skullUIFeedbackStart.TotalDuration;
-            BUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
+            YUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
             if (playYLoopOther)
                 otherPlayer.YUIFeedbackLoop.PlayFeedbacks();
             if (playBLoopOther)
@@ -840,7 +839,7 @@ public class PlayerController : MonoBehaviour
             if (playSkullLoop2Other)
                 otherPlayer.skullUIFeedbackLoop2.PlayFeedbacks();
             
-            BUIFeedbackLoop.PlayFeedbacks();
+            YUIFeedbackLoop.PlayFeedbacks();
             skullUIFeedbackLoop1.PlayFeedbacks();
         }
 
@@ -877,10 +876,10 @@ public class PlayerController : MonoBehaviour
                 otherPlayer.skullUIFeedbackLoop1.StopFeedbacks();
                 otherPlayer.skullUIFeedbackLoop1.RestoreInitialValues();
                 otherPlayer.skullUIFeedbackLoop1.PlayFeedbacks();
-                otherPlayer.BUIFeedbackLoop.StopFeedbacks();
-                otherPlayer.BUIFeedbackLoop.RestoreInitialValues();
+                otherPlayer.YUIFeedbackLoop.StopFeedbacks();
+                otherPlayer.YUIFeedbackLoop.RestoreInitialValues();
                 playSkullLoop1Other = true;
-                playBLoopOther = true;
+                playYLoopOther = true;
 
             }
             else if (otherPlayer.skullUIFeedbackLoop2.IsPlaying)
@@ -1037,23 +1036,21 @@ public class PlayerController : MonoBehaviour
 
     public void EnableBurnEffect()
     {
+        Debug.Log("enableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(true);
     }
     public void DisableBurnEffect()
     {
+        Debug.Log("disableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(false);
     }
 
     public void HeavyEffect()
     {
-        if(lastDirection > 0)
-            foreach (ParticleSystem VFX in playerHeavyVFXRight)
-                VFX.Play();
-        if(lastDirection < 0)
-            foreach (ParticleSystem VFX in playerHeavyVFXLeft)
-                VFX.Play();
+        foreach (ParticleSystem VFX in playerHeavyVFX)
+            VFX.Play();
     }
 
 
@@ -1085,8 +1082,6 @@ public class PlayerController : MonoBehaviour
     }
     public void SetIsParryingFalse()
     {
-        isParrying = false;
-        canDash = true;
         StartCoroutine(LaunchCoolDownParry());
     }
 

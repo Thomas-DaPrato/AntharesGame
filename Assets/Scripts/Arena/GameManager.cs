@@ -234,13 +234,9 @@ public class GameManager : MonoBehaviour
 
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
-        fighter1.GetComponent<PlayerController>().YUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
-        fighter1.GetComponent<PlayerController>().BUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
 
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
-        fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
-        fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         print(fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.IsPlaying);        
         UpdateRounBarre();
 
