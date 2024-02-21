@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using MoreMountains.Feedbacks;
 
 public class UI3DManager : MonoBehaviour
 {
@@ -32,11 +33,16 @@ public class UI3DManager : MonoBehaviour
     public AudioClip audioButtonSwap;
     public AudioClip audioButtonClick;
 
+    [SerializeField]
+    private MMF_Player launchingMenuMusic;
+
 
     private int currentButtonSelected = 0;
 
-    private void Start() {
-        if(PlayerPrefs.GetInt("chooseFighter") == 1) {
+    private void Start()
+    {
+        launchingMenuMusic.PlayFeedbacks();
+        if (PlayerPrefs.GetInt("chooseFighter") == 1) {
             GetComponent<PlayerInput>().enabled = false;
             foreach (GameObject button in buttons)
                 button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;

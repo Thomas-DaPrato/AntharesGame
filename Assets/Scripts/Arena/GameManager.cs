@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Material forceShieldFighter2;
 
+    [SerializeField]
+    private MMF_Player sfx321Go;
+
 
     public static PlayerInput fighter1;
     public static PlayerInput fighter2;
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        sfx321Go.PlayFeedbacks();
         if (onSceneTest)
         {
             if (useOnlyCesar)
