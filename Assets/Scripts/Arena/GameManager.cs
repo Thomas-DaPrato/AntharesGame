@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
         fighter1.GetComponent<PlayerController>().YUIFeedbackLoop = uiInGameManager.YUIFeedbackLoopPlayer1;
         fighter1.GetComponent<PlayerController>().BUIFeedbackLoop = uiInGameManager.BUIFeedbackLoopPlayer1;
         fighter1.GetComponent<PlayerController>().otherPlayer = fighter2.GetComponent<PlayerController>();
+        fighter1.GetComponent<PlayerController>().SetPlayerInput(fighter2);
 
 
         fighter2.GetComponent<PlayerController>().lightUIFeedback = uiInGameManager.lightUIFeedBackPlayer2;
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop = uiInGameManager.YUIFeedbackLoopPlayer2;
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop = uiInGameManager.BUIFeedbackLoopPlayer2;
         fighter2.GetComponent<PlayerController>().otherPlayer = fighter1.GetComponent<PlayerController>();
+        fighter2.GetComponent<PlayerController>().SetPlayerInput(fighter1);
 
 
         //manage mirror match
@@ -373,6 +375,15 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().ResetFighter(-1);
         fighter2.transform.position = spawnP2.position;
 
+    }
+
+    public void EnablePlayerIcone() {
+        fighter1.GetComponent<PlayerController>().playerNameIcone.support.enabled = true;
+        fighter2.GetComponent<PlayerController>().playerNameIcone.support.enabled = true;
+    }
+    public void DisablePlayerIcone() {
+        fighter1.GetComponent<PlayerController>().playerNameIcone.support.enabled = false;
+        fighter2.GetComponent<PlayerController>().playerNameIcone.support.enabled = false;
     }
 
 

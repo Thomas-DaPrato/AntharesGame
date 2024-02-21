@@ -121,13 +121,13 @@ public class PlayerController : MonoBehaviour
     private GameObject UICombat;
     private Image timer;
 
-    [SerializeField]
-    private TextMeshProUGUI playerNameText;
+    
+    public SetPlayerIcone playerNameIcone;
 
     private GameObject XKey;
 
     [SerializeField]
-    private PlayerInput playerInput;
+    private PlayerInput opposingPlayerInput;
 
     public PlayerController otherPlayer;
 
@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
                 canDecreaseRedHpBarre = false;
         }
 
-        if (!isResetRumble)
+        if (!isResetRumble && Gamepad.all.Count > 1)
             StartCoroutine(LaunchResetRumble());
 
         SpeedController();
@@ -414,13 +414,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnParry(InputAction.CallbackContext context)
     {
-        if (context.performed && !isAttacking && !isStun && !isDashing && !isDashDown)
+        if (context.performed && !isParrying && !isStun && !isDashing && !isDashDown)
         {
             isParrying = true;
             Debug.Log(gameObject.name + " Parry");
             animator.SetTrigger("Parry");
         }
+    }
 
+    IEnumerator LaunchCoolDownParry() {
+        yield return new WaitForSeconds(1);
+        canDash = true;
+        isParrying = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -674,6 +679,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isInvicible)
             return;
+        GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
         switch (type)
         {
             case HitBox.HitBoxType.Heavy:
@@ -687,6 +693,7 @@ public class PlayerController : MonoBehaviour
                 {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
+                GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
                 damagedHeavyFeedbacks.PlayFeedbacks();
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
@@ -921,6 +928,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("T MORT !!!!!");
         hp = 0;
         isDie = true;
+        gameManager.DisablePlayerIcone();
         gameManager.EndRound(playerName);
     }
 
@@ -932,6 +940,7 @@ public class PlayerController : MonoBehaviour
         isRunning = false;
         canDash = true;
         isDie = false;
+        gameManager.EnablePlayerIcone();
         lightAttackCanTouch = true;
         moveForce = moveForceNotCollide;
 
@@ -1053,8 +1062,7 @@ public class PlayerController : MonoBehaviour
     }
     public void SetIsParryingFalse()
     {
-        isParrying = false;
-        canDash = true;
+        StartCoroutine(LaunchCoolDownParry());
     }
 
 
@@ -1076,12 +1084,16 @@ public class PlayerController : MonoBehaviour
         redHpBarre = redHpBarreInGame;
         currentRedCell = redHpBarre.Count - 1;
 
-        playerNameText.text = playerName;
+        playerNameIcone.Init(playerName);
 
         menuPause = menuPauseInGame;
         UICombat = UICombatInGame;
         XKey = XKeyInGame;
         timer = imageTimer;
+    }
+
+    public void SetPlayerInput(PlayerInput playerInput) {
+        opposingPlayerInput = playerInput;
     }
 
     public void SetArenaLimit(GameObject upperLeftLimit, GameObject lowerRightLimit)
