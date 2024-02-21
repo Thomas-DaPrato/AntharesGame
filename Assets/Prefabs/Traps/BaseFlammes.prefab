@@ -50,10 +50,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 5
-  tempsCharge: 12
+  tempsCharge: 7
+  dureeFlammes: 3.5
   limiteHaute: 10
   limiteBasse: -10
-  flammesZone: {fileID: 0}
+  flammesZonePlane: {fileID: 0}
+  flammesZoneLight: {fileID: 0}
+  redLight: {fileID: 0}
+  planeRenderer: {fileID: 0}
   son: {fileID: 4087610720515864013}
   changeRound: 0
   flammes: {fileID: 6070193377262733781}
@@ -61,7 +65,9 @@ MonoBehaviour:
   VFXs: {fileID: 4721438548948724972}
   charge: {fileID: 8300000, guid: c8a92ae00c8ba5c4aae797ad84ea6cc7, type: 3}
   flammeBouge: 0
-  dureeCharge: 2
+  dureeCharge: 3
+  minValueIntensity: 96
+  maxValueIntensity: 191
 --- !u!82 &4087610720515864013
 AudioSource:
   m_ObjectHideFlags: 0
@@ -529,8 +535,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBurn: 1.5
-  knockbackForce: 15
-  damage: 15
+  knockbackForce: -20
+  damage: 10
 --- !u!1 &7194978287163954230
 GameObject:
   m_ObjectHideFlags: 0
