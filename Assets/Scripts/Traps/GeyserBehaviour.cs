@@ -11,14 +11,16 @@ public class GeyserBehaviour : MonoBehaviour
     [SerializeField] private int declancheur=0;
     [SerializeField]
     public MMF_Player geyserZone;
+    
+    public float minValueR = 47;
+    public float maxValueR = 0;
 
     public float minValueG = 91;
     public float maxValueG = 255;
     
     public float minValueB = 191;
     public float maxValueB = 255;
-    public float minValueR = 47;
-    public float maxValueR = 0;
+
 
     public MeshRenderer neon;
     public MeshRenderer grille;
@@ -46,8 +48,8 @@ public class GeyserBehaviour : MonoBehaviour
                 //tremblement
                 vib.SetActive(true);
                 geyserZone.PlayFeedbacks();
-                neon.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
-                grille.material.DOVector(new Vector4(maxValueR/255f, maxValueG/255f, maxValueB/255f, 1), "_EmissionColor", 5);
+                neon.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
+                grille.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
 
                 son.PlayOneShot(charge);
                 StartCoroutine(AttenteCoroutine(tempsCharge));
