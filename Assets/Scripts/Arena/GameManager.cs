@@ -49,8 +49,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Material forceShieldFighter2;
 
+
+    [Space(10)]
+    [Header("AudioManager")]
     [SerializeField]
     private MMF_Player sfx321Go;
+    [SerializeField]
+    private MMF_Player arenaMusic;
+   
+    
 
 
     public static PlayerInput fighter1;
@@ -77,6 +84,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         InitGameManager();
+        arenaMusic.PlayFeedbacks();
     }
     private void Start()
     {
@@ -309,6 +317,7 @@ public class GameManager : MonoBehaviour
 
         if (looser.Equals("P1"))
         {
+            arenaMusic.PlayFeedbacks();
             fighter2.transform.position = endMatchPodium.position;
             fighter2.GetComponent<PlayerController>().fighterCam.SetActive(true);
         }

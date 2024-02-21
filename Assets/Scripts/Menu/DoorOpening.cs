@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 
 public class DoorOpening : MonoBehaviour
 {
@@ -19,7 +20,13 @@ public class DoorOpening : MonoBehaviour
     [SerializeField]
     private MMF_Player launchingFightFeedback;
 
-    public GameObject sound;
+    //public GameObject sound;
+
+    /*private void Start()
+    {
+       
+        launchingFightFeedback = MMF_Player.FindAnyObjectByType<MMF_Player>("MMSoundManager");
+    }*/
 
     //https://dotween.demigiant.com/documentation.php
     void OpenDoors()

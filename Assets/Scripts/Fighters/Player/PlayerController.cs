@@ -138,6 +138,11 @@ public class PlayerController : MonoBehaviour
 
     public PlayerController otherPlayer;
 
+    [SerializeField]
+    private MMF_Player cesarVictory;
+    [SerializeField]
+    private MMF_Player dianeVictory;
+
     [Space(20)]
     [Header("UI feedback")]
     public MMF_Player heavyUIFeedback;
@@ -208,6 +213,16 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+
+    public void victoryCesar()
+    {
+        cesarVictory.PlayFeedbacks();
+    }
+
+    public void victoryDiane()
+    {
+        dianeVictory.PlayFeedbacks();
+    }
 
 
     private void Awake()
