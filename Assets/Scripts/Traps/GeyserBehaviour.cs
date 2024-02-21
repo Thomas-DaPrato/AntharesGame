@@ -104,9 +104,9 @@ public class GeyserBehaviour : MonoBehaviour
 
             if (intermediaire)
             {
-                erruption.SetActive(false);
                 neon.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/255F, 1), "_EmissionColor", 1);//.OnComplete(() => geyserZone.RestoreInitialValues());
                 grille.material.DOVector(new Vector4(minValueR/255f, minValueG/255f, minValueB/225f, 1), "_EmissionColor", 1);//.OnComplete(() => geyserZone.RestoreInitialValues());
+                StartCoroutine(WaitToDesactivateCollision(1));
                 StartCoroutine(WaitToDesactivate(2));
                 geyserZone.StopFeedbacks();
                 intermediaire = false;
@@ -160,6 +160,13 @@ public class GeyserBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
         vib.SetActive(false);
+        print("here");
+    }
+    IEnumerator WaitToDesactivateCollision(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        erruption.SetActive(false);
+        print("ici");
     }
     
 
