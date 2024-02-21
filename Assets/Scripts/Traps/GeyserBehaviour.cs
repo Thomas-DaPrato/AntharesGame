@@ -92,7 +92,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 //fin du tremblement
                 son.Stop();
-                Debug.Log("je joue le son");
+                //Debug.Log("je joue le son");
                 son.PlayOneShot(sonTir);
                 geyserZone.StopFeedbacks();
 
@@ -160,13 +160,11 @@ public class GeyserBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
         vib.SetActive(false);
-        print("here");
     }
     IEnumerator WaitToDesactivateCollision(float sec)
     {
         yield return new WaitForSeconds(sec);
         erruption.SetActive(false);
-        print("ici");
     }
     
 
