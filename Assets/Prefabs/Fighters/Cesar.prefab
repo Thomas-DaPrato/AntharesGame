@@ -6080,9 +6080,12 @@ MonoBehaviour:
   - {fileID: 837142317531233212}
   - {fileID: 4900739567244995176}
   - {fileID: 4360455446394605840}
-  playerHeavyVFX:
+  playerHeavyVFXRight:
   - {fileID: 502489617192642803}
   - {fileID: 5677343248461968544}
+  playerHeavyVFXLeft:
+  - {fileID: 8690768629981645194}
+  - {fileID: 3506925572317337049}
   playerParryVFX: {fileID: 5127451762383787848}
   maxHp: 10
   rateRedHpBarre: 0.1
@@ -11236,6 +11239,11 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5771110791531137288, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
   m_PrefabInstance: {fileID: 2527815214411088557}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &8713286528328946418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2594260964506120097, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
+  m_PrefabInstance: {fileID: 2527815214411088557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8730507552454842222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 400fb29e22327964fa7267ba13ff1874, type: 3}
@@ -11652,6 +11660,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b58cd1f515ea27c47bd41d862dfbc379, type: 3}
+--- !u!1001 &8406458658935513116
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8713286528328946418}
+    m_Modifications:
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494910893218477713, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337310500651413026, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_Name
+      value: Heavy Attack Cesar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337310500651413026, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+--- !u!198 &3506925572317337049 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4900663677405820357, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 8406458658935513116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8690768629981645194 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 878885383871506838, guid: 899026798c1dd1f439e9a717c5d49560, type: 3}
+  m_PrefabInstance: {fileID: 8406458658935513116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9021275830230608253
 PrefabInstance:
   m_ObjectHideFlags: 0
