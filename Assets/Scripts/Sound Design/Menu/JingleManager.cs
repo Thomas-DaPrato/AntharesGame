@@ -23,6 +23,7 @@ public class JingleManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Equals("Game_Final"))
         {
+            
             jingle.Stop();
             Destroy(jinglemanager);
         }
