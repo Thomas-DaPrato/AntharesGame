@@ -70,8 +70,8 @@ public class GeyserBehaviour : MonoBehaviour
             if (declancheur > timeBetweenActivate)
             {
                 declancheur = 0;
-                //Debug.Log("actif");
-                print("ici");
+                
+                
                 tremble = true;
             }
 
@@ -84,7 +84,7 @@ public class GeyserBehaviour : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Apr�s l'attente, vous pouvez mettre votre code ici
+       
         if (!changeRound)
         {
             declancheur = 0;

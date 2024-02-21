@@ -14,7 +14,7 @@ public class FlammesEffect : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerController>().EnableBurnEffect(timeBurn);
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(damage, HitBox.HitBoxType.Trap, "Flammes");
             other.gameObject.GetComponent<PlayerController>().ApplyKnockback(knockbackForce, new Vector2(other.gameObject.GetComponent<PlayerController>().lastDirection * -1, 1));
 
         }
