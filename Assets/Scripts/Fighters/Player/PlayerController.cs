@@ -680,7 +680,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isInvicible)
             return;
-        GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
+        //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
         switch (type)
         {
             case HitBox.HitBoxType.Heavy:
@@ -694,7 +694,7 @@ public class PlayerController : MonoBehaviour
                 {
                     //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
                 }
-                GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
+                //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
                 damagedHeavyFeedbacks.PlayFeedbacks();
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
@@ -782,11 +782,11 @@ public class PlayerController : MonoBehaviour
                 otherPlayer.skullUIFeedbackLoop1.RestoreInitialValues();
                 otherPlayer.skullUIFeedbackLoop1.InitialDelay = skullUIFeedbackStart.TotalDuration;
 
-                otherPlayer.YUIFeedbackLoop.StopFeedbacks();
-                otherPlayer.YUIFeedbackLoop.RestoreInitialValues();
-                otherPlayer.YUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
+                otherPlayer.BUIFeedbackLoop.StopFeedbacks();
+                otherPlayer.BUIFeedbackLoop.RestoreInitialValues();
+                otherPlayer.BUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
 
-                playYLoopOther = true;
+                playBLoopOther = true;
                 playSkullLoop1Other = true;
             }
             else if (otherPlayer.skullUIFeedbackLoop2.IsPlaying)
@@ -810,7 +810,7 @@ public class PlayerController : MonoBehaviour
 
             skullUIFeedbackStart.PlayFeedbacks();
             skullUIFeedbackLoop1.InitialDelay = skullUIFeedbackStart.TotalDuration;
-            YUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
+            BUIFeedbackLoop.InitialDelay = skullUIFeedbackStart.TotalDuration;
             if (playYLoopOther)
                 otherPlayer.YUIFeedbackLoop.PlayFeedbacks();
             if (playBLoopOther)
@@ -820,7 +820,7 @@ public class PlayerController : MonoBehaviour
             if (playSkullLoop2Other)
                 otherPlayer.skullUIFeedbackLoop2.PlayFeedbacks();
             
-            YUIFeedbackLoop.PlayFeedbacks();
+            BUIFeedbackLoop.PlayFeedbacks();
             skullUIFeedbackLoop1.PlayFeedbacks();
         }
 
@@ -857,10 +857,10 @@ public class PlayerController : MonoBehaviour
                 otherPlayer.skullUIFeedbackLoop1.StopFeedbacks();
                 otherPlayer.skullUIFeedbackLoop1.RestoreInitialValues();
                 otherPlayer.skullUIFeedbackLoop1.PlayFeedbacks();
-                otherPlayer.YUIFeedbackLoop.StopFeedbacks();
-                otherPlayer.YUIFeedbackLoop.RestoreInitialValues();
+                otherPlayer.BUIFeedbackLoop.StopFeedbacks();
+                otherPlayer.BUIFeedbackLoop.RestoreInitialValues();
                 playSkullLoop1Other = true;
-                playYLoopOther = true;
+                playBLoopOther = true;
 
             }
             else if (otherPlayer.skullUIFeedbackLoop2.IsPlaying)
