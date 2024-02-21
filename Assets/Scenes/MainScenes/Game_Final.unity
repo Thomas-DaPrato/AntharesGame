@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07126493, g: 0.15730777, b: 0.21790385, a: 1}
+  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10885,7 +10885,7 @@ PrefabInstance:
       objectReference: {fileID: 1387926799}
     - target: {fileID: 6003140589162608266, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: tempsCharge
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6003140589162608267, guid: 09cfb9fce4433604b9e4a019e6777f3f, type: 3}
       propertyPath: m_Name
@@ -22695,6 +22695,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6078219936060422883, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: knockbackForce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6408071211840567243, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -26792,7 +26796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1765777375
 Transform:
   m_ObjectHideFlags: 0
@@ -30372,7 +30376,7 @@ PrefabInstance:
       objectReference: {fileID: 524496462}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: onSceneTest
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: spotLightP1
@@ -30388,7 +30392,7 @@ PrefabInstance:
       objectReference: {fileID: 524496464}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyCesar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyDiane
