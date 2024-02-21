@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsAttacking", isAttacking);
         animator.SetBool("IsDashing", isDashing);
 
-        if (isGrounded && isRunning)
+        if (isGrounded && isRunning && !isStun)
             animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
@@ -309,13 +309,11 @@ public class PlayerController : MonoBehaviour
     public void OnMoveX(InputAction.CallbackContext context)
     {
         x = context.ReadValue<float>();
-        if (!isStun)
-        {
-            xDash = x;
-            SetLastDirection(x);
-            isRunning = true;
+        Debug.Log("moveX");
+        xDash = x;
+        SetLastDirection(x);
+        isRunning = true;
 
-        }
         if (context.canceled)
         {
             StartCoroutine(SetIsRunningFalse());
