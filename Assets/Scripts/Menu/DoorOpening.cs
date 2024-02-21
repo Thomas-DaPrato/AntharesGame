@@ -20,7 +20,7 @@ public class DoorOpening : MonoBehaviour
     [SerializeField]
     private MMF_Player launchingFightFeedback;
 
-    //public GameObject sound;
+    public GameObject sound;
 
     /*private void Start()
     {
@@ -35,7 +35,7 @@ public class DoorOpening : MonoBehaviour
         door1.DORotate(rotationToDo, timeToOpen).SetEase(Ease.OutSine);
         door2.DORotate(rotationToDo * -1, timeToOpen).SetEase(Ease.OutSine);
         launchingFightFeedback.PlayFeedbacks();
-        //sound.GetComponent<AudioMenu>().StopMusic();
+        Destroy(sound);
     }
 
     void OnTriggerEnter(Collider col)
