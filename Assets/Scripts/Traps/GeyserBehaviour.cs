@@ -71,7 +71,6 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 declancheur = 0;
                 //Debug.Log("actif");
-                print("ici");
                 tremble = true;
             }
 
@@ -92,7 +91,7 @@ public class GeyserBehaviour : MonoBehaviour
             {
                 //fin du tremblement
                 son.Stop();
-                Debug.Log("je joue le son");
+                //Debug.Log("je joue le son");
                 son.PlayOneShot(sonTir);
                 geyserZone.StopFeedbacks();
 

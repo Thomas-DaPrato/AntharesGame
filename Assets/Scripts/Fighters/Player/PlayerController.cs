@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public bool isStun = false;
     //[HideInInspector]
     public bool canDash = true;
+    //[HideInInspector]
+    public bool canParry = true;
     [HideInInspector]
     public string playerName;
     [HideInInspector]
@@ -285,7 +287,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = 0;
         }
-
         if (!isAttacking && !isStun && !isParrying)
             Move();
     }
@@ -414,9 +415,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnParry(InputAction.CallbackContext context)
     {
-        if (context.performed && !isParrying && !isStun && !isDashing && !isDashDown)
+        if (context.performed && canParry && !isStun && !isDashing && !isDashDown)
         {
             isParrying = true;
+            canParry = false;
             Debug.Log(gameObject.name + " Parry");
             animator.SetTrigger("Parry");
         }
@@ -424,8 +426,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator LaunchCoolDownParry() {
         yield return new WaitForSeconds(1);
-        canDash = true;
-        isParrying = false;
+        canParry = true;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -1016,13 +1017,11 @@ public class PlayerController : MonoBehaviour
 
     public void EnableBurnEffect()
     {
-        Debug.Log("enableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(true);
     }
     public void DisableBurnEffect()
     {
-        Debug.Log("disableBurn");
         foreach (GameObject burnEffect in playerBurnVFX)
             burnEffect.SetActive(false);
     }
@@ -1062,6 +1061,8 @@ public class PlayerController : MonoBehaviour
     }
     public void SetIsParryingFalse()
     {
+        isParrying = false;
+        canDash = true;
         StartCoroutine(LaunchCoolDownParry());
     }
 
