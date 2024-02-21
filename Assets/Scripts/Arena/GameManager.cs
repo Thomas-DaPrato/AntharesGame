@@ -173,17 +173,30 @@ public class GameManager : MonoBehaviour
         if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror) {
             fighter1.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColor);
+            fighter1.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColorDash);
+            fighter1.GetComponent<PlayerController>().SetHeavyColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColorHeavyFeedback);
         }
         else
+        {
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].originalColor);
+            fighter1.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorDash);
+            fighter1.GetComponent<PlayerController>().SetHeavyColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorHeavyFeedback);
+            
+        }
 
         //fighter 2
         if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror) {
             fighter2.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColor);
+            fighter2.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColorDash);
+            fighter2.GetComponent<PlayerController>().SetHeavyColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColorHeavyFeedback);
         }
         else
+        {
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].originalColor);
+            fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].colorDash);
+            fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].colorHeavyFeedback);
+        }
     }
 
     public void SetPlayerPrefToFighterCesar()

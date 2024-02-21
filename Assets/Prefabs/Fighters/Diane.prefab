@@ -5817,9 +5817,11 @@ MonoBehaviour:
   - {fileID: 6342777248654288479}
   - {fileID: 975914205978995638}
   playerHeavyVFXRight:
-  - {fileID: 0}
+  - {fileID: 7201013003761175930}
+  - {fileID: 7858210223013163378}
   playerHeavyVFXLeft:
   - {fileID: 5855564573687907143}
+  - {fileID: 3987957960954998639}
   playerParryVFX: {fileID: 3342168298635338667}
   maxHp: 10
   rateRedHpBarre: 0.1
@@ -10024,6 +10026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+--- !u!198 &7201013003761175930 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+  m_PrefabInstance: {fileID: 3681105451937646590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4465092922694630390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10161,6 +10168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+--- !u!198 &7858210223013163378 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+  m_PrefabInstance: {fileID: 4465092922694630390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5509048510307361113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11042,6 +11054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+--- !u!198 &3987957960954998639 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5835199240897825412, guid: 58c712713e5eafe4c9c0f7ba59813b00, type: 3}
+  m_PrefabInstance: {fileID: 7467769081688614379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8506351262763964775
 PrefabInstance:
   m_ObjectHideFlags: 0

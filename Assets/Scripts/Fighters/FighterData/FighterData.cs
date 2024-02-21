@@ -30,6 +30,18 @@ public class FighterData : ScriptableObject
 
     [Space(10)]
 
+    [Header("Color Dash")]
+    public Color colorDash;
+    public Color mirrorColorDash;
+    
+    [Space(10)]
+
+    [Header("Color Heavy Feedback")]
+    public Color colorHeavyFeedback;
+    public Color mirrorColorHeavyFeedback;
+
+    [Space(10)]
+
     [Header("Color")]
     public Color originalColor;
     public Color mirrorColor;

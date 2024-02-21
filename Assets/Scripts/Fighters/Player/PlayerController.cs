@@ -9,7 +9,6 @@ using TMPro;
 using MoreMountains.Feedbacks;
 using Lofelt.NiceVibrations;
 
-
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
@@ -83,7 +82,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<ParticleSystem> playerHeavyVFXRight;
     [SerializeField]
-    private List<ParticleSystem> playerHeavyVFXLeft;    [SerializeField]
+    private List<ParticleSystem> playerHeavyVFXLeft;    
+    [SerializeField]
     private GameObject playerParryVFX;
 
     #endregion
@@ -1132,7 +1132,25 @@ public class PlayerController : MonoBehaviour
     {
         playerParryVFX.GetComponent<Shield>().SetShieldColor(color);
     }
-
+    public void SetDashColor(Color color)
+    {
+        playerDashVFX.GetComponent<ParticleSystem>().startColor = color * 8;
+        var trails = playerDashVFX.GetComponent<ParticleSystem>().trails;
+        trails.colorOverLifetime = color * 10;
+    }
+    public void SetHeavyColor(Color color)
+    {
+        foreach (ParticleSystem VFX in playerHeavyVFXRight){
+            VFX.startColor = color * 8;
+            var trails = VFX.trails;
+            trails.colorOverLifetime = color * 10;
+        }
+        foreach (ParticleSystem VFX in playerHeavyVFXLeft){
+            VFX.startColor = color * 8;
+            var trails = VFX.trails;
+            trails.colorOverLifetime = color * 10;    
+        }
+    }
     public void ShieldOnOff()
     {
         playerParryVFX.GetComponent<Shield>().OpenCloseShield();
