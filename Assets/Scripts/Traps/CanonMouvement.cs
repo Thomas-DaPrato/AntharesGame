@@ -113,12 +113,11 @@ public class CanonMouvement : MonoBehaviour
             // Attendez pendant x secondes
             yield return new WaitForSeconds(sec);
 
-            // Après l'attente, vous pouvez mettre votre code ici
+            // Aprï¿½s l'attente, vous pouvez mettre votre code ici
             if (sec == tempsChargeTir && !changeRound)
             {
                 charge.SetActive(false);
                 laser.SetActive(true);
-                Debug.Log("sizeLaser " + laserSize);
                 //laserVFX.SetFloat("SizeLaser", laserSize);
                 canRayCast = true;
                 son.PlayOneShot(sonTir);
@@ -147,7 +146,7 @@ public class CanonMouvement : MonoBehaviour
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
 
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         changeRound = false;        
         declancheur = 0;
         canMove = true;
@@ -170,7 +169,7 @@ public class CanonMouvement : MonoBehaviour
 
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
             declancheur = tempsActivation + 1;
 
@@ -182,7 +181,7 @@ public class CanonMouvement : MonoBehaviour
 
         // Attendez pendant x secondes
         yield return new WaitForSeconds(sec);
-        // Après l'attente, vous pouvez mettre votre code ici
+        // Aprï¿½s l'attente, vous pouvez mettre votre code ici
         StopSound();
         laser.SetActive(false);
 
