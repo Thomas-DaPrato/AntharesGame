@@ -32,13 +32,13 @@ public class CommentateurCamera : MonoBehaviour
     private void Start()
     {
 
-        r = Random.Range(0, commentateurBienvenu.Count - 1);
+        /*r = Random.Range(0, commentateurBienvenu.Count - 1);
         AudioClip clip = commentateurBienvenu[r];
         dureeAudio = clip.length;
         audioSource.clip = clip;
         audioSource.Play();
-        isCommenting = true;
-        StartCoroutine(PresentationJoueur(dureeAudio));
+        isCommenting = true;*/
+        StartCoroutine(CanComment(0));
 
         
 
@@ -166,7 +166,7 @@ public class CommentateurCamera : MonoBehaviour
     }
 
 
-    public IEnumerator PresentationJoueur(float durée)
+    /*public IEnumerator PresentationJoueur(float durée)
     {
 
         yield return new WaitForSeconds(durée);
@@ -220,6 +220,6 @@ public class CommentateurCamera : MonoBehaviour
 
             StartCoroutine(CommentDiane(dureeAudio));
         }
-    }
+    }*/
 
 }
