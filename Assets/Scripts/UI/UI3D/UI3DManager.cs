@@ -28,7 +28,7 @@ public class UI3DManager : MonoBehaviour
 
 
     [Header("Audio")]
-    public AudioSource audioSource; 
+    private AudioSource audioSource; 
     public AudioClip audioButtonSwap;
     public AudioClip audioButtonClick;
 
@@ -46,6 +46,7 @@ public class UI3DManager : MonoBehaviour
         }
         else 
             ChangeMaterial(buttons[0], selectedButton);
+        audioSource = GameObject.Find("MMSoundManager").GetComponent<AudioSource>();
         PlayerPrefs.SetInt("chooseFighter", 0);
     }
 
