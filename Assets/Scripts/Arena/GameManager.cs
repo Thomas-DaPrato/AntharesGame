@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
 
         fighter1 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
-        targetsGroup.AddMember(fighter1.transform, 1, 5);
+        targetsGroup.AddMember(fighter1.transform, 1, 4);
         nbRoundWinP1 = 0;
 
 
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         else
             fighter2 = InitFighter(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
 
-        targetsGroup.AddMember(fighter2.transform, 1, 5);
+        targetsGroup.AddMember(fighter2.transform, 1, 4);
         nbRoundWinP2 = 0;
 
         fighter1.transform.SetParent(fighters.transform);
