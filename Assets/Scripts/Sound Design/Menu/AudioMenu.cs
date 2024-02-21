@@ -9,6 +9,8 @@ public class AudioMenu : MonoBehaviour
     public List<AudioClip> fouleReact;
     public AudioSource audioSource;
     public AudioSource audioSourceFoule;
+    public AudioSource audioSourceAStop;
+    public AudioSource audioSourceAStop2;
     public float timeBetweenCom;
     
     
@@ -56,6 +58,14 @@ public class AudioMenu : MonoBehaviour
         audioSourceFoule.Play();
         StartCoroutine(WaitFoule(dureeAudio));
 
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Pause();
+        audioSourceFoule.Pause();
+        audioSourceAStop.Pause();
+        audioSourceAStop2.Pause();
     }
 
 

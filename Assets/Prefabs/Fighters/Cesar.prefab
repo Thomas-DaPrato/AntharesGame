@@ -798,7 +798,7 @@ MonoBehaviour:
     - rid: 7726803851855790135
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 380725995
         Label: Haptic Clip
         ChannelMode: 0
@@ -3551,7 +3551,7 @@ MonoBehaviour:
     - rid: 7726803851855790126
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1020232635
         Label: Haptic Clip
         ChannelMode: 0
@@ -6943,7 +6943,7 @@ MonoBehaviour:
     - rid: 7726803851855790099
       type: {class: MMF_NVClip, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.NiceVibrations}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -188880077
         Label: Haptic Clip
         ChannelMode: 0
@@ -10168,6 +10168,18 @@ PrefabInstance:
     - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
       value: 0.7180627
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.b
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483157174682135350, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.r
+      value: 0.46666667
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22147a2b44d1e094c9fca9912c268341, type: 3}
