@@ -9,6 +9,8 @@ public class BaseFlammesMovement : MonoBehaviour
 {
 
     [SerializeField] private int vitesse, tempsCharge;
+    [SerializeField]
+    private float dureeFlammes = 5f;
     [SerializeField] private float limiteHaute, limiteBasse;
     [SerializeField]
     public MMF_Player flammesZonePlane;
@@ -103,7 +105,7 @@ public class BaseFlammesMovement : MonoBehaviour
                 //arret de la vibration
                 activeFlammes();
 
-                StartCoroutine(AttenteCoroutine(5f));
+                StartCoroutine(AttenteCoroutine(dureeFlammes));
             }
             else
             {

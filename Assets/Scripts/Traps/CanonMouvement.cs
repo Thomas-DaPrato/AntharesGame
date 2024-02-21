@@ -7,7 +7,8 @@ using UnityEngine.VFX;
 public class CanonMouvement : MonoBehaviour
 {
     
-    [SerializeField] private int vitesse, tempsCharge;
+    [SerializeField] private int vitesse, tempsActivation;
+    [SerializeField] private float tempsChargeTir = 3f, timeStayLaser = 4;
     [SerializeField] private Transform limiteHaute, limiteBasse, laserBegin, laserEnd;
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
@@ -33,7 +34,7 @@ public class CanonMouvement : MonoBehaviour
     {
         Vector3 distance = laserEnd.position - laserBegin.position;
         laserSize = distance.magnitude;
-        StartCoroutine(Attentepiege(tempsCharge));
+        StartCoroutine(Attentepiege(tempsActivation));
         attenteEnCours = false;
 
         
@@ -67,7 +68,7 @@ public class CanonMouvement : MonoBehaviour
                     canMove = false;
                     charge.SetActive(true);
                     son.PlayOneShot(chargement);
-                    StartCoroutine(AttenteCoroutine(2.3f));
+                    StartCoroutine(AttenteCoroutine(tempsChargeTir));
                 }
 
 
@@ -88,7 +89,7 @@ public class CanonMouvement : MonoBehaviour
 
 
                 
-                if (declancheur > tempsCharge)
+                if (declancheur > tempsActivation)
                 {
                     declancheur = 0;
                     tir = true;
@@ -113,14 +114,14 @@ public class CanonMouvement : MonoBehaviour
             yield return new WaitForSeconds(sec);
 
             // Après l'attente, vous pouvez mettre votre code ici
-            if (sec == 2.3f && !changeRound)
+            if (sec == tempsChargeTir && !changeRound)
             {
                 charge.SetActive(false);
                 laser.SetActive(true);
                 //laserVFX.SetFloat("SizeLaser", laserSize);
                 canRayCast = true;
                 son.PlayOneShot(sonTir);
-                StartCoroutine(AttenteCoroutine(3f));
+                StartCoroutine(AttenteCoroutine(timeStayLaser));
             }
             else if (!changeRound)
             {
@@ -129,7 +130,7 @@ public class CanonMouvement : MonoBehaviour
                 tir = false;
                 canMove = true;
                 canRayCast = false;
-                StartCoroutine(Attentepiege(tempsCharge));
+                StartCoroutine(Attentepiege(tempsActivation));
 
                 attenteEnCours = false;
             }
@@ -170,7 +171,7 @@ public class CanonMouvement : MonoBehaviour
         yield return new WaitForSeconds(sec);
         // Après l'attente, vous pouvez mettre votre code ici
         if (!changeRound)
-            declancheur = tempsCharge + 1;
+            declancheur = tempsActivation + 1;
 
 
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07138893, g: 0.15733482, b: 0.218095, a: 1}
+  m_IndirectSpecularColor: {r: 0.07126504, g: 0.1573079, b: 0.21790396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -746,10 +746,6 @@ PrefabInstance:
       propertyPath: flammesZone
       value: 
       objectReference: {fileID: 731228046}
-    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
-      propertyPath: tempsCharge
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: planeRenderer
       value: 
@@ -12187,6 +12183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plateforme_moyenne (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8924494311307539160, guid: 87109a677ee2e57498a4cfc9fae07705, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87109a677ee2e57498a4cfc9fae07705, type: 3}
 --- !u!1001 &1010813288
@@ -22450,10 +22450,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1050899062}
     - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
-      propertyPath: tempsCharge
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3076696429556365518, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: planeRenderer
       value: 
       objectReference: {fileID: 1198029191}
@@ -22504,6 +22500,10 @@ PrefabInstance:
     - target: {fileID: 6070193377262733781, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078219936060422883, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
+      propertyPath: knockbackForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6408071211840567243, guid: ed7b80098380cb34e8ed1ab9091a4377, type: 3}
       propertyPath: m_Enabled
@@ -26334,7 +26334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1765777375
 Transform:
   m_ObjectHideFlags: 0
@@ -29914,7 +29914,7 @@ PrefabInstance:
       objectReference: {fileID: 524496462}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: onSceneTest
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: spotLightP1
@@ -29930,7 +29930,7 @@ PrefabInstance:
       objectReference: {fileID: 524496464}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyCesar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110706045635206223, guid: f149c150e2ab1b14886077ad32944ab2, type: 3}
       propertyPath: useOnlyDiane
@@ -30072,6 +30072,10 @@ PrefabInstance:
     - target: {fileID: 2438719392321433772, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: rightTurret
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438719392321433772, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
+      propertyPath: tempsActivation
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2694471516626415032, guid: 23dd42b84b16a5d4bb87317d7818956b, type: 3}
       propertyPath: m_LocalPosition.y
