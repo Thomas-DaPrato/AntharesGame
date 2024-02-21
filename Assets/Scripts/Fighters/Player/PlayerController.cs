@@ -685,7 +685,7 @@ public class PlayerController : MonoBehaviour
         print(trapName);
         if (isInvicible)
             return;
-        GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
+        //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
         switch (type)
         {
             case HitBox.HitBoxType.Heavy:

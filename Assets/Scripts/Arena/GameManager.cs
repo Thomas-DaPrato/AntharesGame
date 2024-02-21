@@ -351,11 +351,19 @@ public class GameManager : MonoBehaviour
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
         fighter1.GetComponent<PlayerController>().BUIFeedbackLoop.StopFeedbacks();
         fighter1.GetComponent<PlayerController>().YUIFeedbackLoop.StopFeedbacks();
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();        
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.ResetFeedbacks();
+        fighter1.GetComponent<PlayerController>().BUIFeedbackLoop.ResetFeedbacks();
+        fighter1.GetComponent<PlayerController>().YUIFeedbackLoop.ResetFeedbacks();
 
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.StopFeedbacks();
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();        
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.ResetFeedbacks();
+        fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.ResetFeedbacks();
+        fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.ResetFeedbacks();
 
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
