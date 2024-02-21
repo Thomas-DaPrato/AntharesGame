@@ -12,9 +12,9 @@ public class ErruptionEffect : MonoBehaviour
         {
             var dir = transform.up;
             other.gameObject.GetComponent<Rigidbody>().AddForce(dir * ejectionForce);
-            
-            
-            
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(0, HitBox.HitBoxType.Trap, "Geyser");
+
+
         }
     }
 

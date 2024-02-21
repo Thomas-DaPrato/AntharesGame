@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool lightAttackCanTouch = true;
 
-
+    public int chanceComCoup=3;
+    public int chanceComPiege = 5;
+    public int chanceFouleCoup = 3;
+    public int chanceFoulePiege=5;
 
     private float x = 0;
     private float xAerial = 0;
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private float yDash = 0;
 
     private int chanceCommentateur = 0;
+    private int chanceFoule = 0;
 
 
     [Header("Variables")]
@@ -77,7 +81,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> playerBurnVFX;
     [SerializeField]
-    private List<ParticleSystem> playerHeavyVFX;
+    private List<ParticleSystem> playerHeavyVFXRight;
+    [SerializeField]
+    private List<ParticleSystem> playerHeavyVFXLeft;
     [SerializeField]
     private GameObject playerParryVFX;
 
@@ -116,8 +122,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
 
-    [SerializeField]
-    private GameObject CameraSong;
+    
+    private GameObject soundManager;
 
     private GameObject menuPause;
     private GameObject UICombat;
@@ -212,6 +218,7 @@ public class PlayerController : MonoBehaviour
         hp = maxHp;
         moveForce = moveForceNotCollide;
         dashForceVal = dashForce;
+        soundManager = GameObject.Find("MMSoundManager");
     }
 
     private void Update()
@@ -221,7 +228,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsAttacking", isAttacking);
         animator.SetBool("IsDashing", isDashing);
 
-        if (isGrounded && isRunning)
+        if (isGrounded && isRunning && !isStun)
             animator.SetBool("Run", true);
         animator.SetBool("In Air", !isGrounded);
 
@@ -309,13 +316,11 @@ public class PlayerController : MonoBehaviour
     public void OnMoveX(InputAction.CallbackContext context)
     {
         x = context.ReadValue<float>();
-        if (!isStun)
-        {
-            xDash = x;
-            SetLastDirection(x);
-            isRunning = true;
+        Debug.Log("moveX");
+        xDash = x;
+        SetLastDirection(x);
+        isRunning = true;
 
-        }
         if (context.canceled)
         {
             StartCoroutine(SetIsRunningFalse());
@@ -676,7 +681,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Player Fonctions
-    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type)
+    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type, string trapName = null)
     {
         if (isInvicible)
             return;
@@ -689,10 +694,15 @@ public class PlayerController : MonoBehaviour
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
 
-                chanceCommentateur = Random.Range(0, 3);
+                chanceCommentateur = Random.Range(0, chanceComCoup);
                 if (chanceCommentateur == 1)
                 {
-                    //CameraSong.GetComponent<CommentateurCamera>().CommentateurCoups();
+                    soundManager.GetComponent<Commentateur>().CommentateurCoups();
+                }
+                chanceFoule = Random.Range(0, chanceFouleCoup);
+                if (chanceFoule == 1)
+                {
+                    soundManager.GetComponent<Foule>().FouleScream();
                 }
                 //GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
                 damagedHeavyFeedbacks.PlayFeedbacks();
@@ -724,16 +734,26 @@ public class PlayerController : MonoBehaviour
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
-                hp -= percentageDamage * maxHp / 100.0f;
-                damagedTrapSawFeedbacks.PlayFeedbacks();
-                lightUIFeedback.InitialDelay = 0;
-                lightUIFeedback.PlayFeedbacks();
-                charaUIFeedback.InitialDelay = 0;
-                charaUIFeedback.PlayFeedbacks();
-                chanceCommentateur = Random.Range(0, 5);
+
+                if(trapName != "Geyser")
+                {
+                    hp -= percentageDamage * maxHp / 100.0f;
+                    damagedTrapSawFeedbacks.PlayFeedbacks();
+                    lightUIFeedback.InitialDelay = 0;
+                    lightUIFeedback.PlayFeedbacks();
+                    charaUIFeedback.InitialDelay = 0;
+                    charaUIFeedback.PlayFeedbacks();
+                }
+                
+                chanceCommentateur = Random.Range(0, chanceComPiege);
                 if (chanceCommentateur == 1)
                 {
-                    //CameraSong.GetComponent<CommentateurCamera>().CommentateurPiege();
+                    soundManager.GetComponent<Commentateur>().CommentateurPiege(trapName);
+                }
+                chanceFoule = Random.Range(0, chanceFoulePiege);
+                if (chanceFoule == 1)
+                {
+                    soundManager.GetComponent<Foule>().FouleScream();
                 }
                 break;
             default:
@@ -1028,8 +1048,12 @@ public class PlayerController : MonoBehaviour
 
     public void HeavyEffect()
     {
-        foreach (ParticleSystem VFX in playerHeavyVFX)
-            VFX.Play();
+        if(lastDirection > 0)
+            foreach (ParticleSystem VFX in playerHeavyVFXRight)
+                VFX.Play();
+        if(lastDirection < 0)
+            foreach (ParticleSystem VFX in playerHeavyVFXLeft)
+                VFX.Play();
     }
 
 
