@@ -21,14 +21,13 @@ public class BaseFlammesMovement : MonoBehaviour
     [SerializeField]
     public MeshRenderer planeRenderer;
 
-    [SerializeField]
-    AudioSource son;
+    public MMF_Player sfxFlammes;
 
     [HideInInspector] public bool changeRound = false;
 
 
     public GameObject flammes, vib, VFXs;
-    public AudioClip charge;
+    
     private bool canMove = true;
     private bool attente = false;
     private int declancheur = 0;
@@ -176,7 +175,7 @@ public class BaseFlammesMovement : MonoBehaviour
             vib.SetActive(true);
             flammesZoneLight.PlayFeedbacks();
             planeRenderer.material.DOVector(new Vector4(maxValueIntensity, planeRenderer.material.GetColor("_EmissionColor").b, planeRenderer.material.GetColor("_EmissionColor").b, 1), "_EmissionColor", dureeCharge);
-            son.PlayOneShot(charge);
+            sfxFlammes.PlayFeedbacks();
             StartCoroutine(AttenteCoroutine(dureeCharge));
             attente = true;
 

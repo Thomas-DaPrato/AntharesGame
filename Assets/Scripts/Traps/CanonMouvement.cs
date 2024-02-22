@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
-
+using MoreMountains.Feedbacks;
+using DG.Tweening;
 
 public class CanonMouvement : MonoBehaviour
 {
@@ -13,8 +14,7 @@ public class CanonMouvement : MonoBehaviour
     [SerializeField] private bool tir = false;
     [SerializeField] private bool canMove = true;
     [SerializeField]
-    AudioSource son;
-    public AudioClip chargement,sonTir;
+   
     public GameObject turret;
     public GameObject laser,charge;
     public LayerMask playerMask;
@@ -28,6 +28,7 @@ public class CanonMouvement : MonoBehaviour
     public float damage = 10;
 
     public VisualEffect laserVFX;
+    public MMF_Player sfxLaser;
 
 
     private void Start()
@@ -67,7 +68,7 @@ public class CanonMouvement : MonoBehaviour
                 {
                     canMove = false;
                     charge.SetActive(true);
-                    son.PlayOneShot(chargement);
+                    sfxLaser.PlayFeedbacks();
                     StartCoroutine(AttenteCoroutine(tempsChargeTir));
                 }
 
@@ -102,7 +103,7 @@ public class CanonMouvement : MonoBehaviour
 
     public void StopSound()
     {
-        son.Stop();
+        
     }
 
     IEnumerator AttenteCoroutine(float sec)
@@ -120,7 +121,7 @@ public class CanonMouvement : MonoBehaviour
                 laser.SetActive(true);
                 //laserVFX.SetFloat("SizeLaser", laserSize);
                 canRayCast = true;
-                son.PlayOneShot(sonTir);
+                
                 StartCoroutine(AttenteCoroutine(timeStayLaser));
             }
             else if (!changeRound)

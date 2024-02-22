@@ -26,9 +26,8 @@ public class GeyserBehaviour : MonoBehaviour
     public MeshRenderer grille;
 
 
-    [SerializeField]
-    AudioSource son;
-    public AudioClip charge,sonTir;
+    public MMF_Player geyserSFX;
+
     public GameObject erruption,vib;
     private bool tremble,tir,intermediaire, intermediaire2 = false, changeRound=false;
 
@@ -51,7 +50,7 @@ public class GeyserBehaviour : MonoBehaviour
                 neon.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
                 grille.material.DOVector(new Vector4(maxValueR, maxValueG, maxValueB, 1), "_EmissionColor", 5);
 
-                son.PlayOneShot(charge);
+                geyserSFX.PlayFeedbacks();
                 StartCoroutine(AttenteCoroutine(tempsCharge));
                 
                 tremble = false;
@@ -93,9 +92,7 @@ public class GeyserBehaviour : MonoBehaviour
             if (intermediaire2)
             {
                 //fin du tremblement
-                son.Stop();
-                //Debug.Log("je joue le son");
-                son.PlayOneShot(sonTir);
+                
                 geyserZone.StopFeedbacks();
 
                 tir = true;
@@ -111,7 +108,7 @@ public class GeyserBehaviour : MonoBehaviour
                 StartCoroutine(WaitToDesactivate(2));
                 geyserZone.StopFeedbacks();
                 intermediaire = false;
-                son.Stop();
+                
                 StartCoroutine(Attentepiege(timeBetweenActivate));
             }
 
