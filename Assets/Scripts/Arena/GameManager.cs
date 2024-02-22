@@ -60,8 +60,12 @@ public class GameManager : MonoBehaviour
     private MMF_Player roundsTransition;
     [SerializeField]
     private MMF_Player arenaMusic;
+
+    private bool isPlayingPulse = false;
+    [SerializeField]
+    private MMF_Player SFXPulse;
    
-    
+
 
 
     public static PlayerInput fighter1;
@@ -422,6 +426,8 @@ public class GameManager : MonoBehaviour
     public void ResetFight()
     {
         mainVirtualCamera.gameObject.SetActive(true);
+        isPlayingPulse = false;
+        SFXPulse.StopFeedbacks();
 
         fighter1.GetComponent<PlayerController>().ResetFighter(1);
         fighter1.transform.position = spawnP1.position;
@@ -479,4 +485,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(mainVirtualCamera.GetComponent<CameraShake>().Shake(intensity, time));
     }
 
+    public void Pulse()
+    {
+        if (!isPlayingPulse)
+        {
+            isPlayingPulse = true;
+            SFXPulse.PlayFeedbacks();
+        }
+    }
 }
