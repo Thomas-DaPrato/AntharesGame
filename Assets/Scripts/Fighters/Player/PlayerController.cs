@@ -749,7 +749,7 @@ public class PlayerController : MonoBehaviour
                     DamagedCesarHeavySound.PlayFeedbacks();
                 }
                 Debug.Log("après");*/
-    heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
+                heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 charaUIFeedback.PlayFeedbacks();
@@ -774,12 +774,13 @@ public class PlayerController : MonoBehaviour
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Aerial:
-                /*if (hp <= 10.0f * maxHp / 100.0f)
+                if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
                 damagedMediumFeedbacks.PlayFeedbacks();
-                if (opponentName.Equals("Diane"))
+
+                /*if (opponentName.Equals("Diane"))
                 {
                     DamagedDianeMediumSound.PlayFeedbacks();
                 }
