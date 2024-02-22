@@ -166,6 +166,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public MMF_Player damagedTrapSawFeedbacks;
 
+    [SerializeField]
+    private GameObject gameManagerSound;
     /*[Space(20)]
     [Header("Damaged SFX")]
     [SerializeField]
@@ -244,12 +246,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+
         rb = gameObject.GetComponent<Rigidbody>();
         nbJump = maxNbJumpInAir;
         hp = maxHp;
         moveForce = moveForceNotCollide;
         dashForceVal = dashForce;
         soundManager = GameObject.Find("Game_Final_SFXManager");
+        gameManagerSound = GameObject.Find("GameManager");
     }
 
     private void Update()
@@ -916,7 +920,7 @@ public class PlayerController : MonoBehaviour
         {
             XKey.GetComponent<DarkenKey>().DarkenXKey();
             lightAttackCanTouch = false;
-
+            gameManagerSound.GetComponent<GameManager>().Pulse();
             bool playSkullLoop1Other = false;
             bool playSkullLoop2Other = false;
             bool playYLoopOther = false;
