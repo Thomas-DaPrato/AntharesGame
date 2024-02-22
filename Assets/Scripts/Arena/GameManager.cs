@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MMF_Player sfx321Go;
     [SerializeField]
+    private MMF_Player clapRidaux;
+    [SerializeField]
     private MMF_Player arenaMusic;
    
     
@@ -421,6 +423,8 @@ public class GameManager : MonoBehaviour
 
         fighter2.GetComponent<PlayerController>().ResetFighter(-1);
         fighter2.transform.position = spawnP2.position;
+
+        clapRidaux.PlayFeedbacks();
 
     }
 
