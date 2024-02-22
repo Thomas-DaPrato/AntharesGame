@@ -166,6 +166,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public MMF_Player damagedTrapSawFeedbacks;
 
+    /*[Space(20)]
+    [Header("Damaged SFX")]
+    [SerializeField]
+    public MMF_Player DamagedCesarLightSound;
+    [SerializeField]
+    public MMF_Player DamagedCesarMediumSound;
+    [SerializeField]
+    public MMF_Player DamagedCesarHeavySound;
+
+    [Space(10)]
+    [SerializeField]
+    public MMF_Player DamagedDianeLightSound;
+    [SerializeField]
+    public MMF_Player DamagedDianeMediumSound;
+    [SerializeField]
+    public MMF_Player DamagedDianeHeavySound;*/
+
     #region Movement Variable
 
 
@@ -694,7 +711,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Player Fonctions
-    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type, string trapName = null)
+    public void TakeDamage(float percentageDamage, HitBox.HitBoxType type, string trapName = null, string opponentName = null)
     {
         print(type);
         print(trapName);
@@ -721,7 +738,18 @@ public class PlayerController : MonoBehaviour
                 }
                 GamepadRumbler.SetCurrentGamepad(opposingPlayerInput.GetDevice<Gamepad>().deviceId);
                 damagedHeavyFeedbacks.PlayFeedbacks();
-                heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
+
+                /*Debug.Log("avant");
+                if (opponentName == ("Diane"))
+                {
+                    DamagedDianeHeavySound.PlayFeedbacks();
+                }
+                else if (opponentName == ("Cesar"))
+                {
+                    DamagedCesarHeavySound.PlayFeedbacks();
+                }
+                Debug.Log("après");*/
+    heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 charaUIFeedback.PlayFeedbacks();
@@ -732,17 +760,33 @@ public class PlayerController : MonoBehaviour
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
                 damagedMediumFeedbacks.PlayFeedbacks();
+                /*if (opponentName.Equals("Diane"))
+                {
+                    DamagedDianeMediumSound.PlayFeedbacks();
+                }
+                else if (opponentName.Equals("Cesar"))
+                {
+                    DamagedCesarMediumSound.PlayFeedbacks();
+                }*/
                 mediumUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
                 mediumUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().middleAttack.hitFreezeTime;
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Aerial:
-                if (hp <= 10.0f * maxHp / 100.0f)
+                /*if (hp <= 10.0f * maxHp / 100.0f)
                     PlayerDie();
                 else
                     hp -= percentageDamage * maxHp / 100.0f;
                 damagedMediumFeedbacks.PlayFeedbacks();
+                if (opponentName.Equals("Diane"))
+                {
+                    DamagedDianeMediumSound.PlayFeedbacks();
+                }
+                else if (opponentName.Equals("Cesar"))
+                {
+                    DamagedCesarMediumSound.PlayFeedbacks();
+                }*/
                 mediumUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
                 mediumUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().aerialAttack.hitFreezeTime;
@@ -774,6 +818,15 @@ public class PlayerController : MonoBehaviour
                 if (lightAttackCanTouch)
                 {
                     damagedLightFeedbacks.PlayFeedbacks();
+                    /*if (opponentName.Equals("Diane"))
+                    {
+                        DamagedDianeLightSound.PlayFeedbacks();
+                    }
+                    else if (opponentName.Equals("Cesar"))
+                    {
+                        DamagedCesarLightSound.PlayFeedbacks();
+                    }
+                    */
                     lightUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;
                     lightUIFeedback.PlayFeedbacks();
                     charaUIFeedback.InitialDelay = GetFighterData().lightAttack.hitFreezeTime;
