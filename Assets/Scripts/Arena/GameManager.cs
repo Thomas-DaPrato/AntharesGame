@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
-        sfxRoundsGo.PlayFeedbacks();
+        roundsTransition.PlayFeedbacks();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -419,6 +419,7 @@ public class GameManager : MonoBehaviour
 
     private void SetFighterEndAnimation(PlayerInput fighter, string trigger)
     {
+        SFXPulse.StopFeedbacks();
         fighter.GetComponent<PlayerController>().fighterCam.SetActive(true);
         fighter.GetComponent<Animator>().SetTrigger(trigger);
     }
@@ -427,7 +428,6 @@ public class GameManager : MonoBehaviour
     {
         mainVirtualCamera.gameObject.SetActive(true);
         isPlayingPulse = false;
-        SFXPulse.StopFeedbacks();
 
         fighter1.GetComponent<PlayerController>().ResetFighter(1);
         fighter1.transform.position = spawnP1.position;

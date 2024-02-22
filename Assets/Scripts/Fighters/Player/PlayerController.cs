@@ -914,13 +914,13 @@ public class PlayerController : MonoBehaviour
             
             BUIFeedbackLoop.PlayFeedbacks();
             skullUIFeedbackLoop1.PlayFeedbacks();
+            gameManagerSound.GetComponent<GameManager>().Pulse();
         }
 
         if ((hp / maxHp) * 100 <= 10)
         {
             XKey.GetComponent<DarkenKey>().DarkenXKey();
             lightAttackCanTouch = false;
-            gameManagerSound.GetComponent<GameManager>().Pulse();
             bool playSkullLoop1Other = false;
             bool playSkullLoop2Other = false;
             bool playYLoopOther = false;
@@ -941,6 +941,8 @@ public class PlayerController : MonoBehaviour
             BUIFeedbackLoop.InitialDelay = 0;
             BUIFeedbackLoop.StopFeedbacks();
             BUIFeedbackLoop.RestoreInitialValues();
+
+            gameManagerSound.GetComponent<GameManager>().Pulse();
 
 
 

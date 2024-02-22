@@ -229,7 +229,7 @@ MonoBehaviour:
           CooldownDuration: 0
           InterruptsOnStop: 1
           NumberOfRepeats: 0
-          RepeatForever: 1
+          RepeatForever: 0
           DelayBetweenRepeats: 0
           MMFeedbacksDirectionCondition: 0
           PlayDirection: 0
@@ -281,8 +281,8 @@ MonoBehaviour:
         TargetAudioSource: {fileID: 3579996761694062245}
         Mode: 0
         RandomSfx: []
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.5
+        MaxVolume: 0.5
         MinPitch: 1
         MaxPitch: 1
         SfxAudioMixerGroup: {fileID: 0}
@@ -295,12 +295,12 @@ AudioSource:
   m_GameObject: {fileID: 3360699600935958938}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3165942800488051908, guid: 7e984f512e89b60468e829489e8883e3, type: 2}
+  m_audioClip: {fileID: 8300000, guid: e5433584d60226f41ab282a995aa0d93, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
