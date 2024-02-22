@@ -17,6 +17,7 @@ public class RotationScie : MonoBehaviour
     public int vitRotation;
     public CapsuleCollider col;
     public AudioClip enMarche, touche;
+    public AudioSource hitSound;
     private bool changeRound = false;
     public bool isRightSaw;
 
@@ -44,9 +45,9 @@ public class RotationScie : MonoBehaviour
         {
             if (other.gameObject.tag == "Player" && vitesse == vitRotation)
             {
-                son.Pause();
+                hitSound.Pause();
                 vfxScie.SetActive(false);
-                son.PlayOneShot(touche);
+                hitSound.PlayOneShot(touche);
 
                 VFXTouche.gameObject.transform.position = other.GetContact(0).point;
                 VFXTouche.Play();
@@ -79,7 +80,7 @@ public class RotationScie : MonoBehaviour
             }
             else
             {
-                son.UnPause();
+                hitSound.UnPause();
                 vfxScie.SetActive(true);
                 vitesse = vitRotation;
                 
