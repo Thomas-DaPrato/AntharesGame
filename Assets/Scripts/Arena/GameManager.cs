@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MMF_Player sfxRoundsGo;
     [SerializeField]
+    private MMF_Player roundsTransition;
+    [SerializeField]
     private MMF_Player arenaMusic;
    
     
@@ -314,6 +316,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
+        sfxRoundsGo.PlayFeedbacks();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -400,7 +403,8 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
 
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
-        yield return new WaitForSeconds(0.5f);
+        roundsTransition.PlayFeedbacks();
+;       yield return new WaitForSeconds(0.5f);
         ResetFight();
         yield return new WaitForSeconds(0.5f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
