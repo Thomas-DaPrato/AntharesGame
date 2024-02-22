@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
         hp = maxHp;
         moveForce = moveForceNotCollide;
         dashForceVal = dashForce;
-        soundManager = GameObject.Find("SFXManagerFouleCom");
+        soundManager = GameObject.Find("Game_Final_SFXManager");
     }
 
     private void Update()

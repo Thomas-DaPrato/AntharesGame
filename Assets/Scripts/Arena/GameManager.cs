@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MMF_Player sfx321Go;
     [SerializeField]
-    private MMF_Player clapRidaux;
+    private MMF_Player sfxRoundsGo;
     [SerializeField]
     private MMF_Player arenaMusic;
    
@@ -406,6 +406,7 @@ public class GameManager : MonoBehaviour
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(timer.GetComponent<Timer>().TransitionRoundTimer(nbRound));
+        sfxRoundsGo.PlayFeedbacks();
     }
 
     private void SetFighterEndAnimation(PlayerInput fighter, string trigger)
@@ -424,7 +425,6 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().ResetFighter(-1);
         fighter2.transform.position = spawnP2.position;
 
-        clapRidaux.PlayFeedbacks();
 
     }
 
