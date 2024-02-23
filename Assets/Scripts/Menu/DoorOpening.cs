@@ -22,11 +22,9 @@ public class DoorOpening : MonoBehaviour
 
     public GameObject sound;
 
-    /*private void Start()
-    {
-        GameObject mmsm = GameObject.Find("MMSoundManager");
-        launchingFightFeedback = mmsm.GetComponentInChildren<MMF_Player>();
-    }*/
+    private void Start() {
+        launchingFightFeedback = GameObject.Find("MenuTransition").GetComponent<MMF_Player>();
+    }
 
     //https://dotween.demigiant.com/documentation.php
     void OpenDoors()

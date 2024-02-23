@@ -33,26 +33,26 @@ public class HitBox : MonoBehaviour
     
 
 
-    private void OnEnable() {
-        FighterData fighterData = playerController.GetFighterData();
-        switch (type) {
-            case HitBoxType.Heavy:
-                playerController.PlayOneShot(fighterData.heavyAttack.SFX);
-                break;
-            case HitBoxType.Middle:
-                playerController.PlayOneShot(fighterData.middleAttack.SFX);
-                break;
-            case HitBoxType.Light:
-                playerController.PlayOneShot(fighterData.lightAttack.SFX);
-                break;
-            case HitBoxType.Aerial:
-                playerController.PlayOneShot(fighterData.aerialAttack.SFX);
-                break;
-            default:
-                Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");
-                break;
-        }
-    }
+    //private void OnEnable() {
+    //    FighterData fighterData = playerController.GetFighterData();
+    //    switch (type) {
+    //        case HitBoxType.Heavy:
+    //            playerController.PlayOneShot(fighterData.heavyAttack.SFX);
+    //            break;
+    //        case HitBoxType.Middle:
+    //            playerController.PlayOneShot(fighterData.middleAttack.SFX);
+    //            break;
+    //        case HitBoxType.Light:
+    //            playerController.PlayOneShot(fighterData.lightAttack.SFX);
+    //            break;
+    //        case HitBoxType.Aerial:
+    //            playerController.PlayOneShot(fighterData.aerialAttack.SFX);
+    //            break;
+    //        default:
+    //            Debug.Log("<color=red>ERRORR : type " + type + " is not recognized</color>");
+    //            break;
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other) {
         FighterData fighterData = playerController.GetFighterData();
@@ -93,7 +93,7 @@ public class HitBox : MonoBehaviour
         collider.GetComponent<HeartBox>().TakeDamage(attack.percentageDamage, type);
         collider.GetComponentInParent<PlayerController>().ApplyKnockback(attack.knockback, new Vector2(playerController.lastDirection,1));
         collider.GetComponentInParent<PlayerController>().SetTriggerStun(attack.stunTime);
-        playerController.PlayOneShot(attack.SFX);
+        //playerController.PlayOneShot(attack.SFX);
         playerBonk.Play();
         feedBacks.Initialization();
         feedBacks.PlayFeedbacks();
