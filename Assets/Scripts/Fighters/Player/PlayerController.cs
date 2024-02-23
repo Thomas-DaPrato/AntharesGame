@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
         else
             isOnPlateform = false;
 
-        if (!isAttacking && !isParrying)
+        if (!isAttacking && !isParrying && !isStun)
         {
             RotateComponent();
         }
@@ -798,7 +798,7 @@ public class PlayerController : MonoBehaviour
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
-                if(trapName != "Geyser")
+                if(!trapName.Equals("Geyser"))
                 {
                     hp -= percentageDamage * maxHp / 100.0f;
                     damagedTrapSawFeedbacks.PlayFeedbacks();
@@ -987,7 +987,8 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
+        if (trapName != null && trapName.Equals("Geyser"))
+            return;
         StartCoroutine(UpdateHpBarre());
 
     }

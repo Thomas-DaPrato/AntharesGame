@@ -81,6 +81,7 @@ public class CharacterSelecter : MonoBehaviour
 
 
     private void OnEnable(){
+        audioSource = GameObject.Find("MMSoundManager").GetComponent<AudioSource>();
         Characters.InitDicoAvailableColor();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
