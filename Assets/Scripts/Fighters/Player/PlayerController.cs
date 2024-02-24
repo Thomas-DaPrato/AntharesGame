@@ -157,14 +157,14 @@ public class PlayerController : MonoBehaviour
 
     [Space(20)]
     [Header("Damaged feedback")]
-    [SerializeField]
     public MMF_Player damagedLightFeedbacks;
-    [SerializeField]
     public MMF_Player damagedMediumFeedbacks;
-    [SerializeField]
     public MMF_Player damagedHeavyFeedbacks;
-    [SerializeField]
     public MMF_Player damagedTrapSawFeedbacks;
+
+    [Space(20)]
+    [Header("ShieldSFX")]
+    public MMF_Player sfxShield;
 
     [SerializeField]
     private GameObject gameManagerSound;
@@ -400,7 +400,7 @@ public class PlayerController : MonoBehaviour
         {
             isAttacking = true;
             if (isGrounded) {
-                HeavyEffect();
+                //HeavyEffect();
                 animator.SetTrigger("HeavyAttack");
             }
             else if (!isGrounded)
@@ -1159,6 +1159,7 @@ public class PlayerController : MonoBehaviour
     {
         isParrying = true;
         canDash = false;
+        sfxShield.PlayFeedbacks();
     }
     public void SetIsParryingFalse()
     {

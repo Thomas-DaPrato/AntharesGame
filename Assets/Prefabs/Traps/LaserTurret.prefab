@@ -70,6 +70,7 @@ MonoBehaviour:
   damage: 5
   laserVFX: {fileID: 3941263528740170060}
   sfxLaser: {fileID: 9124826199656938663}
+  feedbackLoadingLaser: {fileID: 0}
 --- !u!82 &8286719944894391381
 AudioSource:
   m_ObjectHideFlags: 0
@@ -359,9 +360,12 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 3
+      - m_Value: 4
         m_Name: Duration
-        m_Overridden: 0
+        m_Overridden: 1
+      - m_Value: 9
+        m_Name: SizeLaser
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

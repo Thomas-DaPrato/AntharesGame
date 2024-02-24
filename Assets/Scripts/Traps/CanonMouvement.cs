@@ -29,6 +29,10 @@ public class CanonMouvement : MonoBehaviour
 
     public VisualEffect laserVFX;
     public MMF_Player sfxLaser;
+    public MMF_Player feedbackLeftLaser;
+    public MMF_Player feedbackRightLaser;
+    public MMF_Player flickerLoadingLaser;
+
 
 
     private void Start()
@@ -67,6 +71,9 @@ public class CanonMouvement : MonoBehaviour
                 if (canMove)
                 {
                     canMove = false;
+                    feedbackLeftLaser.PlayFeedbacks();
+                    feedbackRightLaser.PlayFeedbacks();
+                    flickerLoadingLaser.PlayFeedbacks();
                     charge.SetActive(true);
                     sfxLaser.PlayFeedbacks();
                     StartCoroutine(AttenteCoroutine(tempsChargeTir));
@@ -126,6 +133,8 @@ public class CanonMouvement : MonoBehaviour
             }
             else if (!changeRound)
             {
+                feedbackLeftLaser.StopFeedbacks();
+                feedbackRightLaser.StopFeedbacks();
                 laser.SetActive(false);
                 declancheur = 0;
                 tir = false;
@@ -162,6 +171,9 @@ public class CanonMouvement : MonoBehaviour
         changeRound = true;
         declancheur = 0;
         tir = false;
+        feedbackLeftLaser.StopFeedbacks();
+        feedbackRightLaser.StopFeedbacks();
+        flickerLoadingLaser.StopFeedbacks();
         laser.SetActive(false);
         StartCoroutine(AttenteRound(tempRound));
     }
@@ -184,6 +196,8 @@ public class CanonMouvement : MonoBehaviour
         yield return new WaitForSeconds(sec);
         // Apr�s l'attente, vous pouvez mettre votre code ici
         StopSound();
+        feedbackLeftLaser.StopFeedbacks(); 
+        feedbackRightLaser.StopFeedbacks();
         laser.SetActive(false);
 
 
