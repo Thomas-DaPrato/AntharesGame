@@ -64,12 +64,13 @@ public class GameManager : MonoBehaviour
     private bool isPlayingPulse = false;
     [SerializeField]
     private MMF_Player SFXPulse;
-   
+
 
 
 
     public static PlayerInput fighter1;
     public static PlayerInput fighter2;
+    public TrapController trapController;
 
     #region UI Variable
     public GameObject UI;
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
                 SetPlayerPrefToFighter();
         }
 
-        
+
         SpawnPlayers();
     }
 
@@ -186,7 +187,8 @@ public class GameManager : MonoBehaviour
 
         //manage mirror match
         //fighter 1
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror) {
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == Characters.ColorType.Mirror)
+        {
             fighter1.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColor);
             fighter1.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColorDash);
@@ -197,11 +199,12 @@ public class GameManager : MonoBehaviour
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].originalColor);
             fighter1.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorDash);
             fighter1.GetComponent<PlayerController>().SetHeavyColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorHeavyFeedback);
-            
+
         }
 
         //fighter 2
-        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror) {
+        if ((Characters.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == Characters.ColorType.Mirror)
+        {
             fighter2.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColor);
             fighter2.GetComponent<PlayerController>().SetDashColor(Characters.GetFighters()[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColorDash);
@@ -263,7 +266,7 @@ public class GameManager : MonoBehaviour
         if (looser.Equals("P1"))
             nbRoundWinP2 += 1;
         if (looser.Equals("P2"))
-            nbRoundWinP1 += 1;   
+            nbRoundWinP1 += 1;
 
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
@@ -274,8 +277,9 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = false;
-        
-        print(fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.IsPlaying);        
+
+
+
         UpdateRounBarre();
 
 
@@ -377,21 +381,21 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
+
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
         fighter1.GetComponent<PlayerController>().BUIFeedbackLoop.StopFeedbacks();
         fighter1.GetComponent<PlayerController>().YUIFeedbackLoop.StopFeedbacks();
-        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();        
+        fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();
         fighter1.GetComponent<PlayerController>().skullUIFeedbackLoop2.ResetFeedbacks();
         fighter1.GetComponent<PlayerController>().BUIFeedbackLoop.ResetFeedbacks();
         fighter1.GetComponent<PlayerController>().YUIFeedbackLoop.ResetFeedbacks();
 
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();        
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.StopFeedbacks();
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.StopFeedbacks();
-        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();        
+        fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop1.ResetFeedbacks();
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.ResetFeedbacks();
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.ResetFeedbacks();
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.ResetFeedbacks();
@@ -405,10 +409,10 @@ public class GameManager : MonoBehaviour
         fighter2.GetComponent<PlayerController>().skullUIFeedbackLoop2.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
         fighter2.GetComponent<PlayerController>().BUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
         fighter2.GetComponent<PlayerController>().YUIFeedbackLoop.GetFeedbackOfType<MMF_Looper>().InfiniteLoop = true;
-
+        trapController.ResetColorGeyser();
         fightTransition.GetComponent<Animator>().SetTrigger("Close");
         roundsTransition.PlayFeedbacks();
-;       yield return new WaitForSeconds(0.5f);
+        ; yield return new WaitForSeconds(0.5f);
         ResetFight();
         yield return new WaitForSeconds(0.5f);
         fightTransition.GetComponent<Animator>().SetTrigger("Open");
@@ -438,11 +442,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void EnablePlayerIcone() {
+    public void EnablePlayerIcone()
+    {
         fighter1.GetComponent<PlayerController>().playerNameIcone.support.enabled = true;
         fighter2.GetComponent<PlayerController>().playerNameIcone.support.enabled = true;
     }
-    public void DisablePlayerIcone() {
+    public void DisablePlayerIcone()
+    {
         fighter1.GetComponent<PlayerController>().playerNameIcone.support.enabled = false;
         fighter2.GetComponent<PlayerController>().playerNameIcone.support.enabled = false;
     }

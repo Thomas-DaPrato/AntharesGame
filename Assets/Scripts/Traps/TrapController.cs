@@ -15,7 +15,7 @@ public class TrapController : MonoBehaviour
     [SerializeField]
     private GameObject geyserD;
     [SerializeField]
-    private GameObject geyserG;
+    public GameObject geyserG;
     [SerializeField]
     private GameObject scieD;
     [SerializeField]
@@ -73,6 +73,12 @@ public class TrapController : MonoBehaviour
         scieG.GetComponent<RotationScie>().ChangeRound(tempsRound);
 
 
+    }
+
+    public void ResetColorGeyser()
+    {
+        geyserD.GetComponent<GeyserBehaviour>().ResetColor();
+        geyserG.GetComponent<GeyserBehaviour>().ResetColor();
     }
 
 
