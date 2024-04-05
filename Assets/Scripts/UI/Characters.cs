@@ -1,49 +1,90 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Characters : MonoBehaviour
 {
-    [SerializeField]
-    private List<FighterData> fightersData = new List<FighterData>();
-    private static List<FighterData> fighters = new List<FighterData>();
-    private static List<ColorType> initialAvailableColor = new List<ColorType>();
-    public static Dictionary<int, List<ColorType>> availableColorForFighter;
+    public List<FighterData> fightersData = new List<FighterData>();
 
-    private static bool isInit = false;
+    private Dictionary<FighterData, List<ColorFighter>> colorFighterManager;
+    private List<ColorFighter> initialColor = new List<ColorFighter>() { new ColorFighter(ColorFighter.ColorType.Original), new ColorFighter(ColorFighter.ColorType.Mirror) };
 
+    public static Characters instance
+    {
+        get;
+        private set;
+    }
 
-    public enum ColorType{
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            colorFighterManager = new Dictionary<FighterData, List<ColorFighter>>();
+            foreach (FighterData fighter in fightersData)
+                colorFighterManager.Add(fighter, initialColor);
+        }
+    }
+
+    public ColorFighter.ColorType GetAvailableColor(FighterData fighter)
+    {
+        foreach (ColorFighter colorFighter in colorFighterManager[fighter])
+            if (!colorFighter.isPicked)
+                return colorFighter.colorType;
+        return ColorFighter.ColorType.None;
+    }
+
+    public void SetColorFighterIsPickedTrue(FighterData fighter, ColorFighter.ColorType color)
+    {
+        foreach (ColorFighter colorFighter in colorFighterManager[fighter])
+            if (colorFighter.colorType == color)
+            {
+                colorFighter.isPicked = true;
+                return;
+            }
+    }
+    public void SetColorFighterIsPickedFalse(FighterData fighter, ColorFighter.ColorType color)
+    {
+        foreach (ColorFighter colorFighter in colorFighterManager[fighter])
+            if (colorFighter.colorType == color)
+            {
+                colorFighter.isPicked = false;
+                return;
+            }
+    }
+
+    public Sprite GetSpriteNotSelected(FighterData fighter)
+    {
+        if (GetAvailableColor(fighter) == ColorFighter.ColorType.Original)
+            return fighter.spriteOriginalNotSelected;
+        else
+            return fighter.spriteMirrorNotSelected;
+    }
+
+    public Sprite GetSpriteSelected(FighterData fighter)
+    {
+        if (GetAvailableColor(fighter) == ColorFighter.ColorType.Original)
+            return fighter.spriteOriginalSelected;
+        else
+            return fighter.spriteMirrorSelected;
+    }
+}
+
+public class ColorFighter
+{
+    public bool isPicked;
+    public ColorType colorType;
+
+    public enum ColorType
+    {
         Original,
         Mirror,
         None
     }
 
-
-    private void Awake() {
-        Debug.Log("init");
-        if (!isInit) {
-            isInit = true;
-            fighters = fightersData;
-            initialAvailableColor.Add(ColorType.Original);
-            initialAvailableColor.Add(ColorType.Mirror);
-        }
-
-
-        InitDicoAvailableColor();
-    }
-
-    public static List<FighterData> GetFighters() {
-        return fighters;
-    }
-
-    public static void InitDicoAvailableColor() {
-        availableColorForFighter = new Dictionary<int, List<ColorType>>();
-        foreach (FighterData fighter in fighters)
-            availableColorForFighter.Add(fighters.IndexOf(fighter), new List<ColorType>(initialAvailableColor));
-    }
-
-
-    public static void ResetAvailableColor(int index) {
-        availableColorForFighter[index] = initialAvailableColor;
+    public ColorFighter(ColorType colorType)
+    {
+        this.colorType = colorType;
+        isPicked = false;
     }
 }
