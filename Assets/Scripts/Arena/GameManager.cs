@@ -138,22 +138,30 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayers()
     {
+        int nbController = Gamepad.all.Count;
         List<Image> whiteHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().whiteHpBarre;
         List<Image> redHpBarreP1 = uiInGameManager.hpBarreP1.GetComponent<HpBarre>().redHpBarre;
 
-        fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, Gamepad.all[0]);
+        List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
+        List<Image> whiteHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().whiteHpBarre;
+
+        switch(nbController){
+            case 0:
+                fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "KeyboardPlayerLeft", Keyboard.current);
+                fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "KeyboardPlayerRight", Keyboard.current);
+                break;
+            case 1 :
+                fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "KeyboardPlayerLeft", Keyboard.current);
+                fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "Controller", Gamepad.all[0]);
+                break;
+            case 2 :
+                fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "Controller", Gamepad.all[0]);
+                fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "Controller", Gamepad.all[1]);
+                break;
+        }
+
         targetsGroup.AddMember(fighter1.transform, 1, 4);
         nbRoundWinP1 = 0;
-
-
-        List<Image> whiteHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().whiteHpBarre;
-        List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
-
-        if (Gamepad.all.Count == 1)
-            fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Keyboard.current);
-        else
-            fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, Gamepad.all[1]);
-
         targetsGroup.AddMember(fighter2.transform, 1, 4);
         nbRoundWinP2 = 0;
 
@@ -241,9 +249,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, InputDevice controller)
+    public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, string controllerScheme, InputDevice controller)
     {
-        PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: "controller", pairWithDevice: controller);
+        PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: controllerScheme, pairWithDevice: controller);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<Image>(), playerName);
         fighter.GetComponent<PlayerController>().playerName = playerName;

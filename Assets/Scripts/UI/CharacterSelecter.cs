@@ -77,8 +77,6 @@ public class CharacterSelecter : MonoBehaviour
     private DisplayUIButtonManager UIManager;
 
 
-    public PlayerInput playerInput;
-
     [SerializeField]
     private GameObject ready;
 
@@ -167,6 +165,7 @@ public class CharacterSelecter : MonoBehaviour
                 panelCharacterSelecter.SetActive(false);
                 menu.GetComponent<PlayerInput>().enabled = true;
                 menu.GetComponent<UI3DManager>().ResetMaterial();
+                menu.GetComponent<ControllerManager>().AssignController();
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
                 UIManager.ActiveButtonMenu();
@@ -190,6 +189,7 @@ public class CharacterSelecter : MonoBehaviour
         {
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
             colorType = characters.GetAvailableColor(characters.fightersData[currentFighter]);
+            //Debug.Log("colorType " + colorType);
             PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int)colorType);
             characters.SetColorFighterIsPickedTrue(characters.fightersData[currentFighter], colorType);
             animatorBackground.SetBool("isSelected", true);

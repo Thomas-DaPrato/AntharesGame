@@ -123,7 +123,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -134,7 +134,40 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "MovementX",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ArrowLR",
+                    "id": "7556e754-a7ac-4a4f-a741-9fc9e5b4467a",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementX",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a43e6fcc-d19d-4d34-9097-2a77d63dec06",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "MovementX",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "00d098fe-0342-45bc-8387-79a87e81ac9a",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
                     "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -156,7 +189,18 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1160ff6d-f375-4794-a99c-3662aca2faad",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -175,10 +219,10 @@
                 {
                     "name": "",
                     "id": "85e751a3-9974-4637-b941-d702d7a084d3",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "HeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -196,11 +240,22 @@
                 },
                 {
                     "name": "",
-                    "id": "39ab9d0d-0b12-470a-a7cb-222268cac11a",
-                    "path": "<Keyboard>/2",
+                    "id": "520fc919-b0e9-4edf-b572-a5fc1a5ba066",
+                    "path": "<Keyboard>/numpad4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39ab9d0d-0b12-470a-a7cb-222268cac11a",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "MiddleAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -218,11 +273,22 @@
                 },
                 {
                     "name": "",
-                    "id": "47c09409-3bd2-4117-b923-3154271f0c94",
-                    "path": "<Keyboard>/3",
+                    "id": "b335a27e-9a19-447b-8b5a-4171ccba2602",
+                    "path": "<Keyboard>/numpad5",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "MiddleAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47c09409-3bd2-4117-b923-3154271f0c94",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "LightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -240,11 +306,22 @@
                 },
                 {
                     "name": "",
-                    "id": "af677b1f-c4b8-42ee-be1e-873acf955bbf",
-                    "path": "<Keyboard>/b",
+                    "id": "fe681ea5-afd9-488e-b0b4-09666e4850e0",
+                    "path": "<Keyboard>/numpad6",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af677b1f-c4b8-42ee-be1e-873acf955bbf",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -273,11 +350,22 @@
                 },
                 {
                     "name": "",
-                    "id": "43186b50-bfed-4c6d-9034-743fd0ef612d",
-                    "path": "<Keyboard>/e",
+                    "id": "879ffef8-ffe2-44e0-9c19-030d3446f234",
+                    "path": "<Keyboard>/numpad8",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43186b50-bfed-4c6d-9034-743fd0ef612d",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -305,6 +393,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "1c2d9e01-201c-40ee-a081-470fc450ee92",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "SW",
                     "id": "021c896f-a125-4f4e-a951-5ba8a1eda268",
                     "path": "1DAxis",
@@ -321,7 +420,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "MovementY",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -332,7 +431,40 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ArrowUD",
+                    "id": "3c4abcdd-5563-4c05-9534-d8bfd8b71af7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementY",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "14413fe6-a8e5-49bb-9887-a298252c39de",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "34879819-7d30-4943-9780-7df4feefbd81",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
                     "action": "MovementY",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -354,7 +486,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "GoDownPlateform",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -372,11 +504,22 @@
                 },
                 {
                     "name": "",
+                    "id": "963e4e6a-61ae-42d3-a557-458e6217519b",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "GoDownPlateform",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b7f18bbf-25ed-4cb4-a740-dc563e8809ad",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -956,7 +1099,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "Start / A",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1011,20 +1154,11 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeInfoPannel",
-                    "type": "Button",
-                    "id": "9ed3b176-823e-4bf5-8f48-58f4d0f07652",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "Left/Right",
+                    "name": "Left/RightZQSD",
                     "id": "48e3427e-7587-401d-ba39-98e6675198d3",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1037,10 +1171,10 @@
                 {
                     "name": "negative",
                     "id": "1bc072b4-fbf6-446b-acdd-a335ef7a1f02",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "CharacterSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1048,10 +1182,43 @@
                 {
                     "name": "positive",
                     "id": "dc6aea66-dcc2-4f96-9a9a-83336773b6c6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "CharacterSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left/RightArrow",
+                    "id": "b0c929cd-51b8-4bde-98ad-eebeb649aaef",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacterSwap",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fa6cbb4b-326a-443b-a8e3-ae7de4a0ba20",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "CharacterSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1e9416d5-f636-4cec-8458-1bcce8af0f46",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
                     "action": "CharacterSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1070,10 +1237,10 @@
                 {
                     "name": "",
                     "id": "1f1f0b23-2742-4154-be3f-33d17e0c1866",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "OpenInformation",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1091,11 +1258,22 @@
                 },
                 {
                     "name": "",
+                    "id": "c9cb5d52-4db3-4bf6-ae57-5b55cea7ebd6",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
+                    "action": "OpenInformation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d0393dae-c1aa-42d2-ae63-a39c93c95393",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "Validate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1107,6 +1285,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a19b1a04-40cd-442c-a879-712073d62f7e",
+                    "path": "<Keyboard>/numpadEnter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardPlayerRight",
                     "action": "Validate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1125,10 +1314,21 @@
                 {
                     "name": "",
                     "id": "1a073a41-7dfe-4d4a-9760-3434c1c19798",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35d37efa-d952-4c7c-967c-b3db1520ae7a",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardPlayerRight",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1150,54 +1350,10 @@
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyBoardPlayerLeft",
                     "action": "StartFight",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "76e49ff5-44c9-4db4-875f-0545966efc6f",
-                    "path": "<Gamepad>/rightStick/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "ChangeInfoPannel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Right/Left",
-                    "id": "c2b0bccb-c674-45bd-bdfa-f980321c98e8",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeInfoPannel",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "543ad169-c7df-41ac-bb4a-efbcd9780496",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeInfoPannel",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "3c074300-12b3-4d82-8b36-003fe3804a50",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeInfoPannel",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },
@@ -1226,7 +1382,7 @@
             ],
             "bindings": [
                 {
-                    "name": "Left/Right",
+                    "name": "Left/RightZQSD",
                     "id": "e883ab5c-acff-4d52-a3df-318729dcf030",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1239,10 +1395,10 @@
                 {
                     "name": "negative",
                     "id": "d07779dd-b819-49e3-a470-226c42d2eb69",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
                     "action": "MemberSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1250,10 +1406,43 @@
                 {
                     "name": "positive",
                     "id": "72a0e30f-e113-4d80-811b-687029cb664c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
+                    "action": "MemberSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left/RightArrow",
+                    "id": "427c4d84-e6db-46b9-a405-c472bc174dbd",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MemberSwap",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "482c2139-85ee-4067-a75b-6aae90b74407",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "MemberSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3dc4881c-247b-45fa-b748-a23cf3645159",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers",
                     "action": "MemberSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1305,10 +1494,21 @@
                 {
                     "name": "",
                     "id": "6aee1c2b-f83c-4416-b7fc-ced53cf8e2e2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77f4eead-5ab5-46c7-a9c1-69070b192915",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1336,20 +1536,11 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Start",
-                    "type": "Button",
-                    "id": "877a11bd-a76e-43b2-8fb8-1325215c4d42",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "KM",
+                    "name": "AD",
                     "id": "b29053ec-adb7-4acc-bd15-ecffbf1cda78",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1362,10 +1553,10 @@
                 {
                     "name": "negative",
                     "id": "97ab4398-1930-41e9-a597-b97f7d6a360d",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
                     "action": "ChangeOptionPannel",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1373,10 +1564,43 @@
                 {
                     "name": "positive",
                     "id": "b5cd2677-750b-4eef-9aca-28ebf38fccaa",
-                    "path": "<Keyboard>/semicolon",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ArrowLArrowR",
+                    "id": "cd2832fe-815f-4cd6-8e68-347b3e094300",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ff59e8b4-f1c5-4cc2-b550-43ac6dd46a89",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "ChangeOptionPannel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "603c6abd-f838-4dc1-a7a2-5aedfef5ac93",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
                     "action": "ChangeOptionPannel",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1428,22 +1652,22 @@
                 {
                     "name": "",
                     "id": "961605c6-6fde-4751-81ac-f6e9f9388195",
-                    "path": "<Keyboard>/backspace",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d4d9815e-3914-48f7-849c-85cd524d9ec6",
-                    "path": "<Gamepad>/start",
+                    "id": "c691b5cb-f582-47cd-ac11-c9249b5706d6",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
-                    "action": "Start",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1474,7 +1698,40 @@
             ],
             "bindings": [
                 {
-                    "name": "Up/Down",
+                    "name": "ArrowUArrowD",
+                    "id": "34474f8a-ef89-4f08-a987-b2d0fd110323",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonSwap",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3cd8028f-77d2-4048-acb5-219577e96542",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "ButtonSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1debeddf-d9c2-4467-a895-5c0537e73eff",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "ButtonSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ZS",
                     "id": "4fa58ec8-b276-4490-9519-788d50d29576",
                     "path": "1DAxis",
                     "interactions": "",
@@ -1487,10 +1744,10 @@
                 {
                     "name": "negative",
                     "id": "28d07663-7af2-494d-9ec8-5d48376d72f1",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
                     "action": "ButtonSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1498,10 +1755,10 @@
                 {
                     "name": "positive",
                     "id": "69a96376-62b6-40ae-8b28-b8bb7b66ae39",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers;KeyBoardPlayerLeft",
                     "action": "ButtonSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1534,7 +1791,7 @@
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "ButtonSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1545,7 +1802,7 @@
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "ButtonSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1567,7 +1824,18 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "KeyboardTwoPlayers",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c543557-a3e8-45e8-b9d3-9edef98a8398",
+                    "path": "<Keyboard>/numpadEnter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardTwoPlayers",
                     "action": "Validate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1577,8 +1845,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "KeyBoard",
-            "bindingGroup": "KeyBoard",
+            "name": "KeyBoardPlayerLeft",
+            "bindingGroup": "KeyBoardPlayerLeft",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
@@ -1597,6 +1865,16 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "KeyboardPlayerRight",
+            "bindingGroup": "KeyboardPlayerRight",
+            "devices": []
+        },
+        {
+            "name": "KeyboardTwoPlayers",
+            "bindingGroup": "KeyboardTwoPlayers",
+            "devices": []
         }
     ]
 }

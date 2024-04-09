@@ -7833,10 +7833,6 @@ MonoBehaviour:
     m_ActionName: CharacterSelection/StartFight[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
-    m_ActionName: CharacterSelection/ChangeInfoPannel[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: e774b48d-9986-4818-b5c9-52af75b1b609
     m_ActionName: MemberSwaper/MemberSwap[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
@@ -7883,10 +7879,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
-    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI3D
@@ -12090,7 +12082,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569071915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
   m_Name: 
@@ -40769,6 +40761,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2001380022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001380024}
+  - component: {fileID: 2001380023}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2001380023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001380022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 346755210}
+  p2: {fileID: 346755210}
+--- !u!4 &2001380024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001380022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.43180293, y: 2.281933, z: 0.16688997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002132204
 GameObject:
   m_ObjectHideFlags: 0
@@ -42535,11 +42573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 37
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[30].m_ActionId
@@ -42552,6 +42590,10 @@ PrefabInstance:
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[32].m_ActionId
       value: 01cd7a7b-1a13-400c-9686-811e658cfe4d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[34].m_ActionId
+      value: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[35].m_ActionId
@@ -46195,11 +46237,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[31].m_ActionId
+      value: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[32].m_ActionId
+      value: 8fc9e44b-7f27-485d-901f-1b660cebf95c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[31].m_ActionName
+      value: UI3D/ButtonSwap[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[32].m_ActionName
+      value: UI3D/Validate[/XInputControllerWindows/buttonSouth]
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_ActionEvents.Array.data[31].m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[1].m_Mode

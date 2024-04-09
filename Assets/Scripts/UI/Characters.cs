@@ -28,6 +28,11 @@ public class Characters : MonoBehaviour
 
     public ColorFighter.ColorType GetAvailableColor(FighterData fighter)
     {
+        foreach(KeyValuePair<FighterData, List<ColorFighter>> entry in colorFighterManager){
+            Debug.Log(entry.Key.nickName);
+            foreach(ColorFighter color in entry.Value)
+                Debug.Log("    " + color);
+        }
         foreach (ColorFighter colorFighter in colorFighterManager[fighter])
             if (!colorFighter.isPicked)
                 return colorFighter.colorType;

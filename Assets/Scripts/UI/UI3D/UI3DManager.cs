@@ -56,7 +56,7 @@ public class UI3DManager : MonoBehaviour
         PlayerPrefs.SetInt("chooseFighter", 0);
     }
 
-    public void OnSwapButton(InputAction.CallbackContext context) {
+    public void OnSwapButton(InputAction.CallbackContext context) { 
         if (context.performed) {
             audioSource.PlayOneShot(audioButtonSwap);
 
