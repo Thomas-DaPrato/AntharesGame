@@ -145,9 +145,9 @@ public class CharacterSelecter : MonoBehaviour
             {
                 haveChooseFighter = false;
                 ready.SetActive(false);
+                support.sprite = characters.GetSpriteNotSelected(characters.fightersData[currentFighter]);
                 characters.SetColorFighterIsPickedFalse(characters.fightersData[currentFighter], colorType);
                 colorType = ColorFighter.ColorType.None;
-                support.sprite = characters.GetSpriteNotSelected(characters.fightersData[currentFighter]);
                 animatorBackground.SetBool("isSelected", false);
                 PlayerPrefs.SetInt(playerPrefPlayerName, -1);
                 iconInfos.SetActive(true);
@@ -189,8 +189,9 @@ public class CharacterSelecter : MonoBehaviour
         {
             PlayerPrefs.SetInt(playerPrefPlayerName, currentFighter);
             colorType = characters.GetAvailableColor(characters.fightersData[currentFighter]);
-            //Debug.Log("colorType " + colorType);
+            Debug.Log("Available color Type " + colorType);
             PlayerPrefs.SetInt(playerPrefPlayerName + "color", (int)colorType);
+            support.sprite = characters.GetSpriteSelected(characters.fightersData[currentFighter]);
             characters.SetColorFighterIsPickedTrue(characters.fightersData[currentFighter], colorType);
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);

@@ -7645,6 +7645,7 @@ GameObject:
   - component: {fileID: 346755209}
   - component: {fileID: 346755208}
   - component: {fileID: 346755210}
+  - component: {fileID: 346755211}
   m_Layer: 0
   m_Name: 3D UI
   m_TagString: Untagged
@@ -7884,6 +7885,21 @@ MonoBehaviour:
   m_DefaultActionMap: UI3D
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &346755211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346755207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 346755210}
+  p2: {fileID: 0}
+  isSameInput: 1
 --- !u!1 &348306111
 GameObject:
   m_ObjectHideFlags: 0
@@ -12082,13 +12098,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569071915}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   p1: {fileID: 1656965041}
   p2: {fileID: 2060463367}
+  isSameInput: 0
 --- !u!4 &574753220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9f852d1dd8781540a209e215e81741a, type: 3}
@@ -12105,6 +12122,7 @@ GameObject:
   - component: {fileID: 582292388}
   - component: {fileID: 582292391}
   - component: {fileID: 582292392}
+  - component: {fileID: 582292393}
   m_Layer: 5
   m_Name: PanelOptions
   m_TagString: Untagged
@@ -12373,6 +12391,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 346755211}
+        m_TargetAssemblyTypeName: ControllerManager, Assembly-CSharp
+        m_MethodName: AssignController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: 01cd7a7b-1a13-400c-9686-811e658cfe4d
     m_ActionName: OptionSwap/Back[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
@@ -12381,20 +12411,12 @@ MonoBehaviour:
     m_ActionName: UI/Start / A[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/start,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
-    m_ActionName: CharacterSelection/ChangeInfoPannel[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
     m_ActionName: UI3D/ButtonSwap[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
-    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OptionSwap
@@ -12420,6 +12442,21 @@ MonoBehaviour:
   menuPause: {fileID: 0}
   eventSystem: {fileID: 0}
   objectSelectedOnReturn: {fileID: 0}
+--- !u!114 &582292393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582292387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 582292391}
+  p2: {fileID: 0}
+  isSameInput: 1
 --- !u!1001 &595292388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13826,6 +13863,7 @@ GameObject:
   - component: {fileID: 682551125}
   - component: {fileID: 682551128}
   - component: {fileID: 682551129}
+  - component: {fileID: 682551130}
   m_Layer: 5
   m_Name: PanelCredits
   m_TagString: Untagged
@@ -14118,6 +14156,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 346755211}
+        m_TargetAssemblyTypeName: ControllerManager, Assembly-CSharp
+        m_MethodName: AssignController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: 37444d2a-c594-4be9-afc2-8ccb1f7a2993
     m_ActionName: CharactersSwaper/Back[/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast,/Keyboard/escape]
   - m_PersistentCalls:
@@ -14134,25 +14184,32 @@ MonoBehaviour:
     m_ActionName: OptionSwap/Back[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
-    m_ActionName: CharacterSelection/ChangeInfoPannel[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
     m_ActionName: UI3D/ButtonSwap[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
-    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MemberSwaper
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &682551130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682551124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 682551129}
+  p2: {fileID: 0}
+  isSameInput: 1
 --- !u!1001 &685755958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40761,52 +40818,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2001380022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2001380024}
-  - component: {fileID: 2001380023}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2001380023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001380022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e37b6d8a78b974b8dfe934c8f1d563, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  p1: {fileID: 346755210}
-  p2: {fileID: 346755210}
---- !u!4 &2001380024
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001380022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43180293, y: 2.281933, z: 0.16688997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002132204
 GameObject:
   m_ObjectHideFlags: 0
@@ -42580,6 +42591,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[30].m_ActionId
       value: 9bbfa3ee-5d99-45ab-a689-dceb87c9b53e
       objectReference: {fileID: 0}
@@ -43407,6 +43422,10 @@ PrefabInstance:
       propertyPath: otherCharacterSelecter
       value: 
       objectReference: {fileID: 1656965038}
+    - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: panelCharacterSelecter
+      value: 
+      objectReference: {fileID: 569071915}
     - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: neonReady.Array.data[0]
       value: 
@@ -46244,6 +46263,10 @@ PrefabInstance:
       value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337939033068806821, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_ActionEvents.Array.data[31].m_ActionId
       value: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
       objectReference: {fileID: 0}
@@ -47055,6 +47078,10 @@ PrefabInstance:
       propertyPath: otherCharacterSelecter
       value: 
       objectReference: {fileID: 2060463364}
+    - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: panelCharacterSelecter
+      value: 
+      objectReference: {fileID: 569071915}
     - target: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: neonReady.Array.data[0]
       value: 

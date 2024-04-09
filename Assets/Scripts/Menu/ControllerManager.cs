@@ -25,9 +25,7 @@ public class ControllerManager : MonoBehaviour
                     p1.SwitchCurrentControlScheme("KeyboardTwoPlayers", Keyboard.current);}
                 else{
                     p1.SwitchCurrentControlScheme("KeyboardPlayerLeft", Keyboard.current);
-                    //InputUser.PerformPairingWithDevice(Keyboard.current, p1.user);
                     p2.SwitchCurrentControlScheme("KeyboardPlayerRight", Keyboard.current);
-                    //InputUser.PerformPairingWithDevice(Keyboard.current, p2.user);
                 }
                 break;
             case 1 :

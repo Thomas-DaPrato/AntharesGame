@@ -7,7 +7,7 @@ public class Characters : MonoBehaviour
     public List<FighterData> fightersData = new List<FighterData>();
 
     private Dictionary<FighterData, List<ColorFighter>> colorFighterManager;
-    private List<ColorFighter> initialColor = new List<ColorFighter>() { new ColorFighter(ColorFighter.ColorType.Original), new ColorFighter(ColorFighter.ColorType.Mirror) };
+    
 
     public static Characters instance
     {
@@ -19,20 +19,18 @@ public class Characters : MonoBehaviour
     {
         if (instance == null)
         {
+            Debug.Log("create character instance");
             instance = this;
             colorFighterManager = new Dictionary<FighterData, List<ColorFighter>>();
             foreach (FighterData fighter in fightersData)
-                colorFighterManager.Add(fighter, initialColor);
+                colorFighterManager.Add(fighter, new List<ColorFighter>() { new ColorFighter(ColorFighter.ColorType.Original), new ColorFighter(ColorFighter.ColorType.Mirror) });
+
+            
         }
     }
 
     public ColorFighter.ColorType GetAvailableColor(FighterData fighter)
     {
-        foreach(KeyValuePair<FighterData, List<ColorFighter>> entry in colorFighterManager){
-            Debug.Log(entry.Key.nickName);
-            foreach(ColorFighter color in entry.Value)
-                Debug.Log("    " + color);
-        }
         foreach (ColorFighter colorFighter in colorFighterManager[fighter])
             if (!colorFighter.isPicked)
                 return colorFighter.colorType;
@@ -45,6 +43,7 @@ public class Characters : MonoBehaviour
             if (colorFighter.colorType == color)
             {
                 colorFighter.isPicked = true;
+                //DisplayColorManager();
                 return;
             }
     }
@@ -54,8 +53,17 @@ public class Characters : MonoBehaviour
             if (colorFighter.colorType == color)
             {
                 colorFighter.isPicked = false;
+                //DisplayColorManager();  
                 return;
             }
+    }
+
+    public void DisplayColorManager(){
+        foreach(KeyValuePair<FighterData, List<ColorFighter>> entry in colorFighterManager){
+            Debug.Log(entry.Key.nickName);
+            foreach(ColorFighter color in entry.Value)
+                Debug.Log("    " + color.colorType + " " + color.isPicked);
+        }
     }
 
     public Sprite GetSpriteNotSelected(FighterData fighter)
