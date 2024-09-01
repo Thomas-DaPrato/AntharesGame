@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.Localization.Components;
 
 public class CharacterSelecter : MonoBehaviour
 {
@@ -79,9 +80,12 @@ public class CharacterSelecter : MonoBehaviour
 
     [SerializeField]
     private GameObject ready;
+    [SerializeField]
+    private GameObject pressToStart;
 
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         audioSource = GameObject.Find("MMSoundManager").GetComponent<AudioSource>();
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1, -1);
         PlayerPrefs.SetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2, -1);
@@ -145,6 +149,7 @@ public class CharacterSelecter : MonoBehaviour
             {
                 haveChooseFighter = false;
                 ready.SetActive(false);
+                otherCharacterSelecter.pressToStart.SetActive(false);
                 support.sprite = characters.GetSpriteNotSelected(characters.fightersData[currentFighter]);
                 characters.SetColorFighterIsPickedFalse(characters.fightersData[currentFighter], colorType);
                 colorType = ColorFighter.ColorType.None;
@@ -196,6 +201,16 @@ public class CharacterSelecter : MonoBehaviour
             animatorBackground.SetBool("isSelected", true);
             ready.SetActive(true);
             haveChooseFighter = true;
+            if (otherCharacterSelecter.haveChooseFighter)
+            {
+                pressToStart.SetActive(true);
+                otherCharacterSelecter.pressToStart.SetActive(true);
+            }
+            else
+            {
+                pressToStart.SetActive(false);
+                otherCharacterSelecter.pressToStart.SetActive(false);
+            }
             panelInfos.SetActive(false);
             iconInfos.SetActive(false);
             for (int i = 0; i < neonReady.Length; i++)
@@ -218,7 +233,8 @@ public class CharacterSelecter : MonoBehaviour
             Debug.Log(PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1);
             Debug.Log("Player Pref 1 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1));
             Debug.Log("Player Pref 2 : " + PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2));
-            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1 && !haveLaunchAnimation) {
+            if (PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1) != -1 && PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2) != -1 && !haveLaunchAnimation)
+            {
                 haveLaunchAnimation = true;
                 StartCoroutine(StartFight());
             }
@@ -250,8 +266,8 @@ public class CharacterSelecter : MonoBehaviour
 
         for (int i = 0; i < fighter.stats.Length; i += 1)
         {
-            stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = fighter.stats[i].nameStat;
-
+            //stats.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = fighter.stats[i].nameStat;
+            stats.transform.GetChild(i).GetChild(0).GetComponent<LocalizeStringEvent>().SetEntry(fighter.stats[i].nameStatEntry);
             //Reset color stat
             for (int j = 0; j < 3; j += 1)
                 stats.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.black;
@@ -261,6 +277,7 @@ public class CharacterSelecter : MonoBehaviour
                 stats.transform.GetChild(i).GetChild(1).GetChild(j).GetComponent<Image>().color = Color.yellow;
         }
 
-        lore.text = fighter.lore.text;
+        //lore.text = fighter.lore.text;
+        lore.GetComponent<LocalizeStringEvent>().SetEntry(fighter.loreEntry);
     }
 }

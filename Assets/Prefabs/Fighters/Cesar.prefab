@@ -8931,32 +8931,12 @@ MonoBehaviour:
     m_ActionName: OptionSwap/Back
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9ed3b176-823e-4bf5-8f48-58f4d0f07652
-    m_ActionName: CharacterSelection/ChangeInfoPannel[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 8dd493fb-1e5e-465b-9e3d-3f5b20f0bd8b
     m_ActionName: UI3D/ButtonSwap[/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/y,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8fc9e44b-7f27-485d-901f-1b660cebf95c
     m_ActionName: UI3D/Validate[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4488373448364204997}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 877a11bd-a76e-43b2-8fb8-1325215c4d42
-    m_ActionName: OptionSwap/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -13880,6 +13860,7 @@ GameObject:
   - component: {fileID: 7088442746137073089}
   - component: {fileID: 4459396603615066392}
   - component: {fileID: 3343852335901293572}
+  - component: {fileID: 2153991621916603530}
   m_Layer: 5
   m_Name: IconePlayer
   m_TagString: Untagged
@@ -13959,7 +13940,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1Icone: {fileID: 21300000, guid: 8dd2f4604ef8f0247a561632179c5cf8, type: 3}
   P2Icone: {fileID: 21300000, guid: 9f2830a1d6e756343b11ee50acc06d05, type: 3}
+  spriteP1:
+    m_TableReference:
+      m_TableCollectionName: GUID:0910b516795caca4faf6b22ac5eb5ef9
+    m_TableEntryReference:
+      m_KeyId: 12601253888
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  spriteP2:
+    m_TableReference:
+      m_TableCollectionName: GUID:0910b516795caca4faf6b22ac5eb5ef9
+    m_TableEntryReference:
+      m_KeyId: 16787169280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   support: {fileID: 4459396603615066392}
+--- !u!114 &2153991621916603530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751292985455279859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f55fcc3768689a4f9cf863b8c11c618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LocalizedAssetReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:0910b516795caca4faf6b22ac5eb5ef9
+    m_TableEntryReference:
+      m_KeyId: 12601253888
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  m_UpdateAsset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4459396603615066392}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &8927246126668947534
 GameObject:
   m_ObjectHideFlags: 0

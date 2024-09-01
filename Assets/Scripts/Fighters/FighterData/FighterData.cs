@@ -55,6 +55,7 @@ public class FighterData : ScriptableObject
     public Sprite spriteMirrorNotSelected;
     public Sprite spriteMirrorSelected;
     public TextAsset lore;
+    public string loreEntry;
     public Stat[] stats = new Stat[3];
 
 }
@@ -63,6 +64,7 @@ public class FighterData : ScriptableObject
 public class Stat
 {
     public string nameStat;
+    public string nameStatEntry;
     [Range(1,3)]
     public int value;
 }
