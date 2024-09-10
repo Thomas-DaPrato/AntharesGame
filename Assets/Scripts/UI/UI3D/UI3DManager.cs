@@ -4,12 +4,21 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using MoreMountains.Feedbacks;
+using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 
+[System.Serializable]
+public class ButtonsList
+{
+    public string lang;
+    public List<GameObject> buttons;
+}
 public class UI3DManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> buttons;
-
+    [SerializeField]
+    private List<ButtonsList> buttonsLang;
     [Header("Material")]
     [SerializeField]
     private Material selectedButton;
@@ -29,7 +38,7 @@ public class UI3DManager : MonoBehaviour
 
 
     [Header("Audio")]
-    private AudioSource audioSource; 
+    private AudioSource audioSource;
     public AudioClip audioButtonSwap;
     public AudioClip audioButtonClick;
 
@@ -38,73 +47,138 @@ public class UI3DManager : MonoBehaviour
 
 
     private int currentButtonSelected = 0;
+    private List<GameObject> currentList;
+    public bool on3DMenu = true;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return LocalizationSettings.InitializationOperation;
+
+        foreach (ButtonsList buttonList in buttonsLang)
+        {
+            if (buttonList.lang == LocalizationSettings.SelectedLocale.Identifier.Code)
+            {
+                currentList = buttonList.buttons;
+                break;
+            }
+        }
         launchingMenuMusic.PlayFeedbacks();
-        if (PlayerPrefs.GetInt("chooseFighter") == 1) {
+        if (PlayerPrefs.GetInt("chooseFighter") == 1)
+        {
             GetComponent<PlayerInput>().enabled = false;
-            foreach (GameObject button in buttons)
+            foreach (GameObject button in currentList)
+            {
                 button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
-            buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
+            }
+            /*foreach (GameObject button in buttonsLang)
+                button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;*/
+            //buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
+            currentList[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
             vcMenu.SetActive(false);
             vcBat.SetActive(true);
         }
-        else 
-            ChangeMaterial(buttons[0], selectedButton);
+        else
+        {
+            ChangeMaterial(currentList[0], selectedButton);
+        }
+        //ChangeMaterial(buttons[0], selectedButton);
         audioSource = GameObject.Find("MMSoundManager").GetComponent<AudioSource>();
         PlayerPrefs.SetInt("chooseFighter", 0);
     }
 
-    public void OnSwapButton(InputAction.CallbackContext context) { 
-        if (context.performed) {
+    public void OnSwapButton(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             audioSource.PlayOneShot(audioButtonSwap);
 
-            ChangeMaterial(buttons[currentButtonSelected], notSelectedButton);
-            if (context.ReadValue<float>() < 0) {
+            //ChangeMaterial(buttons[currentButtonSelected], notSelectedButton);
+            ChangeMaterial(currentList[currentButtonSelected], notSelectedButton);
+            if (context.ReadValue<float>() < 0)
+            {
                 currentButtonSelected += 1;
-                if (currentButtonSelected >= buttons.Count)
+                if (currentButtonSelected >= currentList.Count)
                     currentButtonSelected = 0;
             }
-            if (context.ReadValue<float>() > 0) {
+            if (context.ReadValue<float>() > 0)
+            {
                 currentButtonSelected -= 1;
                 if (currentButtonSelected < 0)
-                    currentButtonSelected = buttons.Count - 1;
+                    currentButtonSelected = currentList.Count - 1;
             }
-            ChangeMaterial(buttons[currentButtonSelected], selectedButton);
+            //ChangeMaterial(buttons[currentButtonSelected], selectedButton);
+            ChangeMaterial(currentList[currentButtonSelected], selectedButton);
         }
     }
 
-    public void OnClick(InputAction.CallbackContext context) {
-        if (context.performed) {
+    public void OnClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             audioSource.PlayOneShot(audioButtonClick);
-                
-            if (!buttons[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton) {
+
+            //if (!buttons[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton)
+            if (!currentList[currentButtonSelected].GetComponent<Click3DButton>().isQuitButton)
+            {
                 GetComponent<PlayerInput>().enabled = false;
                 UIManager.DisableValidateButton();
-                foreach (GameObject button in buttons)
+                /*foreach (GameObject button in buttons)
+                    button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;*/
+                foreach (GameObject button in currentList)
+                {
                     button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
-                buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
+                }
+                //buttons[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
+                currentList[currentButtonSelected].GetComponent<Click3DButton>().DisplayPanel();
                 vcMenu.SetActive(false);
                 vcBat.SetActive(true);
                 UIManager.EnableReturnButton();
-                
+                on3DMenu = false;
+
             }
             else
                 Application.Quit();
         }
     }
 
-    public void ChangeMaterial(GameObject button, Material material) {
+    public void ChangeMaterial(GameObject button, Material material)
+    {
         button.GetComponent<MeshRenderer>().sharedMaterial = material;
     }
 
-    public void ResetMaterial() {
-        for(int i = 0; i < buttons.Count; i+=1) {
-            if (i != currentButtonSelected)
+    public void ResetMaterial()
+    {
+        for (int i = 0; i < currentList.Count; i += 1)
+        {
+            /*if (i != currentButtonSelected)
                 buttons[i].GetComponent<MeshRenderer>().sharedMaterial = notSelectedButton;
             else
-                buttons[i].GetComponent<MeshRenderer>().sharedMaterial = selectedButton;
+                buttons[i].GetComponent<MeshRenderer>().sharedMaterial = selectedButton;*/
+            if (i != currentButtonSelected)
+                currentList[i].GetComponent<MeshRenderer>().sharedMaterial = notSelectedButton;
+            else
+                currentList[i].GetComponent<MeshRenderer>().sharedMaterial = selectedButton;
         }
+    }
+    public void ChangeCurrentList()
+    {
+        foreach (ButtonsList buttonList in buttonsLang)
+        {
+            if (buttonList.lang == LocalizationSettings.SelectedLocale.Identifier.Code)
+            {
+                currentList = buttonList.buttons;
+                break;
+            }
+        }
+        foreach (GameObject button in currentList)
+        {
+            button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;
+        }
+        if (on3DMenu)
+        {
+            ResetMaterial();
+        }
+        //ResetMaterial();
+        //ChangeMaterial(currentList[currentButtonSelected], selectedButton);
     }
 }

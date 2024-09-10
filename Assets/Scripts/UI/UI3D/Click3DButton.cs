@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
 
 public class Click3DButton : MonoBehaviour
 {
@@ -11,12 +11,14 @@ public class Click3DButton : MonoBehaviour
 
     public bool isQuitButton;
 
-    public void DisplayPanel() {
+    public void DisplayPanel()
+    {
         panel.SetActive(true);
         returnButtonUI.SetActive(true);
     }
 
-    public void HidePanel() {
+    public void HidePanel()
+    {
         panel.SetActive(false);
     }
 }

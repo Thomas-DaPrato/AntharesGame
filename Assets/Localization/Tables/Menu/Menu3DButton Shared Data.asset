@@ -10,44 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: MenuOptionLangTable Shared Data
+  m_Name: Menu3DButton Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: MenuOptionLangTable
-  m_TableCollectionNameGuidString: c5c4bb59a2bc9aa4c9b28db32e5fbc53
+  m_TableCollectionName: Menu3DButton
+  m_TableCollectionNameGuidString: 01e45f3cb9e3bbf4a9530fc8934649c0
   m_Entries:
-  - m_Id: 11003224064
-    m_Key: LANG_TEXT
+  - m_Id: 10097254400
+    m_Key: PLAY_PREFAB
     m_Metadata:
       m_Items: []
-  - m_Id: 2018388729856
-    m_Key: FRLANG_TEXT
+  - m_Id: 14589353984
+    m_Key: OPTIONS_PREFAB
     m_Metadata:
       m_Items: []
-  - m_Id: 2089813532672
-    m_Key: ENLANG_TEXT
+  - m_Id: 257376641024
+    m_Key: CREDITS_PREFAB
     m_Metadata:
       m_Items: []
-  - m_Id: 247574302285824
-    m_Key: Menu/CanvasScreen (WorldPosition)/PanelOptions/Sounds/RightScreen/Language/Dropdown
+  - m_Id: 286267006976
+    m_Key: QUIT_PREFAB
     m_Metadata:
       m_Items: []
-  - m_Id: 247583382953984
-    m_Key: Menu/CanvasScreen (WorldPosition)/PanelOptions/Sounds/RightScreen/Language/Dropdown
-      1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2406838458376192
-    m_Key: Menu/3D UI
+  - m_Id: 314071048192
+    m_Key: CONTROLS_PREFAB
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8696684692774584359
+    rid: 8681525177973473280
   references:
     version: 2
     RefIds:
-    - rid: 8696684692774584359
+    - rid: 8681525177973473280
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1725129197338
+        m_CustomEpoch: 1725702766346
