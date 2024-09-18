@@ -65,12 +65,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MMF_Player SFXPulse;
 
+    [Space(10)]
+    [Header("EndMatch")]
 
+    [SerializeField]
+    private Transform winPosition;
 
+    private GameObject p1Win;
+    private GameObject p2Win;
 
+    [SerializeField]
+    private GameObject winCam;
+
+    [SerializeField]
+    private float timeBeforeActivateEndMenu = 2f;
+
+    [Space(10)]
+    [Header("MainMatch")]
     public static PlayerInput fighter1;
     public static PlayerInput fighter2;
     public TrapController trapController;
+
 
     #region UI Variable
     public GameObject UI;
@@ -145,16 +160,17 @@ public class GameManager : MonoBehaviour
         List<Image> redHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().redHpBarre;
         List<Image> whiteHpBarreP2 = uiInGameManager.hpBarreP2.GetComponent<HpBarre>().whiteHpBarre;
 
-        switch(nbController){
+        switch (nbController)
+        {
             case 0:
                 fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "KeyboardPlayerLeft", Keyboard.current);
                 fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "KeyboardPlayerRight", Keyboard.current);
                 break;
-            case 1 :
+            case 1:
                 fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "KeyboardPlayerLeft", Keyboard.current);
                 fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "Controller", Gamepad.all[0]);
                 break;
-            case 2 :
+            case 2:
                 fighter1 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefab, spawnP1, 1, whiteHpBarreP1, redHpBarreP1, "P1", uiInGameManager.XKeyP2, "Controller", Gamepad.all[0]);
                 fighter2 = InitFighter(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefab, spawnP2, -1, whiteHpBarreP2, redHpBarreP2, "P2", uiInGameManager.XKeyP1, "Controller", Gamepad.all[1]);
                 break;
@@ -195,8 +211,13 @@ public class GameManager : MonoBehaviour
 
         //manage mirror match
         //fighter 1
-        if ((ColorFighter.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == ColorFighter.ColorType.Mirror) {
+        if ((ColorFighter.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1 + "color") == ColorFighter.ColorType.Mirror)
+        {
             fighter1.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
+
+            p1Win = Instantiate(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefabWin, winPosition);
+            p1Win.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].skinMirrorMatch;
+            p1Win.SetActive(false);
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColor);
             fighter1.GetComponent<PlayerController>().SetDashColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColorDash);
             fighter1.GetComponent<PlayerController>().SetHeavyColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].mirrorColorHeavyFeedback);
@@ -206,12 +227,19 @@ public class GameManager : MonoBehaviour
             fighter1.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].originalColor);
             fighter1.GetComponent<PlayerController>().SetDashColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorDash);
             fighter1.GetComponent<PlayerController>().SetHeavyColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].colorHeavyFeedback);
-            
+            p1Win = Instantiate(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP1)].prefabWin, winPosition);
+            p1Win.SetActive(false);
         }
 
         //fighter 2
-        if ((ColorFighter.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == ColorFighter.ColorType.Mirror) {
+        if ((ColorFighter.ColorType)PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2 + "color") == ColorFighter.ColorType.Mirror)
+        {
             fighter2.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
+
+            p2Win = Instantiate(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefabWin, winPosition);
+            p2Win.GetComponentInChildren<SkinnedMeshRenderer>().material = Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].skinMirrorMatch;
+            p2Win.SetActive(false);
+
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColor);
             fighter2.GetComponent<PlayerController>().SetDashColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColorDash);
             fighter2.GetComponent<PlayerController>().SetHeavyColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].mirrorColorHeavyFeedback);
@@ -221,6 +249,8 @@ public class GameManager : MonoBehaviour
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].originalColor);
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].colorDash);
             fighter2.GetComponent<PlayerController>().SetParryColor(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].colorHeavyFeedback);
+            p2Win = Instantiate(Characters.instance.fightersData[PlayerPrefs.GetInt(PlayerPrefConst.GetInstance().playerPrefFighterP2)].prefabWin, winPosition);
+            p2Win.SetActive(false);
         }
     }
 
@@ -337,13 +367,17 @@ public class GameManager : MonoBehaviour
         if (looser.Equals("P1"))
         {
             arenaMusic.PlayFeedbacks();
-            fighter2.transform.position = endMatchPodium.position;
-            fighter2.GetComponent<PlayerController>().fighterCam.SetActive(true);
+            //fighter2.transform.position = endMatchPodium.position;
+            //fighter2.GetComponent<PlayerController>().fighterCam.SetActive(true);
+            p2Win.SetActive(true);
+            winCam.SetActive(true);
         }
         if (looser.Equals("P2"))
         {
-            fighter1.transform.position = endMatchPodium.position;
-            fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
+            //fighter1.transform.position = endMatchPodium.position;
+            //fighter1.GetComponent<PlayerController>().fighterCam.SetActive(true);
+            p1Win.SetActive(true);
+            winCam.SetActive(true);
         }
 
 
@@ -355,11 +389,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         if (looser.Equals("P1"))
-            fighter2.GetComponent<Animator>().SetTrigger("Victory");
+        {
+            //fighter2.GetComponent<Animator>().SetTrigger("Victory");
+            p2Win.GetComponent<Animator>().SetTrigger("Victory");
+        }
         if (looser.Equals("P2"))
-            fighter1.GetComponent<Animator>().SetTrigger("Victory");
+        {
+            //fighter1.GetComponent<Animator>().SetTrigger("Victory");
+            p1Win.GetComponent<Animator>().SetTrigger("Victory");
+        }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(timeBeforeActivateEndMenu);
 
         menuEndFight.SetActive(true);
         EventSystem.current.SetSelectedGameObject(uiInGameManager.rematchButton);

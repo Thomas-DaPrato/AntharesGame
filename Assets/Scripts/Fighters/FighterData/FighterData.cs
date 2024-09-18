@@ -58,6 +58,12 @@ public class FighterData : ScriptableObject
     public string loreEntry;
     public Stat[] stats = new Stat[3];
 
+    [Space(10)]
+
+    [Header("Win Prefab")]
+
+    public GameObject prefabWin;
+
 }
 
 [Serializable]
