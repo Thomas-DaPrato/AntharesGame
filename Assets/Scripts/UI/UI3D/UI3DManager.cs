@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using MoreMountains.Feedbacks;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class ButtonsList
@@ -51,7 +52,9 @@ public class UI3DManager : MonoBehaviour
     public bool on3DMenu = true;
 
     private IEnumerator Start()
-    {
+    {            
+        print(GameObject.Find("MenuMusic"));
+        launchingMenuMusic = GameObject.Find("MenuMusic").GetComponent<MMF_Player>();
         yield return LocalizationSettings.InitializationOperation;
 
         foreach (ButtonsList buttonList in buttonsLang)

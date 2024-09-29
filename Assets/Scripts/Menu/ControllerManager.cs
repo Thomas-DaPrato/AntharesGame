@@ -22,6 +22,7 @@ public class ControllerManager : MonoBehaviour
     public void AssignController()
     {
         Debug.Log("Assign");
+        Debug.Log("ICI : " + gameObject.name);
         int nbController = Gamepad.all.Count;
         switch (nbController)
         {

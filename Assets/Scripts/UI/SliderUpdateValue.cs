@@ -30,20 +30,21 @@ public class SliderUpdateValue : MonoBehaviour
         UI
     }
 
-    // Utilisez cette énumération dans votre classe
+    // Utilisez cette ï¿½numï¿½ration dans votre classe
     public TypeSound selectedOption;
 
 
 
     private void Start()
     {
+        
         GetComponent<Slider>().value = PlayerPrefs.GetFloat($"volume{selectedOption}");
-        textValue.text = (Mathf.Round(PlayerPrefs.GetFloat($"volume{selectedOption}")*10)).ToString();
+        textValue.text = Mathf.Round(PlayerPrefs.GetFloat($"volume{selectedOption}")*10).ToString();
     }
 
 
     public void OnChangeValue() {
-        textValue.text = (Mathf.Round(GetComponent<Slider>().value*10)).ToString();
+        textValue.text = Mathf.Round(GetComponent<Slider>().value*10).ToString();
 
         PlayerPrefs.SetFloat($"volume{selectedOption}", GetComponent<Slider>().value);
 
