@@ -16,7 +16,7 @@ public class InitializationScript : MonoBehaviour
     {
         foreach (GameObject slider in slidersAudio)
         {
-            slider.GetComponent<MMSoundManagerTrackVolumeSlider>().UpdateVolume( PlayerPrefs.GetFloat($"volume{slider.GetComponent<SliderUpdateValue>().selectedOption}"));
+            slider.GetComponent<MMSoundManagerTrackVolumeSlider>().UpdateVolume(PlayerPrefs.GetFloat($"volume{slider.GetComponent<SliderUpdateValue>().selectedOption}"));
         }
         // Wait for the localization system to initialize
         yield return LocalizationSettings.InitializationOperation;
@@ -39,8 +39,10 @@ public class InitializationScript : MonoBehaviour
             QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("QualityValue"));
         }
 
-
-
+        if (PlayerPrefs.GetInt("HapticSettings") == 0)
+        {
+            PlayerPrefs.SetInt("HapticSettings", 1);
+        }
     }
 
 }
