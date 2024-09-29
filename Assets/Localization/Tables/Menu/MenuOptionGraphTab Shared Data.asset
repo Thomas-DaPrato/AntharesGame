@@ -10,35 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: FightPauseMenuTable Shared Data
+  m_Name: MenuOptionGraphTab Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: FightPauseMenuTable
-  m_TableCollectionNameGuidString: 31145e065dd17a842af4c6671143355d
+  m_TableCollectionName: MenuOptionGraphTab
+  m_TableCollectionNameGuidString: c82f5dee83e0438489fef9a950cfb570
   m_Entries:
-  - m_Id: 286984232960
-    m_Key: RESUME_TEXT
+  - m_Id: 12789411840
+    m_Key: QUALITY_TEXT
     m_Metadata:
       m_Items: []
-  - m_Id: 289974771712
-    m_Key: OPTIONS_TEXT
+  - m_Id: 128816443392
+    m_Key: RESOLUTION_TEXT
     m_Metadata:
       m_Items: []
-  - m_Id: 384417914880
-    m_Key: MENUPAUSE_TEXT
+  - m_Id: 637753290752
+    m_Key: HIGHT_TEXT
     m_Metadata:
       m_Items: []
-  - m_Id: 8791408119836672
-    m_Key: CONTROLS_TEXT
+  - m_Id: 687187357696
+    m_Key: MEDIUM_TEXT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 763167174656
+    m_Key: LOW_TEXT
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8696684692774584322
+    rid: 8681525584175300618
   references:
     version: 2
     RefIds:
-    - rid: 8696684692774584322
+    - rid: 8681525584175300618
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1725114890295
+        m_CustomEpoch: 1727270884386

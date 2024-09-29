@@ -14,7 +14,7 @@ public class LangToGameObject
 public class LocalizeMenu3DManager : MonoBehaviour
 {
     [SerializeField]
-    private List<LangToGameObject> counterParts;
+    public List<LangToGameObject> counterParts;
     private IEnumerator Start()
     {
         yield return LocalizationSettings.InitializationOperation;

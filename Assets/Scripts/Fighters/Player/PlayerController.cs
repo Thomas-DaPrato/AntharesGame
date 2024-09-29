@@ -522,7 +522,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!menuPause.GetComponent<OptionsSwapper>().options.activeSelf)
+            if (!menuPause.GetComponent<OptionsSwapper>().options.activeSelf && !menuPause.GetComponent<OptionsSwapper>().commandes.activeSelf)
                 menuPause.GetComponent<MenuPause>().Resume();
             else
                 menuPause.GetComponent<OptionsSwapper>().OnReturn(context);
@@ -752,7 +752,7 @@ public class PlayerController : MonoBehaviour
                 {
                     DamagedCesarHeavySound.PlayFeedbacks();
                 }
-                Debug.Log("après");*/
+                Debug.Log("aprï¿½s");*/
                 heavyUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;
                 heavyUIFeedback.PlayFeedbacks();
                 charaUIFeedback.InitialDelay = GetFighterData().heavyAttack.hitFreezeTime;

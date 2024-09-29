@@ -10,6 +10,7 @@ public class OptionsSwapper : MonoBehaviour
     private List<GameObject> optionsPannel;
 
     public GameObject options;
+    public GameObject commandes;
 
     public DisplayUIButtonManager UIManager;
 
@@ -20,7 +21,10 @@ public class OptionsSwapper : MonoBehaviour
     private EventSystem eventSystem;
 
     [SerializeField]
-    private GameObject objectSelectedOnReturn;
+    private GameObject objectSelectedOnReturnOption;
+
+    [SerializeField]
+    private GameObject objectSelectedOnReturnCommandes;
 
     private int currentPannel;
 
@@ -54,10 +58,16 @@ public class OptionsSwapper : MonoBehaviour
     }
 
    public void OnReturn(InputAction.CallbackContext context) {
+        print(context.performed);
         if (context.performed && options.activeSelf) {
             menuPause.SetActive(true);
             options.SetActive(false);
-            eventSystem.SetSelectedGameObject(objectSelectedOnReturn);
+            eventSystem.SetSelectedGameObject(objectSelectedOnReturnOption);
+        }
+        if (context.performed && commandes.activeSelf) {
+            menuPause.SetActive(true);
+            commandes.SetActive(false);
+            eventSystem.SetSelectedGameObject(objectSelectedOnReturnCommandes);
         }
     }
 
