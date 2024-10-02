@@ -9,10 +9,10 @@ using DG.Tweening;
 public class TransitionControls : MonoBehaviour
 {
     [SerializeField]
-    private Image[] player1Image;
+    private RectTransform player1Screen;
 
     [SerializeField]
-    private Image[] player2Image;
+    private RectTransform player2Screen;
 
     [SerializeField]
     private float delay = 2.5f;
@@ -21,14 +21,16 @@ public class TransitionControls : MonoBehaviour
     private float speedAppearance = 0.5f;
 
     [SerializeField]
-    private Vector3 posUp;
+    private Vector2 posUp;
     [SerializeField]
-    private Vector3 posMid;
+    private Vector2 posMid;
     [SerializeField]
-    private Vector3 posDown;
+    private Vector2 posDown;
+    [SerializeField]
+    private Ease ease;
     void Start()
     {
-        
+        StartCoroutine(DoAfterDelay(delay, MoveToP2));
     }
 
     public IEnumerator DoAfterDelay(float delaySeconds, System.Action thingToDo)
@@ -37,44 +39,21 @@ public class TransitionControls : MonoBehaviour
         thingToDo();
     }
 
-    private void Player1Disapear()
+    private void MoveToP2()
     {
-        foreach (Image image in player1Image)
-        {
-            image.DOFillAmount(0, speedAppearance).OnComplete(() =>
-            {
-                image.gameObject.SetActive(false);
-                Player2Appear();
-            });
-        }
-        StartCoroutine(DoAfterDelay(delay, Player2Disapear));
+        //player1Screen.DOMoveY(posUp.y, speedAppearance);
+        //player2Screen.DOMoveY(posMid.y, speedAppearance);
+        player1Screen.DOAnchorPosY(posDown.y, speedAppearance).SetEase(ease);
+        player2Screen.DOAnchorPosY(posMid.y, speedAppearance).SetEase(ease);
+
+        StartCoroutine(DoAfterDelay(delay, MoveToP1));
     }
-    private void Player1Appear()
+    private void MoveToP1()
     {
-        foreach (Image image in player1Image)
-        {
-            image.gameObject.SetActive(true);
-            image.DOFillAmount(1, speedAppearance);
-        }
-    }
-    private void Player2Disapear()
-    {
-        foreach (Image image in player2Image)
-        {
-            image.DOFillAmount(0, speedAppearance).OnComplete(() =>
-            {
-                image.gameObject.SetActive(false);
-                Player1Appear();
-            });
-        }
-        StartCoroutine(DoAfterDelay(delay, Player1Disapear));
-    }
-    private void Player2Appear()
-    {
-        foreach (Image image in player2Image)
-        {
-            image.gameObject.SetActive(true);
-            image.DOFillAmount(1, speedAppearance);
-        }
+        //player1Screen.DOMoveY(posMid.y, speedAppearance);
+        //player2Screen.DOMoveY(posDown.y, speedAppearance);
+        player1Screen.DOAnchorPosY(posMid.y, speedAppearance).SetEase(ease);
+        player2Screen.DOAnchorPosY(posUp.y, speedAppearance).SetEase(ease);
+        StartCoroutine(DoAfterDelay(delay, MoveToP2));
     }
 }
