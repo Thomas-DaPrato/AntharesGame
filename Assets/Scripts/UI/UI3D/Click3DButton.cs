@@ -8,6 +8,8 @@ public class Click3DButton : MonoBehaviour
     private GameObject panel;
     [SerializeField]
     private GameObject returnButtonUI;
+    [SerializeField]
+    private ControllerManager controllerManager;
 
     public bool isQuitButton;
 
@@ -15,6 +17,7 @@ public class Click3DButton : MonoBehaviour
     {
         panel.SetActive(true);
         returnButtonUI.SetActive(true);
+        controllerManager.AutoSelect();
     }
 
     public void HidePanel()

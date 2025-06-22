@@ -12,6 +12,7 @@ public class ControllerManager : MonoBehaviour
     public PlayerInput p2;
 
     public bool isSameInput;
+    public bool autoSelect;
     public Selectable selectableDefault;
 
     public void OnEnable()
@@ -53,10 +54,16 @@ public class ControllerManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (EventSystem.current.currentSelectedGameObject == null && GetComponent<OptionsSwapper>())
+        if (EventSystem.current.currentSelectedGameObject == null && autoSelect)
         {
             selectableDefault.Select();
         }
+    }
+
+    public void AutoSelect()
+    {
+        if (autoSelect)
+            selectableDefault.Select();
     }
 
 }

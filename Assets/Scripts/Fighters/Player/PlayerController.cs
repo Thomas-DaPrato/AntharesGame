@@ -410,8 +410,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnMiddleAttack(InputAction.CallbackContext context)
     {
+        print(!isAttacking && !isStun);
         if (context.performed && !isAttacking && !isStun)
         {
+            print("here");
             isAttacking = true;
             if (isGrounded)
             {
