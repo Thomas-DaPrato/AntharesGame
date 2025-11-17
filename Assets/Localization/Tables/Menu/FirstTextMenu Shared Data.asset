@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: FirstTextTable Shared Data
+  m_Name: FirstTextMenu Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: FirstTextTable
-  m_TableCollectionNameGuidString: e51ae68acf7ffcb47b5a560b62c9735b
-  m_Entries: []
+  m_TableCollectionName: FirstTextMenu
+  m_TableCollectionNameGuidString: 453d918b1a77b2c4fb9b0c78a2a610eb
+  m_Entries:
+  - m_Id: 8566333440
+    m_Key: HOMMAGE_TEXT
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 1067550324591689730
+    rid: 1067550325652062208
   references:
     version: 2
     RefIds:
-    - rid: 1067550324591689730
+    - rid: 1067550325652062208
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1763396254411
+        m_CustomEpoch: 1763399958198

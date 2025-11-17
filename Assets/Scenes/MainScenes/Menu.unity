@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012486404, g: 0.026314734, b: 0.02708603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2724,6 +2723,7 @@ MonoBehaviour:
     RefIds:
     - rid: 7726803804118319106
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &95657050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3536,6 +3536,7 @@ MonoBehaviour:
     RefIds:
     - rid: 7726803804118319106
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &120818450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4824,6 +4825,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -10710,6 +10712,7 @@ MonoBehaviour:
     RefIds:
     - rid: 7726803804118319106
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &357847863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17995,7 +17998,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -23086,6 +23089,7 @@ MonoBehaviour:
     RefIds:
     - rid: 7726803804118319106
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &794816281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25581,6 +25585,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -32909,6 +32914,9 @@ MonoBehaviour:
   - {fileID: 2060463361}
   - {fileID: 282016903}
   - {fileID: 1696452553}
+  allDeviceImageHandlerFight: []
+  allDeviceColorHandlerFight: []
+  state: 0
 --- !u!4 &950151712
 Transform:
   m_ObjectHideFlags: 0
@@ -39794,6 +39802,7 @@ MonoBehaviour:
     RefIds:
     - rid: 7726803804118319106
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &1208457147
 MonoBehaviour:
   m_ObjectHideFlags: 0
