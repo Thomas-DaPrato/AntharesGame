@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
+using UnityEngine.Localization.Settings;
 
 [Serializable]
 public enum Controller
@@ -15,6 +17,12 @@ public enum Player
 {
     P1,
     P2
+}
+[Serializable]
+public enum State
+{
+    Menu,
+    Fight
 }
 public class DeviceManager : MonoBehaviour
 {
@@ -48,6 +56,76 @@ public class DeviceManager : MonoBehaviour
 
     public Controller Player2Controller;
 
+    public bool fr = false;
+    public List<DeviceImageHandler> allDeviceImageHandlerMenu;
+    public List<DeviceImageHandler> allDeviceImageHandlerFight;
+    public List<DeviceColorHandler> allDeviceColorHandlerFight;
+    public State state = State.Menu;
+
+    private IEnumerator Start()
+    {
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocaleChanged += RefreshImageLocal;
+        RefreshImageLocal(LocalizationSettings.SelectedLocale);
+    }
+
+    private void OnEnable()
+    {
+        switch (state)
+        {
+            case State.Menu:
+                foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerMenu)
+                {
+                    deviceImageHandlerhandler.ToDoOnEnable();
+                }
+                break;
+            case State.Fight:
+                foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerFight)
+                {
+                    deviceImageHandlerhandler.ToDoOnEnable();
+                }
+                foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
+                {
+                    deviceColorHandlerhandler.ToDoOnEnable();
+                }
+                break;
+        }
+
+    }
+    private void OnDisable()
+    {
+        switch (state)
+        {
+            case State.Menu:
+                foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerMenu)
+                {
+                    deviceImageHandlerhandler.ToDoOnDisable();
+                }
+                break;
+            case State.Fight:
+                foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerFight)
+                {
+                    deviceImageHandlerhandler.ToDoOnDisable();
+                }
+                foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
+                {
+                    deviceColorHandlerhandler.ToDoOnDisable();
+                }
+                break;
+        }
+    }
+
+    public void ChangeStateToMenu()
+    {
+        OnDisable();
+        state = State.Menu;
+    }
+
+    public void ChangeStateToFight()
+    {
+        OnDisable();
+        state = State.Fight;
+    }
 
     public void ChangeController(Player player, Controller controller)
     {
@@ -63,6 +141,19 @@ public class DeviceManager : MonoBehaviour
                 connectedController2Actions.Invoke(Player2Controller);
                 break;
         }
+    }
+    private void RefreshImageLocal(UnityEngine.Localization.Locale newLocal)
+    {
+        if (newLocal.Identifier.Code.ToString() == "fr")
+        {
+            fr = true;
+        }
+        else
+        {
+            fr = false;
+        }
+        ChangeController(Player.P1, Player1Controller);
+        ChangeController(Player.P2, Player2Controller);
     }
 
     /*void Update()

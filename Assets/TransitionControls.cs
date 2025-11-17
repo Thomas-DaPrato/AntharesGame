@@ -28,9 +28,17 @@ public class TransitionControls : MonoBehaviour
     private Vector2 posDown;
     [SerializeField]
     private Ease ease;
-    void Start()
+    private bool atP2 = false;
+    void OnEnable()
     {
-        StartCoroutine(DoAfterDelay(delay, MoveToP2));
+        if (atP2)
+        {
+            StartCoroutine(DoAfterDelay(delay, MoveToP1));
+        }
+        else
+        {
+            StartCoroutine(DoAfterDelay(delay, MoveToP2));
+        }
     }
 
     public IEnumerator DoAfterDelay(float delaySeconds, System.Action thingToDo)
@@ -45,7 +53,7 @@ public class TransitionControls : MonoBehaviour
         //player2Screen.DOMoveY(posMid.y, speedAppearance);
         player1Screen.DOAnchorPosY(posDown.y, speedAppearance).SetEase(ease);
         player2Screen.DOAnchorPosY(posMid.y, speedAppearance).SetEase(ease);
-
+        atP2 = true;
         StartCoroutine(DoAfterDelay(delay, MoveToP1));
     }
     private void MoveToP1()
@@ -54,6 +62,7 @@ public class TransitionControls : MonoBehaviour
         //player2Screen.DOMoveY(posDown.y, speedAppearance);
         player1Screen.DOAnchorPosY(posMid.y, speedAppearance).SetEase(ease);
         player2Screen.DOAnchorPosY(posUp.y, speedAppearance).SetEase(ease);
+        atP2 = false;
         StartCoroutine(DoAfterDelay(delay, MoveToP2));
     }
 }

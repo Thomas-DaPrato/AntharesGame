@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 481249432757954960}
   - component: {fileID: 2784760220448117027}
   - component: {fileID: 7483371415571728933}
+  - component: {fileID: 3205775627170325688}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -76,6 +77,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3205775627170325688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180541010879562769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3763ef3114a03664c9dc3301d1f85496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 7483371415571728933}
+  colorPlaystation: {r: 0.2509804, g: 0.8862745, b: 0.627451, a: 1}
+  colorXbox: {r: 1, g: 0.8392157, b: 0, a: 1}
+  colorPC: {r: 1, g: 0.8392157, b: 0, a: 1}
+  colorSwitch: {r: 0, g: 0.4, b: 1, a: 1}
 --- !u!1 &1253412030584955351
 GameObject:
   m_ObjectHideFlags: 0
@@ -7948,6 +7967,7 @@ GameObject:
   - component: {fileID: 2894318138351552029}
   - component: {fileID: 4254067464455705020}
   - component: {fileID: 2016809737642479577}
+  - component: {fileID: 1804456389381598062}
   m_Layer: 5
   m_Name: ButtonX
   m_TagString: Untagged
@@ -8028,6 +8048,35 @@ MonoBehaviour:
   darkenX: {fileID: 0}
   notDarkenX: {fileID: 0}
   supportKey: {fileID: 4254067464455705020}
+  deviceImageCellHandler: {fileID: 0}
+--- !u!114 &1804456389381598062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112373995547086750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79442b4dad9621469cee7fdec6744ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 4254067464455705020}
+  spritePlaystation: {fileID: 21300000, guid: e83085bf8be53664caae99e9b84e4824, type: 3}
+  sizePlaystation: {x: 50, y: 50}
+  spriteXbox: {fileID: 21300000, guid: fcae2ca1fdf926240b557ebc95c9a0d4, type: 3}
+  sizeXbox: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: fba5fbae4c7260f4ca12da76129be05e, type: 3}
+  sizePC: {x: 50, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: 7a98b224d4a6c564d8cc9e0abc6eb5da, type: 3}
+  sizeSwitch: {x: 50, y: 50}
+  darkenSpritePlaystation: {fileID: 21300000, guid: 0e8020e51f22a7a4c89d804cd5b8109e, type: 3}
+  darkenSpriteXbox: {fileID: 21300000, guid: 30a93c57b1b403b40b896dcfdba8b88e, type: 3}
+  darkenSpritePCAzer: {fileID: 0}
+  darkenSpritePCQwer: {fileID: 21300000, guid: f4c33e4ecd6f24047ad27dbee5b941d9, type: 3}
+  darkenSpriteSwitch: {fileID: 21300000, guid: 4abb71d9857cbd644898044e72ccf219, type: 3}
 --- !u!1 &3140051994391268816
 GameObject:
   m_ObjectHideFlags: 0
@@ -8592,6 +8641,7 @@ GameObject:
   - component: {fileID: 7213564167304613802}
   - component: {fileID: 6757288710332157347}
   - component: {fileID: 8208450642546153238}
+  - component: {fileID: 5936694162550272567}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -8640,7 +8690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8657,6 +8707,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5936694162550272567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399602990121338932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3763ef3114a03664c9dc3301d1f85496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 8208450642546153238}
+  colorPlaystation: {r: 1, g: 0.4, b: 0.4, a: 1}
+  colorXbox: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
+  colorPC: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
+  colorSwitch: {r: 0.003921569, g: 0.87843144, b: 0.45098042, a: 1}
 --- !u!1 &3462552492566563928
 GameObject:
   m_ObjectHideFlags: 0
@@ -9442,6 +9510,7 @@ GameObject:
   - component: {fileID: 6376794298857106445}
   - component: {fileID: 3854080811815182998}
   - component: {fileID: 5336553583666257671}
+  - component: {fileID: 9222610728787145242}
   m_Layer: 5
   m_Name: Button B
   m_TagString: Untagged
@@ -9507,6 +9576,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9222610728787145242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129790851321353243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 5336553583666257671}
+  spritePlaystation: {fileID: 21300000, guid: 8c6fced68d6104047991d5a917bd903f, type: 3}
+  sizePlaystation: {x: 50, y: 50}
+  spriteXbox: {fileID: 21300000, guid: d03ee08d74259654da3de5f11a6af02c, type: 3}
+  sizeXbox: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 9c19baca3fec3ff47b6b4b57188d41a1, type: 3}
+  sizePC: {x: 50, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: d03ee08d74259654da3de5f11a6af02c, type: 3}
+  sizeSwitch: {x: 50, y: 50}
 --- !u!1 &4442746163910183145
 GameObject:
   m_ObjectHideFlags: 0
@@ -10408,6 +10500,7 @@ GameObject:
   - component: {fileID: 8748427622826325159}
   - component: {fileID: 830695223606130252}
   - component: {fileID: 6153977068511622580}
+  - component: {fileID: 7994819440805881423}
   m_Layer: 5
   m_Name: Button Y
   m_TagString: Untagged
@@ -10473,6 +10566,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7994819440805881423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322034338283280433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 6153977068511622580}
+  spritePlaystation: {fileID: 21300000, guid: 147939f97d44f0647bdf0d684759643d, type: 3}
+  sizePlaystation: {x: 50, y: 50}
+  spriteXbox: {fileID: 21300000, guid: 7a98b224d4a6c564d8cc9e0abc6eb5da, type: 3}
+  sizeXbox: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 48b91a720cf4d3840aab3009016d952a, type: 3}
+  sizePC: {x: 50, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: fcae2ca1fdf926240b557ebc95c9a0d4, type: 3}
+  sizeSwitch: {x: 50, y: 50}
 --- !u!1 &5661708614171623304
 GameObject:
   m_ObjectHideFlags: 0
@@ -15785,6 +15901,8 @@ GameObject:
   - component: {fileID: 4958054314877345272}
   - component: {fileID: 6930771144090424268}
   - component: {fileID: 5698944175142045455}
+  - component: {fileID: 3497863312090810271}
+  - component: {fileID: 7319652162238819746}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -15833,7 +15951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15850,6 +15968,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3497863312090810271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664901049877241286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3763ef3114a03664c9dc3301d1f85496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 8208450642546153238}
+  colorPlaystation: {r: 1, g: 0.4, b: 0.4, a: 1}
+  colorXbox: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
+  colorPC: {r: 0.9843137, g: 0.15686275, b: 0.15686275, a: 1}
+  colorSwitch: {r: 0.003921569, g: 0.87843144, b: 0.45098042, a: 1}
+--- !u!114 &7319652162238819746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664901049877241286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3763ef3114a03664c9dc3301d1f85496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 0
+  image: {fileID: 0}
+  colorPlaystation: {r: 0, g: 0, b: 0, a: 0}
+  colorXbox: {r: 0, g: 0, b: 0, a: 0}
+  colorPC: {r: 0, g: 0, b: 0, a: 0}
+  colorSwitch: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8892661402285748971
 GameObject:
   m_ObjectHideFlags: 0

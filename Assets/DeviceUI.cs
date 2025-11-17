@@ -29,16 +29,6 @@ public class DeviceUI : MonoBehaviour
     {
         foreach (DeviceImageHandler action in deviceImageHandlers)
             action.ChangeImage(Controller.Xbox);
-
-        /*switch (player)
-        {
-            case Player.P1:
-                DeviceManager.Instance.connectedController1Actions.Invoke(Controller.Xbox);
-                break;
-            case Player.P2:
-                DeviceManager.Instance.connectedController2Actions.Invoke(Controller.Xbox);
-                break;
-    }   */
     }
 
     public void LeftButtonAction()

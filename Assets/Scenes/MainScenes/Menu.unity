@@ -4518,7 +4518,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: 02204653a9edd6348a8b4a9afd583496, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 02204653a9edd6348a8b4a9afd583496, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 0bfeb14431365314a839ba0bd894cb71, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -4753,6 +4754,12 @@ GameObject:
   - component: {fileID: 150641588}
   - component: {fileID: 150641587}
   - component: {fileID: 150641586}
+  - component: {fileID: 150641591}
+  - component: {fileID: 150641590}
+  - component: {fileID: 150641592}
+  - component: {fileID: 150641593}
+  - component: {fileID: 150641595}
+  - component: {fileID: 150641594}
   m_Layer: 5
   m_Name: Canvas (ScreenPosition)
   m_TagString: Untagged
@@ -4836,13 +4843,151 @@ RectTransform:
   - {fileID: 8627045}
   - {fileID: 722823347}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &150641590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 1004193030}
+  spritePlaystation: {fileID: 21300000, guid: d493b2423d801834397f9f28714e9e21, type: 3}
+  sizePlaystation: {x: 100, y: 100}
+  spriteXbox: {fileID: 21300000, guid: d5e6bd36d1bb7124b98ad54a37af1518, type: 3}
+  sizeXbox: {x: 100, y: 100}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: dd3e24d7d83c4fb45b7bfaac923935a4, type: 3}
+  sizePC: {x: 100, y: 100}
+  spriteSwitch: {fileID: 21300000, guid: d493b2423d801834397f9f28714e9e21, type: 3}
+  sizeSwitch: {x: 100, y: 100}
+--- !u!114 &150641591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 1135731431}
+  spritePlaystation: {fileID: 21300000, guid: e5d111470c9cf0846bda995f87b08048, type: 3}
+  sizePlaystation: {x: 100, y: 100}
+  spriteXbox: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
+  sizeXbox: {x: 100, y: 100}
+  spritePCAzer: {fileID: 21300000, guid: bc00f44971ef61545882ab45aefa3fd1, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 0e8c5e1e01f6b3e4ba6c6d66fa409e65, type: 3}
+  sizePC: {x: 147, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
+  sizeSwitch: {x: 100, y: 100}
+--- !u!114 &150641592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 133213621}
+  spritePlaystation: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
+  sizePlaystation: {x: 128, y: 100}
+  spriteXbox: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
+  sizeXbox: {x: 128, y: 100}
+  spritePCAzer: {fileID: 21300000, guid: 8562675a44cca284cbfc4ba67da9238a, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 8dfc5e7595a04b54682e1870a87e8f28, type: 3}
+  sizePC: {x: 154, y: 100}
+  spriteSwitch: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
+  sizeSwitch: {x: 128, y: 100}
+--- !u!114 &150641593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 1337143374}
+  spritePlaystation: {fileID: 21300000, guid: b5edd1ae95dc63c48add64afc3624f82, type: 3}
+  sizePlaystation: {x: 100, y: 100}
+  spriteXbox: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
+  sizeXbox: {x: 100, y: 100}
+  spritePCAzer: {fileID: 21300000, guid: 636ee333871898e4b943a866dda19eeb, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 540bad3b5cc8f0c4facc4b488322625b, type: 3}
+  sizePC: {x: 131.5, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
+  sizeSwitch: {x: 100, y: 100}
+--- !u!114 &150641594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 400686557}
+  spritePlaystation: {fileID: 21300000, guid: 02debafa124061d4ea45e622bb2b40b9, type: 3}
+  sizePlaystation: {x: 100, y: 80}
+  spriteXbox: {fileID: 21300000, guid: 60b6a091efe396442911a15151e235dd, type: 3}
+  sizeXbox: {x: 100, y: 80}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 735307f648c1caa498ccbedf9468b882, type: 3}
+  sizePC: {x: 100, y: 100}
+  spriteSwitch: {fileID: 21300000, guid: 60b6a091efe396442911a15151e235dd, type: 3}
+  sizeSwitch: {x: 100, y: 80}
+--- !u!114 &150641595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150641585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: 1
+  image: {fileID: 2002132206}
+  spritePlaystation: {fileID: 21300000, guid: 38aa6587cc2334643a75ddb53250aee1, type: 3}
+  sizePlaystation: {x: 100, y: 80}
+  spriteXbox: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
+  sizeXbox: {x: 100, y: 80}
+  spritePCAzer: {fileID: 21300000, guid: eb7d465c8fed6c6439f96b391f1ecdb6, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 513b0a0d6119af346b4398b00a3b463f, type: 3}
+  sizePC: {x: 100, y: 100}
+  spriteSwitch: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
+  sizeSwitch: {x: 100, y: 80}
 --- !u!1 &151483942
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,7 +6468,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 08f9a0795c42bf641916217c6f1c9f18, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08f9a0795c42bf641916217c6f1c9f18, type: 3}
       propertyPath: m_LocalScale.x
@@ -6646,7 +6791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 99, y: -38.5}
+  m_AnchoredPosition: {x: 92.75, y: -38.5}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &219326360
@@ -6827,7 +6972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85.25, y: -38.5}
+  m_AnchoredPosition: {x: 92.75, y: -38.5}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225367374
@@ -7513,7 +7658,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3900787d737806d4cb422517ef050eda, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3900787d737806d4cb422517ef050eda, type: 3}
       propertyPath: m_LocalScale.x
@@ -7680,7 +7825,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: ab9be748d6c78cd4588f1439ce8c483a, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: ab9be748d6c78cd4588f1439ce8c483a, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -7853,8 +7999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 223, y: -38.5}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 216.75, y: -38.5}
+  m_SizeDelta: {x: 62.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275689624
 MonoBehaviour:
@@ -7876,7 +8022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4cfe80609ccf73d469bbd932f823d5fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7908,14 +8054,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: 0
   image: {fileID: 275689624}
-  spritePlaystation: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizePlaystation: {x: 77.5, y: 50}
-  spriteXbox: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizeXbox: {x: 77.5, y: 50}
-  spritePC: {fileID: 21300000, guid: 58021a37bc24f2a45b799edc3f01e6f9, type: 3}
-  sizePC: {x: 50, y: 50}
-  spriteSwitch: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizeSwitch: {x: 77.5, y: 50}
+  spritePlaystation: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizePlaystation: {x: 62.5, y: 50}
+  spriteXbox: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizeXbox: {x: 62.5, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 333a232aae5f5e24c94ab9bfa8b0e533, type: 3}
+  sizePC: {x: 77, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizeSwitch: {x: 62.5, y: 50}
 --- !u!1 &278593564
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,6 +8457,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281574939}
   m_CullTransparentMesh: 1
+--- !u!114 &282016903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5978015332642447416, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 4926591524774610827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &286991780
 GameObject:
   m_ObjectHideFlags: 0
@@ -9340,7 +9498,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &325067513
 GameObject:
@@ -9951,7 +10109,7 @@ Transform:
   - {fileID: 1939476529}
   - {fileID: 2035018672}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &346755210
 MonoBehaviour:
@@ -14375,7 +14533,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 66.879, y: 0, z: -28.789}
 --- !u!114 &483272049
 MonoBehaviour:
@@ -17883,7 +18041,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &631003762
 MonoBehaviour:
@@ -19775,7 +19933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6334230026456060282, guid: cb384e531b4994e439d0ff9d5f5ce78b, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6334230026456060282, guid: cb384e531b4994e439d0ff9d5f5ce78b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21659,8 +21817,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 209.25, y: -38.5}
-  m_SizeDelta: {x: 77.5, y: 50}
+  m_AnchoredPosition: {x: 216.75, y: -38.5}
+  m_SizeDelta: {x: 62.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739201236
 MonoBehaviour:
@@ -21682,7 +21840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21714,14 +21872,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: 1
   image: {fileID: 739201236}
-  spritePlaystation: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizePlaystation: {x: 77.5, y: 50}
-  spriteXbox: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizeXbox: {x: 77.5, y: 50}
-  spritePC: {fileID: 21300000, guid: 4869febc82dbd5643ab42cf50dc20ef4, type: 3}
-  sizePC: {x: 50, y: 50}
-  spriteSwitch: {fileID: 21300000, guid: a59ad78c567f4544f98172920cf162a2, type: 3}
-  sizeSwitch: {x: 77.5, y: 50}
+  spritePlaystation: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizePlaystation: {x: 62.5, y: 50}
+  spriteXbox: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizeXbox: {x: 62.5, y: 50}
+  spritePCAzer: {fileID: 21300000, guid: 8562675a44cca284cbfc4ba67da9238a, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 8dfc5e7595a04b54682e1870a87e8f28, type: 3}
+  sizePC: {x: 77, y: 50}
+  spriteSwitch: {fileID: 21300000, guid: 3ac12ee560fa9e14783c8ba013aea30f, type: 3}
+  sizeSwitch: {x: 62.5, y: 50}
 --- !u!1 &739970398
 GameObject:
   m_ObjectHideFlags: 0
@@ -21900,7 +22059,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: f6eb37601b232fc439066fbeeed549b5, type: 3}
+  spritePCAzer: {fileID: 21300000, guid: f6eb37601b232fc439066fbeeed549b5, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: f898449f02c7cb54f818bd2c314c3dd5, type: 3}
   sizePC: {x: 73.75, y: 25}
   spriteSwitch: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -22250,7 +22410,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &770705338
 PrefabInstance:
@@ -25442,7 +25602,7 @@ RectTransform:
   - {fileID: 682551125}
   - {fileID: 1781018548}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25776,7 +25936,7 @@ Transform:
   - {fileID: 496723911}
   - {fileID: 885854219}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882507696
 GameObject:
@@ -26175,7 +26335,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: b9ee94fff8d278f46abc7b0787411925, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: b9ee94fff8d278f46abc7b0787411925, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 0bfeb14431365314a839ba0bd894cb71, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -27100,7 +27261,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &915905703
 Mesh:
@@ -32380,7 +32541,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928457229
 GameObject:
@@ -32714,6 +32875,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Controller: 0
   Player2Controller: 0
+  fr: 0
+  allDeviceImageHandlerMenu:
+  - {fileID: 150641591}
+  - {fileID: 150641590}
+  - {fileID: 150641592}
+  - {fileID: 892145327}
+  - {fileID: 1309801482}
+  - {fileID: 269313946}
+  - {fileID: 739201238}
+  - {fileID: 145106388}
+  - {fileID: 1317729635}
+  - {fileID: 1496761170}
+  - {fileID: 275689626}
+  - {fileID: 740506651}
+  - {fileID: 1789523959}
+  - {fileID: 1803807288}
+  - {fileID: 1888388562}
+  - {fileID: 1883902429}
+  - {fileID: 1230679284}
+  - {fileID: 1665043839}
+  - {fileID: 2068186799}
+  - {fileID: 1179825446}
+  - {fileID: 2058117074}
+  - {fileID: 1254773050}
+  - {fileID: 1739132184}
+  - {fileID: 1057608480}
+  - {fileID: 1433084234}
+  - {fileID: 150641593}
+  - {fileID: 150641595}
+  - {fileID: 150641594}
+  - {fileID: 4926591524774610828}
+  - {fileID: 2060463361}
+  - {fileID: 282016903}
+  - {fileID: 1696452553}
 --- !u!4 &950151712
 Transform:
   m_ObjectHideFlags: 0
@@ -32727,7 +32922,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &951378394
 PrefabInstance:
@@ -35386,7 +35581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d562bb94bb35ed34ab1387ac487be853, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35418,13 +35613,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: 1
   image: {fileID: 1057608478}
-  spritePlaystation: {fileID: 21300000, guid: 9896d6311d811244fb8b555751c90dd4, type: 3}
+  spritePlaystation: {fileID: 21300000, guid: f2c3a344c60caf24c983aeb2d0e83b6c, type: 3}
   sizePlaystation: {x: 50, y: 50}
-  spriteXbox: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
+  spriteXbox: {fileID: 21300000, guid: d562bb94bb35ed34ab1387ac487be853, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: 58021a37bc24f2a45b799edc3f01e6f9, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 35946cab53caeec41b9150500c96d87c, type: 3}
   sizePC: {x: 50, y: 50}
-  spriteSwitch: {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  spriteSwitch: {fileID: 21300000, guid: b3b72b70ed7cf4c4a83b9a960632ed0b, type: 3}
   sizeSwitch: {x: 50, y: 50}
 --- !u!1 &1060956408
 GameObject:
@@ -35592,7 +35788,7 @@ Transform:
   - {fileID: 162009584}
   - {fileID: 2009242772}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070695824
 GameObject:
@@ -37833,7 +38029,7 @@ Transform:
   - {fileID: 28840492}
   - {fileID: 553471330}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145224112
 GameObject:
@@ -38312,7 +38508,7 @@ Transform:
   - {fileID: 1633519319}
   - {fileID: 1211222842}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1163657595
 MonoBehaviour:
@@ -38701,8 +38897,9 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 40}
   spriteXbox: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
   sizeXbox: {x: 50, y: 40}
-  spritePC: {fileID: 21300000, guid: 61219b5bfcd593d42ada3fb370c8abfe, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 61219b5bfcd593d42ada3fb370c8abfe, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
   sizeSwitch: {x: 50, y: 40}
 --- !u!1 &1184400331
@@ -40386,8 +40583,9 @@ MonoBehaviour:
   sizePlaystation: {x: 64, y: 50}
   spriteXbox: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
   sizeXbox: {x: 64, y: 50}
-  spritePC: {fileID: 21300000, guid: eb7d465c8fed6c6439f96b391f1ecdb6, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 21300000, guid: 8562675a44cca284cbfc4ba67da9238a, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: 8dfc5e7595a04b54682e1870a87e8f28, type: 3}
+  sizePC: {x: 77, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
   sizeSwitch: {x: 64, y: 50}
 --- !u!1001 &1234250853
@@ -40679,7 +40877,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1247704213
 AudioSource:
@@ -41183,8 +41381,9 @@ MonoBehaviour:
   sizePlaystation: {x: 40, y: 60}
   spriteXbox: {fileID: 21300000, guid: e9c0160041a28d144ae6c5e53d43ee19, type: 3}
   sizeXbox: {x: 40, y: 60}
-  spritePC: {fileID: 21300000, guid: 19e04d3ab5e99074eacb107c6ee45d8a, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 19e04d3ab5e99074eacb107c6ee45d8a, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: e9c0160041a28d144ae6c5e53d43ee19, type: 3}
   sizeSwitch: {x: 40, y: 60}
 --- !u!4 &1262818553 stripped
@@ -42330,7 +42529,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: 0bfeb14431365314a839ba0bd894cb71, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: 8cab90e72491ef34eb627264a5fe7711, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 8cab90e72491ef34eb627264a5fe7711, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -42625,7 +42825,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: 0bfeb14431365314a839ba0bd894cb71, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: b64839b8c3a5c914896a063c2b9cf86e, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: b64839b8c3a5c914896a063c2b9cf86e, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -43382,7 +43583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1374509710
 MonoBehaviour:
@@ -44259,13 +44460,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: 0
   image: {fileID: 1433084235}
-  spritePlaystation: {fileID: 21300000, guid: 9896d6311d811244fb8b555751c90dd4, type: 3}
+  spritePlaystation: {fileID: 21300000, guid: f2c3a344c60caf24c983aeb2d0e83b6c, type: 3}
   sizePlaystation: {x: 50, y: 50}
-  spriteXbox: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
+  spriteXbox: {fileID: 21300000, guid: d562bb94bb35ed34ab1387ac487be853, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: 58021a37bc24f2a45b799edc3f01e6f9, type: 3}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 35946cab53caeec41b9150500c96d87c, type: 3}
   sizePC: {x: 50, y: 50}
-  spriteSwitch: {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  spriteSwitch: {fileID: 21300000, guid: b3b72b70ed7cf4c4a83b9a960632ed0b, type: 3}
   sizeSwitch: {x: 50, y: 50}
 --- !u!114 &1433084235
 MonoBehaviour:
@@ -44287,7 +44489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d562bb94bb35ed34ab1387ac487be853, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -45330,7 +45532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1487344812
 GameObject:
@@ -45557,7 +45759,8 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 50}
   spriteXbox: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: ccb189b08a180f74a8089794ce0bb6aa, type: 3}
+  spritePCAzer: {fileID: 21300000, guid: 437f7a9d67d64514582c290ff8593dc2, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: ccb189b08a180f74a8089794ce0bb6aa, type: 3}
   sizePC: {x: 50, y: 50}
   spriteSwitch: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
   sizeSwitch: {x: 50, y: 50}
@@ -47646,7 +47849,7 @@ Transform:
   - {fileID: 1966247357}
   - {fileID: 1590376116}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588783655
 GameObject:
@@ -49220,13 +49423,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   P1: 0
-  image: {fileID: 145106386}
+  image: {fileID: 1665043837}
   spritePlaystation: {fileID: 21300000, guid: e5d111470c9cf0846bda995f87b08048, type: 3}
   sizePlaystation: {x: 50, y: 50}
-  spriteXbox: {fileID: 21300000, guid: 2a7f24eedf1d62e4ea078b525a606d28, type: 3}
+  spriteXbox: {fileID: 21300000, guid: ef68292c017e8244fb3c926d3b7fa1d7, type: 3}
   sizeXbox: {x: 50, y: 50}
-  spritePC: {fileID: 21300000, guid: af7919a7213b8a94db0921e24ccd7220, type: 3}
-  sizePC: {x: 73.75, y: 25}
+  spritePCAzer: {fileID: 21300000, guid: 4de4036ad3af0eb40a3a26dc79d9163b, type: 3}
+  spritePCQwer: {fileID: 21300000, guid: af7919a7213b8a94db0921e24ccd7220, type: 3}
+  sizePC: {x: 147.5, y: 50}
   spriteSwitch: {fileID: 21300000, guid: d06f1a785ed366744b0cff9354842673, type: 3}
   sizeSwitch: {x: 50, y: 50}
 --- !u!1 &1670083867
@@ -49358,7 +49562,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 31e66d8a4143d4a489dade455d99eb76, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31e66d8a4143d4a489dade455d99eb76, type: 3}
       propertyPath: m_LocalScale.x
@@ -49916,6 +50120,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9f852d1dd8781540a209e215e81741a, type: 3}
   m_PrefabInstance: {fileID: 772756802}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1696452553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5978015332642447416, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 2060463359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1702229319
 GameObject:
   m_ObjectHideFlags: 0
@@ -50974,8 +51189,9 @@ MonoBehaviour:
   sizePlaystation: {x: 40, y: 60}
   spriteXbox: {fileID: 21300000, guid: e10e7cf6f9682b147bcbd1533c625edb, type: 3}
   sizeXbox: {x: 40, y: 60}
-  spritePC: {fileID: 21300000, guid: 19e04d3ab5e99074eacb107c6ee45d8a, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 19e04d3ab5e99074eacb107c6ee45d8a, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: e10e7cf6f9682b147bcbd1533c625edb, type: 3}
   sizeSwitch: {x: 40, y: 60}
 --- !u!1 &1740590938
@@ -52694,8 +52910,9 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 40}
   spriteXbox: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
   sizeXbox: {x: 50, y: 40}
-  spritePC: {fileID: 21300000, guid: 62462b1a8202a294db1c7aa9f701eb7e, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 62462b1a8202a294db1c7aa9f701eb7e, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: 939cf2e643a4a02488546340847be2bd, type: 3}
   sizeSwitch: {x: 50, y: 40}
 --- !u!1 &1791179862
@@ -52858,8 +53075,9 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 40}
   spriteXbox: {fileID: 21300000, guid: 60b6a091efe396442911a15151e235dd, type: 3}
   sizeXbox: {x: 50, y: 40}
-  spritePC: {fileID: 21300000, guid: 62462b1a8202a294db1c7aa9f701eb7e, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 62462b1a8202a294db1c7aa9f701eb7e, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: 60b6a091efe396442911a15151e235dd, type: 3}
   sizeSwitch: {x: 50, y: 40}
 --- !u!1 &1818650583
@@ -54178,8 +54396,9 @@ MonoBehaviour:
   sizePlaystation: {x: 40, y: 60}
   spriteXbox: {fileID: 21300000, guid: e10e7cf6f9682b147bcbd1533c625edb, type: 3}
   sizeXbox: {x: 40, y: 60}
-  spritePC: {fileID: 21300000, guid: dd3e24d7d83c4fb45b7bfaac923935a4, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: dd3e24d7d83c4fb45b7bfaac923935a4, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: e10e7cf6f9682b147bcbd1533c625edb, type: 3}
   sizeSwitch: {x: 40, y: 60}
 --- !u!1001 &1884151601
@@ -54459,8 +54678,9 @@ MonoBehaviour:
   sizePlaystation: {x: 40, y: 60}
   spriteXbox: {fileID: 21300000, guid: e9c0160041a28d144ae6c5e53d43ee19, type: 3}
   sizeXbox: {x: 40, y: 60}
-  spritePC: {fileID: 21300000, guid: dd3e24d7d83c4fb45b7bfaac923935a4, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: dd3e24d7d83c4fb45b7bfaac923935a4, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: e9c0160041a28d144ae6c5e53d43ee19, type: 3}
   sizeSwitch: {x: 40, y: 60}
 --- !u!1 &1895810581
@@ -56718,7 +56938,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1978962318 stripped
 Transform:
@@ -56996,7 +57216,7 @@ Transform:
   - {fileID: 709946090}
   - {fileID: 545618543}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002132204
 GameObject:
@@ -58701,8 +58921,9 @@ MonoBehaviour:
   sizePlaystation: {x: 50, y: 40}
   spriteXbox: {fileID: 21300000, guid: 60b6a091efe396442911a15151e235dd, type: 3}
   sizeXbox: {x: 50, y: 40}
-  spritePC: {fileID: 21300000, guid: 61219b5bfcd593d42ada3fb370c8abfe, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 61219b5bfcd593d42ada3fb370c8abfe, type: 3}
+  sizePC: {x: 40, y: 40}
   spriteSwitch: {fileID: 21300000, guid: 02debafa124061d4ea45e622bb2b40b9, type: 3}
   sizeSwitch: {x: 50, y: 40}
 --- !u!1 &2058867811
@@ -60165,6 +60386,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5978015332642447416, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: P1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978015332642447416, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+      propertyPath: spritePCQwer
+      value: 
+      objectReference: {fileID: 21300000, guid: 61219b5bfcd593d42ada3fb370c8abfe, type: 3}
     - target: {fileID: 6119197216264483570, guid: 242feb78205025741a93aa6a6700b663, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -60876,6 +61105,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4926591525273944097, guid: 242feb78205025741a93aa6a6700b663, type: 3}
   m_PrefabInstance: {fileID: 2060463359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2060463361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8601184945206305602, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 2060463359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2060463364 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5125763180820974860, guid: 242feb78205025741a93aa6a6700b663, type: 3}
@@ -61228,8 +61468,9 @@ MonoBehaviour:
   sizePlaystation: {x: 64, y: 50}
   spriteXbox: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
   sizeXbox: {x: 64, y: 50}
-  spritePC: {fileID: 21300000, guid: 58021a37bc24f2a45b799edc3f01e6f9, type: 3}
-  sizePC: {x: 50, y: 50}
+  spritePCAzer: {fileID: 0}
+  spritePCQwer: {fileID: 21300000, guid: 333a232aae5f5e24c94ab9bfa8b0e533, type: 3}
+  sizePC: {x: 77, y: 50}
   spriteSwitch: {fileID: 21300000, guid: 8226e7548fb4c6f498bc6ccc277a0367, type: 3}
   sizeSwitch: {x: 64, y: 50}
 --- !u!1 &2069241172
@@ -64969,6 +65210,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+--- !u!114 &4926591524774610828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8601184945206305602, guid: 242feb78205025741a93aa6a6700b663, type: 3}
+  m_PrefabInstance: {fileID: 4926591524774610827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d2216c0c4b96943ae5fb142f9802d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4993880964201506570
 GameObject:
   m_ObjectHideFlags: 0
