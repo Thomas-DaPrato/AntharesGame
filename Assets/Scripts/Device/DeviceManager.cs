@@ -42,7 +42,7 @@ public class DeviceManager : MonoBehaviour
         {
             _instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     //*****
     // Singleton pattern
