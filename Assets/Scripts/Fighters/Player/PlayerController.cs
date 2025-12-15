@@ -30,10 +30,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool lightAttackCanTouch = true;
 
-    public int chanceComCoup=3;
+    public int chanceComCoup = 3;
     public int chanceComPiege = 5;
     public int chanceFouleCoup = 3;
-    public int chanceFoulePiege=5;
+    public int chanceFoulePiege = 5;
 
     private float x = 0;
     private float xAerial = 0;
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<ParticleSystem> playerHeavyVFXRight;
     [SerializeField]
-    private List<ParticleSystem> playerHeavyVFXLeft;    
+    private List<ParticleSystem> playerHeavyVFXLeft;
     [SerializeField]
     private GameObject playerParryVFX;
 
@@ -121,14 +121,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject upperLeftLimit, lowerRightLimit;
 
-    
+
     private GameObject soundManager;
 
     private GameObject menuPause;
     private GameObject UICombat;
     private Image timer;
 
-    
+
     public SetPlayerIcone playerNameIcone;
 
     private GameObject XKey;
@@ -214,8 +214,8 @@ public class PlayerController : MonoBehaviour
     private float GoDownPlatformTime;
     [SerializeField]
     private float stopDashTime;
-    
-    
+
+
 
 
     [Space(20)]
@@ -230,6 +230,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask playerLayer;
     #endregion
+
 
 
 
@@ -297,7 +298,8 @@ public class PlayerController : MonoBehaviour
         SpeedController();
     }
 
-    public IEnumerator LaunchResetRumble() {
+    public IEnumerator LaunchResetRumble()
+    {
         isResetRumble = true;
         GetComponent<PlayerInput>().GetDevice<Gamepad>().SetMotorSpeeds(0, 0);
         yield return new WaitForSeconds(1);
@@ -399,7 +401,8 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttacking && !isStun)
         {
             isAttacking = true;
-            if (isGrounded) {
+            if (isGrounded)
+            {
                 //HeavyEffect();
                 animator.SetTrigger("HeavyAttack");
             }
@@ -413,7 +416,6 @@ public class PlayerController : MonoBehaviour
         print(!isAttacking && !isStun);
         if (context.performed && !isAttacking && !isStun)
         {
-            print("here");
             isAttacking = true;
             if (isGrounded)
             {
@@ -465,7 +467,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator LaunchCoolDownParry() {
+    IEnumerator LaunchCoolDownParry()
+    {
         yield return new WaitForSeconds(1);
         canParry = true;
     }
@@ -475,8 +478,16 @@ public class PlayerController : MonoBehaviour
         if (!isStun && !isAttacking && !isParrying && context.performed)
         {
             Jump();
-
         }
+        if (gameManager.tutoOn && context.performed)
+        {
+            gameManager.isPressingA = true;
+        }
+        if (gameManager.tutoOn && context.canceled)
+        {
+            gameManager.isPressingA = false;
+        }
+
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -501,7 +512,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !gameManager.tutoOn)
         {
             UICombat.SetActive(false);
             timer.enabled = false;
@@ -800,7 +811,7 @@ public class PlayerController : MonoBehaviour
                 charaUIFeedback.PlayFeedbacks();
                 break;
             case HitBox.HitBoxType.Trap:
-                if(!trapName.Equals("Geyser"))
+                if (!trapName.Equals("Geyser"))
                 {
                     hp -= percentageDamage * maxHp / 100.0f;
                     damagedTrapSawFeedbacks.PlayFeedbacks();
@@ -809,7 +820,7 @@ public class PlayerController : MonoBehaviour
                     charaUIFeedback.InitialDelay = 0;
                     charaUIFeedback.PlayFeedbacks();
                 }
-                
+
                 chanceCommentateur = Random.Range(0, chanceComPiege);
                 if (chanceCommentateur == 1)
                 {
@@ -913,7 +924,7 @@ public class PlayerController : MonoBehaviour
                 otherPlayer.skullUIFeedbackLoop1.PlayFeedbacks();
             if (playSkullLoop2Other)
                 otherPlayer.skullUIFeedbackLoop2.PlayFeedbacks();
-            
+
             BUIFeedbackLoop.PlayFeedbacks();
             skullUIFeedbackLoop1.PlayFeedbacks();
             gameManagerSound.GetComponent<GameManager>().Pulse();
@@ -1127,10 +1138,10 @@ public class PlayerController : MonoBehaviour
 
     public void HeavyEffect()
     {
-       if(lastDirection > 0)
+        if (lastDirection > 0)
             foreach (ParticleSystem VFX in playerHeavyVFXRight)
                 VFX.Play();
-        if(lastDirection < 0)
+        if (lastDirection < 0)
             foreach (ParticleSystem VFX in playerHeavyVFXLeft)
                 VFX.Play();
     }
@@ -1197,7 +1208,8 @@ public class PlayerController : MonoBehaviour
         timer = imageTimer;
     }
 
-    public void SetPlayerInput(PlayerInput playerInput) {
+    public void SetPlayerInput(PlayerInput playerInput)
+    {
         opposingPlayerInput = playerInput;
     }
 
@@ -1219,15 +1231,17 @@ public class PlayerController : MonoBehaviour
     }
     public void SetHeavyColor(Color color)
     {
-        foreach (ParticleSystem VFX in playerHeavyVFXRight){
+        foreach (ParticleSystem VFX in playerHeavyVFXRight)
+        {
             VFX.startColor = color * 8;
             var trails = VFX.trails;
             trails.colorOverLifetime = color * 10;
         }
-        foreach (ParticleSystem VFX in playerHeavyVFXLeft){
+        foreach (ParticleSystem VFX in playerHeavyVFXLeft)
+        {
             VFX.startColor = color * 8;
             var trails = VFX.trails;
-            trails.colorOverLifetime = color * 10;    
+            trails.colorOverLifetime = color * 10;
         }
     }
     public void ShieldOnOff()

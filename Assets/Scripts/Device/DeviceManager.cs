@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.Localization.Settings;
 
 [Serializable]
-public enum Controller
+public enum Controller : int
 {
     Xbox,
     PlayStation,
@@ -42,7 +42,6 @@ public class DeviceManager : MonoBehaviour
         {
             _instance = this;
         }
-        //DontDestroyOnLoad(this.gameObject);
     }
     //*****
     // Singleton pattern
@@ -66,6 +65,44 @@ public class DeviceManager : MonoBehaviour
     {
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocaleChanged += RefreshImageLocal;
+        if (PlayerPrefs.HasKey("P1Controller"))
+        {
+            int controller = PlayerPrefs.GetInt("P1Controller");
+            switch (controller)
+            {
+                case 0:
+                    Player1Controller = Controller.Xbox;
+                    break;
+                case 1:
+                    Player1Controller = Controller.PlayStation;
+                    break;
+                case 2:
+                    Player1Controller = Controller.Switch;
+                    break;
+                case 3:
+                    Player1Controller = Controller.PC;
+                    break;
+            }
+        }
+        if (PlayerPrefs.HasKey("P2Controller"))
+        {
+            int controller = PlayerPrefs.GetInt("P2Controller");
+            switch (controller)
+            {
+                case 0:
+                    Player2Controller = Controller.Xbox;
+                    break;
+                case 1:
+                    Player2Controller = Controller.PlayStation;
+                    break;
+                case 2:
+                    Player2Controller = Controller.Switch;
+                    break;
+                case 3:
+                    Player2Controller = Controller.PC;
+                    break;
+            }
+        }
         RefreshImageLocal(LocalizationSettings.SelectedLocale);
     }
 
@@ -133,11 +170,13 @@ public class DeviceManager : MonoBehaviour
         {
             case Player.P1:
                 Player1Controller = controller;
+                PlayerPrefs.SetInt("P1Controller", (int)controller);
                 connectedController1Actions.Invoke(Player1Controller);
                 break;
 
             case Player.P2:
                 Player2Controller = controller;
+                PlayerPrefs.SetInt("P2Controller", (int)controller);
                 connectedController2Actions.Invoke(Player2Controller);
                 break;
         }

@@ -86,7 +86,10 @@ public class GameManager : MonoBehaviour
     public static PlayerInput fighter2;
     public TrapController trapController;
 
-
+    [Space(10)]
+    [Header("Tuto")]
+    [SerializeField] private GameObject tuto;
+    public bool tutoOn = false;
     #region UI Variable
     public GameObject UI;
     private GameObject UICombat;
@@ -105,6 +108,8 @@ public class GameManager : MonoBehaviour
     public bool useOnlyCesar;
     public bool useOnlyDiane;
 
+    public bool isPressingA = false;
+
     private void Awake()
     {
         InitGameManager();
@@ -112,6 +117,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        tuto.SetActive(true);
+        tutoOn = true;
+        Time.timeScale = 0;
         sfx321Go.PlayFeedbacks();
         if (onSceneTest)
         {
@@ -149,6 +157,8 @@ public class GameManager : MonoBehaviour
         fightTransition = uiInGameManager.fightTransition;
 
         timer = uiInGameManager.timer;
+
+
     }
 
     public void SpawnPlayers()

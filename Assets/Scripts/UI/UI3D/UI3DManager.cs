@@ -53,7 +53,6 @@ public class UI3DManager : MonoBehaviour
 
     private IEnumerator Start()
     {            
-        print(GameObject.Find("MenuMusic"));
         launchingMenuMusic = GameObject.Find("MenuMusic").GetComponent<MMF_Player>();
         yield return LocalizationSettings.InitializationOperation;
 
@@ -65,6 +64,7 @@ public class UI3DManager : MonoBehaviour
                 break;
             }
         }
+        print(currentList);
         launchingMenuMusic.PlayFeedbacks();
         if (PlayerPrefs.GetInt("chooseFighter") == 1)
         {

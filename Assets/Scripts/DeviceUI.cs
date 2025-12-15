@@ -27,8 +27,29 @@ public class DeviceUI : MonoBehaviour
     private List<DeviceImageHandler> deviceImageHandlers = new List<DeviceImageHandler>();
     private void Awake()
     {
+        Controller tmpController = Controller.Xbox;
+        int controller = 0;
+        if (player == Player.P1)
+            controller = PlayerPrefs.GetInt("P1Controller");
+        else
+            controller = PlayerPrefs.GetInt("P2Controller");
+        switch (controller)
+        {
+            case 0:
+                tmpController = Controller.Xbox;
+                break;
+            case 1:
+                tmpController = Controller.PlayStation;
+                break;
+            case 2:
+                tmpController = Controller.Switch;
+                break;
+            case 3:
+                tmpController = Controller.PC;
+                break;
+        }
         foreach (DeviceImageHandler action in deviceImageHandlers)
-            action.ChangeImage(Controller.Xbox);
+            action.ChangeImage(tmpController);
     }
 
     public void LeftButtonAction()
