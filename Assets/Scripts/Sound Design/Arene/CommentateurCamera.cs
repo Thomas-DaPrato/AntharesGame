@@ -113,19 +113,19 @@ public class CommentateurCamera : MonoBehaviour
 
 
 
-    public IEnumerator CanComment(float durée)
+    public IEnumerator CanComment(float duree)
     {
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(duree);
 
 
         isCommenting = false;
     }
 
     /*
-    public IEnumerator CanCommentstart(float durée)
+    public IEnumerator CanCommentstart(float durï¿½e)
     {
         
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(durï¿½e);
 
         //pitch debut de match ready fight etc
         r = Random.Range(0, commentateurStart.Count - 1);
@@ -136,10 +136,10 @@ public class CommentateurCamera : MonoBehaviour
         isCommenting = true;
         StartCoroutine(CanComment(dureeAudio));
     }
-    public IEnumerator CommentDiane(float durée)
+    public IEnumerator CommentDiane(float durï¿½e)
     {
 
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(durï¿½e);
 
 
         r = Random.Range(0, commentateurPresentationDiane.Count - 1);
@@ -150,10 +150,10 @@ public class CommentateurCamera : MonoBehaviour
         isCommenting = true;
         StartCoroutine(CanCommentstart(dureeAudio));
     }
-    public IEnumerator CommentCesar(float durée)
+    public IEnumerator CommentCesar(float durï¿½e)
     {
 
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(durï¿½e);
 
 
         r = Random.Range(0, commentateurPresentationCesar.Count - 1);
@@ -166,10 +166,10 @@ public class CommentateurCamera : MonoBehaviour
     }*/
 
 
-    /*public IEnumerator PresentationJoueur(float durée)
+    /*public IEnumerator PresentationJoueur(float durï¿½e)
     {
 
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(durï¿½e);
 
 
         if (player1.name == player2.name)

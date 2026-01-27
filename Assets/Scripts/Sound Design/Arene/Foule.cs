@@ -24,9 +24,9 @@ public class Foule : MonoBehaviour
         }
     }
 
-    public IEnumerator CanScream(float durée)
+    public IEnumerator CanScream(float duree)
     {
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(duree);
 
 
         isScreaming = false;

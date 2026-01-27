@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Cinemachine;
 using TMPro;
 using MoreMountains.Feedbacks;
+using UnityEngine.Localization.Settings;
 
 public class GameManager : MonoBehaviour
 {
@@ -157,8 +158,20 @@ public class GameManager : MonoBehaviour
         fightTransition = uiInGameManager.fightTransition;
 
         timer = uiInGameManager.timer;
-
-
+        DeviceManager deviceManager = uiInGameManager.gameObject.GetComponent<DeviceManager>();
+        DeviceImageHandler[] toAdd = tuto.GetComponentsInChildren<DeviceImageHandler>();
+        DeviceGreyImageHandler[] toAddGrey = tuto.GetComponentsInChildren<DeviceGreyImageHandler>();
+        DeviceColorHandler[] toAddColor = tuto.GetComponentsInChildren<DeviceColorHandler>();
+        DeviceColorTextHandler[] toAddColorText = tuto.GetComponentsInChildren<DeviceColorTextHandler>();
+        foreach (DeviceImageHandler deviceImageHandler in toAdd)
+            deviceManager.allDeviceImageHandlerFight.Add(deviceImageHandler);
+        foreach (DeviceGreyImageHandler deviceGreyImageHandler in toAddGrey)
+            deviceManager.allDeviceGreyImageHandlerFight.Add(deviceGreyImageHandler);
+        foreach (DeviceColorHandler deviceColorHandler in toAddColor)
+            deviceManager.allDeviceColorHandlerFight.Add(deviceColorHandler);
+        foreach (DeviceColorTextHandler deviceColorTextHandler in toAddColorText)
+            deviceManager.allDeviceColorTextHandlerFight.Add(deviceColorTextHandler);
+        deviceManager.ToDoOnEnable();
     }
 
     public void SpawnPlayers()

@@ -85,9 +85,9 @@ public class Commentateur : MonoBehaviour
         }
     }
 
-    public IEnumerator CanComment(float durée)
+    public IEnumerator CanComment(float duree)
     {
-        yield return new WaitForSeconds(durée);
+        yield return new WaitForSeconds(duree);
 
 
         isCommenting = false;

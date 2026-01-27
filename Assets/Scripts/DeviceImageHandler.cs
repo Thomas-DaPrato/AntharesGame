@@ -7,30 +7,19 @@ using UnityEngine.UI;
 
 public class DeviceImageHandler : MonoBehaviour
 {
-    [SerializeField]
-    public bool P1;
+    [SerializeField] public bool P1;
 
-    [SerializeField]
-    public Image image;
+    [SerializeField] public Image image;
 
-    [SerializeField]
-    protected Sprite spritePlaystation;
-    [SerializeField]
-    private Vector2 sizePlaystation;
-    [SerializeField]
-    protected Sprite spriteXbox;
-    [SerializeField]
-    private Vector2 sizeXbox;
-    [SerializeField]
-    protected Sprite spritePCAzer;
-    [SerializeField]
-    protected Sprite spritePCQwer;
-    [SerializeField]
-    private Vector2 sizePC;
-    [SerializeField]
-    protected Sprite spriteSwitch;
-    [SerializeField]
-    private Vector2 sizeSwitch;
+    [SerializeField] protected Sprite spritePlaystation;
+    [SerializeField] protected Vector2 sizePlaystation;
+    [SerializeField] protected Sprite spriteXbox;
+    [SerializeField] protected Vector2 sizeXbox;
+    [SerializeField] protected Sprite spritePCAzer;
+    [SerializeField] protected Sprite spritePCQwer;
+    [SerializeField] protected Vector2 sizePC;
+    [SerializeField] protected Sprite spriteSwitch;
+    [SerializeField] protected Vector2 sizeSwitch;
 
     public void ToDoOnEnable()
     {
@@ -53,8 +42,8 @@ public class DeviceImageHandler : MonoBehaviour
             else
                 image.sprite = spritePCQwer;
         }
-
     }
+
     public void ToDoOnDisable()
     {
         if (P1)
@@ -65,6 +54,15 @@ public class DeviceImageHandler : MonoBehaviour
 
     public void ChangeImage(Controller device)
     {
+        if (gameObject.name == "MidButtonP1" || gameObject.name == "HeavyButtonP1" || gameObject.name == "LightButtonP1")
+        {
+            print(gameObject.name);
+        }
+        if (gameObject.name == "MidButtonP2" || gameObject.name == "HeavyButtonP2" || gameObject.name == "LightButtonP2")
+        {
+            print(gameObject.name);
+        }
+
         switch (device)
         {
             case Controller.Xbox:
@@ -88,6 +86,7 @@ public class DeviceImageHandler : MonoBehaviour
                 {
                     image.sprite = spritePCQwer;
                 }
+
                 image.rectTransform.sizeDelta = sizePC;
                 break;
         }

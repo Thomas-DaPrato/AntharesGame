@@ -58,7 +58,9 @@ public class DeviceManager : MonoBehaviour
     public bool fr = false;
     public List<DeviceImageHandler> allDeviceImageHandlerMenu;
     public List<DeviceImageHandler> allDeviceImageHandlerFight;
+    public List<DeviceGreyImageHandler> allDeviceGreyImageHandlerFight;
     public List<DeviceColorHandler> allDeviceColorHandlerFight;
+    public List<DeviceColorTextHandler> allDeviceColorTextHandlerFight;
     public State state = State.Menu;
 
     private IEnumerator Start()
@@ -105,8 +107,7 @@ public class DeviceManager : MonoBehaviour
         }
         RefreshImageLocal(LocalizationSettings.SelectedLocale);
     }
-
-    private void OnEnable()
+    public void ToDoOnEnable()
     {
         switch (state)
         {
@@ -121,13 +122,26 @@ public class DeviceManager : MonoBehaviour
                 {
                     deviceImageHandlerhandler.ToDoOnEnable();
                 }
+                foreach (DeviceGreyImageHandler deviceGreyImageHandlerhandler in allDeviceGreyImageHandlerFight)
+                {
+                    deviceGreyImageHandlerhandler.ToDoOnEnable();
+                }
                 foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
                 {
                     deviceColorHandlerhandler.ToDoOnEnable();
                 }
+                foreach (DeviceColorTextHandler deviceColorTextHandlerhandler in allDeviceColorTextHandlerFight)
+                {
+                    deviceColorTextHandlerhandler.ToDoOnEnable();
+                }
+                
                 break;
         }
+    }
 
+    private void OnEnable()
+    {
+        ToDoOnEnable();
     }
     private void OnDisable()
     {
@@ -144,9 +158,17 @@ public class DeviceManager : MonoBehaviour
                 {
                     deviceImageHandlerhandler.ToDoOnDisable();
                 }
+                foreach (DeviceGreyImageHandler deviceGreyImageHandlerhandler in allDeviceGreyImageHandlerFight)
+                {
+                    deviceGreyImageHandlerhandler.ToDoOnDisable();
+                }
                 foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
                 {
                     deviceColorHandlerhandler.ToDoOnDisable();
+                }
+                foreach (DeviceColorTextHandler deviceColorTextHandlerhandler in allDeviceColorTextHandlerFight)
+                {
+                    deviceColorTextHandlerhandler.ToDoOnDisable();
                 }
                 break;
         }
@@ -191,6 +213,12 @@ public class DeviceManager : MonoBehaviour
         {
             fr = false;
         }
+        ChangeController(Player.P1, Player1Controller);
+        ChangeController(Player.P2, Player2Controller);
+    }
+
+    public void RefreshEverything()
+    {
         ChangeController(Player.P1, Player1Controller);
         ChangeController(Player.P2, Player2Controller);
     }

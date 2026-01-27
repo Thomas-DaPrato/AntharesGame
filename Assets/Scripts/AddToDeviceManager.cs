@@ -26,28 +26,38 @@ public class AddToDeviceManager : MonoBehaviour
     // Singleton pattern
     //*****
     public List<DeviceImageHandler> allDeviceImageHandlerFight;
+    public List<DeviceGreyImageHandler> allDeviceGreyImageHandlerFight;
     public List<DeviceColorHandler> allDeviceColorHandlerFight;
 
     private void OnEnable()
     {
-        foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerFight)
+        foreach (DeviceImageHandler deviceImageHandler in allDeviceImageHandlerFight)
         {
-            deviceImageHandlerhandler.ToDoOnEnable();
+            deviceImageHandler.ToDoOnEnable();
         }
-        foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
+        foreach (DeviceColorHandler deviceColorHandler in allDeviceColorHandlerFight)
         {
-            deviceColorHandlerhandler.ToDoOnEnable();
+            deviceColorHandler.ToDoOnEnable();
         }
+        foreach (DeviceGreyImageHandler deviceGreyImageHandler in allDeviceGreyImageHandlerFight)
+        {
+            deviceGreyImageHandler.ToDoOnEnable();
+        }
+        
     }
     private void OnDisable()
     {
-        foreach (DeviceImageHandler deviceImageHandlerhandler in allDeviceImageHandlerFight)
+        foreach (DeviceImageHandler deviceImageHandler in allDeviceImageHandlerFight)
         {
-            deviceImageHandlerhandler.ToDoOnDisable();
+            deviceImageHandler.ToDoOnDisable();
         }
-        foreach (DeviceColorHandler deviceColorHandlerhandler in allDeviceColorHandlerFight)
+        foreach (DeviceColorHandler deviceColorHandler in allDeviceColorHandlerFight)
         {
-            deviceColorHandlerhandler.ToDoOnDisable();
+            deviceColorHandler.ToDoOnDisable();
+        }
+        foreach (DeviceGreyImageHandler deviceGreyImageHandler in allDeviceGreyImageHandlerFight)
+        {
+            deviceGreyImageHandler.ToDoOnDisable();
         }
     }
 
