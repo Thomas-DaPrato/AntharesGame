@@ -39,6 +39,7 @@ public class ControllerManager : MonoBehaviour
                     p1.SwitchCurrentControlScheme("KeyboardPlayerLeft", Keyboard.current);
                     p2.SwitchCurrentControlScheme("KeyboardPlayerRight", Keyboard.current);
                 }
+
                 break;
             case 1:
                 p1.SwitchCurrentControlScheme("KeyboardPlayerLeft", Keyboard.current);
@@ -53,6 +54,7 @@ public class ControllerManager : MonoBehaviour
                 break;
         }
     }
+
     void FixedUpdate()
     {
         if (EventSystem.current.currentSelectedGameObject == null && autoSelect)
@@ -63,15 +65,21 @@ public class ControllerManager : MonoBehaviour
 
     public void AutoSelect()
     {
-        if (autoSelect)
-            selectableDefault.Select();
+        if (selectableDefault != null)
+            selectableDefault.interactable = false;
+        StartCoroutine(DoAfterDelay(0.5f, () =>
+        {
+            if (selectableDefault != null)
+                selectableDefault.interactable = true;
+            if (autoSelect)
+                selectableDefault.Select();  
+        }));
+
     }
-    
+
     private IEnumerator DoAfterDelay(float delaySeconds, System.Action thingToDo)
     {
         yield return new WaitForSeconds(delaySeconds);
         thingToDo();
     }
-    
-
 }

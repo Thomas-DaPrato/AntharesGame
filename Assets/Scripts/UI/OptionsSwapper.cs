@@ -40,7 +40,6 @@ public class OptionsSwapper : MonoBehaviour
     {
         if (UIManager != null)
         {
-            UIManager.EnableChangePanelButton();
             UIManager.EnableNavigateButton();
             UIManager.EnableReturnButton();
         }
