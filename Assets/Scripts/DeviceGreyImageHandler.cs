@@ -24,7 +24,7 @@ public class DeviceGreyImageHandler : MonoBehaviour
     [SerializeField] protected Sprite spriteGreyPCQwer;
     [SerializeField] protected Sprite spriteGreySwitch;
 
-    public new void ToDoOnEnable()
+    public void ToDoOnEnable()
     {
         if (P1)
             DeviceManager.Instance.connectedController1Actions += ChangeImage;
@@ -47,7 +47,7 @@ public class DeviceGreyImageHandler : MonoBehaviour
         }
     }
 
-    public new void ToDoOnDisable()
+    public void ToDoOnDisable()
     {
         if (P1)
             DeviceManager.Instance.connectedController1Actions -= ChangeImage;
@@ -62,12 +62,10 @@ public class DeviceGreyImageHandler : MonoBehaviour
             ChangeImage(DeviceManager.Instance.Player1Controller);
         else
             ChangeImage(DeviceManager.Instance.Player2Controller);
-        print(image.sprite.name);
     }
 
-    public new void ChangeImage(Controller device)
+    public void ChangeImage(Controller device)
     {
-        print(isGrey);
         switch (device)
         {
             case Controller.Xbox:

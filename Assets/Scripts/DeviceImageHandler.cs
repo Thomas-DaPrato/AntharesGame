@@ -54,14 +54,6 @@ public class DeviceImageHandler : MonoBehaviour
 
     public void ChangeImage(Controller device)
     {
-        if (gameObject.name == "MidButtonP1" || gameObject.name == "HeavyButtonP1" || gameObject.name == "LightButtonP1")
-        {
-            print(gameObject.name);
-        }
-        if (gameObject.name == "MidButtonP2" || gameObject.name == "HeavyButtonP2" || gameObject.name == "LightButtonP2")
-        {
-            print(gameObject.name);
-        }
 
         switch (device)
         {

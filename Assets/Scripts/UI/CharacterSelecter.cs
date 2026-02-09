@@ -76,6 +76,8 @@ public class CharacterSelecter : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private DisplayUIButtonManager UIManager;
+    [SerializeField]
+    private DisplayUIButtonManager UIManagerP2;
 
 
     [SerializeField]
@@ -92,6 +94,7 @@ public class CharacterSelecter : MonoBehaviour
         currentFighter = 0;
         haveChooseFighter = false;
         ready.SetActive(false);
+        UIManager.gameObject.SetActive(true);
         UIManager.EnableValidateButton();
         UIManager.EnableReturnButton();
         UIManager.EnableNavigateButton();
@@ -158,6 +161,8 @@ public class CharacterSelecter : MonoBehaviour
                 iconInfos.SetActive(true);
                 UIManager.DisableStartButton();
                 UIManager.EnableValidateButton();
+                UIManagerP2.DisableStartButton();
+                UIManagerP2.EnableValidateButton();
                 for (int i = 0; i < neonReady.Length; i++)
                 {
                     neonReady[i].material = notReadyMaterial;
@@ -174,6 +179,12 @@ public class CharacterSelecter : MonoBehaviour
                 vcMenu.SetActive(true);
                 vcBat.SetActive(false);
                 UIManager.ActiveButtonMenu();
+                UIManagerP2.ActiveButtonMenu();
+                if(!UIManager.P1)
+                    UIManager.gameObject.SetActive(false);
+                
+                if(!UIManagerP2.P1)
+                    UIManagerP2.gameObject.SetActive(false);
                 for (int i = 0; i < otherCharacterSelecter.neonReady.Length; i++)
                 {
                     otherCharacterSelecter.neonReady[i].material = notReadyMaterial;

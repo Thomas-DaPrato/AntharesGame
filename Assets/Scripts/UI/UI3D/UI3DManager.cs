@@ -30,6 +30,8 @@ public class UI3DManager : MonoBehaviour
 
     [SerializeField]
     private DisplayUIButtonManager UIManager;
+    [SerializeField]
+    private DisplayUIButtonManager UIManagerP2;
 
     [Header("Camera")]
     [SerializeField]
@@ -116,6 +118,7 @@ public class UI3DManager : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
+        print("here");
         if (context.performed)
         {
             audioSource.PlayOneShot(audioButtonClick);
@@ -125,6 +128,7 @@ public class UI3DManager : MonoBehaviour
             {
                 GetComponent<PlayerInput>().enabled = false;
                 UIManager.DisableValidateButton();
+                UIManagerP2.DisableValidateButton();
                 /*foreach (GameObject button in buttons)
                     button.GetComponent<MeshRenderer>().sharedMaterial = blackButton;*/
                 foreach (GameObject button in currentList)
@@ -136,6 +140,7 @@ public class UI3DManager : MonoBehaviour
                 vcMenu.SetActive(false);
                 vcBat.SetActive(true);
                 UIManager.EnableReturnButton();
+                UIManagerP2.EnableReturnButton();
                 on3DMenu = false;
 
             }

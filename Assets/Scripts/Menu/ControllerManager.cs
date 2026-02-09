@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,5 +66,12 @@ public class ControllerManager : MonoBehaviour
         if (autoSelect)
             selectableDefault.Select();
     }
+    
+    private IEnumerator DoAfterDelay(float delaySeconds, System.Action thingToDo)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        thingToDo();
+    }
+    
 
 }
