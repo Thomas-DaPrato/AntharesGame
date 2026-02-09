@@ -5,6 +5,7 @@ using UnityEngine;
 public class DisplayUIButtonManager : MonoBehaviour
 {
     public bool P1 = true;
+    public GameObject text;
     public GameObject validateButton;
     public GameObject returnButton;
     public GameObject navigateButton;
@@ -25,8 +26,6 @@ public class DisplayUIButtonManager : MonoBehaviour
     }
 
     public void EnableReturnButton() {
-        if(gameObject.name == "RightButton")
-            print("JE ME LANCE");
         returnButton.SetActive(true);
     }
     public void DisableReturnButton() {
@@ -64,6 +63,7 @@ public class DisplayUIButtonManager : MonoBehaviour
     }
     
     public void DisableAllButtons() {
+        text.SetActive(false);
         validateButton.SetActive(false);
         returnButton.SetActive(false);
         navigateButton.SetActive(false);

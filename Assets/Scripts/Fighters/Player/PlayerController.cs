@@ -475,6 +475,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        print("" + GetComponent<PlayerInput>().currentControlScheme);
         if (!isStun && !isAttacking && !isParrying && context.performed)
         {
             Jump();

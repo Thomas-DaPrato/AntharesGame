@@ -304,7 +304,13 @@ public class GameManager : MonoBehaviour
 
     public PlayerInput InitFighter(GameObject prefab, Transform position, int lastDirection, List<Image> whiteHpBarre, List<Image> redHpBarre, string playerName, GameObject Xkey, string controllerScheme, InputDevice controller)
     {
+        print(controllerScheme);
         PlayerInput fighter = PlayerInput.Instantiate(prefab, controlScheme: controllerScheme, pairWithDevice: controller);
+        fighter .DeactivateInput();
+        fighter.SwitchCurrentControlScheme(controllerScheme, Keyboard.current);
+        fighter .ActivateInput();
+
+        print(fighter.currentControlScheme);
         fighter.transform.position = position.position;
         fighter.GetComponent<PlayerController>().SetUIFighter(whiteHpBarre, redHpBarre, menuPause, UICombat, Xkey, timer.GetComponent<Image>(), playerName);
         fighter.GetComponent<PlayerController>().playerName = playerName;

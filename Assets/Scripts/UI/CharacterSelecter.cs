@@ -233,6 +233,9 @@ public class CharacterSelecter : MonoBehaviour
                 UIManager.DisableValidateButton();
                 UIManager.DisableNavigateButton();
                 UIManager.EnableStartButton();
+                UIManagerP2.DisableValidateButton();
+                UIManagerP2.DisableNavigateButton();
+                UIManagerP2.EnableStartButton();
             }
         }
     }
@@ -256,6 +259,7 @@ public class CharacterSelecter : MonoBehaviour
     public IEnumerator StartFight()
     {
         UIManager.DisableAllButtons();
+        UIManagerP2.DisableAllButtons();
         vcBat.SetActive(false);
         vcRecul.SetActive(true);
         yield return new WaitForSeconds(2);

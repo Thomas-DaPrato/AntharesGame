@@ -186,7 +186,7 @@
                 {
                     "name": "",
                     "id": "9a076983-dfc9-4f49-a8a9-e1395301cef3",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoardPlayerLeft",
@@ -197,7 +197,7 @@
                 {
                     "name": "",
                     "id": "1160ff6d-f375-4794-a99c-3662aca2faad",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -219,7 +219,7 @@
                 {
                     "name": "",
                     "id": "85e751a3-9974-4637-b941-d702d7a084d3",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoardPlayerLeft",
@@ -241,7 +241,7 @@
                 {
                     "name": "",
                     "id": "520fc919-b0e9-4edf-b572-a5fc1a5ba066",
-                    "path": "<Keyboard>/numpad4",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -252,7 +252,7 @@
                 {
                     "name": "",
                     "id": "39ab9d0d-0b12-470a-a7cb-222268cac11a",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoardPlayerLeft",
@@ -274,7 +274,7 @@
                 {
                     "name": "",
                     "id": "b335a27e-9a19-447b-8b5a-4171ccba2602",
-                    "path": "<Keyboard>/numpad5",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -285,7 +285,7 @@
                 {
                     "name": "",
                     "id": "47c09409-3bd2-4117-b923-3154271f0c94",
-                    "path": "<Keyboard>/h",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoardPlayerLeft",
@@ -307,7 +307,7 @@
                 {
                     "name": "",
                     "id": "fe681ea5-afd9-488e-b0b4-09666e4850e0",
-                    "path": "<Keyboard>/numpad6",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -351,7 +351,7 @@
                 {
                     "name": "",
                     "id": "879ffef8-ffe2-44e0-9c19-030d3446f234",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -362,7 +362,7 @@
                 {
                     "name": "",
                     "id": "43186b50-bfed-4c6d-9034-743fd0ef612d",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoardPlayerLeft",
@@ -395,10 +395,10 @@
                 {
                     "name": "",
                     "id": "1c2d9e01-201c-40ee-a081-470fc450ee92",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardPlayerRight",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -941,6 +941,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6fd50565-7655-4ffb-8f30-d4d17233c3ed",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d549b1ef-0fc1-45ee-afb8-c35b5a2889f4",
                     "path": "*/{Cancel}",
                     "interactions": "",
@@ -1291,6 +1302,17 @@
                 },
                 {
                     "name": "",
+                    "id": "62c7ce76-1962-499f-8224-4d6ce1522584",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "240e7b84-360a-45ed-8d32-ed1060183bf1",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -1303,7 +1325,7 @@
                 {
                     "name": "",
                     "id": "a19b1a04-40cd-442c-a879-712073d62f7e",
-                    "path": "<Keyboard>/rightCtrl",
+                    "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -1335,8 +1357,19 @@
                 },
                 {
                     "name": "",
+                    "id": "e7463627-450d-452f-89cf-62640cea8fb7",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardPlayerLeft",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "35d37efa-d952-4c7c-967c-b3db1520ae7a",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardPlayerRight",
@@ -1681,6 +1714,28 @@
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2278a87a-a541-45d7-a3fb-70bf34a3f79d",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3232632f-32d7-4f5a-9b51-21064a953f6b",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1847,6 +1902,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardTwoPlayers",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c64c525-d1e1-4cc4-9211-74e6dfeceab0",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c970b41-6a06-47bf-abf1-1ba6457746a4",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Validate",
                     "isComposite": false,
                     "isPartOfComposite": false
